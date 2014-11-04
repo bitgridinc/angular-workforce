@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.0.1",
   "description": "Node.js Hello world app on CentOS using docker",
-  "author": "Daniel Gasienica <daniel@gasienica.ch>",
+  "author": "Chris Hairfield <chris@bitgrid.co>",
   "dependencies": {
-    "express": "^4.10.0"
+    "hapi": "^7.2.0"
   },
   "devDependencies": {
     "gulp": "^3.8.9",
