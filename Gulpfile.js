@@ -1,6 +1,11 @@
 var gulp = require('gulp')
   , nodemon = require('gulp-nodemon')
   , jshint = require('gulp-jshint')
+  , karma = require('gulp-karma')
+
+var testFiles = [
+  'test/*.spec.js'
+];
 
 gulp.task('lint', function () {
   gulp.src('./**/*.js')
@@ -15,6 +20,25 @@ gulp.task('develop', function () {
     })
 })
 
+// This can be called to run our tests once.
+gulp.task('test', function() {
+  // Be sure to return the stream
+  return gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
+});
+
 gulp.task('default', ['develop'], function() {
-  // place code for your default task here
+  // The default task will run karma with the watcher enabled; when any file changes, tests are run.
+  gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'watch'
+    }));
 });

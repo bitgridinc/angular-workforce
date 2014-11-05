@@ -11,6 +11,7 @@
     "chai": "^1.9.2",
     "gulp": "^3.8.9",
     "gulp-jshint": "^1.8.6",
+    "gulp-karma": "0.0.4",
     "gulp-nodemon": "^1.0.4",
     "karma": "^0.12.24",
     "karma-chai": "^0.1.0",
