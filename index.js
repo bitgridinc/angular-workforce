@@ -11,6 +11,7 @@ server.route([
   { method: 'GET', path: '/partials/{path*}', handler: { directory: { path: './public/views/partials' } } }, 
   { method: 'GET', path: '/js/{path*}', handler: { directory: { path: './public/js' } } },
   { method: 'GET', path: '/vendor/{path*}', handler: { directory: { path: './public/vendor' } } },
+  { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './bower_components' } } },
   // Entry point to Angular application
   { method: 'GET', path: '/{path*}', handler: {file: './public/views/index.html'} },
   // Entry point to Mocha tests
