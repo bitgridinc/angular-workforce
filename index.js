@@ -10,8 +10,11 @@ var server = new hapi.Server('localhost', PORT);
 server.route([        
   { method: 'GET', path: '/partials/{path*}', handler: { directory: { path: './public/views/partials' } } }, 
   { method: 'GET', path: '/js/{path*}', handler: { directory: { path: './public/js' } } },
-  // serve index as entry point into angular app
-  { method: 'GET', path: '/{path*}', handler: {file: './public/views/index.html'} }
+  { method: 'GET', path: '/vendor/{path*}', handler: { directory: { path: './public/vendor' } } },
+  // Entry point to Angular application
+  { method: 'GET', path: '/{path*}', handler: {file: './public/views/index.html'} },
+  // Entry point to Mocha tests
+  { method: 'GET', path: '/tests/{path*}', handler: {file: './public/views/tests.html'} }
 ]);
 
 server.start();
