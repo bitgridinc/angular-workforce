@@ -1,5 +1,5 @@
 {
-  "name": "docker-centos-hello",
+  "name": "BitGrid",
   "private": true,
   "version": "0.0.1",
   "description": "Node.js Hello world app on CentOS using docker",
