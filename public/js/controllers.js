@@ -17,7 +17,7 @@ angular.module('app.controllers', []).
     $scope.assistForm.people = 1;
 
     $scope.assistForm.offerAssistance = function(beacon) {
-      alert("You've acccepted!");
+      alert("You've accepted!");
     };
     $scope.assistForm.declineAssistance = function(beacon) {
       alert("You've declined!");
