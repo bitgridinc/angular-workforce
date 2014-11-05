@@ -1,3 +1,13 @@
 <div>
-	Respond to Beacon
+    Organization {{req.org}} has requested your assistance at {{req.lat}}, {{req.lon}} on {{req.date}}. <br/>
+    What would you like to do? <br/>
+    <form method="post">
+      <div>
+        How many people can you send? <input type="number" name="people" id="people" required ng-model="assistForm.people" />
+      </div>
+      <div>
+        <button ng-click="assistForm.offerAssistance()">Offer Assistance</button>
+        <button ng-click="assistForm.declineAssistance()">Pity the Fools</button>
+      </div>
+    # of people: {{assistForm.people}}
 </div>
