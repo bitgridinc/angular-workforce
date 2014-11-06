@@ -6,8 +6,10 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai'],
      
     files: [
-      //'public/js/*.js',
-      'test/*.spec.js'
+      'bower_components/angular/*.js',
+      'public/js/app.js',
+      'test/*.spec.js',
+      'public/js/test.*.js'
     ],
                                              
     reporters: ['progress'],
