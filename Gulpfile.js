@@ -2,6 +2,9 @@ var gulp = require('gulp')
   , nodemon = require('gulp-nodemon')
   , jshint = require('gulp-jshint')
   , karma = require('gulp-karma')
+  , webdriver_standalone = require("gulp-protractor").webdriver_standalone
+  , webdriver_update = require('gulp-protractor').webdriver_update
+  , protractor = require("gulp-protractor").protractor
 
 var testFiles = [
   'test/*.spec.js'
@@ -34,7 +37,19 @@ gulp.task('test', function() {
     });
 });
 
-gulp.task('default', ['develop'], function() {
+gulp.task('webdriver_standalone', webdriver_standalone);
+gulp.task('webdriver_update', webdriver_update);
+
+gulp.task('protractor', ['webdriver_update'], function(cb) {
+  gulp.src(['e2e/*.spec.js']).pipe(protractor({
+    configFile: 'protractor.conf.js',
+  })).on('error', function(e) {
+    console.log(e);
+  }).on('end', cb);
+});
+
+
+gulp.task('default', ['protractor', 'develop'], function() {
   // The default task will run karma with the watcher enabled; when any file changes, tests are run.
   gulp.src(testFiles)
     .pipe(karma({
