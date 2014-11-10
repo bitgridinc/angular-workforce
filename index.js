@@ -13,9 +13,7 @@ server.route([
   { method: 'GET', path: '/vendor/{path*}', handler: { directory: { path: './app/vendor' } } },
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './app/bower_components' } } },
   // Entry point to Angular application
-  { method: 'GET', path: '/{path*}', handler: {file: './app/views/index.html'} },
-  // Entry point to Mocha tests
-  { method: 'GET', path: '/tests/{path*}', handler: {file: './app/views/tests.html'} }
+  { method: 'GET', path: '/{path*}', handler: {file: './app/views/index.html'} }
 ]);
 
 server.start();
