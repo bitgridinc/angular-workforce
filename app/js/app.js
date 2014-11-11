@@ -1,5 +1,7 @@
 "use strict";
 
+require('./controllers.js');
+
 var app = angular.module('app', ['ngRoute', 'app.controllers']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider

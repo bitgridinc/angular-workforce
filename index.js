@@ -9,8 +9,7 @@ var server = new hapi.Server('localhost', PORT);
 // routes
 server.route([        
   { method: 'GET', path: '/partials/{path*}', handler: { directory: { path: './app/views/partials' } } }, 
-  { method: 'GET', path: '/js/{path*}', handler: { directory: { path: './app/js' } } },
-  { method: 'GET', path: '/vendor/{path*}', handler: { directory: { path: './app/vendor' } } },
+  { method: 'GET', path: '/js/{path*}', handler: { directory: { path: './public/js' } } },
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './app/bower_components' } } },
   // Entry point to Angular application
   { method: 'GET', path: '/{path*}', handler: {file: './app/views/index.html'} }

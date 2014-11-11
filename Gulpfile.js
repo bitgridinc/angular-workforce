@@ -5,6 +5,8 @@ var gulp = require('gulp')
   , webdriver_standalone = require("gulp-protractor").webdriver_standalone
   , webdriver_update = require('gulp-protractor').webdriver_update
   , protractor = require("gulp-protractor").protractor
+  , browserify = require('gulp-browserify')
+  , rename = require('gulp-rename')
 
 var testFiles = [
   'test/*.spec.js'
@@ -15,9 +17,19 @@ gulp.task('lint', function () {
     .pipe(jshint())
 })
 
-gulp.task('develop', function () {
-  nodemon({ script: 'index.js', ext: 'html js', ignore: ['ignored.js'] })
-    .on('change', ['lint'])
+gulp.task('browserify', function() {
+  // Single entry point to browserify
+  gulp.src('app/js/app.js')
+    .pipe(browserify({
+      insertGlobals : true
+    }))
+    .pipe(rename('bundle.js'))
+    .pipe(gulp.dest('./public/js'))
+});
+
+gulp.task('develop', ['browserify'], function () {
+  nodemon({ script: 'index.js', ext: 'html js', ignore: ['bundle.js'] })
+    .on('change', ['lint', 'browserify'])
     .on('restart', function () {
       console.log('restarted!')
     })
