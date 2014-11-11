@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp')
   , nodemon = require('gulp-nodemon')
   , jshint = require('gulp-jshint')
@@ -61,7 +63,7 @@ gulp.task('protractor', ['webdriver_update'], function(cb) {
 });
 
 
-gulp.task('default', ['protractor', 'develop'], function() {
+gulp.task('default', ['develop'], function() {
   // The default task will run karma with the watcher enabled; when any file changes, tests are run.
   gulp.src(testFiles)
     .pipe(karma({
