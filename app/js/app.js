@@ -13,5 +13,3 @@ var app = angular.module('app', ['ngRoute', 'app.controllers', 'leaflet-directiv
       .otherwise({redirectTo: '/request'});
     $locationProvider.html5Mode(true);
   }]);
-
-
