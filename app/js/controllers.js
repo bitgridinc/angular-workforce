@@ -1,7 +1,19 @@
 "use strict";
 
-angular.module('app.controllers', []).
-  controller('requestController', function($scope, $location) {
+angular.module('app.controllers', [])
+  .controller('mapController', function($scope) {
+    angular.extend($scope, {
+      defaults: {
+        tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png"
+      },
+      center: {
+        lat: 38.914268,
+        lng: -77.021098,
+        zoom: 13
+      }
+    });
+  })
+  .controller('requestController', function($scope, $location) {
     $scope.form = {};
     $scope.form.org = "BitGrid";
     $scope.form.lat = "1";
