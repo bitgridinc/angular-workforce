@@ -6,7 +6,7 @@ angular.module('app.controllers', [])
       defaults: {
         tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png"
       },
-      center: {
+      washdc: {
         lat: 38.914268,
         lng: -77.021098,
         zoom: 13
