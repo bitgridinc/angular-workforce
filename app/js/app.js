@@ -1,8 +1,6 @@
 "use strict";
 
 require('./controllers.js');
-require('../bower_components/leaflet');
-require('../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js');
 
 var app = angular.module('app', ['ngRoute', 'app.controllers', 'leaflet-directive']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {

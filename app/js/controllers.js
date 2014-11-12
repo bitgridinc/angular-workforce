@@ -1,6 +1,7 @@
 "use strict";
 
 require('../bower_components/leaflet');
+require('../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js');
 require('../bower_components/leaflet.draw/dist/leaflet.draw.js');
 
 angular.module('app.controllers', [])
