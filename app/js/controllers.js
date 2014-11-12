@@ -37,18 +37,23 @@ angular.module('app.controllers', ['ngDialog'])
 
     $scope.$on("leafletDirectiveMap.click", function(event, args){
       console.log('leafletDirectiveMap.click');
-      
+      var latlng = args.leafletEvent.latlng;
+
       // There may be a cleaner way to open this dialog
       ngDialog.openConfirm({
         template: '/partials/request.html',
         className: 'ngdialog-theme-default',
-        controller: 'requestController'
+        controller: 'requestController',
+        data: {
+          org: 'BitGrid',
+          lat: latlng.lat,
+          lng: latlng.lng
+        }
       }).then(function (value) {
         console.log('Modal promise resolved. Value: ', value);
-        var leafEvent = args.leafletEvent;
         $scope.markers.push({
-          lat: leafEvent.latlng.lat,
-          lng: leafEvent.latlng.lng
+          lat: latlng.lat,
+          lng: latlng.lng
         });
         console.log('Marker added to map.');
       }, function (reason) {
@@ -59,6 +64,7 @@ angular.module('app.controllers', ['ngDialog'])
     // Args will contain the marker name and other relevant information
     $scope.$on('leafletDirectiveMarker.click', function(e, args) {
       console.log('leafletDirectiveMarker.click');
+      console.log(args.leafletEvent.target.options);
 
       // There may be a cleaner way to open this dialog
       ngDialog.openConfirm({
@@ -73,13 +79,11 @@ angular.module('app.controllers', ['ngDialog'])
     });
   })
   .controller('requestController', function($scope) {
-    $scope.form = {};
-    $scope.form.org = "BitGrid";
-    $scope.form.lat = "1";
-    $scope.form.lon = "2";
-
-    $scope.form.submitForm = function() {
-      console.log("submitForm called.");
+    $scope.requestController = {
+      submitForm: function(data) {
+        console.log(data);
+        console.log("submitForm called.");
+      }
     };
   })
   .controller('respondController', function($scope) {
