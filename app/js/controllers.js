@@ -3,9 +3,10 @@
 require('../bower_components/leaflet');
 require('../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js');
 require('../bower_components/leaflet.draw/dist/leaflet.draw.js');
+require('../bower_components/ngDialog/js/ngDialog.js')
 
-angular.module('app.controllers', [])
-  .controller('mapController', function($scope, leafletData) {
+angular.module('app.controllers', ['ngDialog'])
+  .controller('mapController', function($scope, leafletData, ngDialog) {
     angular.extend($scope, {
       defaults: {
         tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png"
@@ -35,12 +36,21 @@ angular.module('app.controllers', [])
     $scope.markers = new Array();
 
     $scope.$on("leafletDirectiveMap.click", function(event, args){
-      var leafEvent = args.leafletEvent;
-
-      $scope.markers.push({
-        lat: leafEvent.latlng.lat,
-        lng: leafEvent.latlng.lng,
-        message: "My Added Marker"
+      ngDialog.openConfirm({
+        template: '/partials/request.html',
+        className: 'ngdialog-theme-default',
+        controller: 'requestController'
+      }).then(function (value) {
+        console.log('Modal promise resolved. Value: ', value);
+        console.log('Adding marker to map.');
+        var leafEvent = args.leafletEvent;
+        $scope.markers.push({
+          lat: leafEvent.latlng.lat,
+          lng: leafEvent.latlng.lng,
+          message: "My Beacon"
+        });
+      }, function (reason) {
+        console.log('Modal promise rejected. Reason: ', reason);
       });
     });
   })

@@ -1,19 +1,19 @@
 <div>
   <form method="post">
-    <div>
-      Organization: <input type="text" name="org" autofocus="autofocus" id="org" required ng-model="form.org" />
+    <div class="ngdialog-message">
+      <div>
+        Organization: <input type="text" name="org" autofocus="autofocus" id="org" required ng-model="form.org" />
+      </div>
+      <div>
+        Latitude: <input type="text" name="lat" id="lat" required ng-model="form.lat" ng-pattern="/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/"/>
+      </div>
+      <div>
+        Longitude: <input type="text" name="lon" id="lon" required ng-model="form.lon" ng-pattern="/^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/" />
+      </div>
     </div>
-    <div>
-      Latitude: <input type="text" name="lat" id="lat" required ng-model="form.lat" ng-pattern="/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/"/>
-    </div>
-    <div>
-      Longitude: <input type="text" name="lon" id="lon" required ng-model="form.lon" ng-pattern="/^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/" />
-    </div>
-    <div>
-      <button ng-click="form.submitForm()">Submit Form</button>
+    <div class="ngdialog-buttons">
+      <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="form.submitForm(); confirm()">Submit Form</button>
+      <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')">Cancel</button>
     </div>
   </form>
-  Organization: {{form.org}} <br/>
-  Latitude: {{form.lat}} <br/>
-  Longitude: {{form.lon}}
 </div>
