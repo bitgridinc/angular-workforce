@@ -36,32 +36,50 @@ angular.module('app.controllers', ['ngDialog'])
     $scope.markers = new Array();
 
     $scope.$on("leafletDirectiveMap.click", function(event, args){
+      console.log('leafletDirectiveMap.click');
+      
+      // There may be a cleaner way to open this dialog
       ngDialog.openConfirm({
         template: '/partials/request.html',
         className: 'ngdialog-theme-default',
         controller: 'requestController'
       }).then(function (value) {
         console.log('Modal promise resolved. Value: ', value);
-        console.log('Adding marker to map.');
         var leafEvent = args.leafletEvent;
         $scope.markers.push({
           lat: leafEvent.latlng.lat,
-          lng: leafEvent.latlng.lng,
-          message: "My Beacon"
+          lng: leafEvent.latlng.lng
         });
+        console.log('Marker added to map.');
+      }, function (reason) {
+        console.log('Modal promise rejected. Reason: ', reason);
+      });
+    });
+
+    // Args will contain the marker name and other relevant information
+    $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+      console.log('leafletDirectiveMarker.click');
+
+      // There may be a cleaner way to open this dialog
+      ngDialog.openConfirm({
+        template: '/partials/respond.html',
+        className: 'ngdialog-theme-default',
+        controller: 'respondController'
+      }).then(function (value) {
+        console.log('Modal promise resolved. Value: ', value);
       }, function (reason) {
         console.log('Modal promise rejected. Reason: ', reason);
       });
     });
   })
-  .controller('requestController', function($scope, $location) {
+  .controller('requestController', function($scope) {
     $scope.form = {};
     $scope.form.org = "BitGrid";
     $scope.form.lat = "1";
     $scope.form.lon = "2";
 
-    $scope.form.submitForm = function(item, event) {
-      $location.path('/respond');
+    $scope.form.submitForm = function() {
+      console.log("submitForm called.");
     };
   })
   .controller('respondController', function($scope) {

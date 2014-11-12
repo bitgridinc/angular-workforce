@@ -1,13 +1,17 @@
 <div>
-    Organization {{req.org}} has requested your assistance at {{req.lat}}, {{req.lon}} on {{req.date}}. <br/>
-    What would you like to do? <br/>
-    <form method="post">
+  <form method="post">
+    <div class="ngdialog-message">
+      <div>
+        Organization {{req.org}} has requested your assistance at {{req.lat}}, {{req.lon}} on {{req.date}}. <br/>
+        What would you like to do? <br/>
+      </div>
       <div>
         How many people can you send? <input type="number" name="people" id="people" required ng-model="assistForm.people" />
       </div>
-      <div>
-        <button ng-click="assistForm.offerAssistance()">Offer Assistance</button>
-        <button ng-click="assistForm.declineAssistance()">Pity the Fools</button>
-      </div>
-    # of people: {{assistForm.people}}
+    </div>
+    <div class="ngdialog-buttons">
+      <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="assistForm.offerAssistance(); confirm()">Assist</button>
+      <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="assistForm.declineAssistance(); closeThisDialog('button')">Stuff 'Em</button>
+    </div>
+  </form>
 </div>
