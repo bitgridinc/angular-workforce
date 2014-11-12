@@ -1,7 +1,10 @@
 "use strict";
 
+require('../bower_components/leaflet');
+require('../bower_components/leaflet.draw/dist/leaflet.draw.js');
+
 angular.module('app.controllers', [])
-  .controller('mapController', function($scope) {
+  .controller('mapController', function($scope, leafletData) {
     angular.extend($scope, {
       defaults: {
         tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png"
@@ -10,7 +13,18 @@ angular.module('app.controllers', [])
         lat: 38.914268,
         lng: -77.021098,
         zoom: 13
+      },
+      controls: {
+        draw: {}
       }
+    });
+    leafletData.getMap().then(function(map) {
+      var drawnItems = $scope.controls.draw.edit.featureGroup;
+      map.on('draw:created', function (e) {
+        var layer = e.layer;
+        drawnItems.addLayer(layer);
+        console.log(JSON.stringify(layer.toGeoJSON()));
+      });
     });
   })
   .controller('requestController', function($scope, $location) {
