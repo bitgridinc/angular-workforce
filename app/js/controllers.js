@@ -86,7 +86,7 @@ angular.module('app.controllers', ['ngDialog'])
   })
   .controller('respondController', function($scope) {
     $scope.assistForm = {};
-    $scope.assistForm.people = 1;
+    $scope.assistForm.numResponders = 1;
 
     $scope.assistForm.offerAssistance = function(beacon) {
       alert("You've accepted!");
