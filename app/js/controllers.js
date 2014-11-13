@@ -25,7 +25,7 @@ angular.module('app.controllers', ['ngDialog'])
     // Simply to figure out how to add controls, here's the draw control
     leafletData.getMap().then(function(map) {
       var drawnItems = $scope.controls.draw.edit.featureGroup;
-      map.on('draw:created', function (e) {
+      map.on('draw:created', function(e) {
         var layer = e.layer;
         drawnItems.addLayer(layer);
         console.log(JSON.stringify(layer.toGeoJSON()));
@@ -35,7 +35,7 @@ angular.module('app.controllers', ['ngDialog'])
     // Place markers when the user clicks on the map
     $scope.markers = [];
 
-    $scope.$on("leafletDirectiveMap.click", function(event, args){
+    $scope.$on("leafletDirectiveMap.click", function(event, args) {
       console.log('leafletDirectiveMap.click');
       var latlng = args.leafletEvent.latlng;
 
@@ -49,14 +49,14 @@ angular.module('app.controllers', ['ngDialog'])
           lat: latlng.lat,
           lng: latlng.lng
         }
-      }).then(function (value) {
+      }).then(function(value) {
         console.log('Modal promise resolved. Value: ', value);
         $scope.markers.push({
           lat: latlng.lat,
           lng: latlng.lng
         });
         console.log('Marker added to map.');
-      }, function (reason) {
+      }, function(reason) {
         console.log('Modal promise rejected. Reason: ', reason);
       });
     });
@@ -71,9 +71,9 @@ angular.module('app.controllers', ['ngDialog'])
         template: '/partials/respond.html',
         className: 'ngdialog-theme-default',
         controller: 'respondController'
-      }).then(function (value) {
+      }).then(function(value) {
         console.log('Modal promise resolved. Value: ', value);
-      }, function (reason) {
+      }, function(reason) {
         console.log('Modal promise rejected. Reason: ', reason);
       });
     });
