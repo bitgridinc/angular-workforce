@@ -35,12 +35,12 @@ angular.module('app.controllers', ['ngDialog'])
     // Place markers when the user clicks on the map
     $scope.markers = [];
 
-    $scope.$on("leafletDirectiveMap.click", function(clickEvent, args) {
+    $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
       console.log('leafletDirectiveMap.click');
       console.log(clickEvent);
-      console.log(args);
+      console.log(clickArgs);
 
-      var latlng = args.leafletEvent.latlng;
+      var latlng = clickArgs.leafletEvent.latlng;
 
       // TODO: Investigate the open() method of ngDialog for this purpose
       ngDialog.openConfirm({
@@ -61,14 +61,14 @@ angular.module('app.controllers', ['ngDialog'])
       });
     });
 
-    // Args will contain the marker name and other relevant information
-    $scope.$on('leafletDirectiveMarker.click', function(clickEvent, args) {
+    // clickArgs will contain the marker name and other relevant information
+    $scope.$on('leafletDirectiveMarker.click', function(clickEvent, clickArgs) {
       console.log('Opening dialog to respond to clicked beacon.');
       ngDialog.openConfirm({
         template: '/partials/respond.html',
         className: 'ngdialog-theme-default',
         controller: 'respondController',
-        data: args.leafletEvent.target.options
+        data: clickArgs.leafletEvent.target.options
       }).then(function(value) {
         console.log('Modal response dialog promise resolved. Value: ', value);
       }, function(reason) {
