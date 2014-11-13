@@ -37,9 +37,12 @@ angular.module('app.controllers', ['ngDialog'])
 
     $scope.$on("leafletDirectiveMap.click", function(event, args) {
       console.log('leafletDirectiveMap.click');
+      console.log(event);
+      console.log(args);
+
       var latlng = args.leafletEvent.latlng;
 
-      // There may be a cleaner way to open this dialog
+      // TODO: Investigate the open() method of ngDialog for this purpose
       ngDialog.openConfirm({
         template: '/partials/request.html',
         className: 'ngdialog-theme-default',
@@ -50,39 +53,34 @@ angular.module('app.controllers', ['ngDialog'])
           lng: latlng.lng
         }
       }).then(function(value) {
-        console.log('Modal promise resolved. Value: ', value);
-        $scope.markers.push({
-          lat: latlng.lat,
-          lng: latlng.lng
-        });
+        console.log('Modal request dialog promise resolved. Value: ', value);
+        $scope.markers.push(value);
         console.log('Marker added to map.');
       }, function(reason) {
-        console.log('Modal promise rejected. Reason: ', reason);
+        console.log('Modal request dialog promise rejected. Reason: ', reason);
       });
     });
 
     // Args will contain the marker name and other relevant information
-    $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-      console.log('leafletDirectiveMarker.click');
-      console.log(args.leafletEvent.target.options);
-
-      // There may be a cleaner way to open this dialog
+    $scope.$on('leafletDirectiveMarker.click', function(event, args) {
+      console.log('Opening dialog to respond to clicked beacon.');
       ngDialog.openConfirm({
         template: '/partials/respond.html',
         className: 'ngdialog-theme-default',
-        controller: 'respondController'
+        controller: 'respondController',
+        data: args.leafletEvent.target.options
       }).then(function(value) {
-        console.log('Modal promise resolved. Value: ', value);
+        console.log('Modal response dialog promise resolved. Value: ', value);
       }, function(reason) {
-        console.log('Modal promise rejected. Reason: ', reason);
+        console.log('Modal response dialog promise rejected. Reason: ', reason);
       });
     });
   })
   .controller('requestController', function($scope) {
     $scope.requestController = {
       submitForm: function(data) {
-        console.log(data);
         console.log("submitForm called.");
+        console.log(data);
       }
     };
   })
