@@ -33,7 +33,7 @@ angular.module('app.controllers', ['ngDialog'])
     });
 
     // Place markers when the user clicks on the map
-    $scope.markers = new Array();
+    $scope.markers = [];
 
     $scope.$on("leafletDirectiveMap.click", function(event, args){
       console.log('leafletDirectiveMap.click');
