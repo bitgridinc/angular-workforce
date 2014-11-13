@@ -35,9 +35,9 @@ angular.module('app.controllers', ['ngDialog'])
     // Place markers when the user clicks on the map
     $scope.markers = [];
 
-    $scope.$on("leafletDirectiveMap.click", function(event, args) {
+    $scope.$on("leafletDirectiveMap.click", function(clickEvent, args) {
       console.log('leafletDirectiveMap.click');
-      console.log(event);
+      console.log(clickEvent);
       console.log(args);
 
       var latlng = args.leafletEvent.latlng;
@@ -62,7 +62,7 @@ angular.module('app.controllers', ['ngDialog'])
     });
 
     // Args will contain the marker name and other relevant information
-    $scope.$on('leafletDirectiveMarker.click', function(event, args) {
+    $scope.$on('leafletDirectiveMarker.click', function(clickEvent, args) {
       console.log('Opening dialog to respond to clicked beacon.');
       ngDialog.openConfirm({
         template: '/partials/respond.html',
