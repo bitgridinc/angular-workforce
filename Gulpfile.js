@@ -29,9 +29,10 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest('./public/js'))
 });
 
+// TODO: Running 'gulp lint' doesn't exit. Debug this.
 gulp.task('develop', ['browserify'], function () {
   nodemon({ script: 'index.js', ext: 'html js', ignore: ['bundle.js'] })
-    .on('change', ['lint', 'browserify'])
+    .on('change', ['browserify'])
     .on('restart', function () {
       console.log('restarted!')
     })
