@@ -9,7 +9,8 @@ angular.module('app.controllers', ['ngDialog'])
   .controller('mapController', function($scope, leafletData, ngDialog) {
     angular.extend($scope, {
       defaults: {
-        tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png"
+        tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
+        zoomControl: false
       },
       washdc: {
         lat: 38.914268,
@@ -17,7 +18,6 @@ angular.module('app.controllers', ['ngDialog'])
         zoom: 13
       },
       controls: {
-        draw: {},
         custom: []
       },
       events: {},
@@ -25,25 +25,25 @@ angular.module('app.controllers', ['ngDialog'])
     });
 
     var MyControl = L.control();
-    MyControl.setPosition('bottomleft');
+    MyControl.setPosition('topleft');
     MyControl.onAdd = function() {
       var className = 'leaflet-control-my-location';
       var container = L.DomUtil.create('div');
-      container.innerHTML = "<h4>Hi</h4>";
+      container.innerHTML = "<div ng-init=\"scope = { isDisabled: false }\"><button disabled=\"{{scope.isDisabled}}\">Disabled</button></div>";
       return container;
     }
 
     $scope.controls.custom.push(MyControl);
 
     // Simply to figure out how to add controls, here's the draw control
-    leafletData.getMap().then(function(map) {
+    /*leafletData.getMap().then(function(map) {
       var drawnItems = $scope.controls.draw.edit.featureGroup;
       map.on('draw:created', function(e) {
         var layer = e.layer;
         drawnItems.addLayer(layer);
         console.log(JSON.stringify(layer.toGeoJSON()));
       });
-    });
+    });*/
 
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
       console.log('leafletDirectiveMap.click');
