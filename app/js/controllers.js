@@ -19,7 +19,8 @@ angular.module('app.controllers', ['ngDialog'])
       controls: {
         draw: {}
       },
-      events: {}
+      events: {},
+      markers: []
     });
 
     // Simply to figure out how to add controls, here's the draw control
@@ -31,9 +32,6 @@ angular.module('app.controllers', ['ngDialog'])
         console.log(JSON.stringify(layer.toGeoJSON()));
       });
     });
-
-    // Place markers when the user clicks on the map
-    $scope.markers = [];
 
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
       console.log('leafletDirectiveMap.click');
