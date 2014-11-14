@@ -17,11 +17,23 @@ angular.module('app.controllers', ['ngDialog'])
         zoom: 13
       },
       controls: {
-        draw: {}
+        draw: {},
+        custom: []
       },
       events: {},
       markers: []
     });
+
+    var MyControl = L.control();
+    MyControl.setPosition('bottomleft');
+    MyControl.onAdd = function() {
+      var className = 'leaflet-control-my-location';
+      var container = L.DomUtil.create('div');
+      container.innerHTML = "<h4>Hi</h4>";
+      return container;
+    }
+
+    $scope.controls.custom.push(MyControl);
 
     // Simply to figure out how to add controls, here's the draw control
     leafletData.getMap().then(function(map) {
