@@ -25,12 +25,6 @@ angular.module('app.controllers', ['ngDialog', 'ui.bootstrap'])
       markers: []
     });
 
-    $scope.items = [
-      'The first choice!',
-      'And another choice for you.',
-      'but wait! A third!'
-    ];
-
     $scope.status = {
       isopen: false
     };
