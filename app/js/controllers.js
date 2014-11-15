@@ -3,9 +3,10 @@
 require('../bower_components/leaflet');
 require('../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js');
 require('../bower_components/leaflet.draw/dist/leaflet.draw.js');
-require('../bower_components/ngDialog/js/ngDialog.js')
+require('../bower_components/ngDialog/js/ngDialog.js');
+require('./ui-bootstrap-tpls-0.11.2.js');
 
-angular.module('app.controllers', ['ngDialog'])
+angular.module('app.controllers', ['ngDialog', 'ui.bootstrap'])
   .controller('mapController', function($scope, leafletData, ngDialog) {
     angular.extend($scope, {
       defaults: {
@@ -23,6 +24,16 @@ angular.module('app.controllers', ['ngDialog'])
       events: {},
       markers: []
     });
+
+    $scope.items = [
+      'The first choice!',
+      'And another choice for you.',
+      'but wait! A third!'
+    ];
+
+    $scope.status = {
+      isopen: false
+    };
 
     var MyControl = L.control();
     MyControl.setPosition('topleft');
