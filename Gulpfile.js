@@ -16,7 +16,8 @@ var testFiles = [
 
 gulp.task('hint', function () {
   gulp.src('./app/js/*.js')
-    .pipe(jshint());
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('browserify', function() {
