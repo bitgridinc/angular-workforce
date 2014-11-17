@@ -9,11 +9,36 @@ describe("beaconService", function() {
     beaconService = _beaconService_;
   }));
 
-  it('should return the same information it was passed', function() {
-    var expected = {
-      org: "name"
-    };
-    var actual = beaconService.createBeacon(expected);
-    expect(actual).toEqual(expected);
+  describe('createBeacon', function() {
+    it('should return the first argument if it has lat, lng, and org as properties', function() {
+      var expected = {
+        lat: 0,
+        lng: 0,
+        org: "org"
+      };
+      expect(beaconService.createBeacon(expected)).toEqual(expected);
+      // TODO: Flesh this out when we decide on the api for the backend
+    });
+    it('should throw an error if lat is missing', function() {
+      var beaconData = {
+        lng: 0,
+        org: "org"
+      };
+      expect(function() { beaconService.createBeacon(beaconData) }).toThrowError();
+    });
+    it('should throw an error if lng is missing', function() {
+      var beaconData = {
+        lat: 0,
+        org: "org"
+      };
+      expect(function() { beaconService.createBeacon(beaconData) }).toThrowError();
+    });
+    it('should throw an error if org is missing', function() {
+      var beaconData = {
+        lat: 0,
+        lng: 0
+      };
+      expect(function() { beaconService.createBeacon(beaconData) }).toThrowError();
+    });
   });
 });
