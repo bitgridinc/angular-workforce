@@ -7,8 +7,8 @@ require('../bower_components/ngDialog/js/ngDialog.js');
 require('../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
 require('../services/beaconService.js');
 
-angular.module('app.controllers', ['ngDialog', 'ui.bootstrap', 'app.services'])
-  .controller('mapController', function($scope, leafletData, ngDialog) {
+angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
+  .controller('homePageCtrl', function($scope, leafletData, ngDialog) {
     angular.extend($scope, {
       defaults: {
         tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
@@ -42,14 +42,14 @@ angular.module('app.controllers', ['ngDialog', 'ui.bootstrap', 'app.services'])
     $scope.controls.custom.push(MyControl);
 
     // Simply to figure out how to add controls, here's the draw control
-    /*leafletData.getMap().then(function(map) {
-      var drawnItems = $scope.controls.draw.edit.featureGroup;
-      map.on('draw:created', function(e) {
-        var layer = e.layer;
-        drawnItems.addLayer(layer);
-        console.log(JSON.stringify(layer.toGeoJSON()));
-      });
-    });*/
+    /*leafletData.getMap().then(function(homePage) {
+     var drawnItems = $scope.controls.draw.edit.featureGroup;
+     homePage.on('draw:created', function(e) {
+     var layer = e.layer;
+     drawnItems.addLayer(layer);
+     console.log(JSON.stringify(layer.toGeoJSON()));
+     });
+     });*/
 
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
       console.log('leafletDirectiveMap.click');
@@ -74,7 +74,7 @@ angular.module('app.controllers', ['ngDialog', 'ui.bootstrap', 'app.services'])
         // beaconService.createBeacon(beaconData).then(function(newBeacon) {
         //   $scope.markers.push(newBeacon);
         // };
-        console.log('Marker added to map.');
+        console.log('Marker added to homePage.');
       }, function(reason) {
         console.log('Modal request dialog promise rejected. Reason: ', reason);
       });

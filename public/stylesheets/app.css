@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.left {
+    float: left;
+    width: 20%;
+    height: 600px;
+    border: 1px solid red;
+}
+
+.right {
+    float: right;
+    width: 80%;
+    border: 1px solid blue;
+}

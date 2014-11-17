@@ -1,14 +1,14 @@
 "use strict";
 
 require('../bower_components/angular/angular.js');
-require('./controllers.js');
+require('../homePage/homePage.js');
 
-var app = angular.module('app', ['ngRoute', 'app.controllers', 'leaflet-directive']).
+var app = angular.module('app', ['ngRoute', 'app.homePage', 'leaflet-directive']).
 config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/map.html',
-      controller: 'mapController'
+      templateUrl: 'partials/homePage.html',
+      controller: 'homePageCtrl'
     })
     .otherwise({
       redirectTo: '/'
