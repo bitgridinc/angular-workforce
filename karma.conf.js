@@ -3,13 +3,12 @@ module.exports = function (config) {
   config.set({
     basePath: '',
      
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['jasmine'],
      
     files: [
-      'app/bower_components/angular/*.js',
-      'app/js/app.js',
-      'test/*.spec.js',
-      'app/js/test.*.js'
+      'app/bower_components/**/*.js',
+      'app/js/*.js',
+      'test/*.spec.js'
     ],
                                              
     reporters: ['progress'],
