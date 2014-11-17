@@ -1,9 +1,14 @@
 <div class="container">
   <div class="left">
-    <div ng-repeat="marker in markers">
-      Organization: {{marker.org}}<br>
-      Latitude: {{marker.lat}}<br>
-      Longitude: {{marker.lng}}
+    <button type="button" class="btn btn-primary" ng-model="isCollapsed" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+      My Company
+    </button>
+    <div collapse="isCollapsed" ng-repeat="marker in markers">
+      <div class="well well-lg">
+        Organization: {{marker.org}}<br>
+        Latitude: {{marker.lat}}<br>
+        Longitude: {{marker.lng}}
+      </div>
     </div>
   </div>
   <div class="right">
