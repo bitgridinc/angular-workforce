@@ -13,7 +13,7 @@ describe("beaconService", function() {
     var expected = {
       org: "name"
     };
-    var actual = beaconService.createBeacon(beaconData);
+    var actual = beaconService.createBeacon(expected);
     expect(actual).toEqual(expected);
   });
 });
