@@ -36,7 +36,7 @@ angular.module('app.controllers', ['ngDialog', 'ui.bootstrap'])
       var container = L.DomUtil.create('div');
       container.innerHTML = "<div ng-init=\"scope = { isDisabled: false }\"><button disabled=\"{{scope.isDisabled}}\">Disabled</button></div>";
       return container;
-    }
+    };
 
     $scope.controls.custom.push(MyControl);
 
