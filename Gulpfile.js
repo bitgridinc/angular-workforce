@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var gulp = require('gulp')
   , nodemon = require('gulp-nodemon')
@@ -30,9 +30,9 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest('./public/js'))
 });
 
-gulp.task('develop', ['browserify'], function () {
+gulp.task('develop', ['browserify', 'hint'], function () {
   nodemon({ script: 'index.js', ext: 'html js', ignore: ['bundle.js'] })
-    .on('change', ['browserify'])
+    .on('change', ['browserify', 'hint'])
     .on('restart', function () {
       console.log('restarted!')
     })

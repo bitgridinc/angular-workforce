@@ -18,7 +18,8 @@
     "dojo"          : false,
  
     "predef"        : [  // Custom globals.
-        "angular"
+        "angular",
+        "L" // The Leaflet object
     ],
  
     // Development.
