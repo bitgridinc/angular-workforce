@@ -1,14 +1,9 @@
 <div class="container">
   <div class="left">
-    <div class="btn-group" dropdown is-open="status.isopen">
-      <button type="button" class="btn btn-primary dropdown-toggle">
-        My Company <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li ng-repeat="choice in markers">
-          <a href>{{choice}}</a>
-        </li>
-      </ul>
+    <div ng-repeat="marker in markers">
+      Organization: {{marker.org}}<br>
+      Latitude: {{marker.lat}}<br>
+      Longitude: {{marker.lng}}
     </div>
   </div>
   <div class="right">
