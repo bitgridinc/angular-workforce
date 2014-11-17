@@ -14,10 +14,10 @@ var testFiles = [
   'test/*.spec.js'
 ];
 
-gulp.task('lint', function () {
-  gulp.src('./**/*.js')
-    .pipe(jshint())
-})
+gulp.task('hint', function () {
+  gulp.src('./app/js/*.js')
+    .pipe(jshint());
+});
 
 gulp.task('browserify', function() {
   // Single entry point to browserify
@@ -29,7 +29,6 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest('./public/js'))
 });
 
-// TODO: Running 'gulp lint' doesn't exit. Debug this.
 gulp.task('develop', ['browserify'], function () {
   nodemon({ script: 'index.js', ext: 'html js', ignore: ['bundle.js'] })
     .on('change', ['browserify'])
