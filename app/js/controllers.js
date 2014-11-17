@@ -4,7 +4,7 @@ require('../bower_components/leaflet');
 require('../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js');
 require('../bower_components/leaflet.draw/dist/leaflet.draw.js');
 require('../bower_components/ngDialog/js/ngDialog.js');
-require('./ui-bootstrap-tpls-0.11.2.js');
+require('../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
 
 angular.module('app.controllers', ['ngDialog', 'ui.bootstrap'])
   .controller('mapController', function($scope, leafletData, ngDialog) {
