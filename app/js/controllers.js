@@ -70,6 +70,9 @@ angular.module('app.controllers', ['ngDialog', 'ui.bootstrap'])
       }).then(function(value) {
         console.log('Modal request dialog promise resolved. Value: ', value);
         $scope.markers.push(value);
+        // beaconService.createBeacon(beaconData).then(function(newBeacon) {
+        //   $scope.markers.push(newBeacon);
+        // };
         console.log('Marker added to map.');
       }, function(reason) {
         console.log('Modal request dialog promise rejected. Reason: ', reason);
