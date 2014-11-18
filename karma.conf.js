@@ -8,7 +8,7 @@ module.exports = function (config) {
     files: [
       'public/js/bundle.js',
       'node_modules/angular-mocks/*.js',
-      'test/*.spec.js'
+      'test/unit/*.spec.js'
     ],
                                              
     reporters: ['progress'],
