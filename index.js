@@ -4,7 +4,7 @@ var hapi = require('hapi');
 var PORT = 8080;
 
 // Create a server with a host, port, and options
-var server = new hapi.Server('localhost', PORT);
+var server = new hapi.Server('0.0.0.0', PORT);
 
 // routes
 server.route([        
@@ -17,4 +17,4 @@ server.route([
 ]);
 
 server.start();
-console.log('Running on http://localhost:' + PORT);
+console.log('Running on http://0.0.0.0:' + PORT);
