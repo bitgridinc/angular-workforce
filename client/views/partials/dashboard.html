@@ -1,14 +1,18 @@
 <div class="container">
   <div class="left">
-    <button type="button" class="db-btn btn-primary" ng-model="isCollapsed" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
-      My<br>
-      Company
-    </button>
-    <div collapse="isCollapsed" ng-repeat="marker in markers">
-      <div class="well well-lg">
-        Organization: {{marker.org}}<br>
-        Latitude: {{marker.lat}}<br>
-        Longitude: {{marker.lng}}
+    <div class="left">
+      <button type="button" class="db-btn btn-primary" ng-model="isCollapsed" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        My<br>
+        Company
+      </button>
+    </div>
+    <div class="right">
+      <div collapse="isCollapsed" ng-repeat="marker in markers">
+        <div class="well well-lg">
+          Organization: {{marker.org}}<br>
+          Latitude: {{marker.lat}}<br>
+          Longitude: {{marker.lng}}
+        </div>
       </div>
     </div>
   </div>
