@@ -27,7 +27,7 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('develop', ['browserify', 'hint'], function () {
-  nodemon({ script: 'index.js', ext: 'html js', ignore: ['bundle.js'] })
+  nodemon({ script: 'server/index.js', ext: 'html js', ignore: ['bundle.js'] })
     .on('change', ['browserify', 'hint'])
     .on('restart', function () {
       console.log('restarted!')
