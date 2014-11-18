@@ -25,41 +25,19 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
 
     $scope.status = {
       showMidColumn: true,
-      showRightColumn: false
+      showRightColumn: true
     };
 
+    // I'm using this to easily populate the latitude and longitude fields on Create Beacon
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
       console.log('leafletDirectiveMap.click');
-      console.log(clickEvent);
-      console.log(clickArgs);
-
-      var latlng = clickArgs.leafletEvent.latlng;
-
-      // TODO: Investigate the open() method of ngDialog for this purpose
-      ngDialog.openConfirm({
-        template: '/partials/request.html',
-        className: 'ngdialog-theme-default',
-        controller: 'requestController',
-        data: {
-          org: 'BitGrid',
-          lat: latlng.lat,
-          lng: latlng.lng
-        }
-      }).then(function(value) {
-        console.log('Modal request dialog promise resolved. Value: ', value);
-        $scope.markers.push(value);
-        // beaconService.createBeacon(beaconData).then(function(newBeacon) {
-        //   $scope.markers.push(newBeacon);
-        // };
-        console.log('Marker added to dashboard.');
-      }, function(reason) {
-        console.log('Modal request dialog promise rejected. Reason: ', reason);
-      });
+      $scope.lastlatlng = clickArgs.leafletEvent.latlng;
     });
 
     // clickArgs will contain the marker name and other relevant information
     $scope.$on('leafletDirectiveMarker.click', function(clickEvent, clickArgs) {
       console.log('Opening dialog to respond to clicked beacon.');
+
       ngDialog.openConfirm({
         template: '/partials/respond.html',
         className: 'ngdialog-theme-default',
@@ -73,12 +51,27 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
     });
   })
   .controller('requestController', function($scope) {
-    $scope.requestController = {
-      submitForm: function(data) {
-        console.log("submitForm called.");
-        console.log(data);
+    angular.extend($scope, {
+      newBeaconData: {
+        title: 'Job Title',
+        desc: 'Project Description',
+        org: 'Organization'
+      },
+      submitNewBeacon: function() {
+        console.log("submitNewBeacon called.");
+        $scope.markers.push({
+          org: $scope.newBeaconData.org,
+          lat: $scope.lastlatlng.lat,
+          lng: $scope.lastlatlng.lng
+        });
+        $scope.status.showRightColumn = false;
+        alert('You have successfully created a new beacon.');
+      },
+      deleteNewBeacon: function() {
+        console.log("deleteNewBeacon called.");
+        $scope.status.showRightColumn = false;
       }
-    };
+    });
   })
   .controller('respondController', function($scope) {
     $scope.assistForm = {};

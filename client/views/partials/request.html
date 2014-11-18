@@ -2,18 +2,24 @@
   <form method="post">
     <div class="ngdialog-message">
       <div>
-        Organization: <input type="text" name="org" autofocus="autofocus" id="org" required ng-model="ngDialogData.org" />
+        <input type="text" name="title" autofocus="autofocus" id="title" required ng-model="newBeaconData.title" />
       </div>
       <div>
-        Latitude: <input type="text" name="lat" id="lat" required ng-model="ngDialogData.lat" readonly />
+        <input type="text" name="desc" id="desc" required ng-model="newBeaconData.desc" />
       </div>
       <div>
-        Longitude: <input type="text" name="lon" id="lon" required ng-model="ngDialogData.lng" readonly />
+        <input type="text" name="org" id="org" required ng-model="newBeaconData.org" />
+      </div>
+      <div>
+        <input type="text" name="lat" id="lat" required ng-model="lastlatlng.lat" readonly />
+      </div>
+      <div>
+        <input type="text" name="lon" id="lon" required ng-model="lastlatlng.lng" readonly />
       </div>
     </div>
     <div class="ngdialog-buttons">
-      <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="requestController.submitForm(ngDialogData); confirm(ngDialogData)">Submit Form</button>
-      <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')">Cancel</button>
+      <button type="button" ng-click="submitNewBeacon()">Submit Beacon</button>
+      <button type="button" ng-click="deleteNewBeacon()">Cancel</button>
     </div>
   </form>
 </div>
