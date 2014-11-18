@@ -5,15 +5,13 @@
 
 .left {
     float: left;
-    width: 30%;
+    width: 392px;
     height: 600px;
     border: 1px solid red;
 }
 
-.right {
-    float: right;
-    width: 70%;
-    border: 1px solid blue;
+.fill {
+    margin-left: 392px;
 }
 
 /* This column contains the My Company button */
