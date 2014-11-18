@@ -15,3 +15,26 @@
     width: 70%;
     border: 1px solid blue;
 }
+
+.db-btn {
+    width: 70px;
+    height: 70px;
+    padding: 6px 6px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    cursor: pointer;
+    /* This prevents a user from selecting the text on the button */
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
