@@ -5,13 +5,13 @@
 
 .left {
     float: left;
-    width: 392px;
+    width: 692px;
     height: 600px;
     border: 1px solid red;
 }
 
 .fill {
-    margin-left: 392px;
+    margin-left: 692px;
 }
 
 .full-width {
@@ -35,12 +35,20 @@
     border: 1px solid green;
 }
 
-/* This column floats to the right of db-btn-col */
+/* This column sits to the right of db-btn-col and the left of db-mid-col */
 .db-mid-col {
     float: left;
     margin-left: 0px;
     width: 300px;
     border: 1px solid orange;
+}
+
+/* This column floats to the right of db-mid-col */
+.db-right-col {
+    float: left;
+    margin-left: 0px;
+    width: 300px;
+    border: 1px solid purple;
 }
 
 .db-btn {

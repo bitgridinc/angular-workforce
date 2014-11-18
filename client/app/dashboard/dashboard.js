@@ -24,8 +24,8 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
     });
 
     $scope.status = {
-      isCollapsed: false,
-      showCreateForm: false
+      showMidColumn: true,
+      showRightColumn: false
     };
 
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {

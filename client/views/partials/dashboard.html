@@ -1,12 +1,12 @@
 <div class="container">
   <div class="left">
     <div class="db-btn-col">
-      <button type="button" class="db-btn btn-primary center-block" ng-model="status.isCollapsed" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+      <button type="button" class="db-btn btn-primary center-block" ng-model="status.showMidColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         My<br>
         Company
       </button>
     </div>
-    <div class="db-mid-col" collapse="status.isCollapsed">
+    <div class="db-mid-col" collapse="!status.showMidColumn">
       <div ng-repeat="marker in markers">
         <div class="well well-lg">
           Organization: {{marker.org}}<br>
@@ -14,12 +14,17 @@
           Longitude: {{marker.lng}}
         </div>
       </div>
-      <button type="button" class="trans-btn full-width" ng-model="status.showCreateForm" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+      <button type="button" class="trans-btn full-width" ng-model="status.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
       </button>
     </div>
-    Debug isCollapsed: {{status.isCollapsed}} <br>
-    Debug showCreateForm: {{status.showCreateForm}}
+    <div class="db-right-col" collapse="!status.showRightColumn">
+      <div ng-include src="'partials/request.html'">
+
+      </div>
+    </div>
+    Debug showMidColumn: {{status.showMidColumn}} <br>
+    Debug showRightColumn: {{status.showRightColumn}}
   </div>
   <div class="fill">
     <!-- Setting height and width to 100% break the tiles (results in an empty homePage) -->
