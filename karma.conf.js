@@ -6,7 +6,7 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
      
     files: [
-      'public/js/bundle.js',
+      'server/public/js/bundle.js',
       'node_modules/angular-mocks/*.js',
       'test/unit/*.spec.js'
     ],

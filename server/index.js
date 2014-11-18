@@ -7,11 +7,14 @@ var PORT = 8080;
 var server = new hapi.Server('0.0.0.0', PORT);
 
 // routes
-server.route([        
+server.route([
+  // Expose the contents of public
+  { method: 'GET', path: '/js/{path*}', handler: { directory: { path: './server/public/js' } } },
+  { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './server/public/stylesheets' } } },
+
   { method: 'GET', path: '/partials/{path*}', handler: { directory: { path: './app/views/partials' } } },
-  { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './public/stylesheets' } } },
-  { method: 'GET', path: '/js/{path*}', handler: { directory: { path: './public/js' } } },
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './app/bower_components' } } },
+
   // Entry point to Angular application
   { method: 'GET', path: '/{path*}', handler: {file: './app/views/index.html'} }
 ]);
