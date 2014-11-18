@@ -9,6 +9,7 @@ var gulp = require('gulp')
   , protractor = require("gulp-protractor").protractor
   , browserify = require('gulp-browserify')
   , rename = require('gulp-rename')
+  , BUNDLE = 'bundle.js';
 
 gulp.task('hint', function () {
   gulp.src('./app/js/*.js')
@@ -22,12 +23,12 @@ gulp.task('browserify', function() {
     .pipe(browserify({
       insertGlobals : true
     }))
-    .pipe(rename('bundle.js'))
+    .pipe(rename(BUNDLE))
     .pipe(gulp.dest('./public/js'))
 });
 
 gulp.task('develop', ['browserify', 'hint'], function () {
-  nodemon({ script: 'server/index.js', ext: 'html js', ignore: ['bundle.js'] })
+  nodemon({ script: 'server/index.js', ext: 'html js', ignore: [BUNDLE] })
     .on('change', ['browserify', 'hint'])
     .on('restart', function () {
       console.log('restarted!')
