@@ -5,7 +5,7 @@ require('../../bower_components/angular-leaflet-directive/dist/angular-leaflet-d
 require('../../bower_components/leaflet.draw/dist/leaflet.draw.js');
 require('../../bower_components/ngDialog/js/ngDialog.js');
 require('../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
-require('../../services/beaconService.js');
+require('../../common/services/beaconService.js');
 
 angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
   .controller('homePageCtrl', function($scope, leafletData, ngDialog) {
