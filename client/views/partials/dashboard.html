@@ -10,7 +10,8 @@
       <div ng-repeat="marker in markers">
         <div class="well well-lg">
           {{marker.organization}}: {{marker.title}}<br>
-          {{marker.description}}
+          {{marker.description}}<br>
+          {{marker.numResponders}}
         </div>
       </div>
       <button type="button" class="trans-btn full-width" ng-model="status.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>

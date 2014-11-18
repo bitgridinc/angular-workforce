@@ -36,15 +36,21 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
 
     // clickArgs will contain the marker name and other relevant information
     $scope.$on('leafletDirectiveMarker.click', function(clickEvent, clickArgs) {
-      console.log('Opening dialog to respond to clicked beacon.');
+      console.log('Opening dialog to respond to clicked beacon.', clickArgs.leafletEvent.target);
+      var lastSelectedMarker = clickArgs.leafletEvent.target;
 
       ngDialog.openConfirm({
         template: '/partials/respond.html',
         className: 'ngdialog-theme-default',
         controller: 'respondController',
         data: clickArgs.leafletEvent.target.options
-      }).then(function(value) {
-        console.log('Modal response dialog promise resolved. Value: ', value);
+      }).then(function(ngDialogData) {
+        console.log('Modal response dialog promise resolved. Value: ', ngDialogData);
+        for (var i = 0; i < $scope.markers.length; i++) {
+          if ($scope.markers[i].$$hashkey == lastSelectedMarker.$$hashKey) {
+            $scope.markers[i].numResponders = ngDialogData.numResponders;
+          }
+        }
       }, function(reason) {
         console.log('Modal response dialog promise rejected. Reason: ', reason);
       });
@@ -79,10 +85,14 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
     $scope.assistForm = {};
     $scope.assistForm.numResponders = 1;
 
-    $scope.assistForm.offerAssistance = function(beacon) {
+    $scope.assistForm.offerAssistance = function() {
       alert("You've accepted!");
+      console.log("You've accepted! $scope:", $scope);
+      angular.extend($scope.ngDialogData, {
+        numResponders: $scope.assistForm.numResponders
+      });
     };
-    $scope.assistForm.declineAssistance = function(beacon) {
+    $scope.assistForm.declineAssistance = function() {
       alert("You've declined!");
     };
   });
