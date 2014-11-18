@@ -16,6 +16,21 @@
     border: 1px solid blue;
 }
 
+/* This column contains the My Company button */
+.db-btn-col {
+    float: left;
+    width: 90px;
+    border: 1px solid green;
+}
+
+/* This column floats to the right of db-btn-col */
+.db-mid-col {
+    float: left;
+    margin-left: 0px;
+    width: 300px;
+    border: 1px solid orange;
+}
+
 .db-btn {
     width: 70px;
     height: 70px;

@@ -1,12 +1,12 @@
 <div class="container">
   <div class="left">
-    <div class="left">
-      <button type="button" class="db-btn btn-primary" ng-model="isCollapsed" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+    <div class="db-btn-col">
+      <button type="button" class="db-btn btn-primary center-block" ng-model="isCollapsed" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         My<br>
         Company
       </button>
     </div>
-    <div class="right">
+    <div class="db-mid-col">
       <div collapse="isCollapsed" ng-repeat="marker in markers">
         <div class="well well-lg">
           Organization: {{marker.org}}<br>
