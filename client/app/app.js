@@ -1,21 +1,18 @@
 "use strict";
 
 require('../bower_components/angular/angular.js');
-require('./homePage/homePage.js');
+require('./dashboard/dashboard.js');
 
 var app = angular.module('app', [
   'ngRoute',
-  'app.homePage',
+  'dashboard',
   'leaflet-directive']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/homePage.html',
-      controller: 'homePageCtrl'
-    })
-    .otherwise({
-      redirectTo: '/'
+      templateUrl: 'partials/dashboard.html',
+      controller: 'dashboardCtrl'
     });
   $locationProvider.html5Mode(true);
 }]);

@@ -7,8 +7,8 @@ require('../../bower_components/ngDialog/js/ngDialog.js');
 require('../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
 require('../../common/services/beaconService.js');
 
-angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
-  .controller('homePageCtrl', function($scope, leafletData, ngDialog) {
+angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
+  .controller('dashboardCtrl', function($scope, leafletData, ngDialog) {
     angular.extend($scope, {
       defaults: {
         tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
@@ -40,7 +40,7 @@ angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
         className: 'ngdialog-theme-default',
         controller: 'requestController',
         data: {
-          org: 'BitGrid2',
+          org: 'BitGrid',
           lat: latlng.lat,
           lng: latlng.lng
         }
@@ -50,7 +50,7 @@ angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
         // beaconService.createBeacon(beaconData).then(function(newBeacon) {
         //   $scope.markers.push(newBeacon);
         // };
-        console.log('Marker added to homePage.');
+        console.log('Marker added to dashboard.');
       }, function(reason) {
         console.log('Modal request dialog promise rejected. Reason: ', reason);
       });
