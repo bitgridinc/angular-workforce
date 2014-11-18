@@ -54,13 +54,15 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
     angular.extend($scope, {
       newBeaconData: {
         title: 'Job Title',
-        desc: 'Project Description',
-        org: 'Organization'
+        description: 'Project Description',
+        organization: 'Organization'
       },
       submitNewBeacon: function() {
         console.log("submitNewBeacon called.");
         $scope.markers.push({
-          org: $scope.newBeaconData.org,
+          title: $scope.newBeaconData.title,
+          description: $scope.newBeaconData.description,
+          organization: $scope.newBeaconData.organization,
           lat: $scope.lastlatlng.lat,
           lng: $scope.lastlatlng.lng
         });

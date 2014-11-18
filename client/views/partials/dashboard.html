@@ -9,9 +9,8 @@
     <div class="db-mid-col" collapse="!status.showMidColumn">
       <div ng-repeat="marker in markers">
         <div class="well well-lg">
-          Organization: {{marker.org}}<br>
-          Latitude: {{marker.lat}}<br>
-          Longitude: {{marker.lng}}
+          {{marker.organization}}: {{marker.title}}<br>
+          {{marker.description}}
         </div>
       </div>
       <button type="button" class="trans-btn full-width" ng-model="status.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
