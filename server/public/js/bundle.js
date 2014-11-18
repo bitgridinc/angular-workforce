@@ -43406,7 +43406,7 @@ angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
         className: 'ngdialog-theme-default',
         controller: 'requestController',
         data: {
-          org: 'BitGrid',
+          org: 'BitGrid2',
           lat: latlng.lat,
           lng: latlng.lng
         }
@@ -43476,7 +43476,7 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     });
   $locationProvider.html5Mode(true);
 }]);
-}).call(this,require("oMfpAn"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_5688bff3.js","/")
+}).call(this,require("oMfpAn"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_f90d3209.js","/")
 },{"../bower_components/angular/angular.js":3,"../homePage/homePage.js":7,"buffer":10,"oMfpAn":13}],9:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 angular.module('app.services', [])

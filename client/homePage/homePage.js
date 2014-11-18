@@ -64,7 +64,7 @@ angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
         className: 'ngdialog-theme-default',
         controller: 'requestController',
         data: {
-          org: 'BitGrid',
+          org: 'BitGrid2',
           lat: latlng.lat,
           lng: latlng.lng
         }

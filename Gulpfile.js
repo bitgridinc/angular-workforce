@@ -12,19 +12,19 @@ var gulp = require('gulp')
   , BUNDLE = 'bundle.js';
 
 gulp.task('hint', function () {
-  gulp.src('./app/js/*.js')
+  gulp.src('./client/js/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('browserify', function() {
   // Single entry point to browserify
-  gulp.src('app/js/app.js')
+  gulp.src('client/js/app.js')
     .pipe(browserify({
       insertGlobals : true
     }))
     .pipe(rename(BUNDLE))
-    .pipe(gulp.dest('./public/js'))
+    .pipe(gulp.dest('./server/public/js'))
 });
 
 gulp.task('develop', ['browserify', 'hint'], function () {

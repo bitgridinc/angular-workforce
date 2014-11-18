@@ -11,11 +11,11 @@ server.route([
   // Expose the contents of the compiled public files (e.g., bundle.js)
   { method: 'GET', path: '/**/{path*}', handler: { directory: { path: './server/public' } } },
 
-  { method: 'GET', path: '/partials/{path*}', handler: { directory: { path: './app/views/partials' } } },
-  { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './app/bower_components' } } },
+  { method: 'GET', path: '/partials/{path*}', handler: { directory: { path: './client/views/partials' } } },
+  { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './client/bower_components' } } },
 
   // Entry point to Angular application
-  { method: 'GET', path: '/{path*}', handler: {file: './app/views/index.html'} }
+  { method: 'GET', path: '/{path*}', handler: {file: './client/views/index.html'} }
 ]);
 
 server.start();
