@@ -1,7 +1,7 @@
 "use strict";
 
 require('../bower_components/angular/angular.js');
-require('../homePage/homePage.js');
+require('./homePage/homePage.js');
 
 var app = angular.module('app', ['ngRoute', 'app.homePage', 'leaflet-directive']).
 config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {

@@ -1,4 +1,4 @@
 .vagrant
-public/js/bundle.js
+server/public/js/bundle.js
 node_modules/karma-phantomjs-launcher/node_modules/phantomjs/.jshintrc
 .idea

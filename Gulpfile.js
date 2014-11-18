@@ -19,7 +19,7 @@ gulp.task('hint', function () {
 
 gulp.task('browserify', function() {
   // Single entry point to browserify
-  gulp.src('client/js/app.js')
+  gulp.src('client/app/app.js')
     .pipe(browserify({
       insertGlobals : true
     }))
