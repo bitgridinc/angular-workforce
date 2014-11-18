@@ -19,9 +19,6 @@ angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
         lng: -77.021098,
         zoom: 13
       },
-      controls: {
-        custom: []
-      },
       events: {},
       markers: []
     });
@@ -29,27 +26,6 @@ angular.module('app.homePage', ['ngDialog', 'ui.bootstrap', 'app.services'])
     $scope.status = {
       isCollapsed: true
     };
-
-    var MyControl = L.control();
-    MyControl.setPosition('topleft');
-    MyControl.onAdd = function() {
-      var className = 'leaflet-control-my-location';
-      var container = L.DomUtil.create('div');
-      container.innerHTML = "<div ng-init=\"scope = { isDisabled: false }\"><button disabled=\"{{scope.isDisabled}}\">Disabled</button></div>";
-      return container;
-    };
-
-    $scope.controls.custom.push(MyControl);
-
-    // Simply to figure out how to add controls, here's the draw control
-    /*leafletData.getMap().then(function(homePage) {
-     var drawnItems = $scope.controls.draw.edit.featureGroup;
-     homePage.on('draw:created', function(e) {
-     var layer = e.layer;
-     drawnItems.addLayer(layer);
-     console.log(JSON.stringify(layer.toGeoJSON()));
-     });
-     });*/
 
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
       console.log('leafletDirectiveMap.click');
