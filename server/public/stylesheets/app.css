@@ -14,6 +14,20 @@
     margin-left: 392px;
 }
 
+.full-width {
+    width: 100%;
+}
+
+/* The Create Beacon button is transparent */
+.trans-btn {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
 /* This column contains the My Company button */
 .db-btn-col {
     float: left;
