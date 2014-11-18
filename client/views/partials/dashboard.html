@@ -11,20 +11,32 @@
         <div class="well well-lg">
           {{marker.organization}}: {{marker.title}}<br>
           {{marker.description}}<br>
-          {{marker.numResponders}}
+          <button type="button" ng-show="marker.numResponders" ng-model="status.selectedBeacon" btn-checkbox btn-checkbox-true=marker btn-checkbox-false=undefined>
+            Review Offer of Assistance
+          </button>
         </div>
       </div>
       <button type="button" class="trans-btn full-width" ng-model="status.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
       </button>
     </div>
-    <div class="db-right-col" collapse="!status.showRightColumn">
-      <div ng-include src="'partials/request.html'" ng-controller="requestController">
+    <div class="db-right-col">
+      <div collapse="!status.showRightColumn">
+        <div ng-include src="'partials/request.html'" ng-controller="requestController">
 
+        </div>
+      </div>
+      <div collapse="!status.selectedBeacon">
+        <div ng-include src="'partials/reviewAssistance.html'">
+
+        </div>
       </div>
     </div>
+    <!--
     Debug showMidColumn: {{status.showMidColumn}} <br>
-    Debug showRightColumn: {{status.showRightColumn}}
+    Debug showRightColumn: {{status.showRightColumn}} <br>
+    {{status.selectedBeacon}}
+    -->
   </div>
   <div class="fill">
     <!-- Setting height and width to 100% break the tiles (results in an empty homePage) -->
