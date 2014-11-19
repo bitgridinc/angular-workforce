@@ -48,6 +48,7 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
         console.log('Modal response dialog promise resolved. Value: ', ngDialogData);
         for (var i = 0; i < $scope.markers.length; i++) {
           if ($scope.markers[i].$$hashKey == lastSelectedMarker.options.$$hashKey) {
+            $scope.markers[i].responderName = ngDialogData.responderName;
             $scope.markers[i].numResponders = ngDialogData.numResponders;
           }
         }
@@ -89,6 +90,7 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
       alert("You've accepted!");
       console.log("You've accepted! $scope:", $scope);
       angular.extend($scope.ngDialogData, {
+        responderName: $scope.assistForm.responderName,
         numResponders: $scope.assistForm.numResponders
       });
     };
