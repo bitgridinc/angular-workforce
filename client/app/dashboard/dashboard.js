@@ -12,6 +12,7 @@ angular.module('dashboard', [
   'ui.bootstrap',
   'app.services',
   'dashboard.cascadingCollapse',
+  'dashboard.map',
   'leaflet-directive'])
 
   .config(['$routeProvider', function($routeProvider) {
