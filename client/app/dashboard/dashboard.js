@@ -12,7 +12,8 @@ angular.module('dashboard', [
   'ngDialog',
   'ui.bootstrap',
   'app.services',
-  'dashboard.cascadingCollapse'])
+  'dashboard.cascadingCollapse',
+  'leaflet-directive'])
 
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/dashboard', {

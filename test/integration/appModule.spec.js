@@ -25,8 +25,5 @@ describe('app module', function() {
     it ('should have dashboard as a dependency', function() {
       expect(hasModule('dashboard')).toEqual(true);
     });
-    it ('should have leaflet-directive as a dependency', function() {
-      expect(hasModule('leaflet-directive')).toEqual(true);
-    });
   })
 });
