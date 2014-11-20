@@ -20,12 +20,15 @@ angular.module('dashboard', [
     });
   }])
 
-  .controller('DashboardCtrl', function($scope, leafletData, ngDialog) {
+  .controller('DashboardCtrl', function($scope, leafletData, ngDialog, BeaconService) {
+
+    // This is currently needed by the ng-repeat in dashboard.html. TODO: Factor out the dashboard UI.
+    $scope.markers = BeaconService.markers;
 
     // TODO: Move this
     $scope.status = {
       selectedBeacon: undefined
-    }
+    };
 
     // I'm using this to easily populate the latitude and longitude fields on Create Beacon
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
@@ -45,10 +48,10 @@ angular.module('dashboard', [
         data: clickArgs.leafletEvent.target.options
       }).then(function(ngDialogData) {
         console.log('Modal response dialog promise resolved. Value: ', ngDialogData);
-        for (var i = 0; i < $scope.markers.length; i++) {
-          if ($scope.markers[i].$$hashKey === lastSelectedMarker.options.$$hashKey) {
-            $scope.markers[i].responderName = ngDialogData.responderName;
-            $scope.markers[i].numResponders = ngDialogData.numResponders;
+        for (var i = 0; i < BeaconService.markers.length; i++) {
+          if (BeaconService.markers[i].$$hashKey === lastSelectedMarker.options.$$hashKey) {
+            BeaconService.markers[i].responderName = ngDialogData.responderName;
+            BeaconService.markers[i].numResponders = ngDialogData.numResponders;
           }
         }
       }, function(reason) {
@@ -57,7 +60,7 @@ angular.module('dashboard', [
     });
   })
 
-  .controller('requestController', function($scope) {
+  .controller('requestController', function($scope, BeaconService) {
     angular.extend($scope, {
       newBeaconData: {
         title: 'Job Title',
@@ -66,7 +69,7 @@ angular.module('dashboard', [
       },
       submitNewBeacon: function() {
         console.log("submitNewBeacon called.", $scope);
-        $scope.markers.push({
+        BeaconService.createBeacon({
           title: $scope.newBeaconData.title,
           description: $scope.newBeaconData.description,
           organization: $scope.newBeaconData.organization,

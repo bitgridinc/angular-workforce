@@ -1,15 +1,11 @@
-angular.module('app.services', [])
-  .service('beaconService', function() {
-    return {
-      createBeacon: function(beaconData) {
-        if (!("lat" in beaconData) ||
-            !("lng" in beaconData) ||
-            !("org" in beaconData)) {
-          // TODO: Look up Douglas Crockford's recommended approach to errors
-          throw new Error("lat, lng, and org are required properties of beaconData");
-        }
+"use strict";
 
-        return beaconData;
+angular.module('app.services', [])
+  .service('BeaconService', function() {
+    return {
+      markers: [],
+      createBeacon: function(beaconData) {
+        this.markers.push(beaconData);
       }
     }
   });
