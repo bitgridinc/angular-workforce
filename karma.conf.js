@@ -11,7 +11,7 @@ module.exports = function (config) {
       'test/unit/*.spec.js'
     ],
                                              
-    reporters: ['progress'],
+    reporters: ['story'],
                                                      
     port: 9876,
     colors: true,
