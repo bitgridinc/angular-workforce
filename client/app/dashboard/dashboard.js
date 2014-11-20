@@ -21,19 +21,9 @@ angular.module('dashboard', [
   }])
 
   .controller('DashboardCtrl', function($scope, leafletData, ngDialog) {
-    angular.extend($scope, {
-      defaults: {
-        tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
-        zoomControl: false
-      },
-      washdc: {
-        lat: 38.914268,
-        lng: -77.021098,
-        zoom: 13
-      },
-      events: {},
-      markers: []
-    });
+
+    // TODO: Encapsulate and move this
+    $scope.markers = [];
 
     // TODO: Move this
     $scope.status = {
