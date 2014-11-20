@@ -35,6 +35,8 @@ gulp.task('develop', ['browserify', 'hint'], function () {
     })
 });
 
+// Strangely, these tests run twice only the first time, then karma is fine.
+// It doesn't matter where I depend on this task.
 gulp.task('tdd', function(done) {
   karmaServer.start({
     configFile: __dirname + '/karma.conf.js'
