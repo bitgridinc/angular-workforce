@@ -1,6 +1,6 @@
 exports.config = {
 
-  framework: 'mocha',
+  framework: 'jasmine',
 
   specs: [
     './e2e/*.spec.js'
