@@ -16,6 +16,36 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
     });
   }])
 
+  .controller('MyCompanyCtrl', function($scope) {
+    function CascadingCollapse() {
+      var showMidColumn = true;
+      var showRightColumn = true;
+
+      this.__defineGetter__("showMidColumn", function() {
+        return showMidColumn;
+      });
+
+      this.__defineGetter__("showRightColumn", function() {
+        return showRightColumn;
+      });
+
+      this.__defineSetter__("showMidColumn", function(value) {
+        showMidColumn = value;
+        if (value === false) {
+          showRightColumn = false;
+        }
+      });
+
+      this.__defineSetter__("showRightColumn", function(value) {
+        showRightColumn = value;
+      });
+    }
+
+    angular.extend($scope, {
+      status: new CascadingCollapse()
+    });
+  })
+
   .controller('DashboardCtrl', function($scope, leafletData, ngDialog) {
     angular.extend($scope, {
       defaults: {
@@ -30,11 +60,6 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
       events: {},
       markers: []
     });
-
-    $scope.status = {
-      showMidColumn: true,
-      showRightColumn: true
-    };
 
     // I'm using this to easily populate the latitude and longitude fields on Create Beacon
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
