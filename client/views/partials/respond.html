@@ -1,14 +1,16 @@
 <div>
   <form method="post">
     <div class="ngdialog-message">
-      <div>
+      <h4>
         Organization {{ngDialogData.org}} has requested your assistance at {{ngDialogData.lat}}, {{ngDialogData.lng}}. <br/>
+      </h4>
+      <div class="form-group">
+        <label>Which organization do you represent?</label>
+        <input class="form-control" type="text" name="responderName" id="responderName" required ng-model="assistForm.responderName" />
       </div>
-      <div>
-        Who are you? <input type="text" name="responderName" id="responderName" required ng-model="assistForm.responderName" />
-      </div>
-      <div>
-        How many people can you send? <input type="number" name="numResponders" id="numResponders" required ng-model="assistForm.numResponders" />
+      <div class="form-group">
+        <label>How many people can you send?</label>
+        <input class="form-control" type="number" name="numResponders" id="numResponders" required ng-model="assistForm.numResponders" />
       </div>
     </div>
     <div class="ngdialog-buttons">

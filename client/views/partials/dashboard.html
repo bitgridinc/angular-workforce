@@ -6,9 +6,9 @@
         Company
       </button>
     </div>
-    <div class="db-mid-col" collapse="!status.showMidColumn">
-      <div ng-repeat="marker in markers">
-        <div class="well well-lg">
+    <div class="db-mid-col panel panel-default" collapse="!status.showMidColumn">
+      <div ng-repeat="marker in markers" class="list-group">
+        <div class="list-group-item">
           {{marker.organization}}: {{marker.title}}<br>
           {{marker.description}}<br>
           <button type="button" ng-show="marker.numResponders" ng-model="status.selectedBeacon" btn-checkbox btn-checkbox-true=marker btn-checkbox-false=undefined>
@@ -16,7 +16,7 @@
           </button>
         </div>
       </div>
-      <button type="button" class="trans-btn full-width" ng-model="status.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+      <button type="button" class="trans-btn full-width panel-footer" ng-model="status.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
       </button>
     </div>
