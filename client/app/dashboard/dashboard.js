@@ -22,9 +22,6 @@ angular.module('dashboard', [
 
   .controller('DashboardCtrl', function($scope, leafletData, ngDialog) {
 
-    // TODO: Encapsulate and move this
-    $scope.markers = [];
-
     // TODO: Move this
     $scope.status = {
       selectedBeacon: undefined
@@ -68,7 +65,7 @@ angular.module('dashboard', [
         organization: 'Organization'
       },
       submitNewBeacon: function() {
-        console.log("submitNewBeacon called.");
+        console.log("submitNewBeacon called.", $scope);
         $scope.markers.push({
           title: $scope.newBeaconData.title,
           description: $scope.newBeaconData.description,

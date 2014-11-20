@@ -6,7 +6,8 @@ require('../../bower_components/angular-leaflet-directive/dist/angular-leaflet-d
 angular.module('dashboard.map', [
   'leaflet-directive'])
 
-  .controller('MapCtrl', function($scope) {
+  .controller('MapCtrl', function($scope, $rootScope) {
+
     angular.extend($scope, {
       defaults: {
         tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
@@ -18,4 +19,6 @@ angular.module('dashboard.map', [
         zoom: 13
       }
     });
+
+    $rootScope.markers = [];
   });
