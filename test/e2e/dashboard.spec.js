@@ -1,6 +1,6 @@
 "use strict";
 
-describe('dashboard page', function() {
+describe('the dashboard page', function() {
   var ptor;
 
   beforeEach(function() {
