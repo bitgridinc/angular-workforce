@@ -19,7 +19,18 @@
  
     "predef"        : [  // Custom globals.
         "angular",
-        "L" // The Leaflet object
+        "inject",
+
+        "L", // The Leaflet object
+
+        // Jasmine BDD methods
+        "before",
+        "beforeEach",
+        "after",
+        "afterEach",
+        "describe",
+        "it",
+        "expect"
     ],
  
     // Development.
