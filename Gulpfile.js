@@ -12,8 +12,8 @@ var gulp = require('gulp')
   , BUNDLE = 'bundle.js';
 
 gulp.task('hint', function () {
-  gulp.src('./client/js/*.js')
-    .pipe(jshint())
+  gulp.src(['client/app/*.js', 'client/app/**/*.js', 'client/app/common/**/*.js'])
+    .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
