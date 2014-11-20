@@ -8,7 +8,15 @@ require('../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
 require('../../common/services/beaconService.js');
 
 angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
-  .controller('dashboardCtrl', function($scope, leafletData, ngDialog) {
+
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/dashboard', {
+      templateUrl: 'partials/dashboard.html',
+      controller: 'DashboardCtrl'
+    });
+  }])
+
+  .controller('DashboardCtrl', function($scope, leafletData, ngDialog) {
     angular.extend($scope, {
       defaults: {
         tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
@@ -57,6 +65,7 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
       });
     });
   })
+
   .controller('requestController', function($scope) {
     angular.extend($scope, {
       newBeaconData: {
@@ -82,6 +91,7 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
       }
     });
   })
+
   .controller('respondController', function($scope) {
     $scope.assistForm = {};
     $scope.assistForm.numResponders = 2;

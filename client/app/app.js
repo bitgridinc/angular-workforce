@@ -9,10 +9,6 @@ var app = angular.module('app', [
   'leaflet-directive']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  $routeProvider
-    .when('/', {
-      templateUrl: 'partials/dashboard.html',
-      controller: 'dashboardCtrl'
-    });
+  $routeProvider.otherwise({ redirectTo: '/dashboard' });
   $locationProvider.html5Mode(true);
 }]);
