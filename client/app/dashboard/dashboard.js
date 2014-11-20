@@ -16,7 +16,7 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
     });
   }])
 
-  .controller('MyCompanyCtrl', function($scope) {
+  .controller('CascadingCollapseCtrl', function($scope) {
     function CascadingCollapse() {
       var showMidColumn = true;
       var showRightColumn = true;
@@ -42,7 +42,7 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
     }
 
     angular.extend($scope, {
-      status: new CascadingCollapse()
+      cascadingCollapse: new CascadingCollapse()
     });
   })
 
@@ -60,6 +60,11 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
       events: {},
       markers: []
     });
+
+    // TODO: Move this
+    $scope.status = {
+      selectedBeacon: undefined
+    }
 
     // I'm using this to easily populate the latitude and longitude fields on Create Beacon
     $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
@@ -107,12 +112,12 @@ angular.module('dashboard', ['ngDialog', 'ui.bootstrap', 'app.services'])
           lat: $scope.lastlatlng.lat,
           lng: $scope.lastlatlng.lng
         });
-        $scope.status.showRightColumn = false;
+        $scope.cascadingCollapse.showRightColumn = false;
         alert('You have successfully created a new beacon.');
       },
       deleteNewBeacon: function() {
         console.log("deleteNewBeacon called.");
-        $scope.status.showRightColumn = false;
+        $scope.cascadingCollapse.showRightColumn = false;
       }
     });
   })

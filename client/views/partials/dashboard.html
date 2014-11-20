@@ -1,12 +1,12 @@
-<div class="container" ng-controller="MyCompanyCtrl as controller">
+<div class="container" ng-controller="CascadingCollapseCtrl as controller">
   <div class="left">
     <div class="db-btn-col">
-      <button type="button" class="db-btn btn-primary center-block" ng-model="status.showMidColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+      <button type="button" class="db-btn btn-primary center-block" ng-model="cascadingCollapse.showMidColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         My<br>
         Company
       </button>
     </div>
-    <div class="db-mid-col panel panel-default" collapse="!status.showMidColumn">
+    <div class="db-mid-col panel panel-default" collapse="!cascadingCollapse.showMidColumn">
       <div ng-repeat="marker in markers" class="list-group">
         <div class="list-group-item">
           {{marker.organization}}: {{marker.title}}<br>
@@ -16,12 +16,12 @@
           </button>
         </div>
       </div>
-      <button type="button" class="trans-btn full-width panel-footer" ng-model="status.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+      <button type="button" class="trans-btn full-width panel-footer" ng-model="cascadingCollapse.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
       </button>
     </div>
     <div class="db-right-col">
-      <div collapse="!status.showRightColumn">
+      <div collapse="!cascadingCollapse.showRightColumn">
         <div ng-include src="'partials/request.html'" ng-controller="requestController">
 
         </div>
@@ -33,8 +33,8 @@
       </div>
     </div>
     <!--
-    Debug showMidColumn: {{status.showMidColumn}} <br>
-    Debug showRightColumn: {{status.showRightColumn}} <br>
+    Debug showMidColumn: {{cascadingCollapse.showMidColumn}} <br>
+    Debug showRightColumn: {{cascadingCollapse.showRightColumn}} <br>
     {{status.selectedBeacon}}
     -->
   </div>
