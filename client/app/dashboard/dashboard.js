@@ -1,19 +1,17 @@
 "use strict";
 
-require('../../bower_components/leaflet');
-require('../../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js');
 require('../../bower_components/ngDialog/js/ngDialog.js');
 require('../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
 require('../../common/services/beaconService.js');
 require('./cascadingCollapse.js');
+require('./map.js');
 
 angular.module('dashboard', [
   'ngDialog',
   'ui.bootstrap',
   'app.services',
   'dashboard.cascadingCollapse',
-  'dashboard.map',
-  'leaflet-directive'])
+  'dashboard.map'])
 
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/dashboard', {
