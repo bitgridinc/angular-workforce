@@ -24,13 +24,17 @@
         "L", // The Leaflet object
 
         // Jasmine BDD methods
-        "before",
         "beforeEach",
-        "after",
         "afterEach",
         "describe",
         "it",
-        "expect"
+        "expect",
+
+        // Protractor globals
+        "browser",
+        "element",
+        "by",
+        "protractor"
     ],
  
     // Development.
