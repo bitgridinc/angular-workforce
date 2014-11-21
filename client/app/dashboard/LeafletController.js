@@ -7,7 +7,7 @@ angular.module('dashboard.map', [
   'leaflet-directive',
   'app.services'])
 
-  .controller('MapCtrl', function($scope, $rootScope, BeaconService) {
+  .controller('LeafletController', function($scope, $rootScope, BeaconService) {
     angular.extend($scope, {
       defaults: {
         tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",

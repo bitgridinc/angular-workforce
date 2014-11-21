@@ -8,7 +8,7 @@ describe("the dashboard.map module", function() {
 
   beforeEach(inject(function($rootScope, $controller) {
     scope = $rootScope.$new();
-    controller = $controller('MapCtrl', {
+    controller = $controller('LeafletController', {
       '$scope': scope
     });
   }));

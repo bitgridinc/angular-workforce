@@ -4,7 +4,7 @@ require('../../bower_components/ngDialog/js/ngDialog.js');
 require('../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
 require('../../common/services/beaconService.js');
 require('./cascadingCollapse.js');
-require('./map.js');
+require('./LeafletController.js');
 
 angular.module('dashboard', [
   'ngDialog',
