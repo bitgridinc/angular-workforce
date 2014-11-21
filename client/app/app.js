@@ -5,7 +5,7 @@ require('./dashboard/dashboard.js');
 
 var app = angular.module('app', [
   'ngRoute',
-  'dashboard']);
+  'modules.dashboard']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.otherwise({ redirectTo: '/dashboard' });

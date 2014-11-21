@@ -3,7 +3,7 @@
 describe('the dashboard module', function() {
   var module;
   beforeEach(function() {
-    module = angular.module('dashboard');
+    module = angular.module('modules.dashboard');
   });
 
   it('should be registered', function() {
@@ -16,7 +16,7 @@ describe('the dashboard module', function() {
       return deps.indexOf(m) >= 0;
     };
     beforeEach(function() {
-      deps = module.value('dashboard').requires;
+      deps = module.value('modules.dashboard').requires;
     });
 
     it ('should have dashboard.leaflet as a dependency', function() {
