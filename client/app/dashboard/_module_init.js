@@ -16,4 +16,5 @@ module.exports = angular.module('modules.dashboard', [
   'modules.cascadingCollapse',
   'modules.leaflet']);
 
+require('./routeConfiguration.js');
 require('./dashboard.js');
