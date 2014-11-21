@@ -17,4 +17,4 @@ module.exports = angular.module('modules.dashboard', [
   'modules.leaflet']);
 
 require('./routeConfiguration.js');
-require('./dashboard.js');
+require('./dashboardController.js');

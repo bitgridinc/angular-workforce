@@ -1,7 +1,7 @@
 "use strict";
 
 require('../bower_components/angular/angular.js');
-require('./dashboard/dashboard.js');
+require('./dashboard/_module_init.js');
 
 var app = angular.module('app', [
   'ngRoute',
