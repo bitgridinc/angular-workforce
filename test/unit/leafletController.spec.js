@@ -1,10 +1,10 @@
 "use strict";
 
-describe("the dashboard.map module", function() {
+describe("the dashboard.leaflet module", function() {
   var scope,
       controller;
 
-  beforeEach(module("dashboard.map"));
+  beforeEach(module("dashboard.leaflet"));
 
   beforeEach(inject(function($rootScope, $controller) {
     scope = $rootScope.$new();

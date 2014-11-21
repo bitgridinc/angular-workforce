@@ -1,9 +1,9 @@
 "use strict";
 
-describe('the dashboard.map module', function() {
+describe('the dashboard.leaflet module', function() {
   var module;
   beforeEach(function() {
-    module = angular.module('dashboard.map');
+    module = angular.module('dashboard.leaflet');
   });
 
   it('should be registered', function() {
@@ -16,7 +16,7 @@ describe('the dashboard.map module', function() {
       return deps.indexOf(m) >= 0;
     };
     beforeEach(function() {
-      deps = module.value('dashboard.map').requires;
+      deps = module.value('dashboard.leaflet').requires;
     });
 
     it ('should have leaflet-directive as a dependency', function() {

@@ -3,7 +3,7 @@
 require('../../bower_components/leaflet');
 require('../../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js');
 
-angular.module('dashboard.map', [
+angular.module('dashboard.leaflet', [
   'leaflet-directive',
   'app.services'])
 
