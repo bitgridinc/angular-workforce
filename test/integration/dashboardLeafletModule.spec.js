@@ -1,9 +1,9 @@
 "use strict";
 
-describe('the dashboard.leaflet module', function() {
+describe('the modules.leaflet module', function() {
   var module;
   beforeEach(function() {
-    module = angular.module('dashboard.leaflet');
+    module = angular.module('modules.leaflet');
   });
 
   it('should be registered', function() {
@@ -16,11 +16,14 @@ describe('the dashboard.leaflet module', function() {
       return deps.indexOf(m) >= 0;
     };
     beforeEach(function() {
-      deps = module.value('dashboard.leaflet').requires;
+      deps = module.value('modules.leaflet').requires;
     });
 
     it ('should have leaflet-directive as a dependency', function() {
       expect(hasModule('leaflet-directive')).toEqual(true);
+    });
+    it ('should have app.services as a dependency', function() {
+      expect(hasModule('app.services')).toEqual(true);
     });
   })
 });

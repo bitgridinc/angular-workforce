@@ -19,8 +19,8 @@ describe('the dashboard module', function() {
       deps = module.value('modules.dashboard').requires;
     });
 
-    it ('should have dashboard.leaflet as a dependency', function() {
-      expect(hasModule('dashboard.leaflet')).toEqual(true);
+    it ('should have modules.leaflet as a dependency', function() {
+      expect(hasModule('modules.leaflet')).toEqual(true);
     });
     it ('should have dashboard.cascadingCollapse as a dependency', function() {
       expect(hasModule('dashboard.cascadingCollapse')).toEqual(true);
