@@ -22,8 +22,8 @@ describe('the dashboard module', function() {
     it ('should have modules.leaflet as a dependency', function() {
       expect(hasModule('modules.leaflet')).toEqual(true);
     });
-    it ('should have dashboard.cascadingCollapse as a dependency', function() {
-      expect(hasModule('dashboard.cascadingCollapse')).toEqual(true);
+    it ('should have modules.cascadingCollapse as a dependency', function() {
+      expect(hasModule('modules.cascadingCollapse')).toEqual(true);
     });
     it ('should not have leaflet-directive as a dependency', function() {
       expect(hasModule('leaflet-directive')).not.toEqual(true);

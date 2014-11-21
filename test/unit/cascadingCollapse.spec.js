@@ -4,11 +4,11 @@ describe("cascadingCollapse", function() {
   var scope,
       controller;
 
-  beforeEach(module("dashboard.cascadingCollapse"));
+  beforeEach(module("modules.cascadingCollapse"));
 
   beforeEach(inject(function($rootScope, $controller) {
     scope = $rootScope.$new();
-    controller = $controller('CascadingCollapseCtrl', {
+    controller = $controller('CascadingCollapseController', {
       '$scope': scope
     });
   }));
