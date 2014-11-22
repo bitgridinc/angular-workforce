@@ -1,12 +1,12 @@
 "use strict";
 
-describe('the cascading collapse module', function() {
+describe('the module that manages collapsing child controls (modules.cascadingCollapse)', function() {
   var module;
   beforeEach(function() {
     module = angular.module('modules.cascadingCollapse');
   });
 
-  it('should be registered', function() {
+  it('should be registered with Angular', function() {
     expect(module).toBeDefined();
   });
 });
