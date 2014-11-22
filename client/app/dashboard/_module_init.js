@@ -12,7 +12,7 @@ require('../cascadingCollapse/_module_init.js');
 module.exports = angular.module('modules.dashboard', [
   'ngDialog',
   'ui.bootstrap',
-  'app.services',
+  'services.beacon',
   'modules.cascadingCollapse',
   'modules.leaflet']);
 

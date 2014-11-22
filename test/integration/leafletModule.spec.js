@@ -1,16 +1,16 @@
 "use strict";
 
-describe('the modules.leaflet module', function() {
+describe('the module that displays the Leaflet map (modules.leaflet)', function() {
   var module;
   beforeEach(function() {
     module = angular.module('modules.leaflet');
   });
 
-  it('should be registered', function() {
+  it('should be registered with Angular', function() {
     expect(module).toBeDefined();
   });
 
-  describe('dependencies', function() {
+  describe('and its dependencies', function() {
     var deps;
     var hasModule = function(m) {
       return deps.indexOf(m) >= 0;
@@ -19,11 +19,11 @@ describe('the modules.leaflet module', function() {
       deps = module.value('modules.leaflet').requires;
     });
 
-    it ('should have leaflet-directive as a dependency', function() {
+    it ('should include leaflet-directive, which wraps Leaflet in Angular directives', function() {
       expect(hasModule('leaflet-directive')).toEqual(true);
     });
-    it ('should have app.services as a dependency', function() {
-      expect(hasModule('app.services')).toEqual(true);
+    it ('should include services.beacon, which is a service that wraps our understanding of beacons', function() {
+      expect(hasModule('services.beacon')).toEqual(true);
     });
   })
 });

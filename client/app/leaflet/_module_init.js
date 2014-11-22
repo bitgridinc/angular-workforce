@@ -8,6 +8,6 @@ require('../../common/services/beaconService.js');
 
 module.exports = angular.module('modules.leaflet', [
   'leaflet-directive',
-  'app.services']);
+  'services.beacon']);
 
 require('./leafletController.js');

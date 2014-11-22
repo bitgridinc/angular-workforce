@@ -19,6 +19,9 @@ describe('the dashboard module', function() {
       deps = module.value('modules.dashboard').requires;
     });
 
+    it ('should have services.beacon as a dependency', function() {
+      expect(hasModule('services.beacon')).toEqual(true);
+    });
     it ('should have modules.leaflet as a dependency', function() {
       expect(hasModule('modules.leaflet')).toEqual(true);
     });

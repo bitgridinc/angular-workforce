@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('app.services', [])
+angular.module('services.beacon', [])
   .service('BeaconService', function() {
     return {
       markers: [],

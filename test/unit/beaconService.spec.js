@@ -1,9 +1,9 @@
 "use strict";
 
-describe("beaconService", function() {
+describe('beaconService', function() {
   var beaconService;
 
-  beforeEach(module("app.services"));
+  beforeEach(module('services.beacon'));
 
   beforeEach(inject(function(_BeaconService_) {
     beaconService = _BeaconService_;
