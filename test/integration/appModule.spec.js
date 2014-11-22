@@ -19,11 +19,11 @@ describe('the root module', function() {
       deps = module.value('app').requires;
     });
 
+    it ('should include our dashboard module', function() {
+      expect(hasModule('modules.dashboard')).toEqual(true);
+    });
     it ('should include Angular\'s routing module', function() {
       expect(hasModule('ngRoute')).toEqual(true);
-    });
-    it ('should include the dashboard', function() {
-      expect(hasModule('modules.dashboard')).toEqual(true);
     });
   })
 });
