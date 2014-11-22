@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the dashboard module', function() {
+describe('the module managing the dashboard', function() {
   var module;
   beforeEach(function() {
     module = angular.module('modules.dashboard');
@@ -10,7 +10,7 @@ describe('the dashboard module', function() {
     expect(module).toBeDefined();
   });
 
-  describe('dependencies', function() {
+  describe('and its dependencies', function() {
     var deps;
     var hasModule = function(m) {
       return deps.indexOf(m) >= 0;
@@ -19,16 +19,16 @@ describe('the dashboard module', function() {
       deps = module.value('modules.dashboard').requires;
     });
 
-    it ('should have services.beacon as a dependency', function() {
+    it ('should include the beacon service', function() {
       expect(hasModule('services.beacon')).toEqual(true);
     });
-    it ('should have modules.leaflet as a dependency', function() {
+    it ('should include the Leaflet module', function() {
       expect(hasModule('modules.leaflet')).toEqual(true);
     });
-    it ('should have modules.cascadingCollapse as a dependency', function() {
+    it ('should include the cascading collapse module', function() {
       expect(hasModule('modules.cascadingCollapse')).toEqual(true);
     });
-    it ('should not have leaflet-directive as a dependency', function() {
+    it ('should not include Leaflet directives; they should be wrapped by the Leaflet module', function() {
       expect(hasModule('leaflet-directive')).not.toEqual(true);
     });
   })

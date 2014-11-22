@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the module that displays the Leaflet map (modules.leaflet)', function() {
+describe('the module that displays the Leaflet map', function() {
   var module;
   beforeEach(function() {
     module = angular.module('modules.leaflet');
@@ -19,10 +19,10 @@ describe('the module that displays the Leaflet map (modules.leaflet)', function(
       deps = module.value('modules.leaflet').requires;
     });
 
-    it ('should include leaflet-directive, which wraps Leaflet in Angular directives', function() {
+    it ('should include Angular directives for Leaflet', function() {
       expect(hasModule('leaflet-directive')).toEqual(true);
     });
-    it ('should include services.beacon, which is a service that wraps our understanding of beacons', function() {
+    it ('should include the beacon service', function() {
       expect(hasModule('services.beacon')).toEqual(true);
     });
   })

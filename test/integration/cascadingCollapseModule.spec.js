@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the module that manages collapsing child controls (modules.cascadingCollapse)', function() {
+describe('the module that manages collapsing child controls', function() {
   var module;
   beforeEach(function() {
     module = angular.module('modules.cascadingCollapse');
