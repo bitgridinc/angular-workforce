@@ -8,13 +8,7 @@
     </div>
     <div class="db-mid-col panel panel-default" collapse="!cascadingCollapse.showMidColumn">
       <div ng-repeat="marker in markers" class="list-group">
-        <div class="list-group-item">
-          {{marker.organization}}: {{marker.title}}<br>
-          {{marker.description}}<br>
-          <button type="button" ng-show="marker.numResponders" ng-model="status.selectedBeacon" btn-checkbox btn-checkbox-true=marker btn-checkbox-false=undefined>
-            Review Offer of Assistance
-          </button>
-        </div>
+        <div ng-include src="'partials/beaconSummary.html'"></div>
       </div>
       <button type="button" class="trans-btn full-width panel-footer" ng-model="cascadingCollapse.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon

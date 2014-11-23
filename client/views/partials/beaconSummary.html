@@ -1,0 +1,7 @@
+<div class="list-group-item">
+    {{marker.organization}}: {{marker.title}}<br>
+    {{marker.description}}<br>
+    <button type="button" ng-show="marker.numResponders" ng-model="status.selectedBeacon" btn-checkbox btn-checkbox-true=marker btn-checkbox-false=undefined>
+        Review Offer of Assistance
+    </button>
+</div>
