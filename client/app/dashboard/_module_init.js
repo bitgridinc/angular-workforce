@@ -16,6 +16,7 @@ module.exports = angular.module('modules.dashboard', [
   'ngDialog',
   'ui.bootstrap',
   'services.beacon',
+  'services.beaconDetailsFromSummary',
   'modules.cascadingCollapse',
   'modules.leaflet']);
 

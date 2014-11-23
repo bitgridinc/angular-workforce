@@ -22,6 +22,9 @@ describe('the module managing the dashboard', function() {
     it ('should include our beacon service', function() {
       expect(hasModule('services.beacon')).toEqual(true);
     });
+    it ('should include our service to manage showing beacon details when their summaries are clicked', function() {
+      expect(hasModule('services.beaconDetailsFromSummary')).toEqual(true);
+    });
     it ('should include our Leaflet module', function() {
       expect(hasModule('modules.leaflet')).toEqual(true);
     });
