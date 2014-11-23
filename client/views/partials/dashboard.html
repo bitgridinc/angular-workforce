@@ -18,17 +18,12 @@
 
         </div>
       </div>
-      <div collapse="!status.selectedBeacon">
+      <div collapse="!status.showReviewAssistancePartial">
         <div ng-include src="'partials/reviewAssistance.html'">
 
         </div>
       </div>
     </div>
-    <!--
-    Debug showMidColumn: {{cascadingCollapse.showMidColumn}} <br>
-    Debug showRightColumn: {{cascadingCollapse.showRightColumn}} <br>
-    {{status.selectedBeacon}}
-    -->
   </div>
   <div class="fill" ng-include src="'partials/map.html'" ng-controller="LeafletController">
   </div>

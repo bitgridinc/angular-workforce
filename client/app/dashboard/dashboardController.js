@@ -2,14 +2,17 @@
 
 var app = require('./_module_init.js');
 
-app.controller('DashboardController', function($scope, leafletData, ngDialog, BeaconService) {
+app.controller('DashboardController', function($scope, leafletData, ngDialog, BeaconService, UserSelectionService) {
 
   // This is currently needed by the ng-repeat in dashboard.html. TODO: Factor out the dashboard UI.
   $scope.markers = BeaconService.markers;
 
-  // TODO: Move this
+  // TODO: Remove this by exposing it through ReviewAssistance controller
+  $scope.userSelectionService = UserSelectionService;
+
+  //TODO: Why does this only work when wrapped with status object?
   $scope.status = {
-    selectedBeacon: undefined
+    showReviewAssistancePartial: undefined
   };
 
   // I'm using this to easily populate the latitude and longitude fields on Create Beacon
