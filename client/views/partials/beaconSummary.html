@@ -1,6 +1,9 @@
-<div class="list-group-item" ng-controller="BeaconSummaryController" ng-click="onClick()">
+<div class="list-group-item" ng-controller="BeaconSummaryController">
     {{marker.organization}}: {{marker.title}}<br>
     {{marker.description}}<br>
+    <button type="button" ng-click="onClick()">
+        Select This Beacon
+    </button>
     <button type="button" ng-show="marker.numResponders" ng-model="status.showReviewAssistancePartial" btn-checkbox btn-checkbox-true=marker btn-checkbox-false=undefined>
         Review Offer of Assistance
     </button>
