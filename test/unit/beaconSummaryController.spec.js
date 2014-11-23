@@ -16,4 +16,8 @@ describe("the controller for beacon summaries", function() {
   it('should should be defined in Angular', function() {
     expect(controller).toBeDefined();
   });
+
+  it('should expose a click handler', function() {
+    expect(scope.onClick).toBeDefined();
+  });
 });
