@@ -4,6 +4,8 @@ describe("the modules.leaflet module", function() {
   var scope,
       controller;
 
+  // TODO: I need this to load the BeaconService, but is there a better way?
+  beforeEach(module("modules.services"));
   beforeEach(module("modules.leaflet"));
 
   beforeEach(inject(function($rootScope, $controller) {

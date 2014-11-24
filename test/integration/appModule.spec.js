@@ -19,6 +19,12 @@ describe('the root module', function() {
       deps = module.value('app').requires;
     });
 
+    it ('should include our directives module so that all our modules can access them', function() {
+      expect(hasModule('modules.directives')).toEqual(true);
+    });
+    it ('should include our services module so that all our modules can access them', function() {
+      expect(hasModule('modules.services')).toEqual(true);
+    });
     it ('should include our dashboard module', function() {
       expect(hasModule('modules.dashboard')).toEqual(true);
     });

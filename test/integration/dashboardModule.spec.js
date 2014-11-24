@@ -19,12 +19,6 @@ describe('the module managing the dashboard', function() {
       deps = module.value('modules.dashboard').requires;
     });
 
-    it ('should include our directives module', function() {
-      expect(hasModule('modules.directives')).toEqual(true);
-    });
-    it ('should include our services module', function() {
-      expect(hasModule('modules.services')).toEqual(true);
-    });
     it ('should include our Leaflet module', function() {
       expect(hasModule('modules.leaflet')).toEqual(true);
     });
@@ -39,6 +33,13 @@ describe('the module managing the dashboard', function() {
     });
     it ('should include an open source dialog module', function() {
       expect(hasModule('ngDialog')).toEqual(true);
+    });
+
+    it ('should not include our directives module because the app module does', function() {
+      expect(hasModule('modules.directives')).not.toEqual(true);
+    });
+    it ('should not include our services module because the app module does', function() {
+      expect(hasModule('modules.services')).not.toEqual(true);
     });
     it ('should not include Leaflet directives; they should be wrapped by the Leaflet module', function() {
       expect(hasModule('leaflet-directive')).not.toEqual(true);
