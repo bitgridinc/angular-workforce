@@ -7,7 +7,9 @@
       </button>
     </div>
     <div class="db-mid-col panel panel-default" collapse="!cascadingCollapse.showMidColumn">
-      <div ng-repeat="marker in markers" class="list-group" ng-include src="'templates/beaconSummary.html'"></div>
+      <div ng-repeat="marker in markers" class="list-group">
+        <beacon-summary beacon="marker" class="list-group-item"></beacon-summary>
+      </div>
       <button type="button" class="trans-btn full-width panel-footer" ng-model="cascadingCollapse.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
       </button>

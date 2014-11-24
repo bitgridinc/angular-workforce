@@ -1,0 +1,10 @@
+<div>
+    {{beacon.organization}}: {{beacon.title}}<br>
+    {{beacon.description}}<br>
+    <button type="button" ng-click="onClick()">
+        Select This Beacon
+    </button>
+    <button type="button" ng-show="beacon.numResponders" ng-model="status.showReviewAssistancePartial" btn-checkbox btn-checkbox-true=marker btn-checkbox-false=undefined>
+        Review Offer of Assistance
+    </button>
+</div>
