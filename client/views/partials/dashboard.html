@@ -11,6 +11,7 @@
       <button type="button" class="trans-btn full-width panel-footer" ng-model="cascadingCollapse.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
       </button>
+      <div ng-show="userSelectionService.currentlySelectedBeacon" ng-include src="'partials/beaconDetails.html'"></div>
     </div>
     <div class="db-right-col">
       <div collapse="!cascadingCollapse.showRightColumn">
