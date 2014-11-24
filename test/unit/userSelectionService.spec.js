@@ -3,7 +3,7 @@
 describe('the service that monitors what a user has selected', function() {
   var service;
 
-  beforeEach(module('services.userSelection'));
+  beforeEach(module('modules.services'));
 
   beforeEach(inject(function(_UserSelectionService_) {
     service = _UserSelectionService_;

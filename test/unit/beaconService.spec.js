@@ -3,7 +3,7 @@
 describe('beaconService', function() {
   var beaconService;
 
-  beforeEach(module('services.beacon'));
+  beforeEach(module('modules.services'));
 
   beforeEach(inject(function(_BeaconService_) {
     beaconService = _BeaconService_;

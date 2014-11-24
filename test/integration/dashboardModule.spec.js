@@ -19,11 +19,11 @@ describe('the module managing the dashboard', function() {
       deps = module.value('modules.dashboard').requires;
     });
 
-    it ('should include our beacon service', function() {
-      expect(hasModule('services.beacon')).toEqual(true);
+    it ('should include our directives module', function() {
+      expect(hasModule('modules.directives')).toEqual(true);
     });
-    it ('should include our service to manage what the user has selected', function() {
-      expect(hasModule('services.userSelection')).toEqual(true);
+    it ('should include our services module', function() {
+      expect(hasModule('modules.services')).toEqual(true);
     });
     it ('should include our Leaflet module', function() {
       expect(hasModule('modules.leaflet')).toEqual(true);

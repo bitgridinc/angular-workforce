@@ -19,8 +19,8 @@ describe('the module that displays the Leaflet map', function() {
       deps = module.value('modules.leaflet').requires;
     });
 
-    it ('should include our beacon service', function() {
-      expect(hasModule('services.beacon')).toEqual(true);
+    it ('should include our services module', function() {
+      expect(hasModule('modules.services')).toEqual(true);
     });
     it ('should include Angular directives for Leaflet', function() {
       expect(hasModule('leaflet-directive')).toEqual(true);
