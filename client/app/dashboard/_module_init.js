@@ -13,7 +13,8 @@ module.exports = angular.module('modules.dashboard', [
   'ngDialog',
   'ui.bootstrap',
   'modules.cascadingCollapse',
-  'modules.leaflet']);
+  'modules.leaflet'
+]);
 
 require('./routeConfiguration.js');
 require('./dashboardController.js');
