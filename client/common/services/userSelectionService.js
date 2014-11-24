@@ -7,13 +7,14 @@ angular.module('services.userSelection', [])
       get currentlySelectedBeacon() {
         return currentlySelectedBeacon;
       },
-      selectBeacon: function(newlySelectedBeacon) {
-        console.log("selectBeacon called with:", newlySelectedBeacon);
-        currentlySelectedBeacon = newlySelectedBeacon;
-      },
-      deselectBeacon: function() {
-        console.log("deselectBeacon called");
-        currentlySelectedBeacon = undefined;
+      // The Tell-Don't-Ask principle says that toggling logic must reside within this service.
+      toggleBeaconSelection: function(possiblySelectedBeacon) {
+        console.log("toggleBeaconSelection called with:", possiblySelectedBeacon);
+        if (angular.isUndefined(currentlySelectedBeacon)) {
+          currentlySelectedBeacon = possiblySelectedBeacon;
+        } else {
+          currentlySelectedBeacon = undefined;
+        }
       }
     }
   });

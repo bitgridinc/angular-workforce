@@ -22,26 +22,15 @@ describe('the service that monitors what a user has selected', function() {
     });
   });
 
-  describe('the method called when the user selects a beacon', function() {
+  describe('the method called when the user toggles the selection of a beacon', function() {
     it('should be defined', function() {
-      expect(service.selectBeacon).toBeDefined();
-    });
-    it('should store and expose the beacon passed to it', function() {
-      var beacon = {};
-      service.selectBeacon(beacon);
-      expect(service.currentlySelectedBeacon).toBe(beacon);
-    });
-  });
-
-  describe('the method called when the user deselects the currently selected beacon', function() {
-    it('should be defined', function() {
-      expect(service.deselectBeacon).toBeDefined();
+      expect(service.toggleBeaconSelection).toBeDefined();
     });
     it('should set the currently displayed beacon to undefined when it is called', function() {
       var beacon = {};
-      service.selectBeacon(beacon);
+      service.toggleBeaconSelection(beacon);
       expect(service.currentlySelectedBeacon).toBe(beacon);
-      service.deselectBeacon();
+      service.toggleBeaconSelection(beacon);
       expect(service.currentlySelectedBeacon).toBe(undefined);
     });
   });
