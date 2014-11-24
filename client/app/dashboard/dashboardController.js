@@ -27,7 +27,7 @@ app.controller('DashboardController', function($scope, leafletData, ngDialog, Be
     var lastSelectedMarker = clickArgs.leafletEvent.target;
 
     ngDialog.openConfirm({
-      template: '/partials/respond.html',
+      template: '/templates/respond.html',
       className: 'ngdialog-theme-default',
       controller: 'respondController',
       data: clickArgs.leafletEvent.target.options

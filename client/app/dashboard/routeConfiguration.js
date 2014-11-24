@@ -4,7 +4,7 @@ var app = require('./_module_init.js');
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/dashboard', {
-    templateUrl: 'partials/dashboard.html',
+    templateUrl: 'templates/dashboard.html',
     controller: 'DashboardController'
   });
 }]);
