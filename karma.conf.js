@@ -9,7 +9,7 @@ module.exports = function (config) {
       'server/public/js/bundle.js',
       'node_modules/angular-mocks/*.js',
       'test/integration/*.spec.js',
-      'test/unit/*.spec.js'
+      'test/unit/**/*.spec.js'
     ],
                                              
     reporters: ['story'],
