@@ -13,6 +13,6 @@ app.controller('LeafletController', function($scope, $rootScope, BeaconService) 
       lng: -77.021098,
       zoom: 13
     },
-    markers: BeaconService.markers
+    markers: BeaconService.beacons
   });
 });

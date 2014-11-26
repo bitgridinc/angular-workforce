@@ -4,9 +4,9 @@ var app = require('./_module_init.js');
 
 app.service('BeaconService', function() {
   return {
-    markers: [],
+    beacons: [],
     createBeacon: function(beaconData) {
-      this.markers.push(beaconData);
+      this.beacons.push(beaconData);
     }
   }
 });

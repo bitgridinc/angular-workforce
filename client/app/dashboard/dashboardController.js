@@ -5,7 +5,7 @@ var app = require('./_module_init.js');
 app.controller('DashboardController', function($scope, leafletData, ngDialog, BeaconService, UserSelectionService) {
 
   // This is currently needed by the ng-repeat in dashboard.html. TODO: Factor out the dashboard UI.
-  $scope.markers = BeaconService.markers;
+  $scope.markers = BeaconService.beacons;
 
   // TODO: Remove this by exposing it through ReviewAssistance controller
   $scope.userSelectionService = UserSelectionService;
@@ -34,10 +34,10 @@ app.controller('DashboardController', function($scope, leafletData, ngDialog, Be
       data: clickArgs.leafletEvent.target.options
     }).then(function(ngDialogData) {
       console.log('Modal response dialog promise resolved. Value: ', ngDialogData);
-      for (var i = 0; i < BeaconService.markers.length; i++) {
-        if (BeaconService.markers[i].$$hashKey === lastSelectedMarker.options.$$hashKey) {
-          BeaconService.markers[i].responderName = ngDialogData.responderName;
-          BeaconService.markers[i].numResponders = ngDialogData.numResponders;
+      for (var i = 0; i < BeaconService.beacons.length; i++) {
+        if (BeaconService.beacons[i].$$hashKey === lastSelectedMarker.options.$$hashKey) {
+          BeaconService.beacons[i].responderName = ngDialogData.responderName;
+          BeaconService.beacons[i].numResponders = ngDialogData.numResponders;
         }
       }
     }, function(reason) {
