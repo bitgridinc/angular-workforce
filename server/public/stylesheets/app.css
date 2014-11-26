@@ -35,22 +35,6 @@
     border: 1px solid green;
 }
 
-/* This column sits to the right of db-btn-col and the left of db-mid-col */
-.db-mid-col {
-    float: left;
-    margin-left: 0px;
-    width: 300px;
-    border: 1px solid orange;
-}
-
-/* This column floats to the right of db-mid-col */
-.db-right-col {
-    float: left;
-    margin-left: 0px;
-    width: 300px;
-    border: 1px solid purple;
-}
-
 .db-btn {
     width: 70px;
     height: 70px;
