@@ -1,10 +1,10 @@
-<h4>Respond To Beacon</h4>
+<h4>Respond To Beacon #{{ngDialogData.id}}</h4>
 <div>
   <form method="post">
     <div class="ngdialog-message">
-      <h4>
-        Organization {{ngDialogData.org}} has requested your assistance at {{ngDialogData.lat}}, {{ngDialogData.lng}}. <br/>
-      </h4>
+      <label>
+        Organization {{ngDialogData.organization}} has requested your assistance at {{ngDialogData.lat}}, {{ngDialogData.lng}}. <br/>
+      </label>
       <div class="form-group">
         <label>Which organization do you represent?</label>
         <input class="form-control" type="text" name="responderName" id="responderName" required ng-model="assistForm.responderName" />
