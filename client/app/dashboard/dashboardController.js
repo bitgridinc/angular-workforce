@@ -12,7 +12,8 @@ app.controller('DashboardController', function($scope, leafletData, ngDialog, Be
 
   //TODO: Why does this only work when wrapped with status object?
   $scope.status = {
-    showReviewAssistancePartial: undefined
+    showReviewAssistancePartial: undefined,
+    offerAssistance: undefined
   };
 
   // I'm using this to easily populate the latitude and longitude fields on Create Beacon
@@ -72,6 +73,7 @@ app.controller('requestController', function($scope, BeaconService) {
 
 app.controller('respondController', function($scope) {
   $scope.assistForm = {};
+  $scope.assistForm.responderName = "Helper";
   $scope.assistForm.numResponders = 2;
 
   $scope.assistForm.offerAssistance = function() {

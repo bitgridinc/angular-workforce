@@ -14,8 +14,8 @@ app.directive('beaconSummary', [function() {
     controller: ['$scope', 'UserSelectionService', function($scope, UserSelectionService) {
       console.log('controller called.', $scope, UserSelectionService);
       angular.extend($scope, {
-        onClick: function () {
-          console.log("onClick called.", $scope);
+        onSelectBeacon: function () {
+          console.log("onSelectBeacon called.", $scope);
           // TODO: How to test when this method fails (e.g., when the name changes)?
           UserSelectionService.toggleBeaconSelection($scope.beacon);
         }
