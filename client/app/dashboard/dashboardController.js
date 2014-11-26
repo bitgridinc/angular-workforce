@@ -45,7 +45,9 @@ app.controller('requestController', function($scope, BeaconService) {
     newBeaconData: {
       title: 'Job Title',
       description: 'Project Description',
-      organization: 'Organization'
+      organization: 'Organization',
+      latitude: 38.914268,
+      longitude: -77.021098
     },
     submitNewBeacon: function() {
       console.log("submitNewBeacon called.", $scope);
@@ -53,8 +55,8 @@ app.controller('requestController', function($scope, BeaconService) {
         title: $scope.newBeaconData.title,
         description: $scope.newBeaconData.description,
         organization: $scope.newBeaconData.organization,
-        lat: $scope.newBeaconData.latlng.lat,
-        lng: $scope.newBeaconData.latlng.lng
+        lat: $scope.newBeaconData.latitude,
+        lng: $scope.newBeaconData.longitude
       });
       $scope.cascadingCollapse.showRightColumn = false;
     },
@@ -67,7 +69,8 @@ app.controller('requestController', function($scope, BeaconService) {
   // I'm using this to easily populate the latitude and longitude fields on Create Beacon
   $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
     console.log('leafletDirectiveMap.click');
-    $scope.newBeaconData.latlng = clickArgs.leafletEvent.latlng;
+    $scope.newBeaconData.latitude = clickArgs.leafletEvent.latlng.lat;
+    $scope.newBeaconData.longitude = clickArgs.leafletEvent.latlng.lng;
   });
 });
 
