@@ -7,11 +7,7 @@
   </div>
   <div class="top container-fluid">
     <div class="col-lg-2 panel panel-default" collapse="!cascadingCollapse.showMidColumn" ng-include src="'templates/beaconSummaryList.html'"></div>
-    <div class="col-lg-2 panel panel-default">
-      <div collapse="!cascadingCollapse.showRightColumn">
-        <div ng-include src="'templates/request.html'" ng-controller="requestController"></div>
-      </div>
-    </div>
+    <div class="col-lg-2 panel panel-default" collapse="!cascadingCollapse.showRightColumn" ng-include src="'templates/request.html'" ng-controller="requestController"></div>
     <div class="col-lg-2 panel panel-default" ng-show="userSelectionService.currentlySelectedBeacon" ng-include src="'templates/beaconDetails.html'"></div>
     <div class="col-lg-2 panel panel-default" collapse="!status.showReviewAssistancePartial" ng-include src="'templates/reviewAssistance.html'"></div>
   </div>
