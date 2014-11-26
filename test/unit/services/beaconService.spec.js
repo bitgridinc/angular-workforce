@@ -45,5 +45,9 @@ describe('beaconService', function() {
       beaconService.createBeacon({});
       expect(beaconService.beacons[0].id).not.toBe(beaconService.beacons[1].id);
     });
+    it('should allow for associating responses to the beacon', function() {
+      beaconService.createBeacon({});
+      expect(beaconService.beacons[0].responses).toEqual([]);
+    });
   });
 });

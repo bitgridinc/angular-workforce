@@ -11,6 +11,7 @@ app.service('BeaconService', function() {
     },
     createBeacon: function(beaconData) {
       beaconData.id = idCounter++;
+      beaconData.responses = [];
       this.beacons.push(beaconData);
     }
   }
