@@ -62,7 +62,6 @@ app.controller('requestController', function($scope, BeaconService) {
         lng: $scope.lastlatlng.lng
       });
       $scope.cascadingCollapse.showRightColumn = false;
-      alert('You have successfully created a new beacon.');
     },
     deleteNewBeacon: function() {
       console.log("deleteNewBeacon called.");
@@ -76,7 +75,6 @@ app.controller('respondController', function($scope) {
   $scope.assistForm.numResponders = 2;
 
   $scope.assistForm.offerAssistance = function() {
-    alert("You've accepted!");
     console.log("You've accepted! $scope:", $scope);
     angular.extend($scope.ngDialogData, {
       responderName: $scope.assistForm.responderName,
@@ -84,6 +82,6 @@ app.controller('respondController', function($scope) {
     });
   };
   $scope.assistForm.declineAssistance = function() {
-    alert("You've declined!");
+    console.log("You've declined! $scope:", $scope);
   };
 });
