@@ -13,16 +13,14 @@
       <button type="button" class="trans-btn full-width panel-footer" ng-model="cascadingCollapse.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
       </button>
-      <div ng-show="userSelectionService.currentlySelectedBeacon" ng-include src="'templates/beaconDetails.html'"></div>
     </div>
     <div class="col-lg-2 panel panel-default">
       <div collapse="!cascadingCollapse.showRightColumn">
         <div ng-include src="'templates/request.html'" ng-controller="requestController"></div>
       </div>
-      <div collapse="!status.showReviewAssistancePartial">
-        <div ng-include src="'templates/reviewAssistance.html'"></div>
-      </div>
     </div>
+    <div class="col-lg-2 panel panel-default" ng-show="userSelectionService.currentlySelectedBeacon" ng-include src="'templates/beaconDetails.html'"></div>
+    <div class="col-lg-2 panel panel-default" collapse="!status.showReviewAssistancePartial" ng-include src="'templates/reviewAssistance.html'"></div>
   </div>
   <div class="footer full-width" ng-include src="'templates/map.html'" ng-controller="LeafletController"></div>
 </div>
