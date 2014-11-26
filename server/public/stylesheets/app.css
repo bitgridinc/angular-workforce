@@ -1,21 +1,21 @@
-.container {
-    width: 100%;
-    overflow: hidden;
+.full-height {
+    height: 100%;
 }
-
-.left {
-    float: left;
-    width: 692px;
-    height: 600px;
-    border: 1px solid red;
-}
-
-.fill {
-    margin-left: 692px;
-}
-
 .full-width {
     width: 100%;
+}
+
+.top {
+    float: top;
+    overflow: hidden;
+    border: 1px solid red;
+}
+.footer {
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: 1px solid green;
 }
 
 /* The Create Beacon button is transparent */
