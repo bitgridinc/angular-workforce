@@ -1,4 +1,19 @@
 <h4>Beacon Details</h4>
 <div>
-    Testing
+    <div>
+        <label>Job Title:</label>
+        {{userSelectionService.currentlySelectedBeacon.title}}
+    </div>
+    <div class="form-group">
+        <label>Job Description:</label><br/>
+        {{userSelectionService.currentlySelectedBeacon.description}}
+    </div>
+    <div class="form-group">
+        <label>Your Organization:</label><br/>
+        {{userSelectionService.currentlySelectedBeacon.organization}}
+    </div>
+    <div class="form-group">
+        <label>Latitude:</label>{{userSelectionService.currentlySelectedBeacon.lat}}
+        <label>Longitude:</label>{{userSelectionService.currentlySelectedBeacon.lng}}
+    </div>
 </div>
