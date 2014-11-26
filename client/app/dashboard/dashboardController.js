@@ -16,12 +16,6 @@ app.controller('DashboardController', function($scope, leafletData, ngDialog, Be
     offerAssistance: undefined
   };
 
-  // I'm using this to easily populate the latitude and longitude fields on Create Beacon
-  $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
-    console.log('leafletDirectiveMap.click');
-    $scope.lastlatlng = clickArgs.leafletEvent.latlng;
-  });
-
   // clickArgs will contain the marker name and other relevant information
   $scope.$on('leafletDirectiveMarker.click', function(clickEvent, clickArgs) {
     console.log('Opening dialog to respond to clicked beacon.', clickArgs.leafletEvent.target);
@@ -59,8 +53,8 @@ app.controller('requestController', function($scope, BeaconService) {
         title: $scope.newBeaconData.title,
         description: $scope.newBeaconData.description,
         organization: $scope.newBeaconData.organization,
-        lat: $scope.lastlatlng.lat,
-        lng: $scope.lastlatlng.lng
+        lat: $scope.newBeaconData.latlng.lat,
+        lng: $scope.newBeaconData.latlng.lng
       });
       $scope.cascadingCollapse.showRightColumn = false;
     },
@@ -68,6 +62,12 @@ app.controller('requestController', function($scope, BeaconService) {
       console.log("deleteNewBeacon called.");
       $scope.cascadingCollapse.showRightColumn = false;
     }
+  });
+
+  // I'm using this to easily populate the latitude and longitude fields on Create Beacon
+  $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
+    console.log('leafletDirectiveMap.click');
+    $scope.newBeaconData.latlng = clickArgs.leafletEvent.latlng;
   });
 });
 
