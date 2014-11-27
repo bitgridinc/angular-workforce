@@ -31,9 +31,6 @@ describe('the module managing the dashboard', function() {
     it ('should include the Angular bootstrap module', function() {
       expect(hasModule('ui.bootstrap')).toEqual(true);
     });
-    it ('should include an open source dialog module', function() {
-      expect(hasModule('ngDialog')).toEqual(true);
-    });
 
     it ('should not include our directives module because the app module does', function() {
       expect(hasModule('modules.directives')).not.toEqual(true);

@@ -11,6 +11,7 @@ app.controller('DashboardController', function($scope, BeaconService, UserSelect
   $scope.userSelectionService = UserSelectionService;
 
   $scope.isMyCompanyButtonToggled = true;
+  $scope.isCreatingBeacon = true;
 
   //TODO: Why does this only work when wrapped with status object?
   $scope.status = {
@@ -37,11 +38,11 @@ app.controller('requestController', function($scope, BeaconService) {
         lat: $scope.newBeaconData.latitude,
         lng: $scope.newBeaconData.longitude
       });
-      $scope.cascadingCollapse.showRightColumn = false;
+      $scope.$parent.isCreatingBeacon = false;
     },
     deleteNewBeacon: function() {
       console.log("deleteNewBeacon called.");
-      $scope.cascadingCollapse.showRightColumn = false;
+      $scope.$parent.isCreatingBeacon = false;
     }
   });
 

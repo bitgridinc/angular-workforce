@@ -1,6 +1,6 @@
 <h4>Beacon Summary List</h4>
 <div ng-repeat="marker in markers" class="list-group">
-    <div  class="list-group-item">
+    <div class="list-group-item">
         <beacon-summary beacon="marker"></beacon-summary>
         <button type="button" ng-model="status.offerAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
             Offer Assistance
@@ -11,6 +11,3 @@
     </div>
     {{status.offerAssistance}}
 </div>
-<button type="button" class="trans-btn full-width panel-footer" ng-model="cascadingCollapse.showRightColumn" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
-    Create Beacon
-</button>
