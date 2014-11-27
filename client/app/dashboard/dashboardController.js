@@ -2,7 +2,7 @@
 
 var app = require('./_module_init.js');
 
-app.controller('DashboardController', function($scope, BeaconService, UserSelectionService) {
+app.controller('DashboardController', function($scope, BeaconService, UserSelectionService, DashboardUiState) {
 
   // This is currently needed by the ng-repeat in dashboard.html. TODO: Factor out the dashboard UI.
   $scope.markers = BeaconService.beacons;
@@ -10,8 +10,7 @@ app.controller('DashboardController', function($scope, BeaconService, UserSelect
   // TODO: Remove this by exposing it through ReviewAssistance controller
   $scope.userSelectionService = UserSelectionService;
 
-  $scope.isMyCompanyButtonToggled = true;
-  $scope.isCreatingBeacon = true;
+  $scope.dashboardUiState = DashboardUiState;
 
   //TODO: Why does this only work when wrapped with status object?
   $scope.status = {
@@ -20,7 +19,7 @@ app.controller('DashboardController', function($scope, BeaconService, UserSelect
   };
 });
 
-app.controller('requestController', function($scope, BeaconService) {
+app.controller('requestController', function($scope, BeaconService, DashboardUiState) {
   angular.extend($scope, {
     newBeaconData: {
       title: 'Job Title',
@@ -38,11 +37,14 @@ app.controller('requestController', function($scope, BeaconService) {
         lat: $scope.newBeaconData.latitude,
         lng: $scope.newBeaconData.longitude
       });
-      $scope.$parent.isCreatingBeacon = false;
+      this.closeCreateBeaconView();
     },
     deleteNewBeacon: function() {
       console.log("deleteNewBeacon called.");
-      $scope.$parent.isCreatingBeacon = false;
+      this.closeCreateBeaconView();
+    },
+    closeCreateBeaconView: function() {
+      DashboardUiState.isCreatingBeacon = false;
     }
   });
 

@@ -1,18 +1,18 @@
 <div class="full-height">
   <div class="db-btn-col">
-    <button type="button" class="db-btn btn-primary center-block" ng-model="isMyCompanyButtonToggled" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+    <button type="button" class="db-btn btn-primary center-block" ng-model="dashboardUiState.isMyCompanyButtonToggled" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
       My<br>
       Company
     </button>
   </div>
-  <div class="top container-fluid" collapse="!isMyCompanyButtonToggled">
+  <div class="top container-fluid" collapse="!dashboardUiState.isMyCompanyButtonToggled">
     <div class="col-lg-2 panel panel-default">
       <div ng-include src="'templates/beaconSummaryList.html'" ng-controller="BeaconSummaryListController"></div>
-      <button type="button" class="trans-btn full-width panel-footer" ng-model="isCreatingBeacon" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
-        Create Beacon {{isCreatingBeacon}}
+      <button type="button" class="trans-btn full-width panel-footer" ng-model="dashboardUiState.isCreatingBeacon" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        Create Beacon
       </button>
     </div>
-    <div class="col-lg-2 panel panel-default" ng-show="isCreatingBeacon" ng-include src="'templates/request.html'" ng-controller="requestController"></div>
+    <div class="col-lg-2 panel panel-default" ng-show="dashboardUiState.isCreatingBeacon" ng-include src="'templates/request.html'" ng-controller="requestController"></div>
     <div class="col-lg-2 panel panel-default" ng-show="userSelectionService.currentlySelectedBeacon" ng-include src="'templates/beaconDetails.html'"></div>
     <div class="col-lg-2 panel panel-default" collapse="!status.showReviewAssistancePartial" ng-include src="'templates/reviewAssistance.html'"></div>
     <div class="col-lg-2 panel panel-default" collapse="!status.offerAssistance" ng-include src="'templates/respond.html'" ng-controller="respondController"></div>
