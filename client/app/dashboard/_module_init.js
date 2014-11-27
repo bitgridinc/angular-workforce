@@ -17,4 +17,5 @@ module.exports = angular.module('modules.dashboard', [
 require('./beaconSummaryListController.js');
 require('./createBeaconController.js');
 require('./routeConfiguration.js');
+require('./offerAssistanceController.js');
 require('./dashboardController.js');

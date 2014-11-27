@@ -1,9 +1,11 @@
 <h4>Respond To Beacon #{{ngDialogData.id}}</h4>
 <div>
   <form method="post">
-    <div class="ngdialog-message">
+    <div>
       <label>
-        Organization {{ngDialogData.organization}} has requested your assistance at {{ngDialogData.lat}}, {{ngDialogData.lng}}. <br/>
+        Organization {{userSelectionService.currentlySelectedBeacon.organization}}
+        has requested your assistance at {{userSelectionService.currentlySelectedBeacon.lat}},
+        {{userSelectionService.currentlySelectedBeacon.lng}}. <br/>
       </label>
       <div class="form-group">
         <label>Which organization do you represent?</label>
@@ -14,9 +16,9 @@
         <input class="form-control" type="number" name="numResponders" id="numResponders" required ng-model="assistForm.numResponders" />
       </div>
     </div>
-    <div class="ngdialog-buttons">
-      <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="assistForm.offerAssistance(); confirm(ngDialogData)">Assist</button>
-      <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="assistForm.declineAssistance(); closeThisDialog('button')">Stuff 'Em</button>
+    <div>
+      <button type="button" ng-click="assistForm.offerAssistance()">Assist</button>
+      <button type="button" ng-click="assistForm.declineAssistance()">Stuff 'Em</button>
     </div>
   </form>
 </div>
