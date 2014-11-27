@@ -10,43 +10,6 @@ app.controller('DashboardController', function($scope, UserSelectionService, Das
   $scope.userSelectionService = UserSelectionService;
 });
 
-app.controller('requestController', function($scope, BeaconService, DashboardUiState) {
-  angular.extend($scope, {
-    newBeaconData: {
-      title: 'Job Title',
-      description: 'Project Description',
-      organization: 'Organization',
-      latitude: 38.914268,
-      longitude: -77.021098
-    },
-    submitNewBeacon: function() {
-      console.log("submitNewBeacon called.", $scope);
-      BeaconService.createBeacon({
-        title: $scope.newBeaconData.title,
-        description: $scope.newBeaconData.description,
-        organization: $scope.newBeaconData.organization,
-        lat: $scope.newBeaconData.latitude,
-        lng: $scope.newBeaconData.longitude
-      });
-      this.closeCreateBeaconView();
-    },
-    deleteNewBeacon: function() {
-      console.log("deleteNewBeacon called.");
-      this.closeCreateBeaconView();
-    },
-    closeCreateBeaconView: function() {
-      DashboardUiState.isCreatingBeacon = false;
-    }
-  });
-
-  // I'm using this to easily populate the latitude and longitude fields on Create Beacon
-  $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
-    console.log('leafletDirectiveMap.click');
-    $scope.newBeaconData.latitude = clickArgs.leafletEvent.latlng.lat;
-    $scope.newBeaconData.longitude = clickArgs.leafletEvent.latlng.lng;
-  });
-});
-
 app.controller('respondController', function($scope) {
   $scope.assistForm = {};
   $scope.assistForm.responderName = "Helper";
