@@ -4,7 +4,7 @@ var app = require('./_module_init.js');
 
 app.directive('beaconSummary', [function() {
   return {
-    // TODO: What does restrict mean?
+    // Restricted to only look for this directive in elements
     restrict: 'E',
     templateUrl: '/templates/directives/beaconSummary.html',
     scope: {
