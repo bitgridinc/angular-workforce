@@ -14,8 +14,8 @@
     </div>
     <div class="col-lg-2 panel panel-default" ng-show="dashboardUiState.isCreatingBeacon" ng-include src="'templates/request.html'" ng-controller="requestController"></div>
     <div class="col-lg-2 panel panel-default" ng-show="userSelectionService.currentlySelectedBeacon" ng-include src="'templates/beaconDetails.html'"></div>
-    <div class="col-lg-2 panel panel-default" collapse="!status.showReviewAssistancePartial" ng-include src="'templates/reviewAssistance.html'"></div>
-    <div class="col-lg-2 panel panel-default" collapse="!status.offerAssistance" ng-include src="'templates/respond.html'" ng-controller="respondController"></div>
+    <div class="col-lg-2 panel panel-default" ng-show="dashboardUiState.isReviewingOfferOfAssistance" ng-include src="'templates/reviewAssistance.html'"></div>
+    <div class="col-lg-2 panel panel-default" ng-show="dashboardUiState.isOfferingAssistance" ng-include src="'templates/respond.html'" ng-controller="respondController"></div>
   </div>
   <div class="footer full-width" ng-include src="'templates/map.html'" ng-controller="LeafletController"></div>
 </div>

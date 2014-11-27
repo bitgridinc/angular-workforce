@@ -30,4 +30,22 @@ describe('the service that shares UI state of the dashboard between controllers'
       expect(dashboardUiState.isCreatingBeacon).toBeTruthy();
     });
   });
+
+  describe('the flag for whether the user is offering assistance', function() {
+    it('should be defined', function() {
+      expect(dashboardUiState.isOfferingAssistance).toBeDefined();
+    });
+    it('should default so that the user is not offering assistance', function() {
+      expect(dashboardUiState.isOfferingAssistance).toBeFalsy();
+    });
+  });
+
+  describe('the flag for whether the user is reviewing offers of assistance', function() {
+    it('should be defined', function() {
+      expect(dashboardUiState.isReviewingOfferOfAssistance).toBeDefined();
+    });
+    it('should default so that the user is not reviewing offers of assistance', function() {
+      expect(dashboardUiState.isReviewingOfferOfAssistance).toBeFalsy();
+    });
+  });
 });

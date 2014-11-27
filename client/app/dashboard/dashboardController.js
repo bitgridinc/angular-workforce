@@ -4,19 +4,13 @@ var app = require('./_module_init.js');
 
 app.controller('DashboardController', function($scope, BeaconService, UserSelectionService, DashboardUiState) {
 
-  // This is currently needed by the ng-repeat in dashboard.html. TODO: Factor out the dashboard UI.
-  $scope.markers = BeaconService.beacons;
+  $scope.dashboardUiState = DashboardUiState;
 
   // TODO: Remove this by exposing it through ReviewAssistance controller
   $scope.userSelectionService = UserSelectionService;
 
-  $scope.dashboardUiState = DashboardUiState;
-
-  //TODO: Why does this only work when wrapped with status object?
-  $scope.status = {
-    showReviewAssistancePartial: undefined,
-    offerAssistance: undefined
-  };
+  // This is currently needed by the ng-repeat in dashboard.html. TODO: Factor out the dashboard UI.
+  $scope.markers = BeaconService.beacons;
 });
 
 app.controller('requestController', function($scope, BeaconService, DashboardUiState) {

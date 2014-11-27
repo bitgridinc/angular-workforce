@@ -5,6 +5,8 @@ var app = require('./_module_init.js');
 app.service('DashboardUiState', function() {
   return {
     isMyCompanyButtonToggled: true,
-    isCreatingBeacon: true
+    isCreatingBeacon: true,
+    isOfferingAssistance: false,
+    isReviewingOfferOfAssistance: false
   }
 });
