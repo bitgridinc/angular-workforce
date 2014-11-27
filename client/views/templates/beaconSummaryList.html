@@ -1,7 +1,7 @@
 <h4>Beacon Summary List</h4>
-<div ng-repeat="marker in markers" class="list-group">
+<div ng-repeat="beacon in beacons" class="list-group">
     <div class="list-group-item">
-        <beacon-summary beacon="marker"></beacon-summary>
+        <beacon-summary beacon="beacon"></beacon-summary>
         <button type="button" ng-model="dashboardUiState.isOfferingAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
             Offer Assistance
         </button>

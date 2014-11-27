@@ -2,15 +2,12 @@
 
 var app = require('./_module_init.js');
 
-app.controller('DashboardController', function($scope, BeaconService, UserSelectionService, DashboardUiState) {
+app.controller('DashboardController', function($scope, UserSelectionService, DashboardUiState) {
 
   $scope.dashboardUiState = DashboardUiState;
 
   // TODO: Remove this by exposing it through ReviewAssistance controller
   $scope.userSelectionService = UserSelectionService;
-
-  // This is currently needed by the ng-repeat in dashboard.html. TODO: Factor out the dashboard UI.
-  $scope.markers = BeaconService.beacons;
 });
 
 app.controller('requestController', function($scope, BeaconService, DashboardUiState) {
