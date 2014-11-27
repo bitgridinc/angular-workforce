@@ -2,7 +2,7 @@
 
 var app = require('./_module_init.js');
 
-app.controller('DashboardController', function($scope, leafletData, ngDialog, BeaconService, UserSelectionService) {
+app.controller('DashboardController', function($scope, BeaconService, UserSelectionService) {
 
   // This is currently needed by the ng-repeat in dashboard.html. TODO: Factor out the dashboard UI.
   $scope.markers = BeaconService.beacons;
