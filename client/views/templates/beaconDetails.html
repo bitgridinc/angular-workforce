@@ -2,22 +2,22 @@
 <div>
     <div>
         <label>id:</label>
-        {{userSelectionService.currentlySelectedBeacon.id}}
+        {{dashboardUiState.currentlySelectedBeacon.id}}
     </div>
     <div>
         <label>Job Title:</label>
-        {{userSelectionService.currentlySelectedBeacon.title}}
+        {{dashboardUiState.currentlySelectedBeacon.title}}
     </div>
     <div class="form-group">
         <label>Job Description:</label><br/>
-        {{userSelectionService.currentlySelectedBeacon.description}}
+        {{dashboardUiState.currentlySelectedBeacon.description}}
     </div>
     <div class="form-group">
         <label>Your Organization:</label><br/>
-        {{userSelectionService.currentlySelectedBeacon.organization}}
+        {{dashboardUiState.currentlySelectedBeacon.organization}}
     </div>
     <div class="form-group">
-        <label>Latitude:</label>{{userSelectionService.currentlySelectedBeacon.lat}}
-        <label>Longitude:</label>{{userSelectionService.currentlySelectedBeacon.lng}}
+        <label>Latitude:</label>{{dashboardUiState.currentlySelectedBeacon.lat}}
+        <label>Longitude:</label>{{dashboardUiState.currentlySelectedBeacon.lng}}
     </div>
 </div>

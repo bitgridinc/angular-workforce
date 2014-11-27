@@ -48,4 +48,26 @@ describe('the service that shares UI state of the dashboard between controllers'
       expect(dashboardUiState.isReviewingOfferOfAssistance).toBeFalsy();
     });
   });
+
+  describe('the property used to expose the currently selected beacon', function() {
+    it('should have a value of undefined when the service is initialized', function() {
+      expect(dashboardUiState.currentlySelectedBeacon).toBe(undefined);
+    });
+    it('should not allow its value to be set explicitly', function() {
+      expect(dashboardUiState.__lookupSetter__('currentlySelectedBeacon')).toBe(undefined);
+    });
+  });
+
+  describe('the method called when the user toggles the selection of a beacon', function() {
+    it('should be defined', function() {
+      expect(dashboardUiState.toggleBeaconSelection).toBeDefined();
+    });
+    it('should set the currently displayed beacon to undefined when it is called', function() {
+      var beacon = {};
+      dashboardUiState.toggleBeaconSelection(beacon);
+      expect(dashboardUiState.currentlySelectedBeacon).toBe(beacon);
+      dashboardUiState.toggleBeaconSelection(beacon);
+      expect(dashboardUiState.currentlySelectedBeacon).toBe(undefined);
+    });
+  });
 });
