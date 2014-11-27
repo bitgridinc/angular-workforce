@@ -15,15 +15,6 @@ app.controller('DashboardController', function($scope, leafletData, ngDialog, Be
     showReviewAssistancePartial: undefined,
     offerAssistance: undefined
   };
-
-    /*
-     for (var i = 0; i < BeaconService.beacons.length; i++) {
-     if (BeaconService.beacons[i].$$hashKey === lastSelectedMarker.options.$$hashKey) {
-     BeaconService.beacons[i].responderName = ngDialogData.responderName;
-     BeaconService.beacons[i].numResponders = ngDialogData.numResponders;
-     }
-     }
-     */
 });
 
 app.controller('requestController', function($scope, BeaconService) {
