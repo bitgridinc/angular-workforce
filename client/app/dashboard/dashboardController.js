@@ -16,28 +16,14 @@ app.controller('DashboardController', function($scope, leafletData, ngDialog, Be
     offerAssistance: undefined
   };
 
-  // clickArgs will contain the marker name and other relevant information
-  $scope.$on('leafletDirectiveMarker.click', function(clickEvent, clickArgs) {
-    console.log('Opening dialog to respond to clicked beacon.', clickArgs.leafletEvent.target);
-    var lastSelectedMarker = clickArgs.leafletEvent.target;
-
-    ngDialog.openConfirm({
-      template: '/templates/respond.html',
-      className: 'ngdialog-theme-default',
-      controller: 'respondController',
-      data: clickArgs.leafletEvent.target.options
-    }).then(function(ngDialogData) {
-      console.log('Modal response dialog promise resolved. Value: ', ngDialogData);
-      for (var i = 0; i < BeaconService.beacons.length; i++) {
-        if (BeaconService.beacons[i].$$hashKey === lastSelectedMarker.options.$$hashKey) {
-          BeaconService.beacons[i].responderName = ngDialogData.responderName;
-          BeaconService.beacons[i].numResponders = ngDialogData.numResponders;
-        }
-      }
-    }, function(reason) {
-      console.log('Modal response dialog promise rejected. Reason: ', reason);
-    });
-  });
+    /*
+     for (var i = 0; i < BeaconService.beacons.length; i++) {
+     if (BeaconService.beacons[i].$$hashKey === lastSelectedMarker.options.$$hashKey) {
+     BeaconService.beacons[i].responderName = ngDialogData.responderName;
+     BeaconService.beacons[i].numResponders = ngDialogData.numResponders;
+     }
+     }
+     */
 });
 
 app.controller('requestController', function($scope, BeaconService) {
