@@ -2,24 +2,22 @@
 
 var app = require('./_module_init.js');
 
-app.controller('OfferAssistanceController', function($scope, UserSelectionService) {
+app.controller('OfferAssistanceController', function($scope, UserSelectionService, BeaconService) {
   // For debugging purposes
   $scope.name = 'OfferAssistanceController';
 
   $scope.userSelectionService = UserSelectionService;
 
-  $scope.assistForm = {};
-  $scope.assistForm.responderName = "Helper";
-  $scope.assistForm.numResponders = 2;
-
-  $scope.assistForm.offerAssistance = function() {
-    console.log("You've accepted! $scope:", $scope);
-    angular.extend($scope.userSelectionService.currentlySelectedBeacon, {
-      responderName: $scope.assistForm.responderName,
-      numResponders: $scope.assistForm.numResponders
-    });
+  $scope.assistanceOffer = {
+    responderName: "Helper",
+    numResponders: 2
   };
-  $scope.assistForm.declineAssistance = function() {
+
+  $scope.offerAssistance = function() {
+    console.log("You've accepted! $scope:", $scope);
+    BeaconService.offerAssistance($scope.userSelectionService.currentlySelectedBeacon, $scope.assistanceOffer);
+  };
+  $scope.declineAssistance = function() {
     console.log("You've declined! $scope:", $scope);
   };
 });

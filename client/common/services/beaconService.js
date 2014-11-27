@@ -13,6 +13,9 @@ app.service('BeaconService', function() {
       beaconData.id = idCounter++;
       beaconData.responses = [];
       this.beacons.push(beaconData);
+    },
+    offerAssistance: function(beacon, assistanceOffer) {
+      beacon.responses.push(assistanceOffer);
     }
   }
 });

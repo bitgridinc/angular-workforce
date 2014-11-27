@@ -50,4 +50,16 @@ describe('beaconService', function() {
       expect(beaconService.beacons[0].responses).toEqual([]);
     });
   });
+
+  describe('the method used to offer assistance to a beacon', function() {
+    it('should be defined', function() {
+      expect(beaconService.offerAssistance).toBeDefined();
+    });
+    it('should add assistance offer to beacons', function() {
+      beaconService.createBeacon({});
+      expect(beaconService.beacons[0].responses.length).toBe(0);
+      beaconService.offerAssistance(beaconService.beacons[0], {});
+      expect(beaconService.beacons[0].responses.length).toBe(1);
+    });
+  });
 });
