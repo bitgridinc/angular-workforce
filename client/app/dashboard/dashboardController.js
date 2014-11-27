@@ -10,6 +10,8 @@ app.controller('DashboardController', function($scope, leafletData, ngDialog, Be
   // TODO: Remove this by exposing it through ReviewAssistance controller
   $scope.userSelectionService = UserSelectionService;
 
+  $scope.isMyCompanyButtonToggled = true;
+
   //TODO: Why does this only work when wrapped with status object?
   $scope.status = {
     showReviewAssistancePartial: undefined,
