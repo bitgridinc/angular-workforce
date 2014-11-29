@@ -61,5 +61,12 @@ describe('beaconService', function() {
       beaconService.offerAssistance(beaconService.beacons[0], {});
       expect(beaconService.beacons[0].responses.length).toBe(1);
     });
+    it('should not reuse the same object (i.e., it should make a copy)', function() {
+      var beacon = {};
+      var response = {};
+      beaconService.createBeacon(beacon);
+      beaconService.offerAssistance(beaconService.beacons[0], response);
+      expect(beaconService.beacons[0].responses[0]).not.toBe(response);
+    });
   });
 });

@@ -15,7 +15,7 @@ app.service('BeaconService', function() {
       this.beacons.push(beaconData);
     },
     offerAssistance: function(beacon, assistanceOffer) {
-      beacon.responses.push(assistanceOffer);
+      beacon.responses.push(angular.copy(assistanceOffer));
     }
   }
 });

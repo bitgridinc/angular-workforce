@@ -2,7 +2,7 @@
 
 var app = require('./_module_init.js');
 
-app.service('DashboardUiState', function() {
+app.service('DashboardUiState', ['$rootScope', function($rootScope) {
   var currentlySelectedBeacon;
   return {
     isMyCompanyButtonToggled: true,
@@ -21,6 +21,9 @@ app.service('DashboardUiState', function() {
       } else {
         currentlySelectedBeacon = undefined;
       }
+
+      // TODO: Unit test this
+      $rootScope.$emit('currentBeaconChanged', currentlySelectedBeacon);
     }
   }
-});
+}]);
