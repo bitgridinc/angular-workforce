@@ -49,7 +49,7 @@ describe('beaconService', function() {
     });
     it('should allow for associating a single accepted response to the beacon', function() {
       beaconService.createBeacon({});
-      expect(beaconService.beacons[0].acceptedOffer).toBe(undefined);
+      expect(beaconService.beacons[0].acceptedAssistance).toBe(undefined);
     });
     it('should not reuse the same object (i.e., it should make a copy)', function() {
       var beacon = {};
@@ -85,13 +85,13 @@ describe('beaconService', function() {
       var offerToAccept = {};
       beaconService.createBeacon({});
       beaconService.acceptAssistance(beaconService.beacons[0], offerToAccept);
-      expect(beaconService.beacons[0].acceptedOffer).toEqual(offerToAccept);
+      expect(beaconService.beacons[0].acceptedAssistance).toEqual(offerToAccept);
     });
     it('should not reuse the same object (i.e., it should make a copy)', function() {
       var offerToAccept = {};
       beaconService.createBeacon({});
       beaconService.acceptAssistance(beaconService.beacons[0], offerToAccept);
-      expect(beaconService.beacons[0].acceptedOffer).not.toBe(offerToAccept);
+      expect(beaconService.beacons[0].acceptedAssistance).not.toBe(offerToAccept);
     });
   });
 });

@@ -13,14 +13,14 @@ app.service('BeaconService', function() {
       var newBeacon = angular.copy(beaconData);
       newBeacon.id = idCounter++;
       newBeacon.responses = [];
-      newBeacon.acceptedOffer = undefined;
+      newBeacon.acceptedAssistance = undefined;
       this.beacons.push(newBeacon);
     },
-    offerAssistance: function(beacon, assistanceOffer) {
-      beacon.responses.push(angular.copy(assistanceOffer));
+    offerAssistance: function(beacon, offeredAssistance) {
+      beacon.responses.push(angular.copy(offeredAssistance));
     },
-    acceptAssistance: function(beacon, assistanceOffer) {
-      beacon.acceptedOffer = angular.copy(assistanceOffer);
+    acceptAssistance: function(beacon, acceptedAssistance) {
+      beacon.acceptedAssistance = angular.copy(acceptedAssistance);
     }
   }
 });
