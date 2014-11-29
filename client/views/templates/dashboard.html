@@ -22,11 +22,11 @@
          ng-include src="'templates/beaconDetails.html'">
     </div>
     <div class="col-lg-2 panel panel-default"
-         ng-show="dashboardUiState.isReviewingOfferOfAssistance"
+         ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isReviewingOfferOfAssistance"
          ng-include src="'templates/reviewAssistance.html'">
     </div>
     <div class="col-lg-2 panel panel-default"
-         ng-show="dashboardUiState.isOfferingAssistance"
+         ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isOfferingAssistance"
          ng-include src="'templates/offerAssistance.html'"
          ng-controller="OfferAssistanceController">
     </div>
