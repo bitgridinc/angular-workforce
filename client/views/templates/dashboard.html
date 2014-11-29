@@ -23,7 +23,8 @@
     </div>
     <div class="col-lg-2 panel panel-default"
          ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isReviewingOfferOfAssistance"
-         ng-include src="'templates/reviewAssistance.html'">
+         ng-include src="'templates/reviewAssistance.html'"
+         ng-controller="ReviewAssistanceController">
     </div>
     <div class="col-lg-2 panel panel-default"
          ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isOfferingAssistance"

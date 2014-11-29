@@ -18,4 +18,5 @@ require('./beaconSummaryListController.js');
 require('./createBeaconController.js');
 require('./routeConfiguration.js');
 require('./offerAssistanceController.js');
+require('./reviewAssistanceController.js');
 require('./dashboardController.js');

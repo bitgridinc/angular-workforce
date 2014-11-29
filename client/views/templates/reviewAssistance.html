@@ -1,3 +1,4 @@
 <h4>
-    {{dashboardUiState.currentlySelectedBeacon.responderName}} offered to help with {{dashboardUiState.currentlySelectedBeacon.numResponders}} people.
+    <pagination total-items="totalItems" items-per-page="1" ng-model="currentPage" ng-change="pageChanged(currentPage)" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;"></pagination>
+    {{currentItem.responderName}} offered to assist with {{currentItem.numResponders}} people.
 </h4>

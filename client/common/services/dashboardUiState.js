@@ -22,8 +22,7 @@ app.service('DashboardUiState', ['$rootScope', function($rootScope) {
         currentlySelectedBeacon = undefined;
       }
 
-      // TODO: Unit test this
-      $rootScope.$emit('currentBeaconChanged', currentlySelectedBeacon);
+      $rootScope.$broadcast('currentBeaconChanged', currentlySelectedBeacon);
     }
   }
 }]);
