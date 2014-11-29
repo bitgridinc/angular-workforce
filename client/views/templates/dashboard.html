@@ -17,5 +17,6 @@
     <div class="col-lg-2 panel panel-default" ng-show="dashboardUiState.isReviewingOfferOfAssistance" ng-include src="'templates/reviewAssistance.html'"></div>
     <div class="col-lg-2 panel panel-default" ng-show="dashboardUiState.isOfferingAssistance" ng-include src="'templates/offerAssistance.html'" ng-controller="OfferAssistanceController"></div>
   </div>
+  <!-- TODO: Learn why these controllers must be placed here and not within the templates. -->
   <div class="footer full-width" ng-include src="'templates/map.html'" ng-controller="LeafletController"></div>
 </div>
