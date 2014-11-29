@@ -30,11 +30,9 @@ describe('beaconService', function() {
       expect(beaconService.createBeacon).toBeDefined();
     });
     it('should add created beacons to the array of beacons', function() {
-      var beaconData = {};
       expect(beaconService.beacons.length).toBe(0);
-      beaconService.createBeacon(beaconData);
+      beaconService.createBeacon({});
       expect(beaconService.beacons.length).toBe(1);
-      expect(beaconService.beacons[0]).toBe(beaconData);
     });
     it('should create an id property with a positive integer value on the created beacon', function() {
       beaconService.createBeacon({});
@@ -48,6 +46,15 @@ describe('beaconService', function() {
     it('should allow for associating responses to the beacon', function() {
       beaconService.createBeacon({});
       expect(beaconService.beacons[0].responses).toEqual([]);
+    });
+    it('should allow for associating a single accepted response to the beacon', function() {
+      beaconService.createBeacon({});
+      expect(beaconService.beacons[0].acceptedOffer).toBe(undefined);
+    });
+    it('should not reuse the same object (i.e., it should make a copy)', function() {
+      var beacon = {};
+      beaconService.createBeacon(beacon);
+      expect(beaconService.beacons[0]).not.toBe(beacon);
     });
   });
 
@@ -67,6 +74,24 @@ describe('beaconService', function() {
       beaconService.createBeacon(beacon);
       beaconService.offerAssistance(beaconService.beacons[0], response);
       expect(beaconService.beacons[0].responses[0]).not.toBe(response);
+    });
+  });
+
+  describe('the method used to accept assistance to a beacon', function() {
+    it('should be defined', function() {
+      expect(beaconService.acceptAssistance).toBeDefined();
+    });
+    it('should add accepted offer of assistance to beacon', function() {
+      var offerToAccept = {};
+      beaconService.createBeacon({});
+      beaconService.acceptAssistance(beaconService.beacons[0], offerToAccept);
+      expect(beaconService.beacons[0].acceptedOffer).toEqual(offerToAccept);
+    });
+    it('should not reuse the same object (i.e., it should make a copy)', function() {
+      var offerToAccept = {};
+      beaconService.createBeacon({});
+      beaconService.acceptAssistance(beaconService.beacons[0], offerToAccept);
+      expect(beaconService.beacons[0].acceptedOffer).not.toBe(offerToAccept);
     });
   });
 });

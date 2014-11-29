@@ -10,12 +10,17 @@ app.service('BeaconService', function() {
       return undefined;
     },
     createBeacon: function(beaconData) {
-      beaconData.id = idCounter++;
-      beaconData.responses = [];
-      this.beacons.push(beaconData);
+      var newBeacon = angular.copy(beaconData);
+      newBeacon.id = idCounter++;
+      newBeacon.responses = [];
+      newBeacon.acceptedOffer = undefined;
+      this.beacons.push(newBeacon);
     },
     offerAssistance: function(beacon, assistanceOffer) {
       beacon.responses.push(angular.copy(assistanceOffer));
+    },
+    acceptAssistance: function(beacon, assistanceOffer) {
+      beacon.acceptedOffer = angular.copy(assistanceOffer);
     }
   }
 });

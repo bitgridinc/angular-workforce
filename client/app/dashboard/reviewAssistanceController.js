@@ -2,7 +2,8 @@
 
 var app = require('./_module_init.js');
 
-app.controller('ReviewAssistanceController', function($scope) {
+// TODO: Add unit testing
+app.controller('ReviewAssistanceController', function($scope, BeaconService) {
   angular.extend($scope, {
     name: 'ReviewAssistanceController',
     items: [],
@@ -25,4 +26,10 @@ app.controller('ReviewAssistanceController', function($scope) {
     $scope.totalItems = newValue;
     $scope.currentItem = $scope.currentItem || $scope.items[0];
   });
+
+  $scope.acceptAssistance = function () {
+    // TODO: This is garbage :P
+    console.log("Offering this many people to help: ", $scope.currentItem.numResponders);
+    BeaconService.acceptAssistance(BeaconService.beacons[0], $scope.currentItem);
+  };
 });
