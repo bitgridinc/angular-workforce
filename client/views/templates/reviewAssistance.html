@@ -1,4 +1,7 @@
 <h4>
     <pagination total-items="totalItems" items-per-page="1" ng-model="currentPage" ng-change="pageChanged(currentPage)" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;"></pagination>
-    {{currentItem.responderName}} offered to assist with {{currentItem.numResponders}} people.
+    <div>
+        {{currentItem.responderName}} offered to assist with {{currentItem.numResponders}} people.
+        <button class="btn" type="button" ng-click="acceptAssistance()">Accept Assistance</button>
+    </div>
 </h4>
