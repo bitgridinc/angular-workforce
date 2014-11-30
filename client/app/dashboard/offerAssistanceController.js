@@ -13,6 +13,15 @@ app.controller('OfferAssistanceController', function($scope, DashboardUiState, B
     numResponders: 2
   };
 
+  $scope.dt = new Date();
+  $scope.open = function($event) {
+    console.log("open called.", $event);
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
   $scope.offerAssistance = function() {
     console.log("You've accepted! $scope:", $scope);
     BeaconService.offerAssistance($scope.dashboardUiState.currentlySelectedBeacon, $scope.assistanceOffer);
