@@ -8,6 +8,7 @@
   <div class="top container-fluid" collapse="!dashboardUiState.isMyCompanyButtonToggled">
     <div class="col-lg-2 panel panel-default">
       <div ng-include src="'templates/beaconSummaryList.html'" ng-controller="BeaconSummaryListController"></div>
+      <!-- Prime use case for a directive. -->
       <button type="button" class="trans-btn full-width panel-footer" ng-model="dashboardUiState.isCreatingBeacon" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
       </button>
