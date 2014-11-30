@@ -3,12 +3,10 @@
   <form method="post">
     <div>
       <label>
-        Organization {{dashboardUiState.currentlySelectedBeacon.organization}}
-        has requested your assistance at {{dashboardUiState.currentlySelectedBeacon.lat}},
-        {{dashboardUiState.currentlySelectedBeacon.lng}}. <br/>
+        {{dashboardUiState.currentlySelectedBeacon.organization}} has requested your assistance.
       </label>
       <div class="form-group">
-        <label>Which organization do you represent?</label>
+        <label>Who do you represent?</label>
         <input class="form-control" type="text" name="responderName" id="responderName" required ng-model="assistanceOffer.responderName" />
       </div>
       <div class="form-group">
