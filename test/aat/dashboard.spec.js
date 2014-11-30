@@ -8,7 +8,7 @@ describe('the dashboard page', function() {
     ptor.get('/dashboard');
   });
 
-  it('should have a db-btn button that says My\\nCompany', function() {
+  it('should have a button that says My\\nCompany', function() {
     var myCompanyBtn = ptor.findElement(protractor.By.className('db-btn'));
     expect(myCompanyBtn.getText()).toBe('My\nCompany');
   });
