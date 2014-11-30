@@ -9,7 +9,7 @@ app.controller('OfferAssistanceController', function($scope, DashboardUiState, B
   $scope.dashboardUiState = DashboardUiState;
 
   $scope.assistanceOffer = {
-    responderName: "Helper",
+    responderName: "Macho Diggers",
     numResponders: 2,
     arrivalDate: new Date()
   };

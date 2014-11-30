@@ -11,9 +11,9 @@ app.controller('CreateBeaconController', function($scope, DashboardUiState, Beac
 
   angular.extend($scope, {
     newBeaconData: {
-      title: 'Job Title',
-      description: 'Project Description',
-      organization: 'Organization',
+      title: 'My Project',
+      description: 'My Description',
+      organization: 'My Company',
       latitude: 38.914268,
       longitude: -77.021098
     },
