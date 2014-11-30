@@ -1,14 +1,16 @@
 "use strict";
 
-describe("the dashboard.map module", function() {
+describe("the modules.leaflet module", function() {
   var scope,
       controller;
 
-  beforeEach(module("dashboard.map"));
+  // TODO: I need this to load the BeaconService, but is there a better way?
+  beforeEach(module("modules.services"));
+  beforeEach(module("modules.leaflet"));
 
   beforeEach(inject(function($rootScope, $controller) {
     scope = $rootScope.$new();
-    controller = $controller('MapCtrl', {
+    controller = $controller('LeafletController', {
       '$scope': scope
     });
   }));

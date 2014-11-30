@@ -12,7 +12,8 @@ server.route([
   { method: 'GET', path: '/js/{path*}', handler: { directory: { path: './server/public/js' } } },
   { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './server/public/stylesheets' } } },
 
-  { method: 'GET', path: '/partials/{path*}', handler: { directory: { path: './client/views/partials' } } },
+  { method: 'GET', path: '/templates/{path*}', handler: { directory: { path: './client/views/templates' } } },
+  { method: 'GET', path: '/templates/directives/{path*}', handler: { directory: { path: './client/views/templates/directives' } } },
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './client/bower_components' } } },
 
   // Entry point to Angular application

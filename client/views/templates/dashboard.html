@@ -1,0 +1,38 @@
+<div class="full-height">
+  <div class="db-btn-col">
+    <button type="button" class="db-btn btn-primary center-block" ng-model="dashboardUiState.isMyCompanyButtonToggled" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+      My<br>
+      Company
+    </button>
+  </div>
+  <div class="top container-fluid" collapse="!dashboardUiState.isMyCompanyButtonToggled">
+    <div class="col-lg-2 panel panel-default">
+      <div ng-include src="'templates/beaconSummaryList.html'" ng-controller="BeaconSummaryListController"></div>
+      <!-- Prime use case for a directive. -->
+      <button type="button" class="trans-btn full-width panel-footer" ng-model="dashboardUiState.isCreatingBeacon" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        Create Beacon
+      </button>
+    </div>
+    <div class="col-lg-2 panel panel-default"
+         ng-show="dashboardUiState.isCreatingBeacon"
+         ng-include src="'templates/createBeacon.html'"
+         ng-controller="CreateBeaconController">
+    </div>
+    <div class="col-lg-2 panel panel-default"
+         ng-show="dashboardUiState.currentlySelectedBeacon"
+         ng-include src="'templates/beaconDetails.html'">
+    </div>
+    <div class="col-lg-2 panel panel-default"
+         ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isReviewingOfferOfAssistance"
+         ng-include src="'templates/reviewAssistance.html'"
+         ng-controller="ReviewAssistanceController">
+    </div>
+    <div class="col-lg-2 panel panel-default"
+         ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isOfferingAssistance"
+         ng-include src="'templates/offerAssistance.html'"
+         ng-controller="OfferAssistanceController">
+    </div>
+  </div>
+  <!-- TODO: Learn why these controllers must be placed here and not within the templates. -->
+  <div class="footer full-width" ng-include src="'templates/map.html'" ng-controller="LeafletController"></div>
+</div>

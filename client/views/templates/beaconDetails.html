@@ -1,0 +1,32 @@
+<h4>Beacon Details</h4>
+<div>
+    <div>
+        <label>id:</label>
+        {{dashboardUiState.currentlySelectedBeacon.id}}
+    </div>
+    <div>
+        <label>Job Title:</label>
+        {{dashboardUiState.currentlySelectedBeacon.title}}
+    </div>
+    <div class="form-group">
+        <label>Job Description:</label><br/>
+        {{dashboardUiState.currentlySelectedBeacon.description}}
+    </div>
+    <div ng-show="dashboardUiState.currentlySelectedBeacon.acceptedAssistance" class="panel panel-info">
+        {{dashboardUiState.currentlySelectedBeacon.acceptedAssistance.responderName}} is coming with
+        {{dashboardUiState.currentlySelectedBeacon.acceptedAssistance.numResponders}} people at
+        {{dashboardUiState.currentlySelectedBeacon.acceptedAssistance.arrivalDate}}.
+    </div>
+    <div class="form-group">
+        <label>Your Organization:</label><br/>
+        {{dashboardUiState.currentlySelectedBeacon.organization}}
+    </div>
+    <div class="form-group">
+        <label>Latitude:</label>{{dashboardUiState.currentlySelectedBeacon.lat}}
+        <label>Longitude:</label>{{dashboardUiState.currentlySelectedBeacon.lng}}
+    </div>
+    <!-- Prime use case for a directive. -->
+    <button type="button" class="trans-btn full-width panel-footer" ng-model="dashboardUiState.isSelectingUtilities" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        Select Services - {{dashboardUiState.isSelectingUtilities}}
+    </button>
+</div>

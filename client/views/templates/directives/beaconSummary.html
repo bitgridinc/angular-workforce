@@ -1,0 +1,16 @@
+<!-- This directive defines a summary for a beacon that will display the location
+and description (e.g., Amsterdam, NY, Dig two hols, see pdf for more...).
+
+It is visible in two places:
+    1. In the list of beacons under My Company
+    2. At the top of the detailed view
+
+Ignore the potential problem from long descriptions for now.
+-->
+<div>
+    {{beacon.organization}}: {{beacon.title}}<br>
+    {{beacon.description}}<br>
+    <button class="btn btn-sm btn-info" type="button" ng-click="onSelectBeacon()">
+        Select Beacon
+    </button>
+</div>

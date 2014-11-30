@@ -1,6 +1,7 @@
+<h4>Create Beacon</h4>
 <div>
   <form method="post">
-    <div class="ngdialog-message">
+    <div>
       <div class="form-group">
         <label>Job Title:</label>
         <input class="form-control" type="text" name="title" autofocus="autofocus" id="title" required ng-model="newBeaconData.title" />
@@ -15,16 +16,16 @@
       </div>
       <div class="form-group">
         <label>Latitude:</label>
-        <input class="form-control" type="text" name="lat" id="lat" required ng-model="lastlatlng.lat" readonly />
+        <input class="form-control" type="text" name="lat" id="lat" required ng-model="newBeaconData.latitude" readonly />
       </div>
       <div class="form-group">
         <label>Longitude:</label>
-        <input class="form-control" type="text" name="lon" id="lon" required ng-model="lastlatlng.lng" readonly />
+        <input class="form-control" type="text" name="lon" id="lon" required ng-model="newBeaconData.longitude" readonly />
       </div>
     </div>
-    <div class="ngdialog-buttons">
-      <button class="btn" type="button" ng-click="submitNewBeacon()">Submit Beacon</button>
-      <button class="btn" type="button" ng-click="deleteNewBeacon()">Cancel</button>
+    <div>
+      <button class="btn btn-sm btn-success" type="button" ng-click="submitNewBeacon()">Submit Beacon</button>
+      <button class="btn btn-sm btn-default" type="button" ng-click="deleteNewBeacon()">Cancel</button>
     </div>
   </form>
 </div>

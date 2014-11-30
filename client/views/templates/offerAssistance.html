@@ -1,0 +1,30 @@
+<h4>Respond To Beacon #{{dashboardUiState.currentlySelectedBeacon.id}}</h4>
+<div>
+  <form method="post">
+    <div>
+      <label>
+        {{dashboardUiState.currentlySelectedBeacon.organization}} has requested your assistance.
+      </label>
+      <div class="form-group">
+        <label>Who do you represent?</label>
+        <input class="form-control" type="text" name="responderName" id="responderName" required ng-model="assistanceOffer.responderName" />
+      </div>
+      <div class="form-group">
+        <label>How many people can you send?</label>
+        <input class="form-control" type="number" name="numResponders" id="numResponders" required ng-model="assistanceOffer.numResponders" />
+      </div>
+      <div class="form-group">
+        <p class="input-group">
+          <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="assistanceOffer.arrivalDate" date-disabled="disabled(date, mode)" is-open="opened" ng-required="true" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-sm btn-success" type="button" ng-click="offerAssistance()">Assist</button>
+      <button class="btn btn-sm btn-danger" type="button" ng-click="declineAssistance()">Stuff 'Em</button>
+    </div>
+  </form>
+</div>
