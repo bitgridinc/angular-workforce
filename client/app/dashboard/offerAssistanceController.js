@@ -10,10 +10,10 @@ app.controller('OfferAssistanceController', function($scope, DashboardUiState, B
 
   $scope.assistanceOffer = {
     responderName: "Helper",
-    numResponders: 2
+    numResponders: 2,
+    arrivalDate: new Date()
   };
 
-  $scope.dt = new Date();
   $scope.open = function($event) {
     console.log("open called.", $event);
     $event.preventDefault();
