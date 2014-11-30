@@ -2,11 +2,11 @@
 <div ng-repeat="beacon in beacons" class="list-group">
     <div class="list-group-item">
         <beacon-summary beacon="beacon"></beacon-summary>
-        <button type="button" ng-model="dashboardUiState.isOfferingAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        <button class="btn" type="button" ng-model="dashboardUiState.isOfferingAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
             Offer Assistance
         </button>
-        <button type="button" ng-show="dashboardUiState.currentlySelectedBeacon.responses.length > 0" ng-model="dashboardUiState.isReviewingOfferOfAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
-            Review Offer of Assistance
+        <button class="btn" type="button" ng-show="dashboardUiState.currentlySelectedBeacon.responses.length > 0" ng-model="dashboardUiState.isReviewingOfferOfAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+            Review Offers
         </button>
     </div>
 </div>
