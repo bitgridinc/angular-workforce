@@ -22,9 +22,6 @@ describe('the module managing the dashboard', function() {
     it('should include our Leaflet module', function() {
       expect(hasModule('modules.leaflet')).toEqual(true);
     });
-    it('should include our cascading collapse module', function() {
-      expect(hasModule('modules.cascadingCollapse')).toEqual(true);
-    });
     it('should include the Angular routing service', function() {
       expect(hasModule('ngRoute')).toEqual(true);
     });
