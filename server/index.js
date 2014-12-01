@@ -12,9 +12,10 @@ server.route([
   { method: 'GET', path: '/js/{path*}', handler: { directory: { path: './server/public/js' } } },
   { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './server/public/stylesheets' } } },
 
+  { method: 'GET', path: '/templates/dashboard/{path*}', handler: { directory: { path: './client/app/dashboard' } } },
   { method: 'GET', path: '/templates/leaflet/{path*}', handler: { directory: { path: './client/app/leaflet' } } },
 
-  { method: 'GET', path: '/templates/{path*}', handler: { directory: { path: './client/views/templates' } } },
+  //{ method: 'GET', path: '/templates/{path*}', handler: { directory: { path: './client/views/templates' } } },
   { method: 'GET', path: '/templates/directives/{path*}', handler: { directory: { path: './client/views/templates/directives' } } },
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './client/bower_components' } } },
 

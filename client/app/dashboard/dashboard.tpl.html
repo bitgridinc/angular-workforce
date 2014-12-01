@@ -7,7 +7,7 @@
   </div>
   <div class="top container-fluid" collapse="!dashboardUiState.isMyCompanyButtonToggled">
     <div class="col-lg-2 panel panel-default">
-      <div ng-include src="'templates/beaconSummaryList.html'" ng-controller="BeaconSummaryListController"></div>
+      <div ng-include src="'templates/dashboard/beaconSummaryList.tpl.html'" ng-controller="BeaconSummaryListController"></div>
       <!-- Prime use case for a directive. -->
       <button type="button" class="trans-btn full-width panel-footer" ng-model="dashboardUiState.isCreatingBeacon" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Create Beacon
@@ -15,21 +15,21 @@
     </div>
     <div class="col-lg-2 panel panel-default"
          ng-show="dashboardUiState.isCreatingBeacon"
-         ng-include src="'templates/createBeacon.html'"
+         ng-include src="'templates/dashboard/createBeacon.tpl.html'"
          ng-controller="CreateBeaconController">
     </div>
     <div class="col-lg-2 panel panel-default"
          ng-show="dashboardUiState.currentlySelectedBeacon"
-         ng-include src="'templates/beaconDetails.html'">
+         ng-include src="'templates/dashboard/beaconDetails.tpl.html'">
     </div>
     <div class="col-lg-2 panel panel-default"
          ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isReviewingOfferOfAssistance"
-         ng-include src="'templates/reviewAssistance.html'"
+         ng-include src="'templates/dashboard/reviewAssistance.tpl.html'"
          ng-controller="ReviewAssistanceController">
     </div>
     <div class="col-lg-2 panel panel-default"
          ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isOfferingAssistance"
-         ng-include src="'templates/offerAssistance.html'"
+         ng-include src="'templates/dashboard/offerAssistance.tpl.html'"
          ng-controller="OfferAssistanceController">
     </div>
   </div>
