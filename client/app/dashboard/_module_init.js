@@ -17,4 +17,5 @@ require('./createBeaconController.js');
 require('./routeConfiguration.js');
 require('./offerAssistanceController.js');
 require('./reviewAssistanceController.js');
+require('./selectServicesController.js');
 require('./dashboardController.js');
