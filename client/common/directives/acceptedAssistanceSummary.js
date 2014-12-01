@@ -5,12 +5,13 @@ var app = require('./_module_init.js');
 app.directive('acceptedAssistanceSummary', [function() {
   return {
     restrict: 'E',
-    templateUrl: '/templates/directives/acceptedAssistanceSummary.tpl.html',
     scope: {
       acceptedAssistance: '='
     },
-    controller: ['$scope', function($scope) {
-      console.log('acceptedAssistance controller called.', $scope);
-    }]
+    template: '<div class="panel panel-info">' +
+                '{{acceptedAssistance.responderName}} is coming with ' +
+                '{{acceptedAssistance.numResponders}} people at ' +
+                '{{acceptedAssistance.arrivalDate}}.' +
+              '</div>'
   }
 }]);
