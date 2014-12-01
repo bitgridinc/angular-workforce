@@ -21,6 +21,9 @@ describe("the modules.leaflet module", function() {
   it('should define a center object', function() {
     expect(scope.center).toBeDefined();
   });
+  it('should define a markers array', function() {
+    expect(scope.markers).toBeDefined();
+  });
 
   describe('the defaults object', function() {
     it('should define the tileLayer property', function() {
