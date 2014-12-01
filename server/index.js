@@ -13,7 +13,7 @@ server.route([
   { method: 'GET', path: '/js/bundle.js', handler: { file: './server/public/js/bundle.js' } },
   { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './server/public/stylesheets' } } },
 
-  // Expose our templates
+  // Expose our feature templates
   { method: 'GET', path: '/templates/dashboard/{file}',
     handler: { directory: { path: './client/app/dashboard' } },
     config: { validate: { params: { file: templateValidator } } }
@@ -23,8 +23,13 @@ server.route([
     config: { validate: { params: { file: templateValidator } } }
   },
 
-  //{ method: 'GET', path: '/templates/{path*}', handler: { directory: { path: './client/views/templates' } } },
-  { method: 'GET', path: '/templates/directives/{path*}', handler: { directory: { path: './client/views/templates/directives' } } },
+  // Expose our directive templates
+  { method: 'GET', path: '/templates/directives/{file}',
+    handler: { directory: { path: './client/common/directives' } },
+    config: { validate: { params: { file: templateValidator } } }
+  },
+
+  // Expose our bower components so we can get at the css files within
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './client/bower_components' } } },
 
   // Entry point to Angular application
