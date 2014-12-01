@@ -11,20 +11,24 @@ describe('the module that displays the Leaflet map', function() {
   });
 
   describe('and its dependencies', function() {
-    var deps;
-    var hasModule = function(m) {
-      return deps.indexOf(m) >= 0;
+    var moduleDependencies;
+    var dependencyListHasModule = function(moduleName) {
+      return moduleDependencies.indexOf(moduleName) >= 0;
     };
 
     beforeEach(function() {
-      deps = module.value('modules.leaflet').requires;
+      moduleDependencies = module.value('app').requires;
+    });
+
+    beforeEach(function() {
+      moduleDependencies = module.value('modules.leaflet').requires;
     });
 
     it ('should only depend on a single module - haha, gotta TDD!', function() {
-      expect(deps.length).toEqual(1);
+      expect(moduleDependencies.length).toEqual(1);
     });
     it ('should include Angular directives for Leaflet', function() {
-      expect(hasModule('leaflet-directive')).toEqual(true);
+      expect(dependencyListHasModule('leaflet-directive')).toEqual(true);
     });
   })
 });
