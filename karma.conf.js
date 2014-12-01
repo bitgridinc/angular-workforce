@@ -22,7 +22,9 @@ module.exports = function (config) {
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-    
+
+    // If you are having trouble finding PhantomJS (i.e., it's asking you to set the PHANTOMJS_BIN env var), note that
+    // the right place is in the Environment Variables control in the Webstorm Edit Configuration view.
     browsers: ['PhantomJS'] 
   });
 };
