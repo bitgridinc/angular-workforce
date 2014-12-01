@@ -33,12 +33,12 @@ describe('the service that shares UI state of the dashboard between controllers'
     });
   });
 
-  describe('the flag for whether the user is selecting utilities', function() {
+  describe('the flag for whether the user is selecting services', function() {
     it('should be defined', function() {
-      expect(dashboardUiState.isSelectingUtilities).toBeDefined();
+      expect(dashboardUiState.isSelectingServices).toBeDefined();
     });
     it('should default to false so that the beacon creation view is closed', function() {
-      expect(dashboardUiState.isSelectingUtilities).toBeFalsy();
+      expect(dashboardUiState.isSelectingServices).toBeFalsy();
     });
   });
 

@@ -7,7 +7,7 @@ app.service('DashboardUiState', ['$rootScope', function($rootScope) {
   return {
     isMyCompanyButtonToggled: true,
     isCreatingBeacon: true,
-    isSelectingUtilities: false,
+    isSelectingServices: false,
     isOfferingAssistance: false,
     isReviewingOfferOfAssistance: false,
     get currentlySelectedBeacon() {
