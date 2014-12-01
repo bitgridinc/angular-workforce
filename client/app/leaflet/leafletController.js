@@ -2,7 +2,7 @@
 
 var app = require('./_module_init.js');
 
-app.controller('LeafletController', function($scope, $rootScope, BeaconService) {
+app.controller('LeafletController', function($scope, BeaconService) {
   angular.extend($scope, {
     defaults: {
       tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
