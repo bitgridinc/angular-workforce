@@ -8,8 +8,11 @@ It is visible in two places:
 Ignore the potential problem from long descriptions for now.
 -->
 <div>
-    {{beacon.organization}}: {{beacon.title}}<br>
-    {{beacon.description}}<br>
+    <div class="small">
+        {{beacon.organization}}<br>
+        {{beacon.title}}<br>
+        {{beacon.description}}
+    </div>
     <button class="btn btn-sm btn-info" type="button" ng-click="onSelectBeacon()">
         Select Beacon
     </button>
