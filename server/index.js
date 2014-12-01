@@ -32,8 +32,8 @@ server.route([
   // Expose our bower components so we can get at the css files within
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './client/bower_components' } } },
 
-  // Entry point to Angular application
-  { method: 'GET', path: '/{path*}', handler: {file: './client/views/index.html'} }
+  // Expose the entry point to the Angular application
+  { method: 'GET', path: '/', handler: {file: './client/app/app.html'} }
 ]);
 
 server.start();
