@@ -20,6 +20,9 @@ describe('the root module', function() {
       moduleDependencies = module.value('app').requires;
     });
 
+    it ('should only depend on the following four modules - haha, gotta TDD!', function() {
+      expect(moduleDependencies.length).toEqual(4);
+    });
     it ('should include our directives module so that all our modules can access them', function() {
       expect(dependencyListHasModule('modules.directives')).toEqual(true);
     });

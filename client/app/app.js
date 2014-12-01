@@ -14,6 +14,7 @@ var app = angular.module('app', [
   'modules.services',
   'modules.dashboard']);
 
+// TODO: Test this
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.otherwise({ redirectTo: '/dashboard' });
   $locationProvider.html5Mode(true);
