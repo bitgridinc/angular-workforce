@@ -24,14 +24,11 @@ describe('the module managing the dashboard', function() {
       moduleDependencies = module.value('modules.dashboard').requires;
     });
 
-    it ('should only depend on the following three modules - haha, gotta TDD!', function() {
-      expect(moduleDependencies.length).toEqual(3);
+    it ('should only depend on the following two modules - haha, gotta TDD!', function() {
+      expect(moduleDependencies.length).toEqual(2);
     });
     it('should include our Leaflet module', function() {
       expect(dependencyListHasModule('modules.leaflet')).toEqual(true);
-    });
-    it('should include the Angular routing service', function() {
-      expect(dependencyListHasModule('ngRoute')).toEqual(true);
     });
     it('should include the Angular bootstrap module', function() {
       expect(dependencyListHasModule('ui.bootstrap')).toEqual(true);

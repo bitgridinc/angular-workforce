@@ -32,8 +32,8 @@ describe('the root module', function() {
     it ('should include our dashboard module', function() {
       expect(dependencyListHasModule('modules.dashboard')).toEqual(true);
     });
-    it ('should include Angular\'s routing module', function() {
-      expect(dependencyListHasModule('ngRoute')).toEqual(true);
+    it ('should include the UI router module', function() {
+      expect(dependencyListHasModule('ui.router')).toEqual(true);
     });
   })
 });
