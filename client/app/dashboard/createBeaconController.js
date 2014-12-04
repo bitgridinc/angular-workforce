@@ -6,9 +6,6 @@ app.controller('CreateBeaconController', function($scope, DashboardUiState, Beac
   // For debugging purposes
   $scope.name = 'CreateBeaconController';
 
-  $scope.dashboardUiState = DashboardUiState;
-  $scope.beacons = BeaconService.beacons;
-
   angular.extend($scope, {
     newBeaconData: {
       title: 'My Project',
