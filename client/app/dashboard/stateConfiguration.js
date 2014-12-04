@@ -8,5 +8,8 @@ app.config(['$stateProvider', function($stateProvider) {
       url: '/dashboard',
       templateUrl: 'templates/dashboard/dashboard.tpl.html',
       controller: 'DashboardController'
+    })
+    .state('dashboard.mycompany', {
+      url: '/mycompany'
     });
 }]);

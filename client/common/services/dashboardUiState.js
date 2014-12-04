@@ -5,8 +5,8 @@ var app = require('./_module_init.js');
 app.service('DashboardUiState', ['$rootScope', function($rootScope) {
   var currentlySelectedBeacon;
   return {
-    isMyCompanyButtonToggled: true,
-    isCreatingBeacon: true,
+    isMyCompanyButtonToggled: false,
+    isCreatingBeacon: false,
     isSelectingServices: false,
     isOfferingAssistance: false,
     isReviewingOfferOfAssistance: false,

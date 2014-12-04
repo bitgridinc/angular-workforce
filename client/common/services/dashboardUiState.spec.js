@@ -16,14 +16,14 @@ describe('the service that shares UI state of the dashboard between controllers'
   });
 
   describe('the flag for whether the My Company button has been toggled', function() {
-    it('should default so that the My Company view is open for faster testing', function() {
-      expect(dashboardUiState.isMyCompanyButtonToggled).toBeTruthy();
+    it('should default so that the My Company view is closed', function() {
+      expect(dashboardUiState.isMyCompanyButtonToggled).toBeFalsy();
     });
   });
 
   describe('the flag for whether the user is creating a new beacon', function() {
-    it('should default so that the beacon creation view is open for faster testing', function() {
-      expect(dashboardUiState.isCreatingBeacon).toBeTruthy();
+    it('should default so that the beacon creation view is closed', function() {
+      expect(dashboardUiState.isCreatingBeacon).toBeFalsy();
     });
   });
 
