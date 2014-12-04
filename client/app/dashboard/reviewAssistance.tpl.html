@@ -1,4 +1,4 @@
-<h4>
+<h4 ng-controller="ReviewAssistanceController">
     <pagination total-items="totalItems" items-per-page="1" ng-model="currentPage" ng-change="pageChanged(currentPage)" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;"></pagination>
     <div>
         <p class="small">{{currentItem.responderName}} offered to assist with {{currentItem.numResponders}} people at {{currentItem.arrivalDate}}.</p>
