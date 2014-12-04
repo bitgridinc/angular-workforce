@@ -17,18 +17,12 @@ describe('beaconService', function() {
   });
 
   describe('the method to get a beacon by id', function() {
-    it('should be defined', function() {
-      expect(beaconService.getBeacon).toBeDefined();
-    });
     it('should return undefined when this service is instantiated', function() {
       expect(beaconService.getBeacon(0)).toBeUndefined();
     });
   });
 
   describe('the method used to create a beacon', function() {
-    it('should be defined', function() {
-      expect(beaconService.createBeacon).toBeDefined();
-    });
     it('should add created beacons to the array of beacons', function() {
       expect(beaconService.beacons.length).toBe(0);
       beaconService.createBeacon({});
@@ -47,10 +41,6 @@ describe('beaconService', function() {
       beaconService.createBeacon({});
       expect(beaconService.beacons[0].responses).toEqual([]);
     });
-    it('should allow for associating a single accepted response to the beacon', function() {
-      beaconService.createBeacon({});
-      expect(beaconService.beacons[0].acceptedAssistance).toBe(undefined);
-    });
     it('should not reuse the same object (i.e., it should make a copy)', function() {
       var beacon = {};
       beaconService.createBeacon(beacon);
@@ -59,9 +49,6 @@ describe('beaconService', function() {
   });
 
   describe('the method used to offer assistance to a beacon', function() {
-    it('should be defined', function() {
-      expect(beaconService.offerAssistance).toBeDefined();
-    });
     it('should add assistance offer to beacons', function() {
       beaconService.createBeacon({});
       expect(beaconService.beacons[0].responses.length).toBe(0);
@@ -78,9 +65,6 @@ describe('beaconService', function() {
   });
 
   describe('the method used to accept assistance to a beacon', function() {
-    it('should be defined', function() {
-      expect(beaconService.acceptAssistance).toBeDefined();
-    });
     it('should add accepted offer of assistance to beacon', function() {
       var offerToAccept = {};
       beaconService.createBeacon({});
