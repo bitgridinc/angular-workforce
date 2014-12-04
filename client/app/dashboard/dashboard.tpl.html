@@ -27,14 +27,12 @@
     </div>
     <div class="col-lg-2 panel panel-default"
          ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isOfferingAssistance"
-         ng-include src="'templates/dashboard/offerAssistance.tpl.html'"
-         ng-controller="OfferAssistanceController">
+         ng-include src="'templates/dashboard/offerAssistance.tpl.html'">
     </div>
-      <div class="col-lg-2 panel panel-default"
-           ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isSelectingServices"
-           ng-include src="'templates/dashboard/selectServices.tpl.html'"
-           ng-controller="SelectServicesController">
-      </div>
+    <div class="col-lg-2 panel panel-default"
+         ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isSelectingServices"
+         ng-include src="'templates/dashboard/selectServices.tpl.html'">
+    </div>
   </div>
   <!-- TODO: Learn why these controllers must be placed here and not within the templates. -->
   <div class="footer full-width" ng-include src="'templates/leaflet/leaflet.tpl.html'"></div>
