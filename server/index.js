@@ -33,7 +33,7 @@ server.route([
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './client/bower_components' } } },
 
   // Expose the entry point to the Angular application
-  { method: 'GET', path: '/{path}', handler: {file: './client/app/app.html'} }
+  { method: 'GET', path: '/{path?}', handler: {file: './client/app/app.html'} }
 ]);
 
 server.start();
