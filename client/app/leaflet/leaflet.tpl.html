@@ -1,2 +1,4 @@
-<!-- Setting height and width to 100% break the tiles (results in an empty homePage) -->
-<leaflet id="leaflet" defaults="defaults" center="center" markers="markers" class="full-width full-height"></leaflet>
+<!-- LeafletController adds variables related to our specific usage around the leaflet tag, such as where the map centers. -->
+<div ng-controller="LeafletController" class="full-width full-height">
+    <leaflet id="leaflet" defaults="defaults" center="center" markers="markers" class="full-width full-height"></leaflet>
+</div>
