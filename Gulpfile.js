@@ -21,7 +21,8 @@ gulp.task('browserify', function() {
   // Single entry point to browserify
   gulp.src('client/app/app.js')
     .pipe(browserify({
-      insertGlobals : true
+      insertGlobals : true,
+      debug: true
     }))
     .pipe(rename(BUNDLE))
     .pipe(gulp.dest('./server/public/js'))
