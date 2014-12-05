@@ -34,7 +34,8 @@
         "browser",
         "element",
         "by",
-        "protractor"
+        "protractor",
+        "element"
     ],
  
     // Development.
