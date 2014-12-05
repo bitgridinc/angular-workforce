@@ -14,9 +14,28 @@ var app = angular.module('app', [
   'modules.services',
   'modules.dashboard']);
 
-// TODO: Test this
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
-  $urlRouterProvider.otherwise('/dashboard');
+app.run(
+  [          '$rootScope', '$state', '$stateParams',
+    function ($rootScope,   $state,   $stateParams) {
 
-  $locationProvider.html5Mode(true);
-}]);
+      // It's very handy to add references to $state and $stateParams to the $rootScope
+      // so that you can access them from any scope within your applications.For example,
+      // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
+      // to active whenever 'contacts.list' or one of its descendants is active.
+      $rootScope.$state = $state;
+      $rootScope.$stateParams = $stateParams;
+    }
+  ]
+);
+
+// TODO: Test this
+app.config(
+  [          '$stateProvider', '$urlRouterProvider', '$locationProvider',
+    function($stateProvider, $urlRouterProvider, $locationProvider) {
+      $urlRouterProvider.otherwise('/dashboard');
+
+      // TODO: This prevents my from directly accessing child pages (e.g., /dashboard/mycompany) and I don't know why
+      //$locationProvider.html5Mode(true);
+    }
+  ]
+);

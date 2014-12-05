@@ -2,7 +2,7 @@
 
 describe('the app module', function() {
   it('should redirect to homepage when / is accessed', function() {
-    browser.get('/dashboard');
+    browser.get('/#/dashboard');
     var dashboardUrl = browser.getCurrentUrl();
 
     browser.get('/');

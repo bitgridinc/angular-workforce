@@ -5,11 +5,11 @@ describe('the My Company button', function() {
 
   beforeEach(function() {
     ptor = protractor.getInstance();
-    ptor.get('/dashboard');
+    ptor.get('/#/dashboard');
   });
 
   it('should change the url when clicked', function() {
     ptor.findElement(protractor.By.className('db-btn')).click();
-    expect(browser.getCurrentUrl()).toContain('/dashboard/mycompany');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
   });
 });

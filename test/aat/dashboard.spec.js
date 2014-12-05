@@ -5,7 +5,7 @@ describe('the dashboard page', function() {
 
   beforeEach(function() {
     ptor = protractor.getInstance();
-    ptor.get('/dashboard');
+    ptor.get('/#/dashboard');
   });
 
   /*it('should have a button that says My\\nCompany', function() {
