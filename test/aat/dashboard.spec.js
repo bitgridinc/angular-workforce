@@ -24,7 +24,7 @@ describe('the dashboard page', function() {
     ptor.findElement(protractor.By.id('leaflet'));
   });
   it('should not be displaying the user\'s beacon summary list', function() {
-    expect(element(by.buttonText('Create Beacon')).isDisplayed()).toBeFalsy();
+    expect(ptor.isElementPresent(by.buttonText('Create Beacon'))).toBeFalsy();
   });
 
   describe('the My Company button', function() {
