@@ -8,12 +8,21 @@ describe('the dashboard page', function() {
     ptor.get('/dashboard');
   });
 
-  it('should have a button that says My\\nCompany', function() {
+  /*it('should have a button that says My\\nCompany', function() {
     var myCompanyBtn = ptor.findElement(protractor.By.className('db-btn'));
     expect(myCompanyBtn.getText()).toBe('My\nCompany');
+  });
+  it('should have a button that says My\\nCompany', function() {
+    expect(ptor.isElementPresent(by.buttonText('My\nCompany'))).toBeTruthy();
+  });*/
+  it('should have a button that says My\\nCompany', function() {
+    expect(element(by.buttonText('My\nCompany')).isDisplayed()).toBeTruthy();
   });
   // This is hackish since I couldn't get the line By.tagName('leaflet') to work...
   it('should have a leaflet element', function() {
     ptor.findElement(protractor.By.id('leaflet'));
+  });
+  it('should not be displaying the user\'s beacon summary list', function() {
+    expect(element(by.buttonText('Create Beacon')).isDisplayed()).toBeFalsy();
   });
 });
