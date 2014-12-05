@@ -21,7 +21,7 @@ describe('the root module', function() {
     });
 
     it ('should only depend on the following four modules - haha, gotta TDD!', function() {
-      expect(moduleDependencies.length).toEqual(4);
+      expect(moduleDependencies.length).toEqual(5);
     });
     it ('should include our directives module so that all our modules can access them', function() {
       expect(dependencyListHasModule('modules.directives')).toEqual(true);
@@ -31,6 +31,9 @@ describe('the root module', function() {
     });
     it ('should include our dashboard module', function() {
       expect(dependencyListHasModule('modules.dashboard')).toEqual(true);
+    });
+    it('should include the Angular bootstrap module', function() {
+      expect(dependencyListHasModule('ui.bootstrap')).toEqual(true);
     });
     it ('should include the UI router module', function() {
       expect(dependencyListHasModule('ui.router')).toEqual(true);

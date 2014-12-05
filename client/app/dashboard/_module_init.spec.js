@@ -28,10 +28,10 @@ describe('the module managing the dashboard', function() {
       expect(moduleDependencies.length).toEqual(2);
     });
     it('should include our Leaflet module', function() {
-      expect(dependencyListHasModule('modules.leaflet')).toEqual(true);
+      expect(dependencyListHasModule('modules.control')).toEqual(true);
     });
-    it('should include the Angular bootstrap module', function() {
-      expect(dependencyListHasModule('ui.bootstrap')).toEqual(true);
+    it('should include our Leaflet module', function() {
+      expect(dependencyListHasModule('modules.leaflet')).toEqual(true);
     });
 
     it('should not include our directives module because the app module does', function() {

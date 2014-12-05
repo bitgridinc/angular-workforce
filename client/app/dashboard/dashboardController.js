@@ -9,7 +9,7 @@ app.controller('DashboardController', function($scope, $state, DashboardUiState)
   $scope.onMyCompanyClicked = function () {
     DashboardUiState.isMyCompanyButtonToggled = !DashboardUiState.isMyCompanyButtonToggled;
     if (DashboardUiState.isMyCompanyButtonToggled) {
-      $state.go('.mycompany');
+      $state.go('dashboard.mycompany');
     } else {
       $state.go('^');
     }

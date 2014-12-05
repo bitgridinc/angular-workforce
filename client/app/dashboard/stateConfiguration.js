@@ -14,6 +14,6 @@ app.config(['$stateProvider', function($stateProvider) {
       name: 'dashboard.mycompany',
       parent: 'dashboard',
       url: '/mycompany',
-      templateUrl: 'templates/dashboard/createBeacon.tpl.html'
+      templateUrl: 'templates/control/control.tpl.html'
     });
 }]);

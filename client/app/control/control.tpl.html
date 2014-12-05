@@ -1,0 +1,25 @@
+<div>
+  <div class="col-lg-2 panel panel-default"
+       ng-include src="'templates/control/beaconSummaryList.tpl.html'">
+  </div>
+  <div class="col-lg-2 panel panel-default"
+       ng-show="dashboardUiState.isCreatingBeacon"
+       ng-include src="'templates/control/createBeacon.tpl.html'">
+  </div>
+  <div class="col-lg-2 panel panel-default"
+       ng-show="dashboardUiState.currentlySelectedBeacon"
+       ng-include src="'templates/control/beaconDetails.tpl.html'">
+  </div>
+  <div class="col-lg-2 panel panel-default"
+       ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isReviewingOfferOfAssistance"
+       ng-include src="'templates/control/reviewAssistance.tpl.html'">
+  </div>
+  <div class="col-lg-2 panel panel-default"
+       ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isOfferingAssistance"
+       ng-include src="'templates/control/offerAssistance.tpl.html'">
+  </div>
+  <div class="col-lg-2 panel panel-default"
+       ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isSelectingServices"
+       ng-include src="'templates/control/selectServices.tpl.html'">
+  </div>
+</div>
