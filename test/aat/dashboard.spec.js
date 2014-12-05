@@ -29,8 +29,11 @@ describe('the dashboard page', function() {
 
   describe('the My Company button', function() {
     it('should change the url when clicked', function() {
-      ptor.findElement(protractor.By.buttonText('My\nCompany')).click();
+      var button = ptor.findElement(protractor.By.buttonText('My\nCompany'));
+      button.click();
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
+      button.click();
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard');
     });
   })
 });

@@ -2,16 +2,10 @@
 
 var app = require('./_module_init.js');
 
-app.controller('DashboardController', function($scope, $state, DashboardUiState) {
-
-  $scope.dashboardUiState = DashboardUiState;
-
-  $scope.onMyCompanyClicked = function () {
-    DashboardUiState.isMyCompanyButtonToggled = !DashboardUiState.isMyCompanyButtonToggled;
-    if (DashboardUiState.isMyCompanyButtonToggled) {
-      $state.go('dashboard.mycompany');
-    } else {
-      $state.go('^');
-    }
+app.controller('DashboardController', function($scope, $state) {
+  var isMyCompanyButtonToggled = false;
+  $scope.toggleMyCompanyButton = function () {
+    isMyCompanyButtonToggled = !isMyCompanyButtonToggled;
+    $state.go(isMyCompanyButtonToggled ? 'dashboard.mycompany' : '^');
   };
 });
