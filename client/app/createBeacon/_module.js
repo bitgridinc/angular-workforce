@@ -12,14 +12,6 @@ app.config(['$stateProvider', function($stateProvider) {
     })
 }]);
 
-app.controller('DashboardController', function($scope, $state) {
-  var isMyCompanyButtonToggled = false;
-  $scope.toggleMyCompanyButton = function () {
-    isMyCompanyButtonToggled = !isMyCompanyButtonToggled;
-    $state.go(isMyCompanyButtonToggled ? '.mycompany' : '^');
-  };
-});
-
 app.controller('CreateBeaconController', function($scope, $state, BeaconService) {
   // For debugging purposes
   $scope.name = 'CreateBeaconController';
