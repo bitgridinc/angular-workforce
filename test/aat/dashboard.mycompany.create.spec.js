@@ -19,5 +19,5 @@ describe('the /#/dashboard/mycompany/create route', function() {
       expect(browser.getCurrentUrl()).not.toContain('/create');
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
     });
-  })
+  });
 });
