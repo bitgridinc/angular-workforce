@@ -1,7 +1,5 @@
 "use strict";
 
-require('../../bower_components/angular/angular.js');
-
 require('../control/_module_init.js');
 require('../map/module.js');
 
