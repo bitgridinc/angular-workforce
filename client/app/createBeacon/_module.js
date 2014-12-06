@@ -17,7 +17,7 @@ app.controller('CreateBeaconController', function($scope, $state, BeaconService)
   $scope.name = 'CreateBeaconController';
 
   function closeCreateBeaconView() {
-    $state.go('^');
+    $state.go('^.list');
   }
 
   angular.extend($scope, {

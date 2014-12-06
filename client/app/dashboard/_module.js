@@ -22,6 +22,6 @@ app.controller('DashboardController', function($scope, $state) {
   var isMyCompanyButtonToggled = false;
   $scope.toggleMyCompanyButton = function () {
     isMyCompanyButtonToggled = !isMyCompanyButtonToggled;
-    $state.go(isMyCompanyButtonToggled ? '.mycompany' : '^');
+    $state.go(isMyCompanyButtonToggled ? 'dashboard.mycompany.list' : 'dashboard');
   };
 });
