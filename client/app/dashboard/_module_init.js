@@ -3,11 +3,11 @@
 require('../../bower_components/angular/angular.js');
 
 require('../control/_module_init.js');
-require('../leaflet/_module_init.js');
+require('../map/module.js');
 
 module.exports = angular.module('modules.dashboard', [
   'modules.control',
-  'modules.leaflet'
+  'modules.map'
 ]);
 
 require('./stateConfiguration.js');

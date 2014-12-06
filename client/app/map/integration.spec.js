@@ -3,7 +3,7 @@
 describe('the module that displays the Leaflet map', function() {
   var module;
   beforeEach(function() {
-    module = angular.module('modules.leaflet');
+    module = angular.module('modules.map');
   });
 
   it('should be registered with Angular', function() {
@@ -21,7 +21,7 @@ describe('the module that displays the Leaflet map', function() {
     });
 
     beforeEach(function() {
-      moduleDependencies = module.value('modules.leaflet').requires;
+      moduleDependencies = module.value('modules.map').requires;
     });
 
     it ('should only depend on a single module - haha, gotta TDD!', function() {

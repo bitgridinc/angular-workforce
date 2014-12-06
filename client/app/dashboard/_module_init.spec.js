@@ -31,7 +31,7 @@ describe('the module managing the dashboard', function() {
       expect(dependencyListHasModule('modules.control')).toEqual(true);
     });
     it('should include our Leaflet module', function() {
-      expect(dependencyListHasModule('modules.leaflet')).toEqual(true);
+      expect(dependencyListHasModule('modules.map')).toEqual(true);
     });
 
     it('should not include our directives module because the app module does', function() {

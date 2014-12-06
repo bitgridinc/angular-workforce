@@ -22,8 +22,8 @@ server.route([
     handler: { directory: { path: './client/app/dashboard' } },
     config: { validate: { params: { file: templateValidator } } }
   },
-  { method: 'GET', path: '/templates/leaflet/{file}',
-    handler: { directory: { path: './client/app/leaflet' } },
+  { method: 'GET', path: '/templates/map/{file}',
+    handler: { directory: { path: './client/app/map' } },
     config: { validate: { params: { file: templateValidator } } }
   },
 
