@@ -7,7 +7,7 @@ require('../bower_components/angular-ui-router/release/angular-ui-router.js');
 require('../common/directives/_module_init.js');
 require('../common/services/_module_init.js');
 
-require('./dashboard/_module_init.js');
+require('./dashboard/_module.js');
 
 var app = angular.module('app', [
   'ui.bootstrap',

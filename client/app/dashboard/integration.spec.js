@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the module managing the dashboard', function() {
+describe('the module managing the dashboard (integration)', function() {
   var module;
   beforeEach(function() {
     module = angular.module('modules.dashboard');

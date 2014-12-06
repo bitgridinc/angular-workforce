@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the module that displays the Leaflet map', function() {
+describe('the map module (integration)', function() {
   var module;
   beforeEach(function() {
     module = angular.module('modules.map');

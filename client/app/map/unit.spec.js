@@ -1,6 +1,6 @@
 "use strict";
 
-describe("the map module", function() {
+describe("the map module (unit)", function() {
   var scope,
       controller;
 
