@@ -18,6 +18,10 @@ server.route([
     handler: { directory: { path: './client/app/control' } },
     config: { validate: { params: { file: templateValidator } } }
   },
+  { method: 'GET', path: '/templates/createBeacon/{file}',
+    handler: { directory: { path: './client/app/createBeacon' } },
+    config: { validate: { params: { file: templateValidator } } }
+  },
   { method: 'GET', path: '/templates/dashboard/{file}',
     handler: { directory: { path: './client/app/dashboard' } },
     config: { validate: { params: { file: templateValidator } } }

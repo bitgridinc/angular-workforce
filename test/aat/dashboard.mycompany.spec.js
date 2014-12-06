@@ -1,4 +1,3 @@
-
 "use strict";
 
 describe('the /#/dashboard/mycompany route', function() {

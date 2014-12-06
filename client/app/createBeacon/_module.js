@@ -1,6 +1,24 @@
 "use strict";
 
-var app = require('./_module_init.js');
+var app = angular.module('modules.createBeacon', []);
+
+app.config(['$stateProvider', function($stateProvider) {
+  $stateProvider
+    .state('dashboard.mycompany.create', {
+      name: 'dashboard.mycompany.create',
+      parent: 'dashboard.mycompany',
+      url: '/create',
+      templateUrl: 'templates/createBeacon/view.tpl.html'
+    })
+}]);
+
+app.controller('DashboardController', function($scope, $state) {
+  var isMyCompanyButtonToggled = false;
+  $scope.toggleMyCompanyButton = function () {
+    isMyCompanyButtonToggled = !isMyCompanyButtonToggled;
+    $state.go(isMyCompanyButtonToggled ? '.mycompany' : '^');
+  };
+});
 
 app.controller('CreateBeaconController', function($scope, $state, BeaconService) {
   // For debugging purposes
