@@ -18,6 +18,10 @@ app.directive('beaconSummary', [function() {
           console.log("onSelectBeacon called.", $scope);
           // TODO: How to test when this method fails (e.g., when the name changes)?
           DashboardUiState.toggleBeaconSelection($scope.beacon);
+        },
+        onReviewOffers: function() {
+          console.log("onReviewOffers called.", $scope);
+          DashboardUiState.isReviewingOfferOfAssistance = true;
         }
       })
     }]

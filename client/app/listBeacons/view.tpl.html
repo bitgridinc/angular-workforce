@@ -1,12 +1,7 @@
 <div ng-controller="ListBeaconsController">
   <h4>Beacon Summary List</h4>
   <div ng-repeat="beacon in beacons" class="list-group">
-    <div class="list-group-item list-group-item-info">
-      <beacon-summary beacon="beacon"></beacon-summary>
-      <button class="btn btn-sm btn-default" type="button" ng-show="beacon.responses.length > 0" ng-model="dashboardUiState.isReviewingOfferOfAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
-        Review Offers
-      </button>
-    </div>
+    <beacon-summary beacon="beacon" class="list-group-item list-group-item-info"></beacon-summary>
   </div>
   <!-- Prime use case for a directive. -->
   <button type="button" class="trans-btn full-width panel-footer" ng-click="onCreateBeaconClick()">
