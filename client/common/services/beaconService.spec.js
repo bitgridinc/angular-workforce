@@ -1,7 +1,8 @@
 "use strict";
 
 describe('beaconService', function() {
-  var beaconService;
+  var beaconService,
+      STARTING_BEACON_COUNT = 1;
 
   beforeEach(module('modules.services'));
 
@@ -13,7 +14,7 @@ describe('beaconService', function() {
     expect(beaconService).toBeDefined();
   });
   it('should define an array of beacons', function() {
-    expect(beaconService.beacons).toBeDefined();
+    expect(beaconService.beacons.length).toBe(STARTING_BEACON_COUNT);
   });
 
   describe('the method to get a beacon by id', function() {
@@ -23,28 +24,29 @@ describe('beaconService', function() {
   });
 
   describe('the method used to create a beacon', function() {
-    it('should add created beacons to the array of beacons', function() {
-      expect(beaconService.beacons.length).toBe(0);
+    var beacon = {};
+
+    beforeEach(function() {
       beaconService.createBeacon({});
-      expect(beaconService.beacons.length).toBe(1);
+    });
+
+    it('should add created beacons to the array of beacons', function() {
+      expect(beaconService.beacons.length).toBe(STARTING_BEACON_COUNT + 1);
     });
     it('should create an id property with a positive integer value on the created beacon', function() {
-      beaconService.createBeacon({});
-      expect(beaconService.beacons[0].id).toBeGreaterThan(-1);
+      expect(beaconService.beacons[STARTING_BEACON_COUNT].id).toBeGreaterThan(-1);
     });
     it('should create a unique id property on subsequent creates', function() {
       beaconService.createBeacon({});
-      beaconService.createBeacon({});
-      expect(beaconService.beacons[0].id).not.toBe(beaconService.beacons[1].id);
+      expect(beaconService.beacons[STARTING_BEACON_COUNT].id).not.toBe(beaconService.beacons[STARTING_BEACON_COUNT + 1].id);
     });
     it('should allow for associating responses to the beacon', function() {
-      beaconService.createBeacon({});
-      expect(beaconService.beacons[0].responses).toEqual([]);
+      expect(beaconService.beacons[STARTING_BEACON_COUNT].responses).toEqual([]);
     });
     it('should not reuse the same object (i.e., it should make a copy)', function() {
       var beacon = {};
       beaconService.createBeacon(beacon);
-      expect(beaconService.beacons[0]).not.toBe(beacon);
+      expect(beaconService.beacons[STARTING_BEACON_COUNT + 1]).not.toBe(beacon);
     });
   });
 
