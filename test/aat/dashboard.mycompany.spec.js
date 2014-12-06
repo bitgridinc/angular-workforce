@@ -3,7 +3,8 @@
 describe('having the My Company button toggled on', function() {
   var ptor,
       CREATE_BEACON_TEXT = 'Create Beacon',
-      SUBMIT_BEACON_TEXT = 'Submit Beacon';
+      SUBMIT_BEACON_TEXT = 'Submit Beacon',
+      SELECT_BEACON_TEXT = 'Select Beacon 0';
 
   beforeEach(function() {
     ptor = protractor.getInstance();
@@ -15,6 +16,22 @@ describe('having the My Company button toggled on', function() {
   });
   it('should not be displaying create beacon view', function() {
     expect(ptor.isElementPresent(by.buttonText(SUBMIT_BEACON_TEXT))).toBeFalsy();
+  });
+
+  describe('selecting the first beacon', function() {
+    beforeEach(function() {
+      ptor.findElement(protractor.By.buttonText(SELECT_BEACON_TEXT)).click();
+    });
+
+    it('should change the url', function() {
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/0');
+    });
+    it('should obscure the beacon list', function() {
+      expect(ptor.isElementPresent(by.buttonText(CREATE_BEACON_TEXT))).toBeFalsy();
+    });
+    it('should still be visible to enable deselecting', function() {
+      expect(ptor.isElementPresent(by.buttonText(SELECT_BEACON_TEXT))).toBeTruthy();
+    });
   });
 
   describe('clicking the Create Beacon button', function() {
