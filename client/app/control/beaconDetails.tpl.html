@@ -24,6 +24,10 @@
         <label>Latitude:</label>{{dashboardUiState.currentlySelectedBeacon.lat}}
         <label>Longitude:</label>{{dashboardUiState.currentlySelectedBeacon.lng}}
     </div>
+
+    <button class="btn btn-sm btn-default" type="button" ng-model="dashboardUiState.isOfferingAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        Offer Assistance
+    </button>
     <!-- Prime use case for a directive. -->
     <button type="button" class="trans-btn full-width panel-footer" ng-model="dashboardUiState.isSelectingServices" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
         Select Services - {{dashboardUiState.isSelectingServices}}
