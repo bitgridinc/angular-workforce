@@ -15,12 +15,6 @@ describe('the service that shares UI state of the dashboard between controllers'
     expect(dashboardUiState).toBeDefined();
   });
 
-  describe('the flag for whether the user is creating a new beacon', function() {
-    it('should default so that the beacon creation view is closed', function() {
-      expect(dashboardUiState.isCreatingBeacon).toBeFalsy();
-    });
-  });
-
   describe('the flag for whether the user is selecting services', function() {
     it('should default to false so that the beacon creation view is closed', function() {
       expect(dashboardUiState.isSelectingServices).toBeFalsy();

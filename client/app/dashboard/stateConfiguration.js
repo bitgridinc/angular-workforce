@@ -9,11 +9,5 @@ app.config(['$stateProvider', function($stateProvider) {
       url: '/dashboard',
       templateUrl: 'templates/dashboard/dashboard.tpl.html',
       controller: 'DashboardController'
-    })
-    .state('dashboard.mycompany', {
-      name: 'dashboard.mycompany',
-      parent: 'dashboard',
-      url: '/mycompany',
-      templateUrl: 'templates/control/control.tpl.html'
     });
 }]);

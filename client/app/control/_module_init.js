@@ -10,3 +10,4 @@ require('./createBeaconController.js');
 require('./offerAssistanceController.js');
 require('./reviewAssistanceController.js');
 require('./selectServicesController.js');
+require('./stateConfiguration.js');

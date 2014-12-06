@@ -2,9 +2,13 @@
 
 var app = require('./_module_init.js');
 
-app.controller('CreateBeaconController', function($scope, DashboardUiState, BeaconService) {
+app.controller('CreateBeaconController', function($scope, $state, BeaconService) {
   // For debugging purposes
   $scope.name = 'CreateBeaconController';
+
+  function closeCreateBeaconView() {
+    $state.go('^');
+  }
 
   angular.extend($scope, {
     newBeaconData: {
@@ -23,14 +27,11 @@ app.controller('CreateBeaconController', function($scope, DashboardUiState, Beac
         lat: $scope.newBeaconData.latitude,
         lng: $scope.newBeaconData.longitude
       });
-      this.closeCreateBeaconView();
+      closeCreateBeaconView();
     },
     deleteNewBeacon: function() {
       console.log("deleteNewBeacon called.");
-      this.closeCreateBeaconView();
-    },
-    closeCreateBeaconView: function() {
-      DashboardUiState.isCreatingBeacon = false;
+      closeCreateBeaconView();
     }
   });
 

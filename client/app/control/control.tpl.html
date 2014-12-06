@@ -2,10 +2,7 @@
   <div class="col-lg-2 panel panel-default"
        ng-include src="'templates/control/beaconSummaryList.tpl.html'">
   </div>
-  <div class="col-lg-2 panel panel-default"
-       ng-show="dashboardUiState.isCreatingBeacon"
-       ng-include src="'templates/control/createBeacon.tpl.html'">
-  </div>
+  <div class="col-lg-2 panel panel-default" ui-view></div>
   <div class="col-lg-2 panel panel-default"
        ng-show="dashboardUiState.currentlySelectedBeacon"
        ng-include src="'templates/control/beaconDetails.tpl.html'">
