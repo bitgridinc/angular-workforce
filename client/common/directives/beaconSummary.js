@@ -9,21 +9,15 @@ app.directive('beaconSummary', [function() {
     templateUrl: '/templates/directives/beaconSummary.tpl.html',
     scope: {
       // TODO: I know it has to do with binding, but what exactly does the '=' do?
-      beacon: '='
+      beacon: '=',
+      onSelectBeacon: '='
     },
-    controller: ['$scope', 'DashboardUiState', function($scope, DashboardUiState) {
+    controller: ['$scope', '$state', 'DashboardUiState', function($scope, $state, DashboardUiState) {
       console.log('controller called.', $scope, DashboardUiState);
-      angular.extend($scope, {
-        onSelectBeacon: function () {
-          console.log("onSelectBeacon called.", $scope);
-          // TODO: How to test when this method fails (e.g., when the name changes)?
-          DashboardUiState.toggleBeaconSelection($scope.beacon);
-        },
-        onReviewOffers: function() {
-          console.log("onReviewOffers called.", $scope);
-          DashboardUiState.isReviewingOfferOfAssistance = true;
-        }
-      })
+      $scope.onReviewOffers = function() {
+        console.log("onReviewOffers called.", $scope);
+        DashboardUiState.isReviewingOfferOfAssistance = true;
+      };
     }]
   }
 }]);

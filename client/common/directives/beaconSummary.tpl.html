@@ -13,7 +13,7 @@ Ignore the potential problem from long descriptions for now.
         {{beacon.title}}<br>
         {{beacon.description}}
     </div>
-    <button class="btn btn-sm btn-info" type="button" ng-click="onSelectBeacon()">
+    <button class="btn btn-sm btn-info" type="button" ng-click="onSelectBeacon(beacon)">
         Select Beacon {{beacon.id}}
     </button>
     <button class="btn btn-sm btn-default" type="button" ng-show="beacon.responses.length > 0" ng-click="onReviewOffers()">

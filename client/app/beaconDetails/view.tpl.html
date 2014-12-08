@@ -1,0 +1,36 @@
+<h4>Beacon Details</h4>
+<div ng-controller="BeaconDetailsController">
+    <beacon-summary beacon="beacon" on-select-beacon="onSelectBeacon"></beacon-summary>
+    <div>
+        <label>id:</label>
+        {{beacon.id}}
+    </div>
+    <div>
+        <label>Job Title:</label>
+        {{beacon.title}}
+    </div>
+    <div class="form-group">
+        <label>Job Description:</label><br/>
+        {{beacon.description}}
+    </div>
+    <accepted-assistance-summary
+        ng-show="beacon.acceptedAssistance"
+        accepted-assistance="beacon.acceptedAssistance">
+    </accepted-assistance-summary>
+    <div class="form-group">
+        <label>Your Organization:</label><br/>
+        {{beacon.organization}}
+    </div>
+    <div class="form-group">
+        <label>Latitude:</label>{{beacon.lat}}
+        <label>Longitude:</label>{{beacon.lng}}
+    </div>
+
+    <button class="btn btn-sm btn-default" type="button" ng-model="dashboardUiState.isOfferingAssistance" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        Offer Assistance
+    </button>
+    <!-- Prime use case for a directive. -->
+    <button type="button" class="trans-btn full-width panel-footer" ng-model="dashboardUiState.isSelectingServices" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        Select Services - {{dashboardUiState.isSelectingServices}}
+    </button>
+</div>

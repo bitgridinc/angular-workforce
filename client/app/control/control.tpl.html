@@ -1,10 +1,6 @@
 <div ng-controller="ControlController">
   <div class="col-lg-2 panel panel-default" ui-view></div>
   <div class="col-lg-2 panel panel-default"
-       ng-show="dashboardUiState.currentlySelectedBeacon"
-       ng-include src="'templates/control/beaconDetails.tpl.html'">
-  </div>
-  <div class="col-lg-2 panel panel-default"
        ng-show="dashboardUiState.currentlySelectedBeacon && dashboardUiState.isReviewingOfferOfAssistance"
        ng-include src="'templates/control/reviewAssistance.tpl.html'">
   </div>

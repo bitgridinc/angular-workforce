@@ -14,6 +14,10 @@ server.route([
   { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './server/public/stylesheets' } } },
 
   // Expose our feature templates
+  { method: 'GET', path: '/templates/beaconDetails/{file}',
+    handler: { directory: { path: './client/app/beaconDetails' } },
+    config: { validate: { params: { file: templateValidator } } }
+  },
   { method: 'GET', path: '/templates/control/{file}',
     handler: { directory: { path: './client/app/control' } },
     config: { validate: { params: { file: templateValidator } } }

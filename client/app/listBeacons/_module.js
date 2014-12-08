@@ -23,4 +23,8 @@ app.controller('ListBeaconsController', function($scope, $state, DashboardUiStat
   $scope.onCreateBeaconClick = function () {
     $state.go('^.create');
   };
+
+  $scope.onSelectBeacon = function (beacon) {
+    $state.go('^.detail', { id: beacon.id });
+  };
 });
