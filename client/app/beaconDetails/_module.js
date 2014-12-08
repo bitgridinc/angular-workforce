@@ -7,7 +7,7 @@ app.config(['$stateProvider', function($stateProvider) {
     .state('dashboard.mycompany.detail', {
       name: 'dashboard.mycompany.detail',
       parent: 'dashboard.mycompany',
-      url: '/:id',
+      url: '/detail/:id',
       templateUrl: 'templates/beaconDetails/view.tpl.html',
       controller: function($scope, $stateParams) {
         $scope.id = $stateParams.id;
