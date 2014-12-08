@@ -8,7 +8,10 @@ app.config(['$stateProvider', function($stateProvider) {
       name: 'dashboard.mycompany.detail.assist',
       parent: 'dashboard.mycompany.detail',
       url: '/assist',
-      templateUrl: 'templates/offerAssistance/view.tpl.html'
+      views: {
+        // TODO: Figure out why I have to use the absolute path (@dashboard.mycompany) here
+        'right@dashboard.mycompany': { templateUrl: 'templates/offerAssistance/view.tpl.html' }
+      }
     })
 }]);
 
