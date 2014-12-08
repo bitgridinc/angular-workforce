@@ -22,4 +22,11 @@ describe('the beacon details view', function() {
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
     });
   });
+
+  describe('the offer assistance button', function() {
+    it('should navigate to the offer assistance view', function() {
+      ptor.findElement(beaconDetailsLocators.offerAssistance).click();
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/0/assist');
+    });
+  });
 });
