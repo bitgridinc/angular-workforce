@@ -24,7 +24,7 @@ describe('having the My Company button toggled on', function() {
     });
 
     it('should change the url', function() {
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/0');
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/0');
     });
     it('should obscure the beacon list', function() {
       expect(ptor.isElementPresent(by.buttonText(CREATE_BEACON_TEXT))).toBeFalsy();
