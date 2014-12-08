@@ -15,10 +15,6 @@ describe('the /#/dashboard/mycompany/create route', function() {
     createBeaconLocators = new CreateBeaconLocators();
   });
 
-  it('should display the user\'s beacon summary list', function() {
-    expect(element(createBeaconLocators.submitButton).isDisplayed()).toBeTruthy();
-  });
-
   describe('the Submit Beacon button', function() {
     it('should change the url when clicked', function() {
       ptor.findElement(createBeaconLocators.submitButton).click();
