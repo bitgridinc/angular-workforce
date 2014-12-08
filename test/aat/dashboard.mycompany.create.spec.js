@@ -1,21 +1,27 @@
 "use strict";
 
+var CreateBeaconLocators = require('./createBeacon.po.js');
+
 describe('the /#/dashboard/mycompany/create route', function() {
-  var ptor;
+  var ptor,
+      createBeaconLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();
     ptor.get('/#/dashboard/mycompany/create');
   });
 
+  beforeEach(function() {
+    createBeaconLocators = new CreateBeaconLocators();
+  });
+
   it('should display the user\'s beacon summary list', function() {
-    expect(element(by.buttonText('Submit Beacon')).isDisplayed()).toBeTruthy();
+    expect(element(createBeaconLocators.submitButton).isDisplayed()).toBeTruthy();
   });
 
   describe('the Submit Beacon button', function() {
     it('should change the url when clicked', function() {
-      var button = ptor.findElement(protractor.By.buttonText('Submit Beacon'));
-      button.click();
+      ptor.findElement(createBeaconLocators.submitButton).click();
       expect(browser.getCurrentUrl()).not.toContain('/create');
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
     });
