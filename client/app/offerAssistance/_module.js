@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module('modules.listBeacons', []);
+var app = angular.module('modules.offerAssistance', []);
 
 app.config(['$stateProvider', function($stateProvider) {
   $stateProvider

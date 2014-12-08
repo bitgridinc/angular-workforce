@@ -23,4 +23,8 @@ app.controller('BeaconDetailsController', function($scope, $state, DashboardUiSt
   $scope.onSelectBeacon = function () {
     $state.go('^.list');
   };
+
+  $scope.onOfferAssistance = function () {
+    $state.go('.assist');
+  };
 });
