@@ -18,8 +18,7 @@ app.config(['$stateProvider', function($stateProvider) {
 app.controller('BeaconDetailsController', function($scope, $state, DashboardUiState, BeaconService) {
   $scope.dashboardUiState = DashboardUiState;
 
-  // TODO: Implement getBeacon
-  $scope.beacon = BeaconService.getBeacon($scope.id);
+  $scope.beacon = BeaconService.getBeacon(Number($scope.$parent.id));
 
   $scope.onSelectBeacon = function () {
     $state.go('^.list');
