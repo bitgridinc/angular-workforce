@@ -8,9 +8,13 @@ app.config(['$stateProvider', function($stateProvider) {
       name: 'dashboard.mycompany.detail',
       parent: 'dashboard.mycompany',
       url: '/detail/:id',
-      templateUrl: 'templates/beaconDetails/view.tpl.html',
-      controller: function($scope, $stateParams) {
-        $scope.id = $stateParams.id;
+      views: {
+        'left': {
+          templateUrl: 'templates/beaconDetails/view.tpl.html',
+          controller: function($scope, $stateParams) {
+            $scope.id = $stateParams.id;
+          }
+        }
       }
     })
 }]);

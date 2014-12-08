@@ -8,7 +8,9 @@ app.config(['$stateProvider', function($stateProvider) {
       name: 'dashboard.mycompany.create',
       parent: 'dashboard.mycompany',
       url: '/create',
-      templateUrl: 'templates/createBeacon/view.tpl.html'
+      views: {
+        'left': { templateUrl: 'templates/createBeacon/view.tpl.html' }
+      }
     })
 }]);
 
