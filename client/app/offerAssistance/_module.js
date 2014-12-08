@@ -1,6 +1,16 @@
 "use strict";
 
-var app = require('./_module_init.js');
+var app = angular.module('modules.listBeacons', []);
+
+app.config(['$stateProvider', function($stateProvider) {
+  $stateProvider
+    .state('dashboard.mycompany.detail.assist', {
+      name: 'dashboard.mycompany.detail.assist',
+      parent: 'dashboard.mycompany.detail',
+      url: '/assist',
+      templateUrl: 'templates/offerAssistance/view.tpl.html'
+    })
+}]);
 
 app.controller('OfferAssistanceController', function($scope, DashboardUiState, BeaconService) {
   // For debugging purposes
