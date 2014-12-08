@@ -18,8 +18,11 @@ describe('beaconService', function() {
   });
 
   describe('the method to get a beacon by id', function() {
-    it('should return undefined when this service is instantiated', function() {
-      expect(beaconService.getBeacon(0)).toBeUndefined();
+    it('should return a beacon by its id', function() {
+      expect(beaconService.getBeacon(0)).toBe(beaconService.beacons[0]);
+    });
+    it('should return undefined for an invalid id', function() {
+      expect(beaconService.getBeacon(-1)).toBeUndefined();
     });
   });
 

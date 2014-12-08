@@ -1,5 +1,6 @@
 "use strict";
 
+var _ = require('../../bower_components/lodash/dist/lodash.js');
 var app = require('./_module_init.js');
 
 app.service('BeaconService', function() {
@@ -7,8 +8,10 @@ app.service('BeaconService', function() {
 
   var service = {
     beacons: [],
-    getBeacon: function() {
-      return undefined;
+    getBeacon: function(id) {
+      return _.find(this.beacons, function(beacon) {
+        return beacon.id === id;
+      });
     },
     createBeacon: function(beaconData) {
       var newBeacon = angular.copy(beaconData);
