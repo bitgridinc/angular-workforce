@@ -16,11 +16,11 @@ app.config(['$stateProvider', function($stateProvider) {
           }
         }
       },
-      onEnter: function(DashboardUiState, BeaconService, $stateParams) {
+      onEnter: function(DashboardUiState, RestService, $stateParams) {
         console.log("Entering dashboard.mycompany.detail", $stateParams);
 
         // TODO: Enable selecting current beacon by id
-        DashboardUiState.toggleBeaconSelection(BeaconService.getBeacon(Number($stateParams.id)));
+        DashboardUiState.toggleBeaconSelection(RestService.getBeacon(Number($stateParams.id)));
       },
       onExit: function(DashboardUiState) {
         console.log("Exiting dashboard.mycompany.detail");

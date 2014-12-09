@@ -15,7 +15,7 @@ app.config(['$stateProvider', function($stateProvider) {
     })
 }]);
 
-app.controller('OfferAssistanceController', function($scope, DashboardUiState, BeaconService) {
+app.controller('OfferAssistanceController', function($scope, DashboardUiState, RestService) {
   // For debugging purposes
   $scope.name = 'OfferAssistanceController';
 
@@ -37,7 +37,7 @@ app.controller('OfferAssistanceController', function($scope, DashboardUiState, B
 
   $scope.offerAssistance = function() {
     console.log("You've accepted! $scope:", $scope);
-    BeaconService.offerAssistance($scope.dashboardUiState.currentlySelectedBeacon, $scope.assistanceOffer);
+    RestService.offerAssistance($scope.dashboardUiState.currentlySelectedBeacon, $scope.assistanceOffer);
   };
   $scope.declineAssistance = function() {
     console.log("You've declined! $scope:", $scope);

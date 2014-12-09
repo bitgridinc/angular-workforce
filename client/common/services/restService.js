@@ -3,7 +3,7 @@
 var _ = require('../../bower_components/lodash/dist/lodash.js');
 var app = require('./_module_init.js');
 
-app.service('BeaconService', function() {
+app.service('RestService', function() {
   var idCounter = 0;
 
   var service = {

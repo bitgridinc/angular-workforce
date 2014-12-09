@@ -14,7 +14,7 @@ app.config(['$stateProvider', function($stateProvider) {
     })
 }]);
 
-app.controller('CreateBeaconController', function($scope, $state, BeaconService) {
+app.controller('CreateBeaconController', function($scope, $state, RestService) {
   // For debugging purposes
   $scope.name = 'CreateBeaconController';
 
@@ -32,7 +32,7 @@ app.controller('CreateBeaconController', function($scope, $state, BeaconService)
     },
     submitNewBeacon: function() {
       console.log("submitNewBeacon called.", $scope);
-      BeaconService.createBeacon({
+      RestService.createBeacon({
         title: $scope.newBeaconData.title,
         description: $scope.newBeaconData.description,
         organization: $scope.newBeaconData.organization,

@@ -8,7 +8,7 @@ var app = angular.module('modules.map', [
   'leaflet-directive'
 ]);
 
-app.controller('MapController', function($scope, BeaconService) {
+app.controller('MapController', function($scope, RestService) {
   angular.extend($scope, {
     defaults: {
       tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
@@ -19,6 +19,6 @@ app.controller('MapController', function($scope, BeaconService) {
       lng: -77.021098,
       zoom: 13
     },
-    markers: BeaconService.beacons
+    markers: RestService.beacons
   });
 });

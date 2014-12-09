@@ -14,12 +14,12 @@ app.config(['$stateProvider', function($stateProvider) {
     })
 }]);
 
-app.controller('ListBeaconsController', function($scope, $state, DashboardUiState, BeaconService) {
+app.controller('ListBeaconsController', function($scope, $state, DashboardUiState, RestService) {
   // For debugging purposes
   $scope.name = 'ListBeaconsController';
 
   $scope.dashboardUiState = DashboardUiState;
-  $scope.beacons = BeaconService.beacons;
+  $scope.beacons = RestService.beacons;
 
   // We don't require logic for backing up as the Create Beacon view covers this functionality
   $scope.onCreateBeaconClick = function () {
