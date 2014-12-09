@@ -2,7 +2,7 @@
 
 var OfferAssistanceLocators = require('./offerAssistance.locators.js');
 
-describe('the beacon details view', function() {
+describe('the offer assistance view', function() {
   var ptor,
       offerAssistanceLocators;
 
