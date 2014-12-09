@@ -35,11 +35,5 @@ describe('the service that shares UI state of the dashboard between controllers'
       dashboardUiState.toggleBeaconSelection(beacon);
       expect(dashboardUiState.currentlySelectedBeacon).toBe(undefined);
     });
-    it('should broadcast a message when the currently displayed beacon changes', function() {
-      spyOn(rootScope, '$broadcast');
-      var beacon = {};
-      dashboardUiState.toggleBeaconSelection(beacon);
-      expect(rootScope.$broadcast).toHaveBeenCalledWith('currentBeaconChanged', beacon);
-    });
   });
 });

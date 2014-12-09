@@ -17,9 +17,6 @@ app.service('DashboardUiState', ['$rootScope', function($rootScope) {
       } else {
         currentlySelectedBeacon = undefined;
       }
-
-      // TODO: Check if this can simplify our code elsewhere
-      $rootScope.$broadcast('currentBeaconChanged', currentlySelectedBeacon);
     }
   }
 }]);
