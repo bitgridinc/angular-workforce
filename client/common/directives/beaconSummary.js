@@ -10,12 +10,8 @@ app.directive('beaconSummary', [function() {
     scope: {
       // TODO: I know it has to do with binding, but what exactly does the '=' do?
       beacon: '=',
-      onSelectBeacon: '='
-    },
-    controller: ['$scope', '$state', 'DashboardUiState', function($scope) {
-      $scope.onReviewOffers = function() {
-        console.log("onReviewOffers called.", $scope);
-      };
-    }]
+      onSelectBeacon: '=',
+      onReviewAssistance: '='
+    }
   }
 }]);

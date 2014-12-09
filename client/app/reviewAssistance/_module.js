@@ -1,8 +1,21 @@
 "use strict";
 
-var app = require('./_module_init.js');
+var app = angular.module('modules.reviewAssistance', []);
 
-// TODO: Add unit testing
+app.config(['$stateProvider', function($stateProvider) {
+  $stateProvider
+    .state('dashboard.mycompany.detail.review', {
+      name: 'dashboard.mycompany.detail.review',
+      url: '/review',
+      views: {
+        'right@dashboard.mycompany': {
+          templateUrl: 'templates/reviewAssistance/view.tpl.html',
+          controller: 'ReviewAssistanceController'
+        }
+      }
+    });
+}]);
+
 app.controller('ReviewAssistanceController', function($scope, RestService) {
   angular.extend($scope, {
     name: 'ReviewAssistanceController',

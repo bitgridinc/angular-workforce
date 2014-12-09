@@ -39,4 +39,8 @@ app.controller('BeaconDetailsController', function($scope, $state, DashboardUiSt
   $scope.onOfferAssistance = function () {
     $state.go('.assist');
   };
+
+  $scope.onReviewAssistance = function () {
+    $state.go('.review');
+  };
 });

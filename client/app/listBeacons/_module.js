@@ -29,4 +29,8 @@ app.controller('ListBeaconsController', function($scope, $state, DashboardUiStat
   $scope.onSelectBeacon = function (beacon) {
     $state.go('^.detail', { id: beacon.id });
   };
+
+  $scope.onReviewAssistance = function (beacon) {
+    $state.go('^.detail.review', { id: beacon.id });
+  };
 });
