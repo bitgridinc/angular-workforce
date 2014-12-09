@@ -15,7 +15,7 @@ app.config(['$stateProvider', function($stateProvider) {
     })
 }]);
 
-app.controller('OfferAssistanceController', function($scope, DashboardUiState, RestService) {
+app.controller('OfferAssistanceController', function($scope, $state, DashboardUiState, RestService) {
   // For debugging purposes
   $scope.name = 'OfferAssistanceController';
 
@@ -35,11 +35,11 @@ app.controller('OfferAssistanceController', function($scope, DashboardUiState, R
     $scope.opened = true;
   };
 
-  $scope.offerAssistance = function() {
-    console.log("You've accepted! $scope:", $scope);
-    RestService.offerAssistance($scope.dashboardUiState.currentlySelectedBeacon, $scope.assistanceOffer);
-  };
-  $scope.declineAssistance = function() {
-    console.log("You've declined! $scope:", $scope);
+  $scope.respond = function(assist) {
+    console.log("You've responded to a beacon with", assist);
+    if (assist) {
+      RestService.offerAssistance($scope.dashboardUiState.currentlySelectedBeacon, $scope.assistanceOffer);
+    }
+    $state.go('^');
   };
 });
