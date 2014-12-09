@@ -15,14 +15,23 @@ app.config(['$stateProvider', function($stateProvider) {
             $scope.id = $stateParams.id;
           }
         }
+      },
+      onEnter: function(DashboardUiState, BeaconService, $stateParams) {
+        console.log("Entering dashboard.mycompany.detail", $stateParams);
+
+        // TODO: Enable selecting current beacon by id
+        DashboardUiState.toggleBeaconSelection(BeaconService.getBeacon(Number($stateParams.id)));
+      },
+      onExit: function(DashboardUiState) {
+        console.log("Exiting dashboard.mycompany.detail");
+        DashboardUiState.toggleBeaconSelection(undefined);
       }
     })
 }]);
 
-app.controller('BeaconDetailsController', function($scope, $state, DashboardUiState, BeaconService) {
+app.controller('BeaconDetailsController', function($scope, $state, DashboardUiState) {
   $scope.dashboardUiState = DashboardUiState;
-
-  $scope.beacon = BeaconService.getBeacon(Number($scope.$parent.id));
+  $scope.beacon = DashboardUiState.currentlySelectedBeacon;
 
   $scope.onSelectBeacon = function () {
     $state.go('^.list');
