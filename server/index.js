@@ -46,6 +46,10 @@ server.route([
     handler: { directory: { path: './client/app/reviewAssistance' } },
     config: { validate: { params: { file: templateValidator } } }
   },
+  { method: 'GET', path: '/templates/selectServices/{file}',
+    handler: { directory: { path: './client/app/selectServices' } },
+    config: { validate: { params: { file: templateValidator } } }
+  },
 
   // Expose our directive templates
   { method: 'GET', path: '/templates/directives/{file}',
