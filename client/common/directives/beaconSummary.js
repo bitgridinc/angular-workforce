@@ -12,11 +12,9 @@ app.directive('beaconSummary', [function() {
       beacon: '=',
       onSelectBeacon: '='
     },
-    controller: ['$scope', '$state', 'DashboardUiState', function($scope, $state, DashboardUiState) {
-      console.log('controller called.', $scope, DashboardUiState);
+    controller: ['$scope', '$state', 'DashboardUiState', function($scope) {
       $scope.onReviewOffers = function() {
         console.log("onReviewOffers called.", $scope);
-        DashboardUiState.isReviewingOfferOfAssistance = true;
       };
     }]
   }

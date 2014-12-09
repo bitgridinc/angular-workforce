@@ -5,9 +5,6 @@ var app = require('./_module_init.js');
 app.service('DashboardUiState', ['$rootScope', function($rootScope) {
   var currentlySelectedBeacon;
   return {
-    isSelectingServices: false,
-    isOfferingAssistance: false,
-    isReviewingOfferOfAssistance: false,
     get currentlySelectedBeacon() {
       return currentlySelectedBeacon;
     },

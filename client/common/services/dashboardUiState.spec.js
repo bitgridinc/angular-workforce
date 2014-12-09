@@ -15,24 +15,6 @@ describe('the service that shares UI state of the dashboard between controllers'
     expect(dashboardUiState).toBeDefined();
   });
 
-  describe('the flag for whether the user is selecting services', function() {
-    it('should default to false so that the beacon creation view is closed', function() {
-      expect(dashboardUiState.isSelectingServices).toBeFalsy();
-    });
-  });
-
-  describe('the flag for whether the user is offering assistance', function() {
-    it('should default so that the user is not offering assistance', function() {
-      expect(dashboardUiState.isOfferingAssistance).toBeFalsy();
-    });
-  });
-
-  describe('the flag for whether the user is reviewing offers of assistance', function() {
-    it('should default so that the user is not reviewing offers of assistance', function() {
-      expect(dashboardUiState.isReviewingOfferOfAssistance).toBeFalsy();
-    });
-  });
-
   describe('the property used to expose the currently selected beacon', function() {
     it('should have a value of undefined when the service is initialized', function() {
       expect(dashboardUiState.currentlySelectedBeacon).toBe(undefined);

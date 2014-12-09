@@ -30,7 +30,6 @@ app.config(['$stateProvider', function($stateProvider) {
 }]);
 
 app.controller('BeaconDetailsController', function($scope, $state, DashboardUiState) {
-  $scope.dashboardUiState = DashboardUiState;
   $scope.beacon = DashboardUiState.currentlySelectedBeacon;
 
   $scope.onSelectBeacon = function () {
