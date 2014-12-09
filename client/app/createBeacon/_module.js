@@ -18,10 +18,6 @@ app.controller('CreateBeaconController', function($scope, $state, RestService) {
   // For debugging purposes
   $scope.name = 'CreateBeaconController';
 
-  function closeCreateBeaconView() {
-    $state.go('^.list');
-  }
-
   angular.extend($scope, {
     newBeaconData: {
       title: 'My Project',
@@ -30,20 +26,17 @@ app.controller('CreateBeaconController', function($scope, $state, RestService) {
       latitude: 38.914268,
       longitude: -77.021098
     },
-    submitNewBeacon: function() {
-      console.log("submitNewBeacon called.", $scope);
-      RestService.createBeacon({
-        title: $scope.newBeaconData.title,
-        description: $scope.newBeaconData.description,
-        organization: $scope.newBeaconData.organization,
-        lat: $scope.newBeaconData.latitude,
-        lng: $scope.newBeaconData.longitude
-      });
-      closeCreateBeaconView();
-    },
-    deleteNewBeacon: function() {
-      console.log("deleteNewBeacon called.");
-      closeCreateBeaconView();
+    completeNewBeacon: function(commit) {
+      if (commit) {
+        RestService.createBeacon({
+          title: $scope.newBeaconData.title,
+          description: $scope.newBeaconData.description,
+          organization: $scope.newBeaconData.organization,
+          lat: $scope.newBeaconData.latitude,
+          lng: $scope.newBeaconData.longitude
+        });
+      }
+      $state.go('^.list');
     }
   });
 
