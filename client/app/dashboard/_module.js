@@ -1,6 +1,6 @@
 "use strict";
 
-require('../control/_module_init.js');
+require('../control/_module.js');
 require('../map/_module.js');
 
 var app = angular.module('modules.dashboard', [
