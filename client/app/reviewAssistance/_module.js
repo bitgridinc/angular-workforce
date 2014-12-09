@@ -16,17 +16,12 @@ app.config(['$stateProvider', function($stateProvider) {
     });
 }]);
 
-app.controller('ReviewAssistanceController', function($scope, RestService) {
+app.controller('ReviewAssistanceController', function($scope, $rootScope, RestService, DashboardUiState) {
   angular.extend($scope, {
     name: 'ReviewAssistanceController',
-    items: [],
+    items: DashboardUiState.currentlySelectedBeacon.responses,
     currentItem: undefined,
     totalItems: 0
-  });
-
-  $scope.$on('currentBeaconChanged', function (event, currentBeacon) {
-    console.log('currentBeaconChanged to: ', currentBeacon, event);
-    $scope.items = currentBeacon ? currentBeacon.responses : [];
   });
 
   $scope.pageChanged = function (newPage) {

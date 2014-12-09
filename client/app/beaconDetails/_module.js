@@ -33,14 +33,14 @@ app.controller('BeaconDetailsController', function($scope, $state, DashboardUiSt
   $scope.beacon = DashboardUiState.currentlySelectedBeacon;
 
   $scope.onSelectBeacon = function () {
-    $state.go('^.list');
+    $state.go('dashboard.mycompany.list');
   };
 
   $scope.onOfferAssistance = function () {
-    $state.go('.assist');
+    $state.go('dashboard.mycompany.detail.assist');
   };
 
   $scope.onReviewAssistance = function () {
-    $state.go('.review');
+    $state.go('dashboard.mycompany.detail.review');
   };
 });
