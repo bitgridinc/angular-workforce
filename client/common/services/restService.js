@@ -7,6 +7,7 @@ app.service('RestService', function() {
   var idCounter = 0;
 
   var service = {
+    // Beacon being here is a result of our not having a backend. I tried to find a better place. It can't be done.
     beacons: [],
     getBeacon: function(id) {
       return _.find(this.beacons, function(beacon) {
