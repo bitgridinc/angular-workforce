@@ -18,4 +18,5 @@ app.config(['$stateProvider', function($stateProvider) {
 
 app.controller('SelectServicesController', function($scope, DashboardUiState) {
   $scope.dashboardUiState = DashboardUiState;
+  $scope.services = [{}];
 });
