@@ -4,7 +4,7 @@
         ng-show="dashboardUiState.currentlySelectedBeacon.acceptedAssistance"
         accepted-assistance="dashboardUiState.currentlySelectedBeacon.acceptedAssistance">
     </accepted-assistance-summary>
-    <div ng-repeat="service in services">
+    <div ng-repeat="service in partnerSelectionFactory.requiredPartnerTypes">
         <div ng-include src="'templates/service/view.tpl.html'"></div>
     </div>
 </div>

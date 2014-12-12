@@ -97,5 +97,13 @@ describe('the factory used to associate partner organizations (e.g., laundromat)
         });
       });
     });
+
+    describe('a subsequent call to select the beacon', function() {
+      it('should not cause repeat values in the list of required partner types', function() {
+        // Angular ng-repeats barf on repeat values
+        factory.selectBeacon(beacon);
+        expect(factory.requiredPartnerTypes.length).toEqual(PARTNER_TYPES.length);
+      });
+    });
   });
 });

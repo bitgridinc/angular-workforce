@@ -10,8 +10,7 @@ app.service('PartnerSelectionFactory', function() {
     selectedPartners: [],
     selectBeacon: function(beacon) {
       this.beacon = beacon;
-      this.requiredPartnerTypes.push('food');
-      this.requiredPartnerTypes.push('gas');
+      _.merge(this.requiredPartnerTypes, ['food', 'gas']);
     },
     selectPartner: function(partner) {
       this.selectedPartners.push(partner);

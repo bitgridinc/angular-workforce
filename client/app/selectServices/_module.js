@@ -20,7 +20,11 @@ app.config(['$stateProvider', function($stateProvider) {
     });
 }]);
 
-app.controller('SelectServicesController', function($scope, DashboardUiState) {
+app.controller('SelectServicesController', function($scope, DashboardUiState, PartnerSelectionFactory) {
+  console.log('SelectServicesController called');
+
+  PartnerSelectionFactory.selectBeacon(DashboardUiState.currentlySelectedBeacon);
+
   $scope.dashboardUiState = DashboardUiState;
-  $scope.services = [{ type: "laundry", name: undefined, address: undefined }];
+  $scope.partnerSelectionFactory = PartnerSelectionFactory;
 });
