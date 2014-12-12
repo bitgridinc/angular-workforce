@@ -9,7 +9,10 @@ app.config(['$stateProvider', function($stateProvider) {
       parent: 'dashboard.mycompany',
       url: '',
       views: {
-        'left': { templateUrl: 'templates/listBeacons/view.tpl.html' }
+        'left': {
+          templateUrl: 'templates/listBeacons/view.tpl.html',
+          controller: 'ListBeaconsController'
+        }
       }
     })
 }]);

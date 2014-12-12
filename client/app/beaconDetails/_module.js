@@ -11,9 +11,7 @@ app.config(['$stateProvider', function($stateProvider) {
       views: {
         'left': {
           templateUrl: 'templates/beaconDetails/view.tpl.html',
-          controller: function($scope, $stateParams) {
-            $scope.id = $stateParams.id;
-          }
+          controller: 'BeaconDetailsController'
         }
       },
       onEnter: function(DashboardUiState, RestService, $stateParams) {
@@ -29,7 +27,8 @@ app.config(['$stateProvider', function($stateProvider) {
     })
 }]);
 
-app.controller('BeaconDetailsController', function($scope, $state, DashboardUiState) {
+app.controller('BeaconDetailsController', function($scope, $state, $stateParams, DashboardUiState) {
+  $scope.id = $stateParams.id;
   $scope.beacon = DashboardUiState.currentlySelectedBeacon;
 
   $scope.onSelectBeacon = function () {
