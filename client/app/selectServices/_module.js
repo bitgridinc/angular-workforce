@@ -22,5 +22,5 @@ app.config(['$stateProvider', function($stateProvider) {
 
 app.controller('SelectServicesController', function($scope, DashboardUiState) {
   $scope.dashboardUiState = DashboardUiState;
-  $scope.services = [{ type: "laundry", address: undefined }];
+  $scope.services = [{ type: "laundry", name: undefined, address: undefined }];
 });
