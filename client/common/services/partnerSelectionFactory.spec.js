@@ -1,7 +1,10 @@
 "use strict";
 
 describe('the factory used to associate partner organizations (e.g., laundromat) to a beacon', function() {
-  var factory;
+  var factory,
+      PARTNER_TYPES = ['food', 'gas'],
+      PARTNER_TYPE_TO_SELECT = 'gas',
+      REMAINING_PARTNER_TYPES = ['food'];
 
   beforeEach(module('modules.services'));
 
@@ -16,7 +19,7 @@ describe('the factory used to associate partner organizations (e.g., laundromat)
   describe('the method used to select a beacon to modify', function() {
     it('should populate the required partner types to a fixed list because we don\'t have logic for changing it yet', function() {
       factory.selectBeacon({});
-      expect(factory.requiredPartnerTypes).toEqual(['food', 'gas']);
+      expect(factory.requiredPartnerTypes).toEqual(PARTNER_TYPES);
     });
   });
 
@@ -35,7 +38,7 @@ describe('the factory used to associate partner organizations (e.g., laundromat)
 
     describe('the method used to select a partner', function() {
       var partner = {
-        type: 'gas'
+        type: PARTNER_TYPE_TO_SELECT
       };
 
       beforeEach(function() {
@@ -49,7 +52,20 @@ describe('the factory used to associate partner organizations (e.g., laundromat)
         expect(beacon.selectedPartners).toEqual([]);
       });
       it('should update the list of required partners if the types match', function() {
-        expect(factory.requiredPartnerTypes).toEqual(['food']);
+        expect(factory.requiredPartnerTypes).toEqual(REMAINING_PARTNER_TYPES);
+      });
+
+      describe('the method used to remove a selected partner', function() {
+        beforeEach(function() {
+          factory.deselectPartner(partner);
+        });
+
+        it('should remove the partner from the list of selected partners', function() {
+          expect(factory.selectedPartners.indexOf(partner)).toBe(-1);
+        });
+        it('should add one to the list of required partners', function() {
+          expect(factory.requiredPartnerTypes.length).toBe(PARTNER_TYPES.length);
+        });
       });
     });
 

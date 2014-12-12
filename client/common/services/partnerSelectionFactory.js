@@ -17,6 +17,12 @@ app.service('PartnerSelectionFactory', function() {
       this.selectedPartners.push(partner);
       _.pull(this.requiredPartnerTypes, partner.type);
     },
+    deselectPartner: function(partner) {
+      _.pull(this.selectedPartners, partner);
+      if (_.indexOf(this.requiredPartnerTypes, partner.type) === -1) {
+        this.requiredPartnerTypes.push(partner.type);
+      }
+    },
     confirmPartnerSelection: function() {
       if (this.requiredPartnerTypes.length > 0) {
         throw Error();
