@@ -1,6 +1,10 @@
 "use strict";
 
-var app = angular.module('modules.selectServices', []);
+require('../service/_module.js');
+
+var app = angular.module('modules.selectServices', [
+  'modules.service'
+]);
 
 app.config(['$stateProvider', function($stateProvider) {
   $stateProvider
@@ -18,5 +22,5 @@ app.config(['$stateProvider', function($stateProvider) {
 
 app.controller('SelectServicesController', function($scope, DashboardUiState) {
   $scope.dashboardUiState = DashboardUiState;
-  $scope.services = [{}];
+  $scope.services = [{ type: "laundry", address: undefined }];
 });
