@@ -24,4 +24,7 @@ app.controller('DashboardController', function($scope, $state) {
     isMyCompanyButtonToggled = !isMyCompanyButtonToggled;
     $state.go(isMyCompanyButtonToggled ? 'dashboard.mycompany.list' : 'dashboard');
   };
+  $scope.clickMyProfileButton = function () {
+    $state.go('profile');
+  };
 });

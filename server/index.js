@@ -42,16 +42,12 @@ server.route([
     handler: { directory: { path: './client/app/offerAssistance' } },
     config: { validate: { params: { file: templateValidator } } }
   },
+  { method: 'GET', path: '/templates/profile/{file}',
+    handler: { directory: { path: './client/app/profile' } },
+    config: { validate: { params: { file: templateValidator } } }
+  },
   { method: 'GET', path: '/templates/reviewAssistance/{file}',
     handler: { directory: { path: './client/app/reviewAssistance' } },
-    config: { validate: { params: { file: templateValidator } } }
-  },
-  { method: 'GET', path: '/templates/selectServices/{file}',
-    handler: { directory: { path: './client/app/selectServices' } },
-    config: { validate: { params: { file: templateValidator } } }
-  },
-  { method: 'GET', path: '/templates/service/{file}',
-    handler: { directory: { path: './client/app/service' } },
     config: { validate: { params: { file: templateValidator } } }
   },
 

@@ -8,13 +8,15 @@ require('../common/directives/_module_init.js');
 require('../common/services/_module_init.js');
 
 require('./dashboard/_module.js');
+require('./profile/_module.js');
 
 var app = angular.module('app', [
   'ui.bootstrap',
   'ui.router',
   'modules.directives',
   'modules.services',
-  'modules.dashboard']);
+  'modules.dashboard',
+  'modules.profile']);
 
 // TODO: Be explicit everywhere
 app.run(
