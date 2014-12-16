@@ -35,5 +35,12 @@ describe('the dashboard page', function() {
       button.click();
       expect(browser.getCurrentUrl()).toContain('/#/dashboard');
     });
-  })
+  });
+
+  describe('the My Profile button', function() {
+    it('should change the url when clicked', function() {
+      ptor.findElement(protractor.By.buttonText('My\nProfile')).click();
+      expect(browser.getCurrentUrl()).toContain('/#/profile');
+    });
+  });
 });

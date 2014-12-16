@@ -29,11 +29,4 @@ describe('the beacon details view', function() {
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/0/assist');
     });
   });
-
-  describe('the select services button', function() {
-    it('should navigate to the select services view', function() {
-      ptor.findElement(beaconDetailsLocators.selectServices).click();
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/0/services');
-    });
-  });
 });
