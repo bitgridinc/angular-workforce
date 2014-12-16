@@ -16,6 +16,7 @@ var app = angular.module('app', [
   'modules.services',
   'modules.dashboard']);
 
+// TODO: Be explicit everywhere
 app.run(
   [          '$rootScope', '$state', '$stateParams',
     function ($rootScope,   $state,   $stateParams) {
