@@ -25,7 +25,6 @@ app.controller('CreateBeaconController', function($scope, $state, RestService) {
     newBeaconData: {
       title: 'My Project',
       description: 'My Description',
-      organization: 'My Company',
       latitude: 38.914268,
       longitude: -77.021098
     },
@@ -34,7 +33,6 @@ app.controller('CreateBeaconController', function($scope, $state, RestService) {
         RestService.createBeacon({
           title: $scope.newBeaconData.title,
           description: $scope.newBeaconData.description,
-          organization: $scope.newBeaconData.organization,
           lat: $scope.newBeaconData.latitude,
           lng: $scope.newBeaconData.longitude
         });

@@ -3,7 +3,7 @@
 var _ = require('../../bower_components/lodash/dist/lodash.js');
 var app = require('./_module_init.js');
 
-app.service('RestService', function() {
+app.service('RestService', function($rootScope) {
   var idCounter = 0;
 
   var service = {
@@ -19,6 +19,7 @@ app.service('RestService', function() {
       newBeacon.id = idCounter++;
       newBeacon.responses = [];
       newBeacon.acceptedAssistance = undefined;
+      newBeacon.organization = $rootScope.organization;
       this.beacons.push(newBeacon);
     },
     offerAssistance: function(beacon, offeredAssistance) {
@@ -32,7 +33,6 @@ app.service('RestService', function() {
   service.createBeacon({
     title: 'Test Title',
     description: 'Test Description',
-    organization: 'Test Company',
     lat: 38.91,
     lng: -77.02
   });
