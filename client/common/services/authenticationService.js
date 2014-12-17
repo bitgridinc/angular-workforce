@@ -8,7 +8,7 @@ app.service('AuthenticationService',
       return {
         authenticate: function() {
           return {
-            name: 'My Company'
+            name: 'Macho Diggers'
           }
         }
       }
