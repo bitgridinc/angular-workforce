@@ -12,6 +12,9 @@ app.config(['$stateProvider', function($stateProvider) {
     });
 }]);
 
-app.controller('ProfileController', function($scope, $rootScope) {
+app.controller('ProfileController', function($scope, $rootScope, $state) {
   $scope.organization = $rootScope.organization;
+  $scope.save = function () {
+    $state.go('dashboard');
+  };
 });
