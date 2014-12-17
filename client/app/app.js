@@ -51,11 +51,9 @@ app.config(
 
 // This controller wires up the $rootScope for consumption by the entire application.
 app.controller('AppController',
-  [         '$rootScope',
-    function($rootScope) {
-      $rootScope.organization = {
-        name: "My Company"
-      };
+  [         '$rootScope', 'AuthenticationService',
+    function($rootScope,   AuthenticationService) {
+      $rootScope.organization = AuthenticationService.authenticate();
     }
   ]
 );
