@@ -35,8 +35,8 @@ app.run(
 
 // TODO: Test this
 app.config(
-  [          '$stateProvider', '$urlRouterProvider', '$locationProvider',
-    function($stateProvider, $urlRouterProvider, $locationProvider) {
+  [         '$urlRouterProvider',
+    function($urlRouterProvider) {
       $urlRouterProvider.otherwise('/dashboard');
 
       // Normally, the '#' is used to implement routing in the url of a single-page application as changes in the
@@ -45,6 +45,17 @@ app.config(
       // server to serve our application on every possible route within the application (because a user pasting in a
       // copied url shouldn't get a 404). The downside is that we have a '#' in our urls. Big whoop.
       //$locationProvider.html5Mode(true);
+    }
+  ]
+);
+
+// This controller wires up the $rootScope for consumption by the entire application.
+app.controller('AppController',
+  [         '$rootScope',
+    function($rootScope) {
+      $rootScope.organization = {
+        name: "My Company"
+      };
     }
   ]
 );

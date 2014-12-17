@@ -12,6 +12,7 @@ app.config(['$stateProvider', function($stateProvider) {
     });
 }]);
 
-app.controller('ProfileController', function($scope) {
-
+app.controller('ProfileController', function($scope, $rootScope) {
+  console.log($rootScope.organization);
+  $scope.organization = $rootScope.organization;
 });
