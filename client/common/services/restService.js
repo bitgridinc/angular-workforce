@@ -21,11 +21,14 @@ require('./_module_init.js')
             newBeacon.id = idCounter++;
             newBeacon.responses = [];
             newBeacon.acceptedAssistance = undefined;
+            // TODO: Add test for this line after I refactor the tests.
             newBeacon.organization = $rootScope.organization;
             this.beacons.push(newBeacon);
           },
           offerAssistance: function(beacon, offeredAssistance) {
-            beacon.responses.push(angular.copy(offeredAssistance));
+            var copy = angular.copy(offeredAssistance);
+            copy.organization = $rootScope.organization;
+            beacon.responses.push(copy);
           },
           acceptAssistance: function(beacon, acceptedAssistance) {
             beacon.acceptedAssistance = angular.copy(acceptedAssistance);

@@ -1,12 +1,14 @@
 "use strict";
 
 describe('the REST service', function() {
-  var service,
+  var rootScope,
+      service,
       STARTING_BEACON_COUNT = 1;
 
   beforeEach(module('modules.services'));
 
-  beforeEach(inject(function(_RestService_) {
+  beforeEach(inject(function($rootScope, _RestService_) {
+    rootScope = $rootScope;
     service = _RestService_;
   }));
 
@@ -54,16 +56,22 @@ describe('the REST service', function() {
   });
 
   describe('the method used to offer assistance to a beacon', function() {
-    it('should add assistance offer to beacons', function() {
+    beforeEach(function() {
       service.createBeacon({});
+    });
+
+    it('should add assistance offer to beacons', function() {
       expect(service.beacons[0].responses.length).toBe(0);
       service.offerAssistance(service.beacons[0], {});
       expect(service.beacons[0].responses.length).toBe(1);
     });
+    it('should add the current organization to the response', function() {
+      rootScope.organization = {};
+      service.offerAssistance(service.beacons[0], {});
+      expect(service.beacons[0].responses[0].organization).toBeDefined();
+    });
     it('should not reuse the same object (i.e., it should make a copy)', function() {
-      var beacon = {};
       var response = {};
-      service.createBeacon(beacon);
       service.offerAssistance(service.beacons[0], response);
       expect(service.beacons[0].responses[0]).not.toBe(response);
     });

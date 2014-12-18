@@ -11,7 +11,7 @@ angular
             parent: 'dashboard.mycompany.detail',
             url: '/review',
             views: {
-              'right': {
+              'right@dashboard.mycompany': {
                 templateUrl: 'templates/reviewAssistance/view.tpl.html',
                 controller: 'ReviewAssistanceController'
               }

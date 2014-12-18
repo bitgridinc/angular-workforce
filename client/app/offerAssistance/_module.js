@@ -11,9 +11,8 @@ angular
             parent: 'dashboard.mycompany.detail',
             url: '/assist',
             views: {
-              // TODO: Why do I have to specify the absolute path here? I don't have to for the reviewAssistance module
-              // TODO: and this one is set up the exact same way. I know that specifying the correct parent is key, but
-              // TODO: the way I'm doing it seems right.
+              // TODO: Why do I have to specify the absolute path only within offerAssistance and reviewAssistance,
+              // TODO: which both happen to be grandchildren of dashboard.mycompany and are targetting 'right'.
               'right@dashboard.mycompany': {
                 templateUrl: 'templates/offerAssistance/view.tpl.html',
                 controller: 'OfferAssistanceController'
