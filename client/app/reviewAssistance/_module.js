@@ -8,9 +8,10 @@ angular
         $stateProvider
           .state('dashboard.mycompany.detail.review', {
             name: 'dashboard.mycompany.detail.review',
+            parent: 'dashboard.mycompany.detail',
             url: '/review',
             views: {
-              'right@dashboard.mycompany': {
+              'right': {
                 templateUrl: 'templates/reviewAssistance/view.tpl.html',
                 controller: 'ReviewAssistanceController'
               }
