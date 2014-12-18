@@ -8,7 +8,6 @@ app.directive('beaconSummary', [function() {
     restrict: 'E',
     templateUrl: '/templates/directives/beaconSummary.tpl.html',
     scope: {
-      // TODO: I know it has to do with binding, but what exactly does the '=' do?
       beacon: '=',
       onSelectBeacon: '=',
       onReviewAssistance: '='
