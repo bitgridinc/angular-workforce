@@ -4,10 +4,8 @@ describe("the map module (unit)", function() {
   var scope,
       controller;
 
-  // TODO: I need this to load the RestService, but is there a better way?
   beforeEach(module("modules.services"));
   beforeEach(module("modules.map"));
-
   beforeEach(inject(function($rootScope, $controller) {
     scope = $rootScope.$new();
     controller = $controller('MapController', {
