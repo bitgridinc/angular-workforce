@@ -6,7 +6,9 @@ describe('directive: summary of accepted assistance', function() {
       compiled,
       html,
       expected = {
-        responderName: 'name',
+        organization: {
+          name: 'name'
+        },
         numResponders: 18,
         arrivalDate: new Date()
       };
@@ -36,7 +38,7 @@ describe('directive: summary of accepted assistance', function() {
   });
 
   it('should contain the name of the responder', function() {
-    expect(element.text()).toContain(expected.responderName);
+    expect(element.text()).toContain(expected.organization.name);
   });
   it('should contain the number of responders', function() {
     expect(element.text()).toContain(expected.numResponders);

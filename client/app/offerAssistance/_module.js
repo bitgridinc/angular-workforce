@@ -31,7 +31,6 @@ angular
         $scope.dashboardUiState = DashboardUiState;
 
         $scope.assistanceOffer = {
-          responderName: "Macho Diggers",
           numResponders: 2,
           arrivalDate: new Date()
         };
