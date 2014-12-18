@@ -10,14 +10,16 @@ require('../common/services/_module_init.js');
 require('./dashboard/_module.js');
 require('./profile/_module.js');
 
-angular.module('app', [
-    'ui.bootstrap',
-    'ui.router',
-    'modules.directives',
-    'modules.services',
-    'modules.dashboard',
-    'modules.profile'
-  ])
+angular
+  .module('app', [
+      'ui.bootstrap',
+      'ui.router',
+      'modules.directives',
+      'modules.services',
+      'modules.dashboard',
+      'modules.profile'
+    ]
+  )
   .run(
     [          '$rootScope', '$state', '$stateParams',
       function ($rootScope,   $state,   $stateParams) {

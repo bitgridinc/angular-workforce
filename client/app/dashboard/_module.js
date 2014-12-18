@@ -3,10 +3,12 @@
 require('../control/_module.js');
 require('../map/_module.js');
 
-angular.module('modules.dashboard', [
-    'modules.control',
-    'modules.map'
-  ])
+angular
+  .module('modules.dashboard', [
+      'modules.control',
+      'modules.map'
+    ]
+  )
   .config(
     [         '$stateProvider',
       function($stateProvider) {
