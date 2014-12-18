@@ -3,7 +3,9 @@
   <div>
     <form method="post">
       <div>
-        <p>{{dashboardUiState.currentlySelectedBeacon.organization}} has requested your help.</p>
+        <p>
+          <organization-label organization="dashboardUiState.currentlySelectedBeacon.organization"></organization-label> has requested your help.
+        </p>
         <div class="form-group">
           <label class="small">Who do you represent?</label>
           <input class="form-control" type="text" name="responderName" id="responderName" required ng-model="assistanceOffer.responderName" />
