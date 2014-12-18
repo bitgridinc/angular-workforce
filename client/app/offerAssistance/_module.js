@@ -11,7 +11,6 @@ angular
             parent: 'dashboard.mycompany.detail',
             url: '/assist',
             views: {
-              // TODO: Figure out why I have to use the absolute path (@dashboard.mycompany) here
               'right@dashboard.mycompany': {
                 templateUrl: 'templates/offerAssistance/view.tpl.html',
                 controller: 'OfferAssistanceController'
