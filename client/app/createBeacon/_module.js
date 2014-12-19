@@ -27,19 +27,17 @@ angular
         $scope.name = 'CreateBeaconController';
 
         angular.extend($scope, {
-          newBeaconData: {
-            title: 'My Project',
-            description: 'My Description',
-            latitude: 38.914268,
-            longitude: -77.021098
-          },
+          title: 'My Project',
+          description: 'My Description',
+          latitude: 38.914268,
+          longitude: -77.021098,
           completeNewBeacon: function(commit) {
             if (commit) {
               RestService.createBeacon({
-                title: $scope.newBeaconData.title,
-                description: $scope.newBeaconData.description,
-                lat: $scope.newBeaconData.latitude,
-                lng: $scope.newBeaconData.longitude
+                title: $scope.title,
+                description: $scope.description,
+                lat: $scope.latitude,
+                lng: $scope.longitude
               });
             }
             $state.go('^.list');
@@ -49,8 +47,8 @@ angular
         // When the map is clicked, update the latitude and longitude fields in the form
         $scope.$on("leafletDirectiveMap.click", function(clickEvent, clickArgs) {
           console.log('leafletDirectiveMap.click');
-          $scope.newBeaconData.latitude = clickArgs.leafletEvent.latlng.lat;
-          $scope.newBeaconData.longitude = clickArgs.leafletEvent.latlng.lng;
+          $scope.latitude = clickArgs.leafletEvent.latlng.lat;
+          $scope.longitude = clickArgs.leafletEvent.latlng.lng;
         });
       }
     ]
