@@ -1,10 +1,12 @@
 "use strict";
 
 describe('the pagination control state factory', function() {
-  var factory;
+  var factory,
+      scope;
 
   beforeEach(module('modules.services'));
-  beforeEach(inject(function (_PaginationControl_) {
+  beforeEach(inject(function ($rootScope, _PaginationControl_) {
+    scope = $rootScope.$new();
     factory = _PaginationControl_;
   }));
 
@@ -18,8 +20,7 @@ describe('the pagination control state factory', function() {
     });
 
     describe('when fed a two-item list', function () {
-      var scope = {},
-          firstItem = {},
+      var firstItem = {},
           secondItem = {},
           items = [firstItem, secondItem];
 
