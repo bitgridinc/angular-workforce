@@ -3,6 +3,7 @@
 var _ = require('../../bower_components/lodash/dist/lodash.js');
 
 require('./_module_init.js')
+  // TODO: Why is this a service but named factory?
   .service('PartnerSelectionFactory',
     function() {
       return {

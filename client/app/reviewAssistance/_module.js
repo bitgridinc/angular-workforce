@@ -20,26 +20,16 @@ angular
       }
     ]
   )
+  // TODO: Mock backend so I can AAT this.
   .controller('ReviewAssistanceController',
-    [         '$scope', '$rootScope', 'RestService', 'DashboardUiState',
-      function($scope,   $rootScope,   RestService,   DashboardUiState) {
-        angular.extend($scope, {
-          name: 'ReviewAssistanceController',
-          items: DashboardUiState.currentlySelectedBeacon.responses,
-          currentItem: undefined,
-          totalItems: 0
-        });
+    [         '$scope', '$state', 'RestService', 'DashboardUiState', 'PaginationControl',
+      function($scope,   $state,   RestService,   DashboardUiState,   PaginationControl) {
 
-        $scope.pageChanged = function (newPage) {
-          console.log('Page changed to: ', newPage);
-          $scope.currentItem = $scope.items[newPage-1];
-        };
+        if (DashboardUiState.currentlySelectedBeacon.responses.length === 0) {
+          $state.go('dashboard.mycompany.detail');
+        }
 
-        $scope.$watch('items.length', function (newValue, oldValue) {
-          console.log('$watch:items.length', newValue, oldValue);
-          $scope.totalItems = newValue;
-          $scope.currentItem = $scope.currentItem || $scope.items[0];
-        });
+        PaginationControl.initScope($scope, DashboardUiState.currentlySelectedBeacon.responses);
 
         $scope.acceptAssistance = function () {
           // TODO: This is garbage :P
