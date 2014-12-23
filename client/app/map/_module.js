@@ -10,8 +10,8 @@ angular
     ]
   )
   .controller('MapController',
-    [         '$scope', 'RestService',
-      function($scope,   RestService) {
+    [         '$scope', '$rootScope',
+      function($scope,   $rootScope) {
         angular.extend($scope, {
           defaults: {
             tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
@@ -22,7 +22,7 @@ angular
             lng: -77.021098,
             zoom: 13
           },
-          markers: RestService.beacons
+          markers: $rootScope.beacons
         });
       }
     ]

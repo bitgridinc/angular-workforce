@@ -1,4 +1,5 @@
 var hapi = require('hapi');
+var controller = require('./controllers/everything');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
 
 // Constants
@@ -8,7 +9,11 @@ var PORT = 8080;
 var server = new hapi.Server('0.0.0.0', PORT);
 
 // routes
+// TODO: Break out into a routes file
 server.route([
+  { method: 'GET', path: '/beacons', config: controller.getBeacons },
+  { method: 'POST', path: '/beacon', config: controller.createBeacon },
+
   // Expose the public folder
   { method: 'GET', path: '/js/bundle.js', handler: { file: './server/public/js/bundle.js' } },
   { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './server/public/stylesheets' } } },

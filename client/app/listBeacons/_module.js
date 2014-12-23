@@ -21,13 +21,15 @@ angular
     ]
   )
   .controller('ListBeaconsController',
-    [         '$scope', '$state', 'DashboardUiState', 'RestService',
-      function($scope,   $state,   DashboardUiState,   RestService) {
+    [         '$scope',  '$rootScope', '$state', 'DashboardUiState',
+      function($scope,    $rootScope,   $state,   DashboardUiState) {
         // For debugging purposes
         $scope.name = 'ListBeaconsController';
 
         $scope.dashboardUiState = DashboardUiState;
-        $scope.beacons = RestService.beacons;
+
+        // TODO: Sometimes this doesn't work. I need eventing or FRP.
+        $scope.beacons = $rootScope.beacons;
 
         // We don't require logic for backing up as the Create Beacon view covers this functionality
         $scope.onCreateBeaconClick = function () {

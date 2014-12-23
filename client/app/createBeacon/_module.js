@@ -60,11 +60,17 @@ angular
             scope.longitude = clickArgs.leafletEvent.latlng.lng;
           },
           postNewBeacon : function () {
-            RestService.createBeacon({
+            var beaconData = {
               title: scope.title,
               description: scope.description,
               lat: scope.latitude,
               lng: scope.longitude
+            };
+            RestService.createBeacon(beaconData).then(function(beacon) {
+              // TODO: Remove this
+              RestService.beacons.push(beacon);
+            }, function(validation){
+              console.log("What's this?", validation);
             });
           }
         };

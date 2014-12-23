@@ -50,9 +50,12 @@ angular
   )
   // This controller wires up the $rootScope for consumption by the entire application.
   .controller('AppController',
-    [         '$rootScope', 'AuthenticationService',
-      function($rootScope,   AuthenticationService) {
+    [         '$rootScope', 'AuthenticationService', 'RestService',
+      function($rootScope,   AuthenticationService,   RestService) {
         $rootScope.organization = AuthenticationService.authenticate();
+        RestService.getBeacons().then(function(beacons) {
+          $rootScope.beacons = beacons;
+        });
       }
     ]
   );
