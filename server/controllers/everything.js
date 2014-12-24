@@ -3,8 +3,9 @@
 
 var everything = require('../models/everything');
 var Hapi = require('hapi');
+var io = require('../socketSetup').instance;
 
-module.exports = {
+/*module.exports = {
   getBeacons: {
     handler: function (request, reply) {
       console.log('getBeacons handler called');
@@ -45,4 +46,4 @@ module.exports = {
       name: 'beacon'
     }
   }
-};
+};*/

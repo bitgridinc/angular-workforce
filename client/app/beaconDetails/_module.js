@@ -16,11 +16,11 @@ angular
                 controller: 'BeaconDetailsController'
               }
             },
-            onEnter: function(DashboardUiState, RestService, $stateParams) {
+            onEnter: function(DashboardUiState, $rootScope, $stateParams) {
               console.log("Entering dashboard.mycompany.detail", $stateParams);
 
               // TODO: Enable selecting current beacon by id
-              DashboardUiState.toggleBeaconSelection(RestService.getBeacon(Number($stateParams.id)));
+              DashboardUiState.toggleBeaconSelection($rootScope.getBeacon($stateParams.id));
             },
             onExit: function(DashboardUiState) {
               console.log("Exiting dashboard.mycompany.detail");

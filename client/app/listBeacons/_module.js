@@ -37,6 +37,7 @@ angular
         };
 
         $scope.onSelectBeacon = function (beacon) {
+          console.log('onSelectBeacon called with:', beacon);
           $state.go('^.detail', { id: beacon.id });
         };
 

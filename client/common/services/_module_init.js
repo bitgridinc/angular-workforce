@@ -9,3 +9,4 @@ require('./dashboardUiState.js');
 require('./paginationControlFactory.js');
 require('./partnerSelectionFactory.js');
 require('./restService.js');
+require('./socketFactory.js');

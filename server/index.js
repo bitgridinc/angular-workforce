@@ -8,11 +8,14 @@ var PORT = 8080;
 // Create a server with a host, port, and options
 var server = new hapi.Server('0.0.0.0', PORT);
 
+require('./socketSetup')(server);
+require('./controllerSocket');
+
 // routes
 // TODO: Break out into a routes file
 server.route([
-  { method: 'GET', path: '/beacons', config: controller.getBeacons },
-  { method: 'POST', path: '/beacon', config: controller.createBeacon },
+  /*{ method: 'GET', path: '/beacons', config: controller.getBeacons },
+  { method: 'POST', path: '/beacon', config: controller.createBeacon },*/
 
   // Expose the public folder
   { method: 'GET', path: '/js/bundle.js', handler: { file: './server/public/js/bundle.js' } },
