@@ -22,7 +22,7 @@ angular
             lng: -77.021098,
             zoom: 13
           },
-          markers: $rootScope.beacons
+          markers: $rootScope.requestService.beacons
         });
       }
     ]

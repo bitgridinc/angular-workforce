@@ -51,28 +51,36 @@ angular
   )
   // This controller wires up the $rootScope for consumption by the entire application.
   .controller('AppController',
-    [         '$rootScope', 'socket',
-      function($rootScope,   socket) {
+    [         '$rootScope', 'RequestService',
+      function($rootScope,   RequestService) {
+        $rootScope.requestService = RequestService;
+      }
+    ]
+  )
+  .service('RequestService',
+    [         'socket',
+      function(socket) {
+        var service = {
+          organization: {},
+          beacons: [],
+          getBeacon: function(id) {
+            console.log('getBeacon called with:', id);
+            return _.find(this.beacons, function(beacon) {
+              return beacon.id === id;
+            });
+          }
+        };
 
-        $rootScope.organization = {};
-        $rootScope.beacons = [];
-
-        // TODO: Move these into a factory within this module
         socket.on('init', function(data) {
           console.log('init called with', data);
-          angular.copy(data, $rootScope.organization);
+          angular.copy(data, service.organization);
         });
 
         socket.on('send:request', function(request) {
-          $rootScope.beacons.push(request);
+          service.beacons.push(request);
         });
 
-        $rootScope.getBeacon = function(id) {
-          console.log('getBeacon called with:', id);
-          return _.find($rootScope.beacons, function(beacon) {
-            return beacon.id === id;
-          });
-        }
+        return service;
       }
     ]
   );

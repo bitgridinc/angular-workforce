@@ -18,7 +18,7 @@ angular
   .controller('ProfileController',
     [         '$scope', '$rootScope', '$state',
       function($scope,   $rootScope,   $state) {
-        $scope.organization = $rootScope.organization;
+        $scope.organization = $rootScope.requestService.organization;
         $scope.save = function () {
           $state.go('dashboard');
         };

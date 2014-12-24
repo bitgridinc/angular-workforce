@@ -20,29 +20,13 @@ require('./_module_init.js')
             });
             return deferred.promise;
           },
-          getBeacon: function(id) {
-            return _.find(this.beacons, function(beacon) {
-              return beacon.id === id;
-            });
-          },
           createBeacon: function(beaconData) {
-
-            beaconData.organization = $rootScope.organization;
+            beaconData.organization = $rootScope.requestService.organization;
             socket.emit('send:request', beaconData);
-
-            /*var deferred = $q.defer();
-            $http.post('/beacon', beaconData).then(function (ctx) {
-              console.log('resolving the createBeacon promise', ctx.data);
-              deferred.resolve(ctx.data);
-            }, function (ctx) {
-              console.log('rejecting the createBeacon promise', ctx.data);
-              deferred.reject(ctx.data);
-            });
-            return deferred.promise;*/
           },
           offerAssistance: function(beacon, offeredAssistance) {
             var copy = angular.copy(offeredAssistance);
-            copy.organization = $rootScope.organization;
+            copy.organization = $rootScope.requestService.organization;
             beacon.responses.push(copy);
           },
           acceptAssistance: function(beacon, acceptedAssistance) {

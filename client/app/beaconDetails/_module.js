@@ -20,7 +20,7 @@ angular
               console.log("Entering dashboard.mycompany.detail", $stateParams);
 
               // TODO: Enable selecting current beacon by id
-              DashboardUiState.toggleBeaconSelection($rootScope.getBeacon($stateParams.id));
+              DashboardUiState.toggleBeaconSelection($rootScope.requestService.getBeacon($stateParams.id));
             },
             onExit: function(DashboardUiState) {
               console.log("Exiting dashboard.mycompany.detail");
