@@ -3,7 +3,7 @@
 angular
   .module('modules.createBeacon', [
       'ui.router',
-      'modules.services'
+      'modules.providers'
     ]
   )
   .config(

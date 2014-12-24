@@ -5,7 +5,7 @@ describe('the REST service', function() {
       service,
       STARTING_BEACON_COUNT = 1;
 
-  beforeEach(module('modules.services'));
+  beforeEach(module('modules.providers'));
 
   beforeEach(inject(function($rootScope, _RestService_) {
     rootScope = $rootScope;

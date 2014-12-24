@@ -24,7 +24,7 @@ describe('the root module', function() {
       expect(dependencyListHasModule('modules.directives')).toEqual(true);
     });
     it ('should include our services module so that all our modules can access them', function() {
-      expect(dependencyListHasModule('modules.services')).toEqual(true);
+      expect(dependencyListHasModule('modules.providers')).toEqual(true);
     });
     it ('should include our dashboard module', function() {
       expect(dependencyListHasModule('modules.dashboard')).toEqual(true);

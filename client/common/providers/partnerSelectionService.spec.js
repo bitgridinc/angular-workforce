@@ -6,7 +6,7 @@ describe('the factory used to associate partner organizations (e.g., laundromat)
       PARTNER_TYPE_TO_SELECT = 'gas',
       REMAINING_PARTNER_TYPES = ['food'];
 
-  beforeEach(module('modules.services'));
+  beforeEach(module('modules.providers'));
 
   beforeEach(inject(function (_PartnerSelectionFactory_) {
     factory = _PartnerSelectionFactory_;

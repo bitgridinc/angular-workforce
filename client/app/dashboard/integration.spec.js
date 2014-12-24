@@ -38,7 +38,7 @@ describe('the module managing the dashboard (integration)', function() {
       expect(dependencyListHasModule('modules.directives')).not.toEqual(true);
     });
     it('should not include our services module because the app module does', function() {
-      expect(dependencyListHasModule('modules.services')).not.toEqual(true);
+      expect(dependencyListHasModule('modules.providers')).not.toEqual(true);
     });
     it('should not include Leaflet directives; they should be wrapped by the Leaflet module', function() {
       expect(dependencyListHasModule('leaflet-directive')).not.toEqual(true);

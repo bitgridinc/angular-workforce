@@ -4,7 +4,7 @@ describe('the service that shares UI state of the dashboard between controllers'
   var dashboardUiState;
   var rootScope;
 
-  beforeEach(module('modules.services'));
+  beforeEach(module('modules.providers'));
 
   beforeEach(inject(function($rootScope, _DashboardUiState_) {
     dashboardUiState = _DashboardUiState_;

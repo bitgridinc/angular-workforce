@@ -4,7 +4,7 @@ describe('the pagination control state factory', function() {
   var factory,
       scope;
 
-  beforeEach(module('modules.services'));
+  beforeEach(module('modules.providers'));
   beforeEach(inject(function ($rootScope, _PaginationControl_) {
     scope = $rootScope.$new();
     factory = _PaginationControl_;

@@ -3,7 +3,7 @@
 describe('the service that authenticates a user and loads their organization profile', function() {
   var authenticationService;
 
-  beforeEach(module('modules.services'));
+  beforeEach(module('modules.providers'));
   beforeEach(inject(function(_AuthenticationService_) {
     authenticationService = _AuthenticationService_;
   }));

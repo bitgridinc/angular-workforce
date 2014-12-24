@@ -6,7 +6,7 @@ require('../bower_components/angular-ui-router/release/angular-ui-router.js');
 var _ = require('../bower_components/lodash/dist/lodash.js');
 
 require('../common/directives/_module_init.js');
-require('../common/services/_module_init.js');
+require('../common/providers/_module_init.js');
 
 require('./dashboard/_module.js');
 require('./profile/_module.js');
@@ -16,7 +16,7 @@ angular
       'ui.bootstrap',
       'ui.router',
       'modules.directives',
-      'modules.services',
+      'modules.providers',
       'modules.dashboard',
       'modules.profile'
     ]
@@ -51,8 +51,8 @@ angular
   )
   // This controller wires up the $rootScope for consumption by the entire application.
   .controller('AppController',
-    [         '$rootScope', 'AuthenticationService', 'RestService', 'socket',
-      function($rootScope,   AuthenticationService,   RestService,   socket) {
+    [         '$rootScope', 'socket',
+      function($rootScope,   socket) {
 
         $rootScope.organization = {};
         $rootScope.beacons = [];
