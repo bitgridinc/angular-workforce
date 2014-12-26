@@ -1,7 +1,6 @@
 "use strict";
 
 var db = require('./database');
-var helpers = require('../helpers');
 
 function save(id, value, callback) {
   console.log('save called', id, value);
@@ -39,7 +38,7 @@ module.exports = {
     var beacon = {
       id: beaconId,
       organization: organization,
-      title: helpers.toTitleCase(title),
+      title: title,
       description: description,
       lat: lat,
       lng: lng,
