@@ -1,4 +1,4 @@
-"use strict";
+/*"use strict";
 
 var db = require('./database');
 
@@ -47,4 +47,4 @@ module.exports = {
     };
     save(beaconId, beacon, callback);
   }
-};
+};*/

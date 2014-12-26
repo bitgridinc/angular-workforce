@@ -1,5 +1,5 @@
 var hapi = require('hapi');
-var controller = require('./controllers/everything');
+//var controller = require('./commented/controllers/everything');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
 
 // Constants
