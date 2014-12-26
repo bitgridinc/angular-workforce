@@ -28,6 +28,11 @@ angular
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
 
+        // TODO: Test as this is very important
+        if (DashboardUiState.currentlySelectedBeacon === undefined) {
+          $state.go('dashboard.mycompany.list');
+        }
+
         $scope.dashboardUiState = DashboardUiState;
 
         $scope.assistanceOffer = {
@@ -46,6 +51,7 @@ angular
         $scope.respond = function(assist) {
           console.log("You've responded to a beacon with", assist);
           if (assist) {
+            // TODO: Prevent responding to a null beacon
             RestService.offerAssistance($scope.dashboardUiState.currentlySelectedBeacon, $scope.assistanceOffer);
           }
           $state.go('^');

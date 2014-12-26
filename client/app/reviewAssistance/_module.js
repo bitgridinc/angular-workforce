@@ -25,6 +25,7 @@ angular
     [         '$scope', '$state', 'RestService', 'DashboardUiState', 'PaginationControl',
       function($scope,   $state,   RestService,   DashboardUiState,   PaginationControl) {
 
+        // TODO: Test as this is very important
         if (DashboardUiState.currentlySelectedBeacon.responses.length === 0) {
           $state.go('dashboard.mycompany.detail');
         }
