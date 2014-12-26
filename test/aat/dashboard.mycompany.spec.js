@@ -20,17 +20,17 @@ describe('having the My Company button toggled on', function() {
 
   describe('selecting the first beacon', function() {
     beforeEach(function() {
-      ptor.findElement(protractor.By.buttonText(SELECT_BEACON_TEXT)).click();
+      ptor.findElement(protractor.By.css('beacon-summary')).click();
     });
 
     it('should change the url', function() {
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/0');
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/');
     });
     it('should obscure the beacon list', function() {
       expect(ptor.isElementPresent(by.buttonText(CREATE_BEACON_TEXT))).toBeFalsy();
     });
     it('should still be visible to enable deselecting', function() {
-      expect(ptor.isElementPresent(by.buttonText(SELECT_BEACON_TEXT))).toBeTruthy();
+      ptor.findElement(protractor.By.css('beacon-summary'));
     });
   });
 
