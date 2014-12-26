@@ -3,8 +3,7 @@
 describe('having the My Company button toggled on', function() {
   var ptor,
       CREATE_BEACON_TEXT = 'Create Beacon',
-      SUBMIT_BEACON_TEXT = 'Submit Beacon',
-      SELECT_BEACON_TEXT = 'Select Beacon 0';
+      SUBMIT_BEACON_TEXT = 'Submit Beacon';
 
   beforeEach(function() {
     ptor = protractor.getInstance();
