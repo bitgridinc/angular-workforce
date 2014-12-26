@@ -3,12 +3,10 @@
 
 var io = require('./socketSetup').instance;
 var uuid = require('node-uuid');
-var generator = require('./generator');
+var stubbedDb = require('./stubbedDb');
 
 io.sockets.on('connection', function(socket){
-  socket.emit('init', {
-    name: generator.generateName()
-  });
+  socket.emit('init', stubbedDb.getOrganization());
 
   socket.on('send:request', function(request) {
     request.id = uuid.v4();

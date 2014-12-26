@@ -8,11 +8,13 @@ var names = [
 var nextName = 0;
 
 module.exports = {
-  generateName: function () {
+  getOrganization: function () {
     if (nextName >= names.length) {
       nextName = 0;
     }
 
-    return names[nextName++];
+    return {
+      name: names[nextName++]
+    };
   }
 };
