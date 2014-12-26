@@ -36,6 +36,11 @@ angular
         $scope.id = $stateParams.id;
         $scope.beacon = DashboardUiState.currentlySelectedBeacon;
 
+        // TODO: Test as this is very important
+        if (DashboardUiState.currentlySelectedBeacon === undefined) {
+          $state.go('dashboard.mycompany.list');
+        }
+
         $scope.onSelectBeacon = function () {
           $state.go('dashboard.mycompany.list');
         };
