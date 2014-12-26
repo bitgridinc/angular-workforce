@@ -1,7 +1,7 @@
 "use strict";
 
 var beaconDetailsLocators = function() {
-  this.selectBeacon = by.buttonText('Select Beacon 0');
+  this.selectBeacon = by.css('beacon-summary');
   this.offerAssistance = by.buttonText('Offer Assistance');
 };
 
