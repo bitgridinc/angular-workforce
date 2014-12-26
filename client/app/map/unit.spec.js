@@ -4,6 +4,7 @@ describe("the map module (unit)", function() {
   var scope,
       controller;
 
+  beforeEach(module("app"));
   beforeEach(module("modules.providers"));
   beforeEach(module("modules.map"));
   beforeEach(inject(function($rootScope, $controller) {
