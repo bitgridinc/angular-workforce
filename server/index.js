@@ -2,16 +2,13 @@ var hapi = require('hapi');
 //var controller = require('./commented/controllers/everything');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
 
-// Constants
 var PORT = 8080;
-
-// Create a server with a host, port, and options
 var server = new hapi.Server('0.0.0.0', PORT);
-
 require('./socketSetup')(server);
+
+// Note that this must come after server is passed to socketSetup above.
 require('./controllerSocket');
 
-// routes
 // TODO: Break out into a routes file
 server.route([
   /*{ method: 'GET', path: '/beacons', config: controller.getBeacons },
