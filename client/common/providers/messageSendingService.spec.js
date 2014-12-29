@@ -17,6 +17,6 @@ describe('the message sending service', function() {
 
     spyOn(socket, 'emit');
     provider.send(message, treeId, replyToId);
-    expect(socket.emit).toHaveBeenCalledWith('send:message', message, treeId, replyToId);
+    expect(socket.emit).toHaveBeenCalledWith('message', message, treeId, replyToId);
   });
 });

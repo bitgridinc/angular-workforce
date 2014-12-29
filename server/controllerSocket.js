@@ -7,7 +7,7 @@ var stubbedDb = require('./stubbedDb');
 
 io.sockets.on('connection', function(socket){
   socket.emit('init', stubbedDb.getOrganization());
-  socket.emit('send:request', {
+  socket.emit('message', {
     id: uuid.v4(),
     organization: {
       name: 'Macho Diggers'
@@ -18,10 +18,10 @@ io.sockets.on('connection', function(socket){
     lng: -77.0
   });
 
-  socket.on('send:request', function(request) {
-    request.id = uuid.v4();
+  socket.on('message', function(message, treeId, replyToId) {
+    message.id = uuid.v4();
 
     // This sends back to the sender as well
-    io.sockets.emit('send:request', request);
+    io.sockets.emit('message', message);
   });
 });

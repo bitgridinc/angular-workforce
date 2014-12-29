@@ -76,7 +76,8 @@ angular
           angular.copy(data, service.organization);
         });
 
-        socket.on('send:request', function(request) {
+        socket.on('message', function(request) {
+          console.log('message received over SocketIO');
           service.beacons.push(request);
         });
 

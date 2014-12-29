@@ -9,5 +9,4 @@ require('./dashboardUiState.js');
 require('./messageSendingService.js');
 require('./paginationControlFactory.js');
 require('./partnerSelectionService.js');
-require('./restService.js');
 require('./socketFactory.js');

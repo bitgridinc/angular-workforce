@@ -23,8 +23,8 @@ angular
     ]
   )
   .controller('OfferAssistanceController',
-    [         '$scope', '$state', 'DashboardUiState', 'RestService',
-      function($scope,   $state,   DashboardUiState,   RestService) {
+    [         '$scope', '$state', 'DashboardUiState', 'MessageSendingService',
+      function($scope,   $state,   DashboardUiState,   MessageSendingService) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
 
@@ -52,7 +52,8 @@ angular
           console.log("You've responded to a beacon with", assist);
           if (assist) {
             // TODO: Prevent responding to a null beacon
-            RestService.offerAssistance($scope.dashboardUiState.currentlySelectedBeacon, $scope.assistanceOffer);
+            // TODO: Implement treeId
+            MessageSendingService.send($scope.assistanceOffer, undefined, undefined);
           }
           $state.go('^');
         };
