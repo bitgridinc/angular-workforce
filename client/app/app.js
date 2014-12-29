@@ -53,6 +53,7 @@ angular
   .controller('AppController',
     [         '$rootScope', 'RequestService',
       function($rootScope,   RequestService) {
+        console.log('Tying RequestService into rootScope');
         $rootScope.requestService = RequestService;
       }
     ]
@@ -61,7 +62,8 @@ angular
     [         'socket',
       function(socket) {
         var service = {
-          organization: {},
+          allEntities: [],
+          currentEntity: {},
           beacons: [],
           getBeacon: function(id) {
             console.log('getBeacon called with:', id);
@@ -73,7 +75,8 @@ angular
 
         socket.on('init', function(data) {
           console.log('init called with', data);
-          angular.copy(data, service.organization);
+          angular.copy(data.allEntities, service.allEntities);
+          angular.copy(data.currentEntity, service.currentEntity);
         });
 
         socket.on('message', function(request) {

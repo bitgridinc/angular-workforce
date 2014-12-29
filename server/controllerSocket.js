@@ -6,7 +6,11 @@ var uuid = require('node-uuid');
 var stubbedDb = require('./stubbedDb');
 
 io.sockets.on('connection', function(socket){
-  socket.emit('init', stubbedDb.getOrganization());
+  socket.emit('init', {
+    allEntities: stubbedDb.getAllEntities(),
+    currentEntity: stubbedDb.getCurrentEntity()
+  });
+
   socket.emit('message', {
     id: uuid.v4(),
     organization: {
