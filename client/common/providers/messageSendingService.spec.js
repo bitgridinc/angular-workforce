@@ -11,12 +11,12 @@ describe('the message sending service', function() {
   }));
 
   it('should utilize SocketIO to send messages to the server', function() {
-    var treeId = "634",
-        replyToId = "8584",
-        message = {};
+    var message = {},
+        treeId = "634",
+        replyToId = "8584";
 
     spyOn(socket, 'emit');
-    provider.send(treeId, replyToId, message);
-    expect(socket.emit).toHaveBeenCalledWith('send:message', treeId, replyToId, message);
+    provider.send(message, treeId, replyToId);
+    expect(socket.emit).toHaveBeenCalledWith('send:message', message, treeId, replyToId);
   });
 });

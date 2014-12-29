@@ -3,18 +3,18 @@
 describe('the new beacon creation factory', function() {
   var scope,
       factory,
-      restService;
+      messageSendingService;
 
   beforeEach(module('modules.createBeacon'));
-  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, RestService) {
+  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, MessageSendingService) {
     scope = $rootScope.$new();
     factory = _NewBeaconFactory_;
-    restService = RestService;
+    messageSendingService = MessageSendingService;
   }));
   beforeEach(function () {
     spyOn(scope, '$on');
     factory.initScope(scope);
-    spyOn(restService, 'createBeacon');
+    spyOn(messageSendingService, 'send');
   });
 
   it ('should configure scope with the default values for a new project', function () {
@@ -40,20 +40,19 @@ describe('the new beacon creation factory', function() {
       scope.longitude = newLongitude;
     });
 
-    // TODO: Fix
-    /*describe ('the method to post a new beacon', function () {
+    describe ('the method to post a new beacon', function () {
       beforeEach(function () {
         factory.postNewBeacon();
       });
 
       it ('should pass the correct values', function () {
-        expect(restService.createBeacon).toHaveBeenCalledWith({
+        expect(messageSendingService.send).toHaveBeenCalledWith({
           title: newTitle,
           description: newDescription,
           lat: newLatitude,
           lng: newLongitude
         });
       });
-    });*/
+    });
   });
 });
