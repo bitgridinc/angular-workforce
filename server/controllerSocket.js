@@ -12,8 +12,8 @@ io.sockets.on('connection', function(socket){
   });
 
   socket.emit('message', {
-    id: uuid.v4(),
     message: {
+      id: uuid.v4(),
       title: 'Existing Title',
       description: 'Existing Description',
       lat: 38.9,
@@ -25,7 +25,7 @@ io.sockets.on('connection', function(socket){
   });
 
   socket.on('message', function(message, treeId, replyToId) {
-    message.id = uuid.v4();
+    message.message.id = uuid.v4();
 
     // This sends back to the sender as well
     io.sockets.emit('message', message);
