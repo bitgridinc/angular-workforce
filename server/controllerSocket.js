@@ -13,7 +13,7 @@ io.sockets.on('connection', function(socket){
 
   socket.emit('message', {
     message: {
-      id: uuid.v4(),
+      id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
       title: 'Existing Title',
       description: 'Existing Description',
       lat: 38.9,

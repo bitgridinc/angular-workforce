@@ -38,6 +38,7 @@ angular
 
         // TODO: Test as this is very important
         if (DashboardUiState.currentlySelectedBeacon === undefined) {
+          console.log('Error: currentlySelectedBeacon is undefined, backing up to list view');
           $state.go('dashboard.mycompany.list');
         }
 

@@ -66,7 +66,7 @@ angular
           currentEntity: {},
           beacons: [],
           getBeacon: function(id) {
-            console.log('getBeacon called with:', id);
+            console.log('getBeacon called with:', id, this.beacons.length);
             return _.find(this.beacons, function(beacon) {
               return beacon.id === id;
             });
