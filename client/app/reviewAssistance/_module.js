@@ -22,8 +22,8 @@ angular
   )
   // TODO: Mock backend so I can AAT this.
   .controller('ReviewAssistanceController',
-    [         '$scope', '$state', 'MessageSendingService', 'DashboardUiState', 'PaginationControl',
-      function($scope,   $state,   MessageSendingService,   DashboardUiState,   PaginationControl) {
+    [         '$scope', '$state', 'MessageSender', 'DashboardUiState', 'PaginationControl',
+      function($scope,   $state,   MessageSender,   DashboardUiState,   PaginationControl) {
 
         // TODO: Test as this is very important
         if (DashboardUiState.currentlySelectedBeacon.responses.length === 0) {
@@ -36,7 +36,7 @@ angular
           // TODO: This is garbage :P
           console.log("Offering this many people to help: ", $scope.currentItem.numResponders);
           // TODO: Implement treeId
-          MessageSendingService.send($scope.currentItem, undefined, undefined);
+          MessageSender.send($scope.currentItem, undefined, undefined);
         };
       }
     ]

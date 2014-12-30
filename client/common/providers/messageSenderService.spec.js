@@ -5,9 +5,9 @@ describe('the message sending service', function() {
       provider;
 
   beforeEach(module('modules.providers'));
-  beforeEach(inject(function(_socket_, _MessageSendingService_) {
+  beforeEach(inject(function(_socket_, _MessageSender_) {
     socket = _socket_;
-    provider = _MessageSendingService_;
+    provider = _MessageSender_;
   }));
 
   it('should utilize SocketIO to send messages to the server', function() {

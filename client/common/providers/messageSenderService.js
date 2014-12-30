@@ -1,7 +1,7 @@
 "use strict";
 
 require('./_module_init.js')
-  .service('MessageSendingService',
+  .service('MessageSender',
     [         'socket',
       function(socket) {
         return {
