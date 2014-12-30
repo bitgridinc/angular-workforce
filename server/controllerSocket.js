@@ -25,6 +25,7 @@ io.sockets.on('connection', function(socket){
   });
 
   socket.on('message', function(message, treeId, replyToId) {
+    // The id is the unique key used to handle selection in the UI
     message.message.id = uuid.v4();
 
     // This sends back to the sender as well
