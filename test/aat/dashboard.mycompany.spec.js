@@ -2,8 +2,7 @@
 
 describe('having the My Company button toggled on', function() {
   var ptor,
-      CREATE_BEACON_TEXT = 'Create Beacon',
-      SUBMIT_BEACON_TEXT = 'Submit Beacon';
+      CREATE_BEACON_TEXT = 'Create Beacon';
 
   beforeEach(function() {
     ptor = protractor.getInstance();
@@ -12,9 +11,6 @@ describe('having the My Company button toggled on', function() {
 
   it('should display the user\'s beacon summary list', function() {
     expect(element(by.buttonText(CREATE_BEACON_TEXT)).isDisplayed()).toBeTruthy();
-  });
-  it('should not be displaying create beacon view', function() {
-    expect(ptor.isElementPresent(by.buttonText(SUBMIT_BEACON_TEXT))).toBeFalsy();
   });
 
   describe('selecting the first beacon', function() {
