@@ -10,12 +10,13 @@
     overflow: hidden;
     border: 1px solid red;
 }
-.footer {
-    height: 300px;
+.map {
+    height: 100%;
     position: absolute;
     bottom: 0;
     left: 0;
     border: 1px solid green;
+    z-index: -100;
 }
 
 /* The Create Beacon button is transparent */
