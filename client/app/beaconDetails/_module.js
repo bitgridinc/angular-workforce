@@ -37,10 +37,10 @@ angular
         $scope.beacon = DashboardUiState.currentlySelectedBeacon;
 
         // TODO: Test as this is very important
-        if (DashboardUiState.currentlySelectedBeacon === undefined) {
+        /*if (DashboardUiState.currentlySelectedBeacon === undefined) {
           console.log('Error: currentlySelectedBeacon is undefined, backing up to list view');
           $state.go('dashboard.mycompany.list');
-        }
+        }*/
 
         $scope.onSelectBeacon = function () {
           $state.go('dashboard.mycompany.list');
@@ -52,6 +52,10 @@ angular
 
         $scope.onReviewAssistance = function () {
           $state.go('dashboard.mycompany.detail.review');
+        };
+
+        $scope.onGoBack = function () {
+          $state.go('dashboard.mycompany.list');
         };
       }
     ]

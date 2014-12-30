@@ -1,5 +1,5 @@
 <h4>Beacon Details</h4>
-<div>
+<div ng-show="beacon">
     <beacon-summary beacon="beacon" on-select-beacon="onSelectBeacon" on-review-assistance="onReviewAssistance"></beacon-summary>
     <div>
         <label>id:</label>
@@ -23,8 +23,13 @@
     <div class="form-group">
         <label>Location:</label>({{beacon.lat}}, {{beacon.lng}})
     </div>
-
     <button class="btn btn-sm btn-default" type="button" ng-click="onOfferAssistance()">
         Offer Assistance
+    </button>
+</div>
+<div ng-show="!beacon">
+    We were unable to locate the beacon you requested.
+    <button class="btn btn-sm btn-default" type="button" ng-click="onGoBack()">
+        Go Back
     </button>
 </div>
