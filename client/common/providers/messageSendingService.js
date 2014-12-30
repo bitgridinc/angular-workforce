@@ -5,8 +5,9 @@ require('./_module_init.js')
     [         'socket',
       function(socket) {
         return {
-          send: function(message, treeId, replyToId) {
-            socket.emit('message', message, treeId, replyToId);
+          send: function(message) {
+            console.log('Sending message:', message);
+            socket.emit('message', message);
           }
         };
       }

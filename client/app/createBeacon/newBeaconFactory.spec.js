@@ -3,18 +3,19 @@
 describe('the new beacon creation factory', function() {
   var scope,
       factory,
+      messagePacketizer,
       messageSendingService;
 
   beforeEach(module('modules.createBeacon'));
-  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, MessageSendingService) {
+  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, MessagePacketizer, MessageSendingService) {
     scope = $rootScope.$new();
     factory = _NewBeaconFactory_;
+    messagePacketizer = MessagePacketizer;
     messageSendingService = MessageSendingService;
   }));
   beforeEach(function () {
     spyOn(scope, '$on');
     factory.initScope(scope);
-    spyOn(messageSendingService, 'send');
   });
 
   it ('should configure scope with the default values for a new project', function () {
@@ -41,17 +42,24 @@ describe('the new beacon creation factory', function() {
     });
 
     describe ('the method to post a new beacon', function () {
+      var packetizedMessage = {
+        title: newTitle,
+        description: newDescription,
+        lat: newLatitude,
+        lng: newLongitude
+      };
+
       beforeEach(function () {
+        spyOn(messagePacketizer, 'packetize').and.returnValue(packetizedMessage);
+        spyOn(messageSendingService, 'send');
         factory.postNewBeacon();
       });
 
-      it ('should pass the correct values', function () {
-        expect(messageSendingService.send).toHaveBeenCalledWith({
-          title: newTitle,
-          description: newDescription,
-          lat: newLatitude,
-          lng: newLongitude
-        });
+      it ('should pass the scoped values to the packetizer', function () {
+        expect(messagePacketizer.packetize).toHaveBeenCalledWith(packetizedMessage);
+      });
+      it ('should pass the packetized message data to the socket', function () {
+        expect(messageSendingService.send).toHaveBeenCalledWith(packetizedMessage);
       });
     });
   });

@@ -40,8 +40,8 @@ angular
     ]
   )
   .factory('NewBeaconFactory',
-    [         'MessageSendingService',
-      function(MessageSendingService) {
+    [         'MessagePacketizer', 'MessageSendingService',
+      function(MessagePacketizer,   MessageSendingService) {
         var scope;
         return {
           initScope: function ($scope) {
@@ -60,13 +60,13 @@ angular
             scope.longitude = clickArgs.leafletEvent.latlng.lng;
           },
           postNewBeacon : function () {
-            var beaconData = {
+            var message = MessagePacketizer.packetize({
               title: scope.title,
               description: scope.description,
               lat: scope.latitude,
               lng: scope.longitude
-            };
-            MessageSendingService.send(beaconData);
+            });
+            MessageSendingService.send(message);
           }
         };
       }
