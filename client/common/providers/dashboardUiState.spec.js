@@ -25,14 +25,11 @@ describe('the service that shares UI state of the dashboard between controllers'
   });
 
   describe('the method called when the user toggles the selection of a beacon', function() {
-    it('should be defined', function() {
-      expect(dashboardUiState.toggleBeaconSelection).toBeDefined();
-    });
     it('should set the currently displayed beacon to undefined when it is called', function() {
       var beacon = {};
-      dashboardUiState.toggleBeaconSelection(beacon);
+      dashboardUiState.focusBeaconId(beacon);
       expect(dashboardUiState.currentlySelectedBeacon).toBe(beacon);
-      dashboardUiState.toggleBeaconSelection(beacon);
+      dashboardUiState.focusBeaconId(beacon);
       expect(dashboardUiState.currentlySelectedBeacon).toBe(undefined);
     });
   });

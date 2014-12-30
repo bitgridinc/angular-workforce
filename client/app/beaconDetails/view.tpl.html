@@ -1,33 +1,33 @@
 <h4>Beacon Details</h4>
-<div ng-show="beacon">
-    <beacon-summary beacon="beacon" on-select-beacon="onSelectBeacon" on-review-assistance="onReviewAssistance"></beacon-summary>
+<div ng-show="selectionState.currentBeacon">
+    <beacon-summary beacon="selectionState.currentBeacon" on-select-beacon="onSelectBeacon" on-review-assistance="onReviewAssistance"></beacon-summary>
     <div>
         <label>id:</label>
-        {{beacon.id}}
+        {{selectionState.currentBeacon.id}}
     </div>
     <div>
         <label>Job Title:</label>
-        {{beacon.title}}
+        {{selectionState.currentBeacon.title}}
     </div>
     <div class="form-group">
         <label>Job Description:</label><br/>
-        {{beacon.description}}
+        {{selectionState.currentBeacon.description}}
     </div>
-    <div ng-show="beacon.acceptedAssistance">
-        <accepted-assistance-summary accepted-assistance="beacon.acceptedAssistance"></accepted-assistance-summary>
+    <div ng-show="selectionState.currentBeacon.acceptedAssistance">
+        <accepted-assistance-summary accepted-assistance="selectionState.currentBeacon.acceptedAssistance"></accepted-assistance-summary>
     </div>
     <div class="form-group">
         <label>Your Organization:</label><br/>
-        <organization-label organization="beacon.organization"></organization-label>
+        <organization-label organization="selectionState.currentBeacon.organization"></organization-label>
     </div>
     <div class="form-group">
-        <label>Location:</label>({{beacon.lat}}, {{beacon.lng}})
+        <label>Location:</label>({{selectionState.currentBeacon.lat}}, {{selectionState.currentBeacon.lng}})
     </div>
     <button class="btn btn-sm btn-default" type="button" ng-click="onOfferAssistance()">
         Offer Assistance
     </button>
 </div>
-<div ng-show="!beacon">
+<div ng-show="!selectionState.currentBeacon">
     We were unable to locate the beacon you requested.
     <button class="btn btn-sm btn-default" type="button" ng-click="onGoBack()">
         Go Back
