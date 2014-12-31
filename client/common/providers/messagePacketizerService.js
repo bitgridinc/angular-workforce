@@ -5,12 +5,11 @@ require('./_module_init.js')
     [         '$rootScope',
       function($rootScope) {
         return {
-          packetize: function(contents, rootMessageId, replyToId) {
+          packetize: function(contents, rootMessageId) {
             return {
               contents: contents,
               senderId: $rootScope.requestService.currentEntity.id,
-              rootMessageId: rootMessageId,
-              replyToId: replyToId
+              rootMessageId: rootMessageId
             };
           }
         };
