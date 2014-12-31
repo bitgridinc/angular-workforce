@@ -1,7 +1,11 @@
 "use strict";
 
 angular
-  .module('modules.offerAssistance', [])
+  .module('modules.offerAssistance', [
+      'ui.router',
+      'modules.providers'
+    ]
+  )
   .config(
     [         '$stateProvider',
       function($stateProvider) {
