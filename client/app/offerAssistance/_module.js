@@ -23,18 +23,11 @@ angular
     ]
   )
   .controller('OfferAssistanceController',
-    [         '$scope', '$state', 'DashboardUiState', 'MessageSender',
-      function($scope,   $state,   DashboardUiState,   MessageSender) {
+    [         '$scope', '$rootScope', '$state', 'MessageSender',
+      function($scope,   $rootScope,   $state,   MessageSender) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
-
-        // TODO: Test as this is very important
-        if (DashboardUiState.currentlySelectedBeacon === undefined) {
-          $state.go('dashboard.mycompany.list');
-        }
-
-        $scope.dashboardUiState = DashboardUiState;
-
+        $scope.selectionState = $rootScope.selectionState;
         $scope.assistanceOffer = {
           numResponders: 2,
           arrivalDate: new Date()
