@@ -8,11 +8,9 @@ require('./_module_init.js')
           packetize: function(message, treeId, replyToId) {
             return {
               contents: message,
-              metadata: {
-                senderId: $rootScope.requestService.currentEntity.id,
-                treeId: treeId,
-                replyToId: replyToId
-              }
+              senderId: $rootScope.requestService.currentEntity.id,
+              treeId: treeId,
+              replyToId: replyToId
             };
           }
         };

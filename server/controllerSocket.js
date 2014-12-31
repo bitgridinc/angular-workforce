@@ -19,9 +19,7 @@ io.sockets.on('connection', function(socket){
       lat: 38.9,
       lng: -77.0
     },
-    metadata: {
-      senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
-    }
+    senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
   });
 
   socket.on('message', function(message, treeId, replyToId) {

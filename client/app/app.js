@@ -78,7 +78,7 @@ angular
           // We don't want to send copies of the same entity with every message it sends. This matches up the entity
           // based on the senderId property.
           request.contents.organization = _.find(service.allEntities, function(entity) {
-            return entity.id === request.metadata.senderId;
+            return entity.id === request.senderId;
           });
           service.beacons.push(request.contents);
         });
