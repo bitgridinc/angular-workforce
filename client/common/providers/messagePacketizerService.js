@@ -7,7 +7,7 @@ require('./_module_init.js')
         return {
           packetize: function(message, treeId, replyToId) {
             return {
-              message: message,
+              contents: message,
               metadata: {
                 senderId: $rootScope.requestService.currentEntity.id,
                 treeId: treeId,

@@ -12,7 +12,7 @@ io.sockets.on('connection', function(socket){
   });
 
   socket.emit('message', {
-    message: {
+    contents: {
       id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
       title: 'Existing Title',
       description: 'Existing Description',
@@ -25,10 +25,15 @@ io.sockets.on('connection', function(socket){
   });
 
   socket.on('message', function(message, treeId, replyToId) {
-    // The id is the unique key used to handle selection in the UI
-    message.message.id = uuid.v4();
+    if (message.contents === null || message.contents === undefined) {
+      console.log('Message didn\'t contain a contents property. Ignoring message.');
+    }
+    else {
+      // The id is the unique key used to handle selection in the UI
+      message.contents.id = uuid.v4();
 
-    // This sends back to the sender as well
-    io.sockets.emit('message', message);
+      // This sends back to the sender as well
+      io.sockets.emit('message', message);
+    }
   });
 });
