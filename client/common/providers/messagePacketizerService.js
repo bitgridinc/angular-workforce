@@ -6,11 +6,13 @@ require('./_module_init.js')
       function($rootScope) {
         return {
           packetize: function(contents, rootMessageId) {
-            return {
+            var packetizedMessage = {
               contents: contents,
               senderId: $rootScope.requestService.currentEntity.id,
               rootMessageId: rootMessageId
             };
+            console.log('Packetized:', packetizedMessage);
+            return packetizedMessage;
           }
         };
       }

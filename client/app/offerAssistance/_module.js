@@ -23,8 +23,8 @@ angular
     ]
   )
   .controller('OfferAssistanceController',
-    [         '$scope', '$rootScope', '$state', 'MessageSender',
-      function($scope,   $rootScope,   $state,   MessageSender) {
+    [         '$scope', '$rootScope', '$state', 'MessagePacketizer', 'MessageSender',
+      function($scope,   $rootScope,   $state,   MessagePacketizer,   MessageSender) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
         $scope.selectionState = $rootScope.selectionState;
@@ -45,8 +45,8 @@ angular
           console.log("You've responded to a beacon with", assist);
           if (assist) {
             // TODO: Prevent responding to a null beacon
-            // TODO: Implement treeId
-            MessageSender.send($scope.assistanceOffer, undefined, undefined);
+            var message = MessagePacketizer.packetize($scope.assistanceOffer, $scope.selectionState.currentBeacon.id);
+            MessageSender.send(message);
           }
           $state.go('^');
         };
