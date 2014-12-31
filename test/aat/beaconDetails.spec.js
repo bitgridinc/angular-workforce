@@ -15,7 +15,7 @@ describe('the beacon details view', function() {
     beaconDetailsLocators = new BeaconDetailsLocators();
   });
 
-  it('should navigate to the populated details page', function() {
+  it('should display a populated details page', function() {
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/e688af0b-63df-48bc-941c-9cc5f750367b');
     expect(ptor.isElementPresent(beaconDetailsLocators.selectBeacon)).toBeTruthy();
     expect(ptor.isElementPresent(beaconDetailsLocators.offerAssistance)).toBeTruthy();

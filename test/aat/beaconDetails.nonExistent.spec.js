@@ -15,11 +15,11 @@ describe('viewing beacon details on an invalid beacon', function() {
     beaconDetailsLocators = new BeaconDetailsLocators();
   });
 
-  it('should remain on the details url', function() {
+  it('should display an error page', function() {
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/99999non-exis-tent-9999-999999999999');
-  });
-  it('should display a message to the user that the beacon could not be found', function() {
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/99999non-exis-tent-9999-999999999999');
+    expect(ptor.isElementPresent(beaconDetailsLocators.goBack)).toBeTruthy();
+    expect(element(beaconDetailsLocators.selectBeacon).isDisplayed()).toBeFalsy();
+    expect(element(beaconDetailsLocators.offerAssistance).isDisplayed()).toBeFalsy();
   });
 
   describe('the go back button', function() {
