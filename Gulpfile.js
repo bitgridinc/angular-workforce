@@ -29,7 +29,7 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('develop', ['browserify', 'hint'], function () {
-  nodemon({ script: 'server/index.js', ext: 'js', ignore: [BUNDLE] })
+  nodemon({ script: 'server/index.js', ext: 'js html', ignore: [BUNDLE] })
     .on('change', ['browserify', 'hint'])
     .on('restart', function () {
       console.log('restarted!')
