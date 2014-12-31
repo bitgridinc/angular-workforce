@@ -27,6 +27,10 @@ angular
 
               // TODO: Enable selecting current beacon by id
               $rootScope.currentBeaconId = $stateParams.id;
+
+              // TODO: This could make the dependency of SelectionService being instantiated more clear
+              //SelectionService.watchId($stateParams);
+
               //DashboardUiState.focusBeaconId($stateParams.id);
             },
             onExit: function($rootScope) {
