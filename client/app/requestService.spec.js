@@ -33,13 +33,15 @@ describe('the service that wraps SocketIO', function() {
   });
 
   describe('after init has been received', function() {
+    var currentEntity;
     beforeEach(function() {
+      currentEntity = {
+        name: 'Macho Diggers',
+        id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
+      };
       initCallback({
         allEntities: [
-          {
-            name: 'Macho Diggers',
-            id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
-          },
+          currentEntity,
           {
             name: 'Determined Douchebags',
             id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
@@ -49,10 +51,7 @@ describe('the service that wraps SocketIO', function() {
             id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
           }
         ],
-        currentEntity: {
-          name: 'Macho Diggers',
-          id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
-        }
+        currentEntity: currentEntity
       });
     });
 
@@ -60,13 +59,21 @@ describe('the service that wraps SocketIO', function() {
       expect($rootScope.requestService.allEntities.length).toBe(3);
       expect($rootScope.requestService.allEntities[0]).toEqual($rootScope.requestService.currentEntity);
     });
+    it ('should error if the incoming message does not specify the sender, contents, or is completely empty', function () {
+      expect(function() { messageCallback({ contents: {} }); }).toThrow();
+      expect(function() { messageCallback({ senderId: '1' }); }).toThrow();
+      expect(function() { messageCallback(null); }).toThrow();
+      expect(function() { messageCallback(undefined); }).toThrow();
+    });
     it ('should add incoming messages to the list of beacons', function () {
       var request = {
-        contents: {}
+        contents: {},
+        senderId: currentEntity.id
       };
       expect($rootScope.requestService.beacons.length).toBe(0);
       messageCallback(request);
       expect($rootScope.requestService.beacons[0]).toBe(request.contents);
+      expect($rootScope.requestService.beacons[0].organization).toEqual(currentEntity);
     });
   });
 });
