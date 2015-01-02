@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the dashboard page', function() {
+describe('the main dashboard', function() {
   var ptor;
 
   beforeEach(function() {
@@ -20,27 +20,23 @@ describe('the dashboard page', function() {
   });*/
 
   // This is hackish since I couldn't get the line By.tagName('leaflet') to work...
-  it('should have a leaflet element', function() {
+  it('should display a map', function() {
     ptor.findElement(protractor.By.id('leaflet'));
   });
-  it('should not be displaying the user\'s beacon summary list', function() {
+  it('should not have the list of beacons open by default', function() {
     expect(ptor.isElementPresent(by.buttonText('Create Beacon'))).toBeFalsy();
   });
 
-  describe('the My Company button', function() {
-    it('should change the url when clicked', function() {
-      var button = ptor.findElement(protractor.By.buttonText('My\nCompany'));
-      button.click();
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
-      button.click();
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard');
-    });
+  it('should open the list of beacons when the My Company button is clicked', function() {
+    var button = ptor.findElement(protractor.By.buttonText('My\nCompany'));
+    button.click();
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
+    button.click();
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard');
   });
 
-  describe('the My Profile button', function() {
-    it('should change the url when clicked', function() {
-      ptor.findElement(protractor.By.buttonText('My\nProfile')).click();
-      expect(browser.getCurrentUrl()).toContain('/#/profile');
-    });
+  it('should display a button that the user can click to view their profile', function() {
+    ptor.findElement(protractor.By.buttonText('My\nProfile')).click();
+    expect(browser.getCurrentUrl()).toContain('/#/profile');
   });
 });
