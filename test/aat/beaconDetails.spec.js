@@ -2,7 +2,7 @@
 
 var BeaconDetailsLocators = require('./beaconDetails.locators.js');
 
-describe('the beacon details view', function() {
+describe('the view that displays the details of a particular beacon', function() {
   var ptor,
       beaconDetailsLocators;
 
@@ -15,25 +15,15 @@ describe('the beacon details view', function() {
     beaconDetailsLocators = new BeaconDetailsLocators();
   });
 
-  it('should display a populated details page', function() {
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/e688af0b-63df-48bc-941c-9cc5f750367b');
-    expect(ptor.isElementPresent(beaconDetailsLocators.selectBeacon)).toBeTruthy();
-    expect(ptor.isElementPresent(beaconDetailsLocators.offerAssistance)).toBeTruthy();
+  it('should display a summary of the beacon where clicking it is the only way to navigate back to the list of beacons', function() {
     expect(element(beaconDetailsLocators.goBack).isDisplayed()).toBeFalsy();
+    ptor.findElement(beaconDetailsLocators.selectBeacon).click();
+    expect(browser.getCurrentUrl()).not.toContain('/detail/e688af0b-63df-48bc-941c-9cc5f750367b');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
   });
 
-  describe('the select beacon summary card', function() {
-    it('should navigate back to the list when clicked', function() {
-      ptor.findElement(beaconDetailsLocators.selectBeacon).click();
-      expect(browser.getCurrentUrl()).not.toContain('/detail/e688af0b-63df-48bc-941c-9cc5f750367b');
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
-    });
-  });
-
-  describe('the offer assistance button', function() {
-    it('should navigate to the offer assistance view', function() {
-      ptor.findElement(beaconDetailsLocators.offerAssistance).click();
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/e688af0b-63df-48bc-941c-9cc5f750367b/assist');
-    });
+  it('should display a button that allows the user to offer assistance to the sender of the beacon', function() {
+    ptor.findElement(beaconDetailsLocators.offerAssistance).click();
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/e688af0b-63df-48bc-941c-9cc5f750367b/assist');
   });
 });
