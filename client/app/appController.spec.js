@@ -61,7 +61,7 @@ describe('the service that wraps SocketIO', function() {
     });
     it ('should error if the incoming message does not specify the sender, contents, or is completely empty', function () {
       expect(function() { messageCallback({ contents: {} }); }).toThrow();
-      expect(function() { messageCallback({ senderId: '1' }); }).toThrow();
+      expect(function() { messageCallback({ senderId: currentEntity.id }); }).toThrow();
       expect(function() { messageCallback(null); }).toThrow();
       expect(function() { messageCallback(undefined); }).toThrow();
     });
