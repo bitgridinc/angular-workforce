@@ -22,15 +22,11 @@ angular
   )
   // TODO: Mock backend so I can AAT this.
   .controller('ReviewAssistanceController',
-    [         '$scope', '$state', 'MessageSender', 'DashboardUiState', 'PaginationControl',
-      function($scope,   $state,   MessageSender,   DashboardUiState,   PaginationControl) {
+    [         '$scope', '$state', 'MessageSender', 'PaginationControl',
+      function($scope,   $state,   MessageSender,   PaginationControl) {
 
-        // TODO: Test as this is very important
-        if (DashboardUiState.currentlySelectedBeacon.responses.length === 0) {
-          $state.go('dashboard.mycompany.detail');
-        }
-
-        PaginationControl.initScope($scope, DashboardUiState.currentlySelectedBeacon.responses);
+        // TODO: Pass responded instead of the empty array
+        PaginationControl.initScope($scope, []);
 
         $scope.acceptAssistance = function () {
           // TODO: This is garbage :P

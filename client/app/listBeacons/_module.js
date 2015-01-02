@@ -21,12 +21,10 @@ angular
     ]
   )
   .controller('ListBeaconsController',
-    [         '$scope',  '$rootScope', '$state', 'DashboardUiState',
-      function($scope,    $rootScope,   $state,   DashboardUiState) {
+    [         '$scope',  '$rootScope', '$state',
+      function($scope,    $rootScope,   $state) {
         // For debugging purposes
         $scope.name = 'ListBeaconsController';
-
-        $scope.dashboardUiState = DashboardUiState;
         $scope.beacons = $rootScope.requestService.beacons;
 
         // We don't require logic for backing up as the Create Beacon view covers this functionality

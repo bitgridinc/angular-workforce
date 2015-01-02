@@ -30,13 +30,10 @@ angular
 
               // TODO: This could make the dependency of SelectionService being instantiated more clear
               //SelectionService.watchId($stateParams);
-
-              //DashboardUiState.focusBeaconId($stateParams.id);
             },
             onExit: function($rootScope) {
               console.log("Exiting dashboard.mycompany.detail");
               $rootScope.currentBeaconId = undefined;
-              //DashboardUiState.focusBeaconId(undefined);
             }
           });
       }
@@ -47,7 +44,6 @@ angular
       function($scope,   $rootScope,   $state,   $stateParams,   SelectionService) {
         $scope.id = $stateParams.id;
         $scope.selectionState = $rootScope.selectionState;
-        //$scope.DashboardUiState = DashboardUiState;
         //$scope.SelectionService = SelectionService;
 
         $scope.onSelectBeacon = function () {
