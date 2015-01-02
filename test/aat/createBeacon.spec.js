@@ -2,7 +2,7 @@
 
 var CreateBeaconLocators = require('./createBeacon.locators.js');
 
-describe('the /#/dashboard/mycompany/create route', function() {
+describe('the page used to create a new beacon', function() {
   var ptor,
       createBeaconLocators;
 
@@ -15,11 +15,9 @@ describe('the /#/dashboard/mycompany/create route', function() {
     createBeaconLocators = new CreateBeaconLocators();
   });
 
-  describe('the Submit Beacon button', function() {
-    it('should change the url when clicked', function() {
-      ptor.findElement(createBeaconLocators.submitButton).click();
-      expect(browser.getCurrentUrl()).not.toContain('/create');
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
-    });
+  it('should have a Submit Beacon button that navigates to the list of beacons when clicked', function() {
+    ptor.findElement(createBeaconLocators.submitButton).click();
+    expect(browser.getCurrentUrl()).not.toContain('/create');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
   });
 });
