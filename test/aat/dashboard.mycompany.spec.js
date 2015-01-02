@@ -1,6 +1,6 @@
 "use strict";
 
-describe('having the My Company button toggled on', function() {
+describe('having the My Company button clicked to view the list of existing beacons', function() {
   var ptor,
       CREATE_BEACON_TEXT = 'Create Beacon';
 
@@ -9,36 +9,20 @@ describe('having the My Company button toggled on', function() {
     ptor.get('/#/dashboard/mycompany');
   });
 
-  it('should display the user\'s beacon summary list', function() {
-    expect(element(by.buttonText(CREATE_BEACON_TEXT)).isDisplayed()).toBeTruthy();
+  it('should display a button to create a new beacon', function() {
+    ptor.findElement(protractor.By.buttonText(CREATE_BEACON_TEXT)).click();
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/create');
+    // Note that we don't have logic for clicking the Create Beacon button twice, so it shouldn't be clickable.
+    expect(ptor.isElementPresent(by.buttonText(CREATE_BEACON_TEXT))).toBeFalsy();
   });
 
-  describe('selecting the first beacon', function() {
+  describe('clicking an existing beacon', function() {
     beforeEach(function() {
       ptor.findElement(protractor.By.css('beacon-summary')).click();
     });
 
-    it('should change the url', function() {
+    it('should expand the beacon to view its details', function() {
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/');
-    });
-    it('should obscure the beacon list', function() {
-      expect(ptor.isElementPresent(by.buttonText(CREATE_BEACON_TEXT))).toBeFalsy();
-    });
-    it('should still be visible to enable deselecting', function() {
-      ptor.findElement(protractor.By.css('beacon-summary'));
-    });
-  });
-
-  describe('clicking the Create Beacon button', function() {
-    beforeEach(function() {
-      ptor.findElement(protractor.By.buttonText(CREATE_BEACON_TEXT)).click();
-    });
-
-    it('should change the url', function() {
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/create');
-    });
-    it('should obscure itself', function() {
-      // Note that we don't have logic for clicking the Create Beacon button twice, so it shouldn't be clickable.
       expect(ptor.isElementPresent(by.buttonText(CREATE_BEACON_TEXT))).toBeFalsy();
     });
   });
