@@ -20,10 +20,9 @@ describe('the offer assistance view', function() {
     expect(element(by.text('has requested')).isPresent()).toBeTruthy();
   });*/
 
-  describe('the assist button', function() {
-    it('should change the url when clicked', function() {
-      ptor.findElement(offerAssistanceLocators.assistButton).click();
-      expect(browser.getCurrentUrl()).not.toContain('/assist');
-    });
+  it('should have a button to send the offer of assistance', function() {
+    ptor.findElement(offerAssistanceLocators.assistButton).click();
+    expect(browser.getCurrentUrl()).not.toContain('/assist');
+    // TODO: Ensure it shows up on the UI
   });
 });

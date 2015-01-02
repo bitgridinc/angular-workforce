@@ -8,10 +8,8 @@ describe('the profile page', function() {
     ptor.get('/#/profile');
   });
 
-  describe('the Save button', function() {
-    it('should change the url when clicked', function() {
-      ptor.findElement(protractor.By.buttonText('Save')).click();
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard');
-    });
+  it('should have a button for saving changes and navigating back to the dashboard', function() {
+    ptor.findElement(protractor.By.buttonText('Save')).click();
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard');
   });
 });
