@@ -78,7 +78,9 @@ angular
 
           if (angular.isUndefined(request) ||
               angular.isUndefined(request.senderId) ||
-              angular.isUndefined(request.contents)) {
+              angular.isUndefined(request.rootMessageId) ||
+              angular.isUndefined(request.contents) ||
+              angular.isUndefined(request.contents.id)) {
             throw new Error('Invalid request');
           }
 
@@ -88,7 +90,14 @@ angular
             return entity.id === request.senderId;
           });
 
-          service.beacons.push(request.contents);
+          if (angular.equals(request.contents.id, request.rootMessageId)) {
+            request.contents.responses = [];
+            service.beacons.push(request.contents);
+          } else {
+            _.find(service.beacons, function(beacon) {
+              return beacon.id === request.rootMessageId;
+            }).responses.push(request.contents);
+          }
         });
 
         return service;
