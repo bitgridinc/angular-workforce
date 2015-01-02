@@ -2,7 +2,7 @@
 
 var BeaconDetailsLocators = require('./beaconDetails.locators.js');
 
-describe('viewing beacon details on an invalid beacon', function() {
+describe('trying to view the details of a non-existent beacon', function() {
   var ptor,
       beaconDetailsLocators;
 
@@ -22,11 +22,9 @@ describe('viewing beacon details on an invalid beacon', function() {
     expect(element(beaconDetailsLocators.offerAssistance).isDisplayed()).toBeFalsy();
   });
 
-  describe('the go back button', function() {
-    it('should change the url when clicked', function() {
-      ptor.findElement(beaconDetailsLocators.goBack).click();
-      expect(browser.getCurrentUrl()).not.toContain('/detail/99999non-exis-tent-9999-999999999999');
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
-    });
+  it('should provide a Go Back button to go back to the list of beacons', function() {
+    ptor.findElement(beaconDetailsLocators.goBack).click();
+    expect(browser.getCurrentUrl()).not.toContain('/detail/99999non-exis-tent-9999-999999999999');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
   });
 });
