@@ -19,7 +19,17 @@ io.sockets.on('connection', function(socket){
       lat: 38.9,
       lng: -77.0
     },
-    senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
+    senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84', // Macho Diggers
+    rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+  });
+  socket.emit('message', {
+    contents: {
+      id: '2cf8faaa-5760-41c9-adbf-5a4482ac3469',
+      numResponders: 4,
+      arrivalDate: new Date()
+    },
+    senderId: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69', // Determined Douchebags
+    rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
   });
 
   socket.on('message', function(message, treeId, replyToId) {
