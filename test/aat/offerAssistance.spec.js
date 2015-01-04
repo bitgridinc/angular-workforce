@@ -23,6 +23,7 @@ describe('the offer assistance view', function() {
   it('should have a button to send the offer of assistance', function() {
     ptor.findElement(offerAssistanceLocators.assistButton).click();
     expect(browser.getCurrentUrl()).not.toContain('/assist');
+    expect(browser.getCurrentUrl()).not.toContain('/detail');
     // TODO: Ensure it shows up on the UI
   });
 });
