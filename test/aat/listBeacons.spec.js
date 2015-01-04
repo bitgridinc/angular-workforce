@@ -31,4 +31,9 @@ describe('having the My Company button clicked to view the list of existing beac
       expect(ptor.isElementPresent(locators.createBeaconButton)).toBeFalsy();
     });
   });
+
+  it('should allow the user to review offers of assistance without having to view the beacon details first', function() {
+    ptor.findElement(locators.reviewOffersButton).click();
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/e688af0b-63df-48bc-941c-9cc5f750367b/review');
+  });
 });
