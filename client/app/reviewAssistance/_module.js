@@ -22,12 +22,17 @@ angular
   )
   // TODO: Mock backend so I can AAT this.
   .controller('ReviewAssistanceController',
-    [         '$scope', '$state', 'MessageSender', 'PaginationControl',
-      function($scope,   $state,   MessageSender,   PaginationControl) {
+    [         '$scope', '$rootScope', '$state', 'MessageSender', 'PaginationControl',
+      function($scope,   $rootScope,   $state,   MessageSender,   PaginationControl) {
         console.log('Entering ReviewAssistanceController');
 
-        // TODO: Pass responded instead of the empty array
-        PaginationControl.initScope($scope, []);
+        // TODO: The if statement must be tested
+        $rootScope.$watchCollection('selectionState.currentBeacon.responses', function(newValue) {
+          console.log('selectionState.currentBeacon.responses changed', newValue);
+          if (angular.isDefined(newValue) && newValue.length > 0) {
+            PaginationControl.initScope($scope, newValue);
+          }
+        });
 
         $scope.acceptAssistance = function () {
           // TODO: This is garbage :P
