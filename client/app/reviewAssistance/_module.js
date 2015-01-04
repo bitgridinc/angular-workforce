@@ -24,7 +24,8 @@ angular
   .controller('ReviewAssistanceController',
     [         '$scope', '$state', 'MessageSender', 'PaginationControl',
       function($scope,   $state,   MessageSender,   PaginationControl) {
-
+        console.log('Entering ReviewAssistanceController');
+        
         // TODO: Pass responded instead of the empty array
         PaginationControl.initScope($scope, []);
 

@@ -29,15 +29,17 @@ angular
 
         // We don't require logic for backing up as the Create Beacon view covers this functionality
         $scope.onCreateBeaconClick = function () {
+          console.log('ListBeaconsController.onCreateBeaconClick called.');
           $state.go('^.create');
         };
 
         $scope.onSelectBeacon = function (beacon) {
-          console.log('onSelectBeacon called with:', beacon);
+          console.log('ListBeaconsController.onSelectBeacon called.');
           $state.go('^.detail', { id: beacon.id });
         };
 
         $scope.onReviewAssistance = function (beacon) {
+          console.log('ListBeaconsController.onReviewAssistance called.');
           $state.go('^.detail.review', { id: beacon.id });
         };
       }
