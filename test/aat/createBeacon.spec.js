@@ -15,7 +15,7 @@ describe('the page used to create a new beacon', function() {
     createBeaconLocators = new CreateBeaconLocators();
   });
 
-  it('should have a Submit Beacon button that navigates to the list of beacons when clicked', function() {
+  it('should have a Submit Beacon button that navigates to the list of beacons', function() {
     ptor.findElement(createBeaconLocators.submitButton).click();
     expect(browser.getCurrentUrl()).not.toContain('/create');
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');

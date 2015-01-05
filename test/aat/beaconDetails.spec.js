@@ -15,7 +15,7 @@ describe('the view that displays the details of a particular beacon', function()
     beaconDetailsLocators = new BeaconDetailsLocators();
   });
 
-  it('should display a summary of the beacon where clicking it is the only way to navigate back to the list of beacons', function() {
+  it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
     expect(element(beaconDetailsLocators.goBack).isDisplayed()).toBeFalsy();
     ptor.findElement(beaconDetailsLocators.selectBeacon).click();
     expect(browser.getCurrentUrl()).not.toContain('/detail/e688af0b-63df-48bc-941c-9cc5f750367b');
