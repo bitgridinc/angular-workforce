@@ -51,56 +51,63 @@ angular
   )
   // This controller wires up the $rootScope for consumption by the entire application.
   .controller('AppController',
-    [         '$rootScope', 'RequestService',
-      function($rootScope,   RequestService) {
-        console.log('Tying RequestService into rootScope');
-        $rootScope.requestService = RequestService;
-      }
-    ]
-  )
-  .service('RequestService',
-    [         'socket',
-      function(socket) {
-        var service = {
+    [         '$rootScope', 'socket', 'SocketHandlerService',
+      function($rootScope,   socket,   SocketHandlerService) {
+
+        $rootScope.socketState = {
           allEntities: [],
           currentEntity: {},
           beacons: []
         };
 
-        socket.on('init', function(data) {
-          console.log('init called with', data);
-          angular.copy(data.allEntities, service.allEntities);
-          angular.copy(data.currentEntity, service.currentEntity);
-        });
+        SocketHandlerService.initialize($rootScope.socketState);
+        socket.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
+        socket.on('message', _.bind(SocketHandlerService.onMessage, SocketHandlerService));
+      }
+    ]
+  )
+  .service('SocketHandlerService',
+    [
+      function() {
+        return {
+          socketState: undefined,
+          initialize: function(socketState) {
+            console.log('Initializing socketState in the socketHandlerService', socketState);
+            this.socketState = socketState;
+            console.log('test', this.socketState, this);
+          },
+          onInit: function(data) {
+            console.log('onInit called with', data, this.socketState, this);
+            angular.copy(data.allEntities, this.socketState.allEntities);
+            angular.copy(data.currentEntity, this.socketState.currentEntity);
+          },
+          onMessage: function(request) {
+            console.log('onMessage called with', request, this.socketState, this);
 
-        socket.on('message', function(request) {
-          console.log('message received over SocketIO', request);
-
-          if (angular.isUndefined(request) ||
+            if (angular.isUndefined(request) ||
               angular.isUndefined(request.senderId) ||
               angular.isUndefined(request.rootMessageId) ||
               angular.isUndefined(request.contents) ||
               angular.isUndefined(request.contents.id)) {
-            throw new Error('Invalid request');
+              throw new Error('Invalid request');
+            }
+
+            // We don't want to send copies of the same entity with every message it sends. This matches up the entity
+            // based on the senderId property.
+            request.contents.organization = _.find(this.socketState.allEntities, function(entity) {
+              return entity.id === request.senderId;
+            });
+
+            if (angular.equals(request.contents.id, request.rootMessageId)) {
+              request.contents.responses = [];
+              this.socketState.beacons.push(request.contents);
+            } else {
+              _.find(this.socketState.beacons, function(beacon) {
+                return beacon.id === request.rootMessageId;
+              }).responses.push(request.contents);
+            }
           }
-
-          // We don't want to send copies of the same entity with every message it sends. This matches up the entity
-          // based on the senderId property.
-          request.contents.organization = _.find(service.allEntities, function(entity) {
-            return entity.id === request.senderId;
-          });
-
-          if (angular.equals(request.contents.id, request.rootMessageId)) {
-            request.contents.responses = [];
-            service.beacons.push(request.contents);
-          } else {
-            _.find(service.beacons, function(beacon) {
-              return beacon.id === request.rootMessageId;
-            }).responses.push(request.contents);
-          }
-        });
-
-        return service;
+        };
       }
     ]
   );

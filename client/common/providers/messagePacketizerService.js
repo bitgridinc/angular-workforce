@@ -8,7 +8,7 @@ require('./_module_init.js')
           packetize: function(contents, rootMessageId) {
             var packetizedMessage = {
               contents: contents,
-              senderId: $rootScope.requestService.currentEntity.id,
+              senderId: $rootScope.socketState.currentEntity.id,
               rootMessageId: rootMessageId
             };
             console.log('Packetized:', packetizedMessage);

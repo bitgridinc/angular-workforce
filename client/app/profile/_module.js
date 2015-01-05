@@ -19,7 +19,7 @@ angular
     [         '$scope', '$rootScope', '$state',
       function($scope,   $rootScope,   $state) {
         //console.log('ProfileController instantiated:', $scope, $rootScope, $state);
-        $scope.organization = $rootScope.requestService.currentEntity;
+        $scope.organization = $rootScope.socketState.currentEntity;
         $scope.save = function () {
           $state.go('dashboard');
         };

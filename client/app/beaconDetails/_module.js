@@ -73,8 +73,8 @@ angular
         };
 
         function findById(id) {
-          console.log('FindById', id, $rootScope.requestService.beacons);
-          return _.find($rootScope.requestService.beacons, function(beacon) {
+          console.log('FindById', id, $rootScope.socketState.beacons);
+          return _.find($rootScope.socketState.beacons, function(beacon) {
             return beacon.id === id;
           });
         }
@@ -90,13 +90,13 @@ angular
             console.log('currentBeaconId watch exiting:', $rootScope.selectionState.currentBeacon);
           }, true);
 
-        $rootScope.$watchCollection(function() { return $rootScope.requestService.beacons },
+        $rootScope.$watchCollection(function() { return $rootScope.socketState.beacons },
           function(newValue, oldValue) {
-            console.log('requestService.beacons watch called:', newValue, oldValue);
+            console.log('socketState.beacons watch called:', newValue, oldValue);
             if ($rootScope.currentBeaconId !== undefined) {
               $rootScope.selectionState.currentBeacon = findById($rootScope.currentBeaconId);
             }
-            console.log('requestService.beacons watch exiting:', $rootScope.selectionState.currentBeacon);
+            console.log('socketState.beacons watch exiting:', $rootScope.selectionState.currentBeacon);
           });
       }
     ]

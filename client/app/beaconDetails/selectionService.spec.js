@@ -11,7 +11,7 @@ describe('the service that manages the beacon the user has selected', function()
   }));
 
   it ('should update the currently selected beacon based on the selected beacon id', function () {
-    $rootScope.requestService = {
+    $rootScope.socketState = {
       beacons: [
         {
           id: 'e688af0b-63df-48bc-941c-9cc5f750367b'

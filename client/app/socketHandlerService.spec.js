@@ -1,0 +1,118 @@
+"use strict";
+
+describe('the service that wraps SocketIO', function() {
+  var service;
+
+  beforeEach(module('app'));
+  beforeEach(inject(function(_SocketHandlerService_) {
+    service = _SocketHandlerService_;
+  }));
+
+  describe('after initialize has been called', function() {
+    beforeEach(function() {
+      service.initialize({
+        allEntities: [],
+        currentEntity: {},
+        beacons: []
+      });
+    });
+
+    describe('after the init message has been received from the server', function() {
+      var currentEntity;
+      beforeEach(function() {
+        currentEntity = {
+          name: 'Macho Diggers',
+          id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
+        };
+        service.onInit({
+          allEntities: [
+            currentEntity,
+            {
+              name: 'Determined Douchebags',
+              id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
+            },
+            {
+              name: 'Apostolic Aphids',
+              id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
+            }
+          ],
+          currentEntity: currentEntity
+        });
+      });
+
+      it ('should error if the incoming message does not specify the sender, root message, contents, or is completely empty', function () {
+        // Arrange
+        var invalidMessages = [
+          {
+            contents: {},
+            senderId: currentEntity.id,
+            rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          },
+          {
+            contents: { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' },
+            senderId: undefined,
+            rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          },
+          {
+            contents: { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' },
+            senderId: currentEntity.id,
+            rootMessageId: undefined
+          },
+          null,
+          undefined
+        ];
+        for (var message in invalidMessages) {
+          // Act/Assert
+          expect(function() { service.onMessage(message); }).toThrow();
+        }
+      });
+      it ('should add incoming messages to the list of beacons if the message is the root', function () {
+        // Arrange
+        var request = {
+          contents: {
+            id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          },
+          senderId: currentEntity.id,
+          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+        };
+
+        // Assert
+        expect(service.socketState.beacons.length).toBe(0);
+
+        // Act
+        service.onMessage(request);
+
+        // Assert
+        expect(service.socketState.beacons[0]).toBe(request.contents);
+        expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
+      });
+      it ('should add incoming messages to the responses array of its beacon if the message is not the root', function () {
+        // Arrange
+        var first = {
+          contents: {
+            id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          },
+          senderId: currentEntity.id,
+          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+        };
+        var second = {
+          contents: {
+            id: '5eb19570-5567-44f0-ab55-95189383fab0'
+          },
+          senderId: currentEntity.id,
+          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+        };
+
+        // Act
+        service.onMessage(first);
+        service.onMessage(second);
+
+        // Assert
+        expect(service.socketState.beacons.length).toBe(1);
+        expect(service.socketState.beacons[0]).toBe(first.contents);
+        expect(service.socketState.beacons[0].responses.length).toBe(1);
+        expect(service.socketState.beacons[0].responses[0]).toBe(second.contents);
+      });
+    });
+  });
+});

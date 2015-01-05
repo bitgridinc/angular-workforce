@@ -4,12 +4,11 @@ describe('the service that wraps SocketIO', function() {
   var socketMock,
       $rootScope,
       service,
-      socket,
       initCallback,
       messageCallback;
 
   beforeEach(module('app'));
-  beforeEach(function() {
+  /*beforeEach(function() {
     socketMock = {
       on: jasmine.createSpy()
     };
@@ -17,14 +16,18 @@ describe('the service that wraps SocketIO', function() {
     module(function($provide) {
       $provide.value('socket', socketMock);
     });
-  });
-  beforeEach(inject(function(_$rootScope_, _$controller_, _RequestService_) {
+  });*/
+  beforeEach(inject(function(_$rootScope_, _SocketHandlerService_, _$controller_) {
     $rootScope = _$rootScope_;
-    service = _RequestService_;
+    service = _SocketHandlerService_;
+    socketMock = {
+      on: jasmine.createSpy()
+    };
 
     _$controller_('AppController', {
       $rootScope: $rootScope,
-      RequestService: service
+      socket: socketMock,
+      SocketHandlerService: service
     });
   }));
   beforeEach(function() {
@@ -32,92 +35,56 @@ describe('the service that wraps SocketIO', function() {
     messageCallback = socketMock.on.calls.argsFor(1)[1];
   });
 
+  // TODO: This is a unit test while the below are integration tests
+  it('should have initialized $rootScope with an object to store state from the socket', function() {
+    expect($rootScope.socketState.allEntities).toBeDefined();
+    expect($rootScope.socketState.currentEntity).toBeDefined();
+    expect($rootScope.socketState.beacons).toBeDefined();
+  });
+
   describe('after init has been received', function() {
     var currentEntity;
     beforeEach(function() {
+      // Arrange
       currentEntity = {
         name: 'Macho Diggers',
         id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
       };
-      initCallback({
-        allEntities: [
-          currentEntity,
-          {
-            name: 'Determined Douchebags',
-            id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
-          },
-          {
-            name: 'Apostolic Aphids',
-            id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
-          }
-        ],
-        currentEntity: currentEntity
-      });
+      var allEntities = [
+        currentEntity,
+        {
+          name: 'Determined Douchebags',
+          id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
+        }
+      ];
+
+      // Act
+      initCallback({ allEntities: allEntities, currentEntity: currentEntity });
     });
 
     it('should have copied the init data to $rootScope', function() {
-      expect($rootScope.requestService.allEntities.length).toBe(3);
-      expect($rootScope.requestService.allEntities[0]).toEqual($rootScope.requestService.currentEntity);
+      // Assert
+      expect($rootScope.socketState.allEntities.length).toBe(2);
+      expect($rootScope.socketState.allEntities[0]).toEqual($rootScope.socketState.currentEntity);
     });
-    it ('should error if the incoming message does not specify the sender, root message, contents, or is completely empty', function () {
-      var invalidMessages = [
-        {
-          contents: {},
-          senderId: currentEntity.id,
-          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-        },
-        {
-          contents: { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' },
-          senderId: undefined,
-          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-        },
-        {
-          contents: { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' },
-          senderId: currentEntity.id,
-          rootMessageId: undefined
-        },
-        null,
-        undefined
-      ];
-      for (var message in invalidMessages) {
-        expect(function() { messageCallback(message); }).toThrow();
-      }
-    });
-    it ('should add incoming messages to the list of beacons if the message is the root', function () {
-      var request = {
-        contents: {
-          id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-        },
-        senderId: currentEntity.id,
-        rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-      };
-      expect($rootScope.requestService.beacons.length).toBe(0);
-      messageCallback(request);
-      expect($rootScope.requestService.beacons[0]).toBe(request.contents);
-      expect($rootScope.requestService.beacons[0].organization).toEqual(currentEntity);
-    });
-    it ('should add incoming messages to the responses array of its beacon if the message is not the root', function () {
 
-      var first = {
-        contents: {
-          id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-        },
-        senderId: currentEntity.id,
-        rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-      };
-      var second = {
-        contents: {
-          id: '5eb19570-5567-44f0-ab55-95189383fab0'
-        },
-        senderId: currentEntity.id,
-        rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-      };
-      messageCallback(first);
-      messageCallback(second);
-      expect($rootScope.requestService.beacons.length).toBe(1);
-      expect($rootScope.requestService.beacons[0]).toBe(first.contents);
-      expect($rootScope.requestService.beacons[0].responses.length).toBe(1);
-      expect($rootScope.requestService.beacons[0].responses[0]).toBe(second.contents);
+    describe('after message has been received', function() {
+      it('should create a new beacon in $rootScope', function() {
+        // Arrange
+        var request = {
+          contents: {
+            id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          },
+          senderId: currentEntity.id,
+          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+        };
+
+        // Act
+        messageCallback(request);
+
+        // Assert
+        expect($rootScope.socketState.beacons.length).toBe(1);
+      });
     });
   });
 });

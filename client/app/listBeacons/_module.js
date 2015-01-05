@@ -25,7 +25,7 @@ angular
       function($scope,    $rootScope,   $state) {
         // For debugging purposes
         $scope.name = 'ListBeaconsController';
-        $scope.beacons = $rootScope.requestService.beacons;
+        $scope.beacons = $rootScope.socketState.beacons;
 
         // We don't require logic for backing up as the Create Beacon view covers this functionality
         $scope.onCreateBeaconClick = function () {

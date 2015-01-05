@@ -23,7 +23,7 @@ angular
             zoom: 13
           },
           // No unit test coverage
-          requestService: $rootScope.requestService
+          socketState: $rootScope.socketState
         });
       }
     ]

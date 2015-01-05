@@ -18,7 +18,7 @@ describe('the offer assistance controller', function() {
         id: '1'
       }
     };
-    $rootScope.requestService = {
+    $rootScope.socketState = {
       currentEntity: {
         id: '2'
       }
@@ -63,7 +63,7 @@ describe('the offer assistance controller', function() {
             numResponders: newNumResponders,
             arrivalDate: newArrivalDate
           },
-          senderId : $rootScope.requestService.currentEntity.id,
+          senderId : $rootScope.socketState.currentEntity.id,
           rootMessageId : $rootScope.selectionState.currentBeacon.id
         });
       });
