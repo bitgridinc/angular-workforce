@@ -2,7 +2,7 @@
 
 var Locators = require('./listBeacons.locators.js');
 
-describe('having the My Company button clicked to view the list of existing beacons', function() {
+describe('having the My Beacons button clicked to view the list of existing beacons', function() {
   var ptor,
       locators;
 
