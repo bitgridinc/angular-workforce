@@ -40,9 +40,8 @@ angular
     ]
   )
   .controller('BeaconDetailsController',
-    [         '$scope', '$rootScope', '$state', '$stateParams', 'SelectionService',
-      function($scope,   $rootScope,   $state,   $stateParams,   SelectionService) {
-        $scope.id = $stateParams.id;
+    [         '$scope', '$rootScope', '$state', 'SelectionService',
+      function($scope,   $rootScope,   $state,   SelectionService) {
         $scope.selectionState = $rootScope.selectionState;
         //$scope.SelectionService = SelectionService;
 
@@ -79,6 +78,7 @@ angular
           });
         }
 
+        // This call to $watch can be replaced by a watchId method
         console.log('SelectionService instantiated');
         $rootScope.$watch(function() { return $rootScope.currentBeaconId },
           function(newValue, oldValue) {
