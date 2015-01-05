@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the service that wraps SocketIO', function() {
+describe('the controller for the root module', function() {
   var socketMock,
       $rootScope,
       service,
