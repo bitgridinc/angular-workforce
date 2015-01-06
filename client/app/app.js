@@ -99,13 +99,16 @@ angular
               return entity.id === request.senderId;
             });
 
+            var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
+              return beacon.id === request.rootMessageId;
+            });
             if (angular.equals(request.contents.id, request.rootMessageId)) {
-              request.contents.responses = [];
-              this.socketState.beacons.push(request.contents);
+              if (existingBeacon === undefined) {
+                request.contents.responses = [];
+                this.socketState.beacons.push(request.contents);
+              }
             } else {
-              _.find(this.socketState.beacons, function(beacon) {
-                return beacon.id === request.rootMessageId;
-              }).responses.push(request.contents);
+              existingBeacon.responses.push(request.contents);
             }
           }
         };

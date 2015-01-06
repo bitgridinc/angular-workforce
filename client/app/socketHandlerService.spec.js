@@ -86,6 +86,25 @@ describe('the service that wraps SocketIO', function() {
         expect(service.socketState.beacons[0]).toBe(request.contents);
         expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
       });
+      it ('should not add incoming message to the list of beacons if the beacon is already present', function () {
+        // Arrange
+        var request = {
+          contents: {
+            id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          },
+          senderId: currentEntity.id,
+          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+        };
+
+        // Act
+        service.onMessage(request);
+        service.onMessage(request);
+
+        // Assert
+        expect(service.socketState.beacons.length).toBe(1);
+        expect(service.socketState.beacons[0]).toBe(request.contents);
+        expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
+      });
       it ('should add incoming messages to the responses array of its beacon if the message is not the root', function () {
         // Arrange
         var first = {
