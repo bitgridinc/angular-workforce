@@ -17,13 +17,13 @@ describe('the service that wraps SocketIO', function() {
       });
     });
 
-    describe('after the init message has been received from the server', function() {
-      var currentEntity;
+    describe('after init message has been received', function() {
+      var currentEntity = {
+        name: 'Macho Diggers',
+        id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
+      };
+
       beforeEach(function() {
-        currentEntity = {
-          name: 'Macho Diggers',
-          id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
-        };
         service.onInit({
           allEntities: [
             currentEntity,
@@ -66,9 +66,9 @@ describe('the service that wraps SocketIO', function() {
           expect(function() { service.onMessage(message); }).toThrow();
         }
       });
-      it ('should add incoming messages to the list of beacons if the message is the root', function () {
-        // Arrange
-        var request = {
+
+      describe('after a beacon message has been received', function() {
+        var beaconMessage = {
           contents: {
             id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
           },
@@ -76,61 +76,52 @@ describe('the service that wraps SocketIO', function() {
           rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
         };
 
-        // Assert
-        expect(service.socketState.beacons.length).toBe(0);
+        beforeEach(function() {
+          service.onMessage(beaconMessage);
+        });
 
-        // Act
-        service.onMessage(request);
+        it ('should add incoming messages to the list of beacons if the message is the root', function () {
+          expect(service.socketState.beacons[0]).toBe(beaconMessage.contents);
+          expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
+        });
+        it ('should not add incoming message to the list of beacons if the beacon is already present', function () {
+          // Act
+          service.onMessage(beaconMessage);
 
-        // Assert
-        expect(service.socketState.beacons[0]).toBe(request.contents);
-        expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
-      });
-      it ('should not add incoming message to the list of beacons if the beacon is already present', function () {
-        // Arrange
-        var request = {
-          contents: {
-            id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-          },
-          senderId: currentEntity.id,
-          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-        };
+          // Assert
+          expect(service.socketState.beacons.length).toBe(1);
+          expect(service.socketState.beacons[0]).toBe(beaconMessage.contents);
+          expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
+        });
 
-        // Act
-        service.onMessage(request);
-        service.onMessage(request);
+        describe('after a response message has been received', function() {
+          var responseMessage = {
+            contents: {
+              id: '5eb19570-5567-44f0-ab55-95189383fab0'
+            },
+            senderId: currentEntity.id,
+            rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          };
 
-        // Assert
-        expect(service.socketState.beacons.length).toBe(1);
-        expect(service.socketState.beacons[0]).toBe(request.contents);
-        expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
-      });
-      it ('should add incoming messages to the responses array of its beacon if the message is not the root', function () {
-        // Arrange
-        var first = {
-          contents: {
-            id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-          },
-          senderId: currentEntity.id,
-          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-        };
-        var second = {
-          contents: {
-            id: '5eb19570-5567-44f0-ab55-95189383fab0'
-          },
-          senderId: currentEntity.id,
-          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-        };
+          beforeEach(function() {
+            service.onMessage(responseMessage);
+          });
 
-        // Act
-        service.onMessage(first);
-        service.onMessage(second);
+          it ('should add incoming messages to the responses array of its beacon if the message is not the root', function () {
+            expect(service.socketState.beacons.length).toBe(1);
+            expect(service.socketState.beacons[0]).toBe(beaconMessage.contents);
+            expect(service.socketState.beacons[0].responses.length).toBe(1);
+            expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage.contents);
+          });
+          /*it ('should not add duplicate incoming response messages', function () {
+            // Act
+            service.onMessage(responseMessage);
 
-        // Assert
-        expect(service.socketState.beacons.length).toBe(1);
-        expect(service.socketState.beacons[0]).toBe(first.contents);
-        expect(service.socketState.beacons[0].responses.length).toBe(1);
-        expect(service.socketState.beacons[0].responses[0]).toBe(second.contents);
+            // Assert
+            expect(service.socketState.beacons[0].responses.length).toBe(1);
+            expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage.contents);
+          });*/
+        });
       });
     });
   });
