@@ -108,7 +108,12 @@ angular
                 this.socketState.beacons.push(request.contents);
               }
             } else {
-              existingBeacon.responses.push(request.contents);
+              var existingResponse = _.find(existingBeacon.responses, function(response) {
+                return response.id === request.contents.id;
+              });
+              if (angular.isUndefined(existingResponse)) {
+                existingBeacon.responses.push(request.contents);
+              }
             }
           }
         };

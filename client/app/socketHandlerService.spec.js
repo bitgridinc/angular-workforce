@@ -113,14 +113,14 @@ describe('the service that wraps SocketIO', function() {
             expect(service.socketState.beacons[0].responses.length).toBe(1);
             expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage.contents);
           });
-          /*it ('should not add duplicate incoming response messages', function () {
+          it ('should not add duplicate incoming response messages', function () {
             // Act
             service.onMessage(responseMessage);
 
             // Assert
             expect(service.socketState.beacons[0].responses.length).toBe(1);
             expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage.contents);
-          });*/
+          });
         });
       });
     });
