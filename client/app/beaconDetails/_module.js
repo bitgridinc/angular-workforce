@@ -47,21 +47,10 @@ angular
           });
         });
 
-        $scope.onSelectBeacon = function () {
-          $state.go('dashboard.mycompany.list');
-        };
-
-        $scope.onOfferAssistance = function () {
-          $state.go('dashboard.mycompany.detail.assist');
-        };
-
-        $scope.onReviewAssistance = function () {
-          $state.go('dashboard.mycompany.detail.review');
-        };
-
-        $scope.onGoBack = function () {
-          $state.go('dashboard.mycompany.list');
-        };
+        $scope.onSelectBeacon = function() { $state.go('dashboard.mycompany.list'); };
+        $scope.onOfferAssistance = function() { $state.go('dashboard.mycompany.detail.assist'); };
+        $scope.onReviewAssistance = function() { $state.go('dashboard.mycompany.detail.review'); };
+        $scope.onGoBack = function() { $state.go('dashboard.mycompany.list'); };
       }
     ]
   );
