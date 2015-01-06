@@ -5,6 +5,7 @@ require('./_module_init.js')
     [         '$rootScope',
       function($rootScope) {
         return {
+          // TODO: Somehow test that rootMessageId is passed in, the server requires
           packetize: function(contents, rootMessageId) {
             var packetizedMessage = {
               contents: contents,

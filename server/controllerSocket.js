@@ -40,6 +40,10 @@ io.sockets.on('connection', function(socket){
       // The id is the unique key used to handle selection in the UI
       message.contents.id = uuid.v4();
 
+      if (message.rootMessageId === undefined) {
+        message.rootMessageId = message.contents.id;
+      }
+
       // This sends back to the sender as well
       io.sockets.emit('message', message);
     }

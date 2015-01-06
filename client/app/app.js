@@ -89,6 +89,7 @@ angular
               angular.isUndefined(request.rootMessageId) ||
               angular.isUndefined(request.contents) ||
               angular.isUndefined(request.contents.id)) {
+              console.log('Invalid request in onMessage', request);
               throw new Error('Invalid request');
             }
 
