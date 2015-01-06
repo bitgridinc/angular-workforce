@@ -23,27 +23,29 @@ angular
               }
             },
             onEnter: function($rootScope, $stateParams) {
-              console.log("Entering dashboard.mycompany.detail", $stateParams);
-
-              // TODO: Enable selecting current beacon by id
-              $rootScope.currentBeaconId = $stateParams.id;
-
-              // TODO: This could make the dependency of SelectionService being instantiated more clear
-              //SelectionService.watchId($stateParams);
+              $rootScope.currentlySelectedBeaconId = $stateParams.id;
             },
             onExit: function($rootScope) {
-              console.log("Exiting dashboard.mycompany.detail");
-              $rootScope.currentBeaconId = undefined;
+              $rootScope.currentlySelectedBeaconId = undefined;
             }
           });
       }
     ]
   )
   .controller('BeaconDetailsController',
-    [         '$scope', '$rootScope', '$state', 'SelectionService',
-      function($scope,   $rootScope,   $state,   SelectionService) {
-        $scope.selectionState = $rootScope.selectionState;
-        //$scope.SelectionService = SelectionService;
+    [         '$scope', '$rootScope', '$state',
+      function($scope,   $rootScope,   $state) {
+
+        $rootScope.selectionState = $scope.selectionState = {
+          currentBeacon: undefined
+        };
+
+        $rootScope.$watch('socketState.beacons.length + currentlySelectedBeaconId', function(newVal, oldVal) {
+          console.log('Either the number of beacons or the currently selected beacon id changed', newVal, oldVal);
+          $rootScope.selectionState.currentBeacon = _.find($rootScope.socketState.beacons, function(beacon) {
+            return beacon.id === $rootScope.currentlySelectedBeaconId;
+          });
+        });
 
         $scope.onSelectBeacon = function () {
           $state.go('dashboard.mycompany.list');
@@ -60,44 +62,6 @@ angular
         $scope.onGoBack = function () {
           $state.go('dashboard.mycompany.list');
         };
-      }
-    ]
-  )
-  .service('SelectionService',
-    [         '$rootScope',
-      function($rootScope) {
-
-        $rootScope.selectionState = {
-          currentBeacon: undefined
-        };
-
-        function findById(id) {
-          console.log('FindById', id, $rootScope.socketState.beacons);
-          return _.find($rootScope.socketState.beacons, function(beacon) {
-            return beacon.id === id;
-          });
-        }
-
-        // This call to $watch can be replaced by a watchId method
-        console.log('SelectionService instantiated');
-        $rootScope.$watch(function() { return $rootScope.currentBeaconId },
-          function(newValue, oldValue) {
-            $rootScope.test = {};
-            console.log('currentBeaconId watch called:', newValue, oldValue, $rootScope.selectionState.currentBeacon);
-            if (newValue !== undefined) {
-              $rootScope.selectionState.currentBeacon = findById(newValue);
-            }
-            console.log('currentBeaconId watch exiting:', $rootScope.selectionState.currentBeacon);
-          }, true);
-
-        $rootScope.$watchCollection(function() { return $rootScope.socketState.beacons },
-          function(newValue, oldValue) {
-            console.log('socketState.beacons watch called:', newValue, oldValue);
-            if ($rootScope.currentBeaconId !== undefined) {
-              $rootScope.selectionState.currentBeacon = findById($rootScope.currentBeaconId);
-            }
-            console.log('socketState.beacons watch exiting:', $rootScope.selectionState.currentBeacon);
-          });
       }
     ]
   );
