@@ -7,12 +7,12 @@
 
 .header {
     float: top;
-    height: 20px;
+    height: 22px;
     overflow: hidden;
     border: 1px solid green;
 }
 .body {
-    margin-top: 20px;
+    margin-top: 22px;
     height: 100%;
 }
 
