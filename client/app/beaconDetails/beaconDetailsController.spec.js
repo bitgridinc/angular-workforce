@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the controller that handles the beacon details view', function() {
+describe('the beacon details controller', function() {
   var $scope,
       $rootScope,
       $state;
@@ -23,17 +23,6 @@ describe('the controller that handles the beacon details view', function() {
     };
   }));
 
-  it('should do nothing when the currently selected beacon is set and an unrelated beacon is received from the server', function() {
-    // Arrange
-    $rootScope.socketState.beacons.push({ id: '99999999-9999-9999-9999-999999999999' });
-    $rootScope.currentlySelectedBeaconId = 'e688af0b-63df-48bc-941c-9cc5f750367b';
-
-    // Act
-    $rootScope.$apply();
-
-    // Assert
-    expect($rootScope.selectionState.currentBeacon).toBeUndefined();
-  });
   it('should update $rootScope with the corresponding beacon once it has been received from the server', function() {
     // Arrange
     $rootScope.socketState.beacons.push({ id: 'e688af0b-63df-48bc-941c-9cc5f750367b' });
@@ -44,5 +33,16 @@ describe('the controller that handles the beacon details view', function() {
 
     // Assert
     expect($rootScope.selectionState.currentBeacon).toBeDefined();
+  });
+  it('should do nothing when the currently selected beacon does not match any beacons yet received from the server', function() {
+    // Arrange
+    $rootScope.socketState.beacons.push({ id: '99999999-9999-9999-9999-999999999999' });
+    $rootScope.currentlySelectedBeaconId = 'e688af0b-63df-48bc-941c-9cc5f750367b';
+
+    // Act
+    $rootScope.$apply();
+
+    // Assert
+    expect($rootScope.selectionState.currentBeacon).toBeUndefined();
   });
 });
