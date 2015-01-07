@@ -35,12 +35,11 @@ angular
   .controller('BeaconDetailsController',
     [         '$scope', '$rootScope', '$state',
       function($scope,   $rootScope,   $state) {
-
         $rootScope.selectionState = $scope.selectionState = {
           currentBeacon: undefined
         };
 
-        $rootScope.$watch('socketState.beacons.length + currentlySelectedBeaconId', function(newVal, oldVal) {
+        $rootScope.$watch('socketState.beacons.length', function(newVal, oldVal) {
           console.log('Either the number of beacons or the currently selected beacon id changed', newVal, oldVal);
           $rootScope.selectionState.currentBeacon = _.find($rootScope.socketState.beacons, function(beacon) {
             return beacon.id === $rootScope.currentlySelectedBeaconId;
