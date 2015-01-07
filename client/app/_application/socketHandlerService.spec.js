@@ -28,11 +28,11 @@ describe('the service that wraps SocketIO', function() {
           allEntities: [
             currentEntity,
             {
-              name: 'Determined Douchebags',
+              name: 'Their Organization',
               id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
             },
             {
-              name: 'Apostolic Aphids',
+              name: 'Third Organization',
               id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
             }
           ],

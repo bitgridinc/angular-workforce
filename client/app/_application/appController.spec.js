@@ -53,7 +53,7 @@ describe('the controller for the root module', function() {
       var allEntities = [
         currentEntity,
         {
-          name: 'Determined Douchebags',
+          name: 'Their Organization',
           id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
         }
       ];
