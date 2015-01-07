@@ -17,10 +17,7 @@ describe('the beacon list controller', function() {
   it('should tie the list of beacons from $rootScope into the $scope for display by the view', function() {
     // Arrange
     $rootScope.socketState = {
-      beacons: [
-        { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' },
-        { id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e00' }
-      ]
+      beacons: []
     };
 
     // Act
