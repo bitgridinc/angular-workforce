@@ -8,6 +8,7 @@ exports.config = {
   framework: 'jasmine',
 
   specs: [
+    './client/app/beaconDetails/aat/*.spec.js',
     './aat/*.spec.js'
   ],
                      
