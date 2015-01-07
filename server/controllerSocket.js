@@ -43,7 +43,7 @@ io.sockets.on('connection', function(socket){
     rootMessageId: 'a7609f5c-2924-4a46-8ba3-aa27837c3d2f'
   });
 
-  socket.on('message', function(message, treeId, replyToId) {
+  socket.on('message', function(message) {
     if (message.contents === null || message.contents === undefined) {
       console.log('Message didn\'t contain a contents property. Ignoring message.');
     }
