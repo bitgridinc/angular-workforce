@@ -1,7 +1,10 @@
 "use strict";
 
 angular
-  .module('modules.listBeacons', [])
+  .module('modules.listBeacons', [
+      'ui.router'
+    ]
+  )
   .config(
     [         '$stateProvider',
       function($stateProvider) {
@@ -21,10 +24,8 @@ angular
     ]
   )
   .controller('ListBeaconsController',
-    [         '$scope',  '$rootScope', '$state',
-      function($scope,    $rootScope,   $state) {
-        // For debugging purposes
-        $scope.name = 'ListBeaconsController';
+    [         '$rootScope',  '$scope', '$state',
+      function($rootScope,    $scope,   $state) {
         $scope.beacons = $rootScope.socketState.beacons;
 
         // We don't require logic for backing up as the Create Beacon view covers this functionality
