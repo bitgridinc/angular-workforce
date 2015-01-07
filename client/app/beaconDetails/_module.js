@@ -40,7 +40,7 @@ angular
         };
 
         $rootScope.$watch('socketState.beacons.length', function(newVal, oldVal) {
-          console.log('Either the number of beacons or the currently selected beacon id changed', newVal, oldVal);
+          console.log('The number of beacons changed', newVal, oldVal);
           $rootScope.selectionState.currentBeacon = _.find($rootScope.socketState.beacons, function(beacon) {
             return beacon.id === $rootScope.currentlySelectedBeaconId;
           });
