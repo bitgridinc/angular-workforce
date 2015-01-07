@@ -14,8 +14,8 @@ io.sockets.on('connection', function(socket){
   socket.emit('message', {
     contents: {
       id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
-      title: 'Existing Title',
-      description: 'Existing Description',
+      title: 'Your Title',
+      description: 'Your Description',
       lat: 38.9,
       lng: -77.0
     },
