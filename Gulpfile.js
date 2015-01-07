@@ -51,7 +51,7 @@ gulp.task('webdriver_standalone', webdriver_standalone);
 gulp.task('webdriver_update', webdriver_update);
 
 gulp.task('aat', ['webdriver_update'], function(cb) {
-  gulp.src(['client/app/map/aat/*.aat.js']).pipe(protractor({
+  gulp.src(['client/app/**/aat/*.aat.js']).pipe(protractor({
     configFile: 'protractor.conf.js'
   })).on('error', function(e) {
     console.log(e);

@@ -19,7 +19,7 @@ io.sockets.on('connection', function(socket){
       lat: 38.9,
       lng: -77.0
     },
-    senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84', // Macho Diggers
+    senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84', // Your Organization
     rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
   });
   socket.emit('message', {

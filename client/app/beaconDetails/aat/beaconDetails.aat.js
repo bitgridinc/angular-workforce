@@ -17,7 +17,7 @@ describe('the view that displays the details of a particular beacon', function()
 
   it('should display detailed information about the beacon', function() {
     var summaryHeaderElement = element(beaconDetailsLocators.summaryHeader);
-    expect(summaryHeaderElement.getText()).toContain('Macho Diggers');
+    expect(summaryHeaderElement.getText()).toContain('Your Organization');
     expect(summaryHeaderElement.getText()).toContain('Existing Title');
     expect(summaryHeaderElement.getText()).toContain('Existing Description');
     expect(element(beaconDetailsLocators.latitude).getText()).toContain('38.9');

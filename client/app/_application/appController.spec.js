@@ -47,7 +47,7 @@ describe('the controller for the root module', function() {
     beforeEach(function() {
       // Arrange
       currentEntity = {
-        name: 'Macho Diggers',
+        name: 'Your Organization',
         id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
       };
       var allEntities = [
