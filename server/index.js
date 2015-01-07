@@ -19,6 +19,10 @@ server.route([
   { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './server/public/stylesheets' } } },
 
   // Expose our feature templates
+  { method: 'GET', path: '/templates/_application/{file}',
+    handler: { directory: { path: './client/app/_application' } },
+    config: { validate: { params: { file: templateValidator } } }
+  },
   { method: 'GET', path: '/templates/beaconDetails/{file}',
     handler: { directory: { path: './client/app/beaconDetails' } },
     config: { validate: { params: { file: templateValidator } } }
@@ -66,7 +70,7 @@ server.route([
   { method: 'GET', path: '/bower/{path*}', handler: { directory: { path: './client/bower_components' } } },
 
   // Expose the entry point to the Angular application
-  { method: 'GET', path: '/{path?}', handler: {file: './client/app/app.html'} }
+  { method: 'GET', path: '/{path?}', handler: {file: './client/app/_application/app.html'} }
 ]);
 
 server.start();

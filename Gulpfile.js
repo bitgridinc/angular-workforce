@@ -12,14 +12,14 @@ var gulp = require('gulp')
   , BUNDLE = 'bundle.js';
 
 gulp.task('hint', function () {
-  gulp.src(['client/app/*.js', 'client/app/**/*.js', 'client/app/common/**/*.js'])
+  gulp.src(['client/app/**/*.js', 'client/common/**/*.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('browserify', function() {
   // Single entry point to browserify
-  gulp.src('client/app/app.js')
+  gulp.src('client/app/_application/app.js')
     .pipe(browserify({
       insertGlobals : true,
       debug: true
@@ -51,7 +51,7 @@ gulp.task('webdriver_standalone', webdriver_standalone);
 gulp.task('webdriver_update', webdriver_update);
 
 gulp.task('aat', ['webdriver_update'], function(cb) {
-  gulp.src(['test/aat/*.spec.js', 'client/app/**/aat/*.aat.js']).pipe(protractor({
+  gulp.src(['client/app/**/aat/*.aat.js']).pipe(protractor({
     configFile: 'protractor.conf.js'
   })).on('error', function(e) {
     console.log(e);

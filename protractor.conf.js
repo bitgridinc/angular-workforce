@@ -6,11 +6,6 @@ exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
   framework: 'jasmine',
-
-  specs: [
-    './client/app/beaconDetails/aat/*.spec.js',
-    './aat/*.spec.js'
-  ],
                      
   baseUrl: 'http://localhost:8080',
 
