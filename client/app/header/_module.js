@@ -6,8 +6,9 @@ angular
     ]
   )
   .controller('HeaderController',
-    [         '$scope', '$state',
-      function($scope,   $state) {
+    [         '$scope', '$rootScope', '$state',
+      function($scope,   $rootScope,   $state) {
+        $scope.socketState = $rootScope.socketState;
         $scope.goToProfilePage = function() { $state.go('profile'); };
       }
     ]
