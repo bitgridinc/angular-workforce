@@ -5,6 +5,17 @@
     width: 100%;
 }
 
+.header {
+    float: top;
+    height: 20px;
+    overflow: hidden;
+    border: 1px solid green;
+}
+.body {
+    margin-top: 20px;
+    height: 100%;
+}
+
 .top {
     float: top;
     overflow: hidden;
