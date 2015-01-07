@@ -22,7 +22,6 @@ angular
             lng: -77.021098,
             zoom: 13
           },
-          // No unit test coverage
           socketState: $rootScope.socketState
         });
       }
