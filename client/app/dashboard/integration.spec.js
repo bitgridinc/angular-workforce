@@ -25,10 +25,13 @@ describe('the module managing the dashboard (integration)', function() {
     });
 
     it ('should only depend on the following two modules - haha, gotta TDD!', function() {
-      expect(moduleDependencies.length).toEqual(2);
+      expect(moduleDependencies.length).toEqual(3);
     });
     it('should include our Leaflet module', function() {
       expect(dependencyListHasModule('modules.control')).toEqual(true);
+    });
+    it('should include our Leaflet module', function() {
+      expect(dependencyListHasModule('modules.header')).toEqual(true);
     });
     it('should include our Leaflet module', function() {
       expect(dependencyListHasModule('modules.map')).toEqual(true);

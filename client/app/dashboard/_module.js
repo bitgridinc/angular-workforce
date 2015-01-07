@@ -1,11 +1,13 @@
 "use strict";
 
 require('../control/_module.js');
+require('../header/_module.js');
 require('../map/_module.js');
 
 angular
   .module('modules.dashboard', [
       'modules.control',
+      'modules.header',
       'modules.map'
     ]
   )
