@@ -18,7 +18,7 @@ describe('trying to view the details of a non-existent beacon', function() {
   it('should display an error page', function() {
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/99999non-exis-tent-9999-999999999999');
     expect(ptor.isElementPresent(beaconDetailsLocators.goBack)).toBeTruthy();
-    expect(element(beaconDetailsLocators.selectBeacon).isDisplayed()).toBeFalsy();
+    expect(element(beaconDetailsLocators.summaryHeader).isDisplayed()).toBeFalsy();
     expect(element(beaconDetailsLocators.offerAssistance).isDisplayed()).toBeFalsy();
   });
 
