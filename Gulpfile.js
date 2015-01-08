@@ -8,28 +8,37 @@ var gulp = require('gulp')
   , webdriver_update = require('gulp-protractor').webdriver_update
   , protractor = require("gulp-protractor").protractor
   , browserify = require('gulp-browserify')
-  , rename = require('gulp-rename')
-  , BUNDLE = 'bundle.js';
+  , rename = require('gulp-rename');
+
+var config = {
+  clientModuleSrc: 'client/app/**/*.js',
+  clientCommonSrc: 'client/common/**/*.js',
+  clientEntrySrc: 'client/app/_application/app.js',
+  clientAatSrc: 'client/app/**/aat/*aat.js',
+  bundleFileName: 'bundle.js',
+  bundleFolder: 'server/public/js',
+  serverSrc: 'server/index.js'
+};
 
 gulp.task('hint', function () {
-  gulp.src(['client/app/**/*.js', 'client/common/**/*.js'])
+  gulp.src([config.clientModuleSrc, config.clientCommonSrc])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('browserify', function() {
   // Single entry point to browserify
-  gulp.src('client/app/_application/app.js')
+  gulp.src(config.clientEntrySrc)
     .pipe(browserify({
       insertGlobals : true,
       debug: true
     }))
-    .pipe(rename(BUNDLE))
-    .pipe(gulp.dest('./server/public/js'))
+    .pipe(rename(config.bundleFileName))
+    .pipe(gulp.dest(config.bundleFolder))
 });
 
 gulp.task('develop', ['browserify', 'hint'], function () {
-  nodemon({ script: 'server/index.js', ext: 'js html css', ignore: [BUNDLE] })
+  nodemon({ script: config.serverSrc, ext: 'js html css', ignore: [config.bundleFileName] })
     .on('change', ['browserify', 'hint'])
     .on('restart', function () {
       console.log('restarted!')
@@ -51,7 +60,7 @@ gulp.task('webdriver_standalone', webdriver_standalone);
 gulp.task('webdriver_update', webdriver_update);
 
 gulp.task('aat', ['webdriver_update'], function(cb) {
-  gulp.src(['client/app/**/aat/*aat.js']).pipe(protractor({
+  gulp.src([config.clientAatSrc]).pipe(protractor({
     configFile: 'protractor.conf.js'
   })).on('error', function(e) {
     console.log(e);
