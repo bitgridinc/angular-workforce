@@ -1,12 +1,12 @@
 "use strict";
 
-require('../control/_module.js');
+require('../beaconControl/_module.js');
 require('../header/_module.js');
 require('../map/_module.js');
 
 angular
   .module('modules.dashboard', [
-      'modules.control',
+      'modules.beaconControl',
       'modules.header',
       'modules.map'
     ]

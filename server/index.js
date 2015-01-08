@@ -23,12 +23,12 @@ server.route([
     handler: { directory: { path: './client/app/_application' } },
     config: { validate: { params: { file: templateValidator } } }
   },
-  { method: 'GET', path: '/templates/beaconDetails/{file}',
-    handler: { directory: { path: './client/app/beaconDetails' } },
+  { method: 'GET', path: '/templates/beaconControl/{file}',
+    handler: { directory: { path: './client/app/beaconControl' } },
     config: { validate: { params: { file: templateValidator } } }
   },
-  { method: 'GET', path: '/templates/control/{file}',
-    handler: { directory: { path: './client/app/control' } },
+  { method: 'GET', path: '/templates/beaconDetails/{file}',
+    handler: { directory: { path: './client/app/beaconDetails' } },
     config: { validate: { params: { file: templateValidator } } }
   },
   { method: 'GET', path: '/templates/createBeacon/{file}',

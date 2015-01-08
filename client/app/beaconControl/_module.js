@@ -7,7 +7,7 @@ require('../offerAssistance/_module.js');
 require('../reviewAssistance/_module.js');
 
 angular
-  .module('modules.control', [
+  .module('modules.beaconControl', [
       'modules.beaconDetails',
       'modules.createBeacon',
       'modules.listBeacons',
@@ -24,7 +24,7 @@ angular
             name: 'dashboard.mycompany',
             parent: 'dashboard',
             url: '/mycompany',
-            templateUrl: 'templates/control/view2.tpl.html',
+            templateUrl: 'templates/beaconControl/view2.tpl.html',
             onEnter: function($rootScope) {
               $rootScope.isMyCompanyButtonToggled = true;
             },

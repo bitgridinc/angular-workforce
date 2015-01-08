@@ -1,16 +1,16 @@
 "use strict";
 
-var ControlLocators = require('./control.locators.js');
+var BeaconControlLocators = require('./beaconControl.locators.js');
 var ListBeaconsLocators = require('../../listBeacons/aat/listBeacons.locators.js');
 
 describe('the main dashboard', function() {
   var ptor,
-      controlLocators,
+      beaconControlLocators,
       listBeaconsLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();
-    controlLocators = new ControlLocators();
+    beaconControlLocators = new BeaconControlLocators();
     listBeaconsLocators = new ListBeaconsLocators();
   });
 
@@ -19,7 +19,7 @@ describe('the main dashboard', function() {
     ptor.get('/#/dashboard');
 
     // Act
-    ptor.findElement(controlLocators.myBeaconsButton).click();
+    ptor.findElement(beaconControlLocators.myBeaconsButton).click();
 
     // Assert
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
@@ -30,7 +30,7 @@ describe('the main dashboard', function() {
     ptor.get('/#/dashboard/mycompany');
 
     // Act
-    ptor.findElement(controlLocators.myBeaconsButton).click();
+    ptor.findElement(beaconControlLocators.myBeaconsButton).click();
 
     // Assert
     expect(browser.getCurrentUrl()).toContain('/#/dashboard');
