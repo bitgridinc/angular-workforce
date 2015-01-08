@@ -34,9 +34,4 @@ describe('the main dashboard', function() {
     button.click();
     expect(browser.getCurrentUrl()).toContain('/#/dashboard');
   });
-
-  it('should display a button that the user can click to view their profile', function() {
-    ptor.findElement(protractor.By.buttonText('My\nProfile')).click();
-    expect(browser.getCurrentUrl()).toContain('/#/profile');
-  });
 });
