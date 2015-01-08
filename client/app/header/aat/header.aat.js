@@ -1,6 +1,6 @@
 "use strict";
 
-var Locators = require('./header.locators.js');
+var Locators = require('./locators.js');
 
 describe('the header', function() {
   var ptor,

@@ -1,6 +1,6 @@
 "use strict";
 
-var Locators = require('./map.locators.js');
+var Locators = require('./locators.js');
 
 describe('the map', function() {
   var ptor,

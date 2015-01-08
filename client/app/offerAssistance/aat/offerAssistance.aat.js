@@ -1,6 +1,6 @@
 "use strict";
 
-var OfferAssistanceLocators = require('./offerAssistance.locators.js');
+var OfferAssistanceLocators = require('./locators.js');
 
 describe('the offer assistance view', function() {
   var ptor,

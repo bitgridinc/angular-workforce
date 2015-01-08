@@ -1,6 +1,6 @@
 "use strict";
 
-var Locators = require('./listBeacons.locators.js');
+var Locators = require('./locators.js');
 
 describe('having the My Beacons button clicked to view the list of existing beacons', function() {
   var ptor,

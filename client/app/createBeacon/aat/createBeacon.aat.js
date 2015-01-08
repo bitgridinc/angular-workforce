@@ -1,6 +1,6 @@
 "use strict";
 
-var CreateBeaconLocators = require('./createBeacon.locators.js');
+var CreateBeaconLocators = require('./locators.js');
 
 describe('the page used to create a new beacon', function() {
   var ptor,

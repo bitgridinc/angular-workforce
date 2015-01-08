@@ -1,6 +1,6 @@
 "use strict";
 
-var BeaconDetailsLocators = require('./beaconDetails.locators.js');
+var BeaconDetailsLocators = require('./locators.js');
 
 describe('trying to view the details of a non-existent beacon', function() {
   var ptor,

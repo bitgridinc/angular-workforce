@@ -1,6 +1,6 @@
 "use strict";
 
-var Locators = require('./offerAssistance.locators.js');
+var Locators = require('./locators.js');
 
 describe('trying to assist a non-existent beacon', function() {
   var ptor,

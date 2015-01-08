@@ -1,7 +1,7 @@
 "use strict";
 
-var BeaconControlLocators = require('./beaconControl.locators.js');
-var ListBeaconsLocators = require('../../listBeacons/aat/listBeacons.locators.js');
+var BeaconControlLocators = require('./locators.js');
+var ListBeaconsLocators = require('../../listBeacons/aat/locators.js');
 
 describe('the main dashboard', function() {
   var ptor,

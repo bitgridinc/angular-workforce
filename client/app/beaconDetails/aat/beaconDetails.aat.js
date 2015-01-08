@@ -1,6 +1,6 @@
 "use strict";
 
-var BeaconDetailsLocators = require('./beaconDetails.locators.js');
+var BeaconDetailsLocators = require('./locators.js');
 
 describe('the view that displays the details of a particular beacon', function() {
   var ptor,
