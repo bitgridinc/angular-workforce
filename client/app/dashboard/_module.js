@@ -18,20 +18,8 @@ angular
           .state('dashboard', {
             name: 'dashboard',
             url: '/dashboard',
-            templateUrl: 'templates/dashboard/view.tpl.html',
-            controller: 'DashboardController'
+            templateUrl: 'templates/dashboard/view.tpl.html'
           });
-      }
-    ]
-  )
-  .controller('DashboardController',
-    [         '$scope', '$state',
-      function($scope,   $state) {
-        var isMyCompanyButtonToggled = false;
-        $scope.toggleMyCompanyButton = function () {
-          isMyCompanyButtonToggled = !isMyCompanyButtonToggled;
-          $state.go(isMyCompanyButtonToggled ? 'dashboard.mycompany.list' : 'dashboard');
-        };
       }
     ]
   );

@@ -18,13 +18,33 @@ angular
   .config(
     [         '$stateProvider',
       function($stateProvider) {
-        $stateProvider.state('dashboard.mycompany', {
-          abstract: true,
-          name: 'dashboard.mycompany',
-          parent: 'dashboard',
-          url: '/mycompany',
-          templateUrl: 'templates/control/view.tpl.html'
-        });
+        $stateProvider
+          .state('dashboard.mycompany', {
+            abstract: true,
+            name: 'dashboard.mycompany',
+            parent: 'dashboard',
+            url: '/mycompany',
+            templateUrl: 'templates/control/view2.tpl.html',
+            onEnter: function($rootScope) {
+              $rootScope.isMyCompanyButtonToggled = true;
+            },
+            onExit: function($rootScope) {
+              $rootScope.isMyCompanyButtonToggled = false;
+            }
+          });
+      }
+    ]
+  )
+  .controller('ControlController',
+    [         '$scope', '$rootScope', '$state',
+      function($scope,   $rootScope,   $state) {
+        $scope.toggleMyBeaconsButton = function() {
+          if (angular.isDefined($rootScope.isMyCompanyButtonToggled) && $rootScope.isMyCompanyButtonToggled) {
+            $state.go('dashboard');
+          } else {
+            $state.go('dashboard.mycompany.list');
+          }
+        };
       }
     ]
   );

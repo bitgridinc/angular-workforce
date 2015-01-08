@@ -2,14 +2,9 @@
   <div class="header full-width"
        ng-include src="'templates/header/view.tpl.html'">
   </div>
-  <div class="db-btn-col">
-    <!-- TODO: Row instead of break, ask -->
-    <button type="button" class="db-btn btn-primary center-block" ng-click="toggleMyCompanyButton()">
-      My<br>
-      Beacons
-    </button>
+  <div class="top container-fluid"
+       ng-include src="'templates/control/view.tpl.html'">
   </div>
-  <div class="top container-fluid" ui-view></div>
   <div class="map full-width"
        ng-include src="'templates/map/view.tpl.html'">
   </div>
