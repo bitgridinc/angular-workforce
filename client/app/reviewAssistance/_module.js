@@ -6,12 +6,12 @@ angular
     [         '$stateProvider',
       function($stateProvider) {
         $stateProvider
-          .state('dashboard.mycompany.detail.review', {
-            name: 'dashboard.mycompany.detail.review',
-            parent: 'dashboard.mycompany.detail',
+          .state('dashboard.beacons.detail.review', {
+            name: 'dashboard.beacons.detail.review',
+            parent: 'dashboard.beacons.detail',
             url: '/review',
             views: {
-              'right@dashboard.mycompany': {
+              'right@dashboard.beacons': {
                 templateUrl: 'templates/reviewAssistance/view.tpl.html',
                 controller: 'ReviewAssistanceController'
               }

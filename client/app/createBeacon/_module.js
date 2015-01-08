@@ -10,9 +10,9 @@ angular
     [         '$stateProvider',
       function($stateProvider) {
         $stateProvider
-          .state('dashboard.mycompany.create', {
-            name: 'dashboard.mycompany.create',
-            parent: 'dashboard.mycompany',
+          .state('dashboard.beacons.create', {
+            name: 'dashboard.beacons.create',
+            parent: 'dashboard.beacons',
             url: '/create',
             views: {
               'left': {

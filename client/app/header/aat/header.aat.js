@@ -15,7 +15,7 @@ describe('the header', function() {
     ptor.get('/#/dashboard');
   });
   it('should still be visible in child states', function() {
-    ptor.get('/#/dashboard/mycompany');
+    ptor.get('/#/dashboard/beacons');
   });
 
   afterEach(function() {

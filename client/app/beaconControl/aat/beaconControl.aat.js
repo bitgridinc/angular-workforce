@@ -22,19 +22,19 @@ describe('the main dashboard', function() {
     ptor.findElement(beaconControlLocators.myBeaconsButton).click();
 
     // Assert
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
     expect(ptor.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeTruthy();
   });
   it('should close the list of beacons when the My Beacons button is clicked again', function() {
     // Arrange
-    ptor.get('/#/dashboard/mycompany');
+    ptor.get('/#/dashboard/beacons');
 
     // Act
     ptor.findElement(beaconControlLocators.myBeaconsButton).click();
 
     // Assert
     expect(browser.getCurrentUrl()).toContain('/#/dashboard');
-    expect(browser.getCurrentUrl()).not.toContain('mycompany');
+    expect(browser.getCurrentUrl()).not.toContain('/#/dashboard/beacons');
     expect(ptor.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeFalsy();
   });
 });

@@ -8,7 +8,7 @@ describe('the view that displays the details of a particular beacon', function()
 
   beforeEach(function() {
     ptor = protractor.getInstance();
-    ptor.get('/#/dashboard/mycompany/detail/e688af0b-63df-48bc-941c-9cc5f750367b');
+    ptor.get('/#/dashboard/beacons/detail/e688af0b-63df-48bc-941c-9cc5f750367b');
   });
 
   beforeEach(function() {
@@ -28,16 +28,16 @@ describe('the view that displays the details of a particular beacon', function()
     expect(element(beaconDetailsLocators.goBack).isDisplayed()).toBeFalsy();
     ptor.findElement(beaconDetailsLocators.summaryHeader).click();
     expect(browser.getCurrentUrl()).not.toContain('/detail/e688af0b-63df-48bc-941c-9cc5f750367b');
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
   });
 
   it('should display a button that allows the user to offer assistance to the sender of the beacon', function() {
     ptor.findElement(beaconDetailsLocators.offerAssistance).click();
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/e688af0b-63df-48bc-941c-9cc5f750367b/assist');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/detail/e688af0b-63df-48bc-941c-9cc5f750367b/assist');
   });
 
   it('should display a button that allows the user to review offers of assistance', function() {
     ptor.findElement(beaconDetailsLocators.reviewOffers).click();
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany/detail/e688af0b-63df-48bc-941c-9cc5f750367b/review');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/detail/e688af0b-63df-48bc-941c-9cc5f750367b/review');
   });
 });

@@ -12,9 +12,9 @@ angular
     [         '$stateProvider',
       function($stateProvider) {
         $stateProvider
-          .state('dashboard.mycompany.detail', {
-            name: 'dashboard.mycompany.detail',
-            parent: 'dashboard.mycompany',
+          .state('dashboard.beacons.detail', {
+            name: 'dashboard.beacons.detail',
+            parent: 'dashboard.beacons',
             url: '/detail/:id',
             views: {
               'left': {
@@ -46,9 +46,9 @@ angular
           });
         });
 
-        $scope.goToBeaconList = function() { $state.go('dashboard.mycompany.list'); };
-        $scope.goToOfferAssistance = function() { $state.go('dashboard.mycompany.detail.assist'); };
-        $scope.goToReviewAssistance = function() { $state.go('dashboard.mycompany.detail.review'); };
+        $scope.goToBeaconList = function() { $state.go('dashboard.beacons.list'); };
+        $scope.goToOfferAssistance = function() { $state.go('dashboard.beacons.detail.assist'); };
+        $scope.goToReviewAssistance = function() { $state.go('dashboard.beacons.detail.review'); };
       }
     ]
   );

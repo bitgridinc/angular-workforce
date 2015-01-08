@@ -19,11 +19,11 @@ angular
     [         '$stateProvider',
       function($stateProvider) {
         $stateProvider
-          .state('dashboard.mycompany', {
+          .state('dashboard.beacons', {
             abstract: true,
-            name: 'dashboard.mycompany',
+            name: 'dashboard.beacons',
             parent: 'dashboard',
-            url: '/mycompany',
+            url: '/beacons',
             templateUrl: 'templates/beaconControl/view2.tpl.html',
             onEnter: function($rootScope) {
               $rootScope.isMyCompanyButtonToggled = true;
@@ -42,7 +42,7 @@ angular
           if (angular.isDefined($rootScope.isMyCompanyButtonToggled) && $rootScope.isMyCompanyButtonToggled) {
             $state.go('dashboard');
           } else {
-            $state.go('dashboard.mycompany.list');
+            $state.go('dashboard.beacons.list');
           }
         };
       }

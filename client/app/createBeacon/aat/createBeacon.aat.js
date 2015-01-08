@@ -8,7 +8,7 @@ describe('the page used to create a new beacon', function() {
 
   beforeEach(function() {
     ptor = protractor.getInstance();
-    ptor.get('/#/dashboard/mycompany/create');
+    ptor.get('/#/dashboard/beacons/create');
   });
 
   beforeEach(function() {
@@ -18,6 +18,6 @@ describe('the page used to create a new beacon', function() {
   it('should have a Submit Beacon button that navigates to the list of beacons', function() {
     ptor.findElement(createBeaconLocators.submitButton).click();
     expect(browser.getCurrentUrl()).not.toContain('/create');
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/mycompany');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
   });
 });
