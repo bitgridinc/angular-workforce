@@ -35,7 +35,7 @@ angular
       }
     ]
   )
-  .controller('ControlController',
+  .controller('BeaconControlController',
     [         '$scope', '$rootScope', '$state',
       function($scope,   $rootScope,   $state) {
         $scope.toggleMyBeaconsButton = function() {
