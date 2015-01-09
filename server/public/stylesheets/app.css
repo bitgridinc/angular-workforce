@@ -45,12 +45,23 @@
     outline: none;
 }
 
-.dashboard-opened-control {
+.dashboard-beacons-left {
     position: absolute;
     left: 106px;
     top: 40px;
-    width: 100%;
-    border: 1px solid green;
+    width: 300px;
+    max-height: 600px;
+    border: 0px;
+    margin: 0px;
+}
+.dashboard-beacons-right {
+    position: absolute;
+    left: 424px;
+    top: 60px;
+    width: 300px;
+    max-height: 580px;
+    border: 0px;
+    margin: 0px;
 }
 
 .dashboard-beacons-btn {
