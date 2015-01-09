@@ -7,14 +7,12 @@ It is visible in two places:
 
 Ignore the potential problem from long descriptions for now.
 -->
-<!-- TODO: Actually do something with the non-existent beacon-summary class. It's only here for my AATs to select. -->
-<div class="beacon-summary" ng-click="onSelectBeacon(beacon)">
-    <div class="small">
-        <organization-label organization="beacon.organization"></organization-label><br>
-        {{beacon.title}}<br>
-        {{beacon.description}}
+<li class="list-group-item list-group-item-info">
+    <div id="beacon-summary" class="small" ng-click="onSelectBeacon(beacon)">
+        <h5><organization-label organization="beacon.organization"></organization-label></h5>
+        {{beacon.title}}, {{beacon.description}}
     </div>
-</div>
-<button class="btn btn-sm btn-default" type="button" ng-show="beacon.responses.length > 0" ng-click="onReviewAssistance(beacon)">
-    Review Offers
-</button>
+    <button class="btn btn-sm btn-default" type="button" ng-show="beacon.responses.length > 0" ng-click="onReviewAssistance(beacon)">
+        Review Offers
+    </button>
+</li>
