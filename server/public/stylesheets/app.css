@@ -53,6 +53,7 @@
     max-height: 600px;
     border: 0px;
     margin: 0px;
+    /* Wait for sass to implement border to subtract from total width */
 }
 .dashboard-beacons-right {
     position: absolute;
