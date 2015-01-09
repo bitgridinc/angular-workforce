@@ -1,7 +1,7 @@
 "use strict";
 
 var controlLocators = function() {
-  this.myBeaconsButton = by.buttonText('My\nBeacons')
+  this.myBeaconsButton = by.id('dashboard-beacons-btn')
 };
 
 module.exports = controlLocators;
