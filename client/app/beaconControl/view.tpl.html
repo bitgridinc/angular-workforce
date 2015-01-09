@@ -1,10 +1,7 @@
 <div ng-controller="BeaconControlController">
-  <div class="db-btn-col">
-    <!-- TODO: Row instead of break, ask -->
-    <button type="button" class="db-btn btn-primary center-block" ng-click="toggleMyBeaconsButton()">
-      My<br>
-      Beacons
-    </button>
-  </div>
-  <div ui-view></div>
+  <button type="button" class="dashboard-beacons-btn btn-primary center-block" ng-click="toggleMyBeaconsButton()">
+    My<br>
+    Beacons
+  </button>
+  <div class="dashboard-opened-control" ui-view></div>
 </div>
