@@ -49,6 +49,7 @@ gulp.task('css', function() {
     .pipe(gulp.dest('./server/public/css'));
 });
 
+// The gulp-browserify plugin has been blacklisted and is no longer maintained.
 gulp.task('browserify', function() {
   var browserified = transform(function(filename) {
     var b = browserify(filename);
