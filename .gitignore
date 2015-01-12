@@ -4,3 +4,5 @@ node_modules/karma-phantomjs-launcher/node_modules/phantomjs/.jshintrc
 .idea
 node_modules/karma-story-reporter/coverage
 levelDb
+.sass-cache
+

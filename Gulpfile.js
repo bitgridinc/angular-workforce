@@ -8,15 +8,20 @@ var gulp = require('gulp')
   , webdriver_update = require('gulp-protractor').webdriver_update
   , protractor = require("gulp-protractor").protractor
   , browserify = require('gulp-browserify')
-  , rename = require('gulp-rename');
+  , rename = require('gulp-rename')
+  , sass = require('gulp-ruby-sass')
+  , notify = require('gulp-notify');
 
 var config = {
   clientModuleSrc: 'client/app/**/*.js',
   clientCommonSrc: 'client/common/**/*.js',
   clientEntrySrc: 'client/app/_application/app.js',
   clientAatSrc: 'client/app/**/aat/*aat.js',
+  clientBowerDir: 'client/bower_components',
+  clientSassDir: 'client/resources/sass',
   bundleFileName: 'bundle.js',
   bundleFolder: 'server/public/js',
+  publicFontsFolder: 'server/public/fonts',
   serverSrc: 'server/index.js'
 };
 
@@ -24,6 +29,23 @@ gulp.task('hint', function () {
   gulp.src([config.clientModuleSrc, config.clientCommonSrc])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('css', function() {
+  return gulp.src(config.clientSassDir + '/test.scss')
+    .pipe(sass({
+        style: 'compressed',
+        loadPath: [
+          config.clientSassDir,
+          config.clientBowerDir + '/bootstrap-sass-official/assets/stylesheets',
+          config.clientBowerDir + '/fontawesome/scss'
+        ]
+      })
+      .on('error', notify.onError(function(error) {
+        return 'Error: ' + error.message;
+      }))
+    )
+    .pipe(gulp.dest('./server/public/css'));
 });
 
 gulp.task('browserify', function() {
@@ -37,8 +59,8 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest(config.bundleFolder))
 });
 
-gulp.task('develop', ['browserify', 'hint'], function () {
-  nodemon({ script: config.serverSrc, ext: 'js html css', ignore: [config.bundleFileName] })
+gulp.task('develop', ['css', 'browserify', 'hint'], function () {
+  nodemon({ script: config.serverSrc, ext: 'js html css scss', ignore: [config.bundleFileName] })
     .on('change', ['browserify', 'hint'])
     .on('restart', function () {
       console.log('restarted!')
@@ -53,7 +75,12 @@ gulp.task('tdd', function(done) {
   }, done);
 });
 
-gulp.task('default', ['develop', 'tdd']);
+gulp.task('icons', function() {
+  return gulp.src(config.clientBowerDir + '/fontawesome/fonts/**.*')
+    .pipe(gulp.dest(config.publicFontsFolder));
+});
+
+gulp.task('default', ['develop', 'tdd', 'icons']);
 
 // Protractor not yet tied into build/development process
 gulp.task('webdriver_standalone', webdriver_standalone);
@@ -62,7 +89,7 @@ gulp.task('webdriver_update', webdriver_update);
 gulp.task('aat', ['webdriver_update'], function(cb) {
   gulp.src([config.clientAatSrc]).pipe(protractor({
     configFile: 'protractor.conf.js'
-  })).on('error', function(e) {
-    console.log(e);
-  }).on('end', cb);
+  })).on('error', notify.onError(function(error) {
+    return "Error: " + error.message;
+  })).on('end', cb);
 });
