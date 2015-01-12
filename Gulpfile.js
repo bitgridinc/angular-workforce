@@ -14,37 +14,48 @@ var gulp = require('gulp')
   , sass = require('gulp-ruby-sass')
   , notify = require('gulp-notify');
 
-var config = {
-  clientModuleSrc: 'client/app/**/*.js',
-  clientCommonSrc: 'client/common/**/*.js',
-  clientEntrySrc: 'client/app/_application/app.js',
-  clientAatSrc: 'client/app/**/aat/*aat.js',
-  clientBowerDir: 'client/bower_components',
-  clientSassDir: 'client/resources/sass',
-  bundleFileName: 'bundle.js',
-  bundleFolder: 'server/public/js',
-  publicFontsFolder: 'server/public/fonts',
-  serverSrc: 'server/index.js'
+var configs = {
+  jshint: __dirname + '/.jshintrc',
+  karma: __dirname + '/karma.conf.js',
+  protractor: __dirname + '/protractor.conf.js'
+};
+
+var client = {
+  moduleSrc: 'client/app/**/*.js',
+  commonSrc: 'client/common/**/*.js',
+  entrySrc: 'client/app/_application/app.js',
+  aatSrc: 'client/app/**/aat/*aat.js',
+  bowerDir: 'client/bower_components',
+  sassDir: 'client/resources/sass'
+};
+
+var server = {
+  parentDir: __dirname + '/server',
+  bundleDir: __dirname + '/server/public/js',
+  fontsDir: __dirname + '/server/public/fonts',
+  scriptName: 'index.js',
+  bundleName: 'bundle.js'
 };
 
 gulp.task('hint', function () {
-  gulp.src([config.clientModuleSrc, config.clientCommonSrc])
-    .pipe(jshint('.jshintrc'))
+  // For some reason, setting the cwd parameter on nodemon forced me to prefix the '.jshintrc' argument with __dirname
+  gulp.src([client.moduleSrc, client.commonSrc])
+    .pipe(jshint(configs.jshint))
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('css', function() {
-  return gulp.src(config.clientSassDir + '/test.scss')
+  return gulp.src(client.sassDir + '/test.scss')
     .pipe(sass({
         style: 'compressed',
         loadPath: [
-          config.clientSassDir,
-          config.clientBowerDir + '/bootstrap-sass-official/assets/stylesheets',
-          config.clientBowerDir + '/fontawesome/scss'
+          client.sassDir,
+          client.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+          client.bowerDir + '/fontawesome/scss'
         ]
       })
       .on('error', notify.onError(function(error) {
-        return 'Error: ' + error.message;
+        return 'Error in css task: ' + error.message;
       }))
     )
     .pipe(gulp.dest('./server/public/css'));
@@ -57,39 +68,42 @@ gulp.task('browserify', function() {
     return b.bundle();
   });
 
-  return gulp.src([config.clientEntrySrc])
+  // Here's another place where I need to set the cwd. It's odd as browserify isn't called from nodemon, the only place
+  // I set a non-__dirname cwd. I'm not sure how that setting is getting propagated to the dependent tasks.
+  return gulp.src([client.entrySrc], { cwd: __dirname })
              .pipe(browserified)
-             .pipe(rename(config.bundleFileName))
-             .pipe(gulp.dest(config.bundleFolder));
+             .pipe(rename(server.bundleName))
+             .pipe(gulp.dest(server.bundleDir));
 });
 
 // Watches all javascript files under /client and calls the browserify task if any change
-gulp.task('browserify-watch', function() {
+gulp.task('client-watch', function() {
   // gulp-watch is nicer than gulps built-in watch function because it can look for new files
   watch('client/**/*.js', function() {
     gulp.start('browserify');
+    gulp.start('hint');
   });
 });
 
-gulp.task('develop', ['css', 'browserify-watch', 'hint'], function () {
-  nodemon({ script: config.serverSrc, ext: 'js html css scss', ignore: [config.bundleFileName] })
-    .on('change', ['browserify', 'hint'])
+// TODO: Move nodemon into a leaf task. That should stop the propagation and avoid the double unit-tests.
+gulp.task('develop', ['browserify', 'css', 'client-watch'], function () {
+  // Nodemon will restart Node when files change. So that it doesn't watch the entire directory, we use cwd to start it
+  // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
+  nodemon({ script: server.scriptName, ext: 'js', cwd: server.parentDir, verbose: true })
     .on('restart', function () {
-      console.log('restarted!')
-    })
+      console.log('Node.js server restarted due to file change!')
+    });
 });
 
 // Strangely, these tests run twice only the first time, then karma is fine.
 // It doesn't matter where I depend on this task.
 gulp.task('tdd', function(done) {
-  karmaServer.start({
-    configFile: __dirname + '/karma.conf.js'
-  }, done);
+  karmaServer.start({ configFile: configs.karma }, done);
 });
 
 gulp.task('icons', function() {
-  return gulp.src(config.clientBowerDir + '/fontawesome/fonts/**.*')
-    .pipe(gulp.dest(config.publicFontsFolder));
+  return gulp.src(client.bowerDir + '/fontawesome/fonts/**.*')
+    .pipe(gulp.dest(server.fontsDir));
 });
 
 gulp.task('default', ['develop', 'tdd', 'icons']);
@@ -99,9 +113,9 @@ gulp.task('webdriver_standalone', webdriver_standalone);
 gulp.task('webdriver_update', webdriver_update);
 
 gulp.task('aat', ['webdriver_update'], function(cb) {
-  gulp.src([config.clientAatSrc]).pipe(protractor({
-    configFile: 'protractor.conf.js'
+  gulp.src([client.aatSrc]).pipe(protractor({
+    configFile: configs.protractor
   })).on('error', notify.onError(function(error) {
-    return "Error: " + error.message;
+    return 'Error in aat task: ' + error.message;
   })).on('end', cb);
 });
