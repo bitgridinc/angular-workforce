@@ -7,7 +7,8 @@ var gulp = require('gulp')
   , webdriver_standalone = require("gulp-protractor").webdriver_standalone
   , webdriver_update = require('gulp-protractor').webdriver_update
   , protractor = require("gulp-protractor").protractor
-  , browserify = require('gulp-browserify')
+  , browserify = require('browserify')
+  , transform = require('vinyl-transform')
   , rename = require('gulp-rename')
   , sass = require('gulp-ruby-sass')
   , notify = require('gulp-notify');
@@ -49,14 +50,15 @@ gulp.task('css', function() {
 });
 
 gulp.task('browserify', function() {
-  // Single entry point to browserify
-  gulp.src(config.clientEntrySrc)
-    .pipe(browserify({
-      insertGlobals : true,
-      debug: true
-    }))
-    .pipe(rename(config.bundleFileName))
-    .pipe(gulp.dest(config.bundleFolder))
+  var browserified = transform(function(filename) {
+    var b = browserify(filename);
+    return b.bundle();
+  });
+
+  return gulp.src([config.clientEntrySrc])
+             .pipe(browserified)
+             .pipe(rename(config.bundleFileName))
+             .pipe(gulp.dest(config.bundleFolder));
 });
 
 gulp.task('develop', ['css', 'browserify', 'hint'], function () {
