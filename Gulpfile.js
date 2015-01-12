@@ -7,6 +7,7 @@ var gulp = require('gulp')
   , webdriver_standalone = require("gulp-protractor").webdriver_standalone
   , webdriver_update = require('gulp-protractor').webdriver_update
   , protractor = require("gulp-protractor").protractor
+  , watch = require('gulp-watch')
   , browserify = require('browserify')
   , transform = require('vinyl-transform')
   , rename = require('gulp-rename')
@@ -62,7 +63,15 @@ gulp.task('browserify', function() {
              .pipe(gulp.dest(config.bundleFolder));
 });
 
-gulp.task('develop', ['css', 'browserify', 'hint'], function () {
+// Watches all javascript files under /client and calls the browserify task if any change
+gulp.task('browserify-watch', function() {
+  // gulp-watch is nicer than gulps built-in watch function because it can look for new files
+  watch('client/**/*.js', function() {
+    gulp.start('browserify');
+  });
+});
+
+gulp.task('develop', ['css', 'browserify-watch', 'hint'], function () {
   nodemon({ script: config.serverSrc, ext: 'js html css scss', ignore: [config.bundleFileName] })
     .on('change', ['browserify', 'hint'])
     .on('restart', function () {
