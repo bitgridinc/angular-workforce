@@ -1,12 +1,12 @@
 .bg-full-width {
   width: 100%;
-}
-
-/* dup */
-.header {
-  margin: auto 0px;
   left: 0px;
   right: 0px;
+}
+
+.header {
+  @extend .bg-full-width;
+  margin: auto 0px;
   padding: auto .5em;
   /* this will float above or behind the map */
   position: absolute;
@@ -16,18 +16,13 @@
   border: 1px solid orange;
   background: white;
 }
-.body {
-  margin-top: 22px;
-  height: 100%;
-}
 
 .map {
+  @extend .bg-full-width;
   position: absolute;
   margin: 0px;
   bottom: 0px;
-  left: 0px;
   top: 0px;
-  right: 0px;
   border: 1px solid green;
   z-index: -100;
 }
