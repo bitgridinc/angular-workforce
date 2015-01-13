@@ -99,7 +99,8 @@ gulp.task('build', ['browserify', 'hint', 'css', 'icons', 'client-watch']);
 gulp.task('server', ['build'], function () {
   // Nodemon will restart Node when files change. So that it doesn't watch the entire directory, we use cwd to start it
   // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
-  nodemon({ script: server.scriptName, ext: 'js', cwd: server.parentDir, verbose: true })
+  // Note: Use ', verbose: true' to debug
+  nodemon({ script: server.scriptName, ext: 'js', cwd: server.parentDir })
     .on('restart', function () {
       console.log('Node.js server restarted due to file change!')
     });
