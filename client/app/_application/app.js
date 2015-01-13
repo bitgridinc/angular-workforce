@@ -72,7 +72,7 @@ angular
         return {
           socketState: undefined,
           initialize: function(socketState) {
-            console.log('Initializing socketState9 in the socketHandlerService', socketState);
+            console.log('Initializing socketState in the socketHandlerService', socketState);
             this.socketState = socketState;
             console.log('test', this.socketState, this);
           },
