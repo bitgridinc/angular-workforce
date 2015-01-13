@@ -6,6 +6,8 @@ $header-height: 22px;
   right: 0px;
 }
 
+/* TODO: Fix the padding. It'll probably require creating container classes that go in dashboard and content classes for
+   TODO: the remaining styling. */
 .header {
   @extend .bg-full-width;
   height: $header-height;
