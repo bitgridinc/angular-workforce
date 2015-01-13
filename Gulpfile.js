@@ -22,13 +22,14 @@ var configs = {
   protractor: __dirname + '/protractor.conf.js'
 };
 var client = {
-  allSrc: __dirname + '/client/**/*.js',
+  allJsSrc: __dirname + '/client/**/*.js',
   moduleSrc: __dirname + '/client/app/**/*.js',
   commonSrc: __dirname + '/client/common/**/*.js',
   entrySrc: __dirname + '/client/app/_application/app.js',
   aatSrc: __dirname + '/client/app/**/aat/*aat.js',
   bowerDir: __dirname + '/client/bower_components',
-  sassDir: __dirname + '/client/resources/sass'
+  sassDir: __dirname + '/client/resources/sass',
+  allSassSrc: __dirname + '/client/resources/sass/*.scss'
 };
 var server = {
   parentDir: __dirname + '/server',
@@ -83,9 +84,12 @@ gulp.task('icons', function() {
 // Watches all javascript files under /client and calls the browserify task if any change
 gulp.task('client-watch', function() {
   // gulp-watch is nicer than gulps built-in watch function because it can look for new files
-  watch(client.allSrc, function() {
+  watch(client.allJsSrc, function() {
     gulp.start('browserify');
     gulp.start('hint');
+  });
+  watch(client.allSassSrc, function() {
+    gulp.start('css');
   });
 });
 
