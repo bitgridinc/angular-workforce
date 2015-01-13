@@ -20,40 +20,41 @@ var configs = {
   protractor: __dirname + '/protractor.conf.js'
 };
 
+// Note that absolute paths are REQUIRED while we use the cwd parameter with nodemon. I don't know why this is the case,
+// but setting the cwd in nodemon changes the cwd for ALL later tasks. This breaks them if they are relative.
 var client = {
-  moduleSrc: 'client/app/**/*.js',
-  commonSrc: 'client/common/**/*.js',
-  entrySrc: 'client/app/_application/app.js',
-  aatSrc: 'client/app/**/aat/*aat.js',
-  bowerDir: 'client/bower_components',
-  sassDir: 'client/resources/sass'
+  allSrc: __dirname + '/client/**/*.js',
+  moduleSrc: __dirname + '/client/app/**/*.js',
+  commonSrc: __dirname + '/client/common/**/*.js',
+  entrySrc: __dirname + '/client/app/_application/app.js',
+  aatSrc: __dirname + '/client/app/**/aat/*aat.js',
+  bowerDir: __dirname + '/client/bower_components',
+  sassDir: __dirname + '/client/resources/sass'
 };
 
 var server = {
   parentDir: __dirname + '/server',
+  cssDir: __dirname + '/server/public/css',
   bundleDir: __dirname + '/server/public/js',
   fontsDir: __dirname + '/server/public/fonts',
   scriptName: 'index.js',
   bundleName: 'bundle.js'
 };
 
-// The gulp-browserify plugin has been blacklisted and is no longer maintained.
+// The gulp-browserify plugin has been blacklisted and is no longer maintained, so do it vanilla.
 gulp.task('browserify', function() {
   var browserified = transform(function(filename) {
     var b = browserify(filename);
     return b.bundle();
   });
 
-  // Somehow, when I set cwd within nodemon the cwd of every task changes. I need to force it back to the project root.
-  // TODO: Verify that other tasks are broken after nodemon runs
-  return gulp.src([client.entrySrc], { cwd: __dirname })
+  return gulp.src([client.entrySrc])
     .pipe(browserified)
     .pipe(rename(server.bundleName))
     .pipe(gulp.dest(server.bundleDir));
 });
 
 gulp.task('hint', function () {
-  // For some reason, setting the cwd parameter on nodemon forced me to prefix the '.jshintrc' argument with __dirname
   gulp.src([client.moduleSrc, client.commonSrc])
     .pipe(jshint(configs.jshint))
     .pipe(jshint.reporter('jshint-stylish'));
@@ -73,7 +74,7 @@ gulp.task('css', function() {
         return 'Error in css task: ' + error.message;
       }))
     )
-    .pipe(gulp.dest('./server/public/css'));
+    .pipe(gulp.dest(server.cssDir));
 });
 
 gulp.task('icons', function() {
@@ -84,7 +85,7 @@ gulp.task('icons', function() {
 // Watches all javascript files under /client and calls the browserify task if any change
 gulp.task('client-watch', function() {
   // gulp-watch is nicer than gulps built-in watch function because it can look for new files
-  watch('client/**/*.js', function() {
+  watch(client.allSrc, function() {
     gulp.start('browserify');
     gulp.start('hint');
   });
