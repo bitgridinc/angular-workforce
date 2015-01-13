@@ -29,7 +29,6 @@ var client = {
   entrySrc: __dirname + '/client/app/_application/app.js',
   aatSrc: __dirname + '/client/app/**/aat/*aat.js',
   bowerDir: __dirname + '/client/bower_components',
-  sassDir: __dirname + '/client/resources/sass',
   allSassSrc: __dirname + '/client/resources/sass/*.scss'
 };
 var server = {
@@ -63,7 +62,7 @@ gulp.task('hint', function () {
 });
 
 gulp.task('css', function() {
-  return gulp.src(client.sassDir + '/test.scss')
+  return gulp.src(client.allSassSrc)
     .pipe(sass({
         style: 'compressed',
         loadPath: [
