@@ -9,6 +9,7 @@ var gulp = require('gulp')
   , protractor = require("gulp-protractor").protractor
   , watch = require('gulp-watch')
   , browserify = require('browserify')
+  , watchify = require('watchify')
   , transform = require('vinyl-transform')
   , rename = require('gulp-rename')
   , sass = require('gulp-ruby-sass')
@@ -40,18 +41,20 @@ var server = {
   bundleName: 'bundle.js'
 };
 
-// The gulp-browserify plugin has been blacklisted and is no longer maintained, so do it vanilla.
-gulp.task('browserify', function() {
+function bundle() {
   var browserified = transform(function(filename) {
-    var b = browserify(filename);
-    return b.bundle();
+    var bundler = watchify(browserify(filename, watchify.args));
+    bundler.on('update', bundle);
+    return bundler.bundle();
   });
 
   return gulp.src([client.entrySrc])
     .pipe(browserified)
     .pipe(rename(server.bundleName))
     .pipe(gulp.dest(server.bundleDir));
-});
+}
+
+gulp.task('watchify', bundle);
 
 gulp.task('hint', function () {
   gulp.src([client.moduleSrc, client.commonSrc])
@@ -81,11 +84,9 @@ gulp.task('icons', function() {
     .pipe(gulp.dest(server.fontsDir));
 });
 
-// Watches all javascript files under /client and calls the browserify task if any change
 gulp.task('client-watch', function() {
   // gulp-watch is nicer than gulps built-in watch function because it can look for new files
   watch(client.allJsSrc, function() {
-    gulp.start('browserify');
     gulp.start('hint');
   });
   watch(client.allSassSrc, function() {
@@ -93,7 +94,7 @@ gulp.task('client-watch', function() {
   });
 });
 
-gulp.task('build', ['browserify', 'hint', 'css', 'icons', 'client-watch']);
+gulp.task('build', ['watchify', 'hint', 'css', 'icons', 'client-watch']);
 
 // build changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
 gulp.task('server', ['build'], function () {
