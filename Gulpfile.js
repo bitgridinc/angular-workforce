@@ -14,14 +14,13 @@ var gulp = require('gulp')
   , sass = require('gulp-ruby-sass')
   , notify = require('gulp-notify');
 
+// Note that absolute paths are REQUIRED while we use the cwd parameter with nodemon. I don't know why this is the case,
+// but setting the cwd in nodemon changes the cwd for ALL later tasks. This breaks them if they are relative.
 var configs = {
   jshint: __dirname + '/.jshintrc',
   karma: __dirname + '/karma.conf.js',
   protractor: __dirname + '/protractor.conf.js'
 };
-
-// Note that absolute paths are REQUIRED while we use the cwd parameter with nodemon. I don't know why this is the case,
-// but setting the cwd in nodemon changes the cwd for ALL later tasks. This breaks them if they are relative.
 var client = {
   allSrc: __dirname + '/client/**/*.js',
   moduleSrc: __dirname + '/client/app/**/*.js',
@@ -31,7 +30,6 @@ var client = {
   bowerDir: __dirname + '/client/bower_components',
   sassDir: __dirname + '/client/resources/sass'
 };
-
 var server = {
   parentDir: __dirname + '/server',
   cssDir: __dirname + '/server/public/css',
