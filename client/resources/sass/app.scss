@@ -5,7 +5,7 @@
 $header-height: 22px;
 $beacons-btn-size: 70px;
 $beacons-btn-margin: 18px;
-$beacons-left-cont-left: $beacons-btn-size + $beacons-btn-margin;
+$beacons-left-container-left: $beacons-btn-size + $beacons-btn-margin;
 
 td {
   padding: 0 .5em;
@@ -46,7 +46,7 @@ td {
 
 .dashboard-beacons-left {
   position: absolute;
-  left: $beacons-left-cont-left;
+  left: $beacons-left-container-left;
   width: 300px;
   max-height: 600px;
   border: 0px;
