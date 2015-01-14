@@ -6,6 +6,8 @@ $header-height: 22px;
 $beacons-btn-size: 70px;
 $beacons-btn-margin: 18px;
 $beacons-left-container-left: $beacons-btn-size + $beacons-btn-margin;
+$beacons-left-container-width: 300px;
+$beacons-right-container-left: $beacons-left-container-left + $beacons-left-container-width + $beacons-btn-margin;
 
 td {
   padding: 0 .5em;
@@ -55,9 +57,9 @@ td {
 }
 .dashboard-beacons-right {
   position: absolute;
-  left: 424px;
+  left: $beacons-right-container-left;
   top: 20px;
-  width: 300px;
+  width: $beacons-left-container-width;
   max-height: 580px;
   border: 0px;
   margin: 0px;
