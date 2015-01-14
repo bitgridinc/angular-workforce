@@ -10,17 +10,15 @@ td {
 
 .bg-header-container {
   @extend .bg-full-width;
-  height: $header-height;
   position: absolute;
+  height: $header-height;
 }
 
-.map {
+.bg-map-container {
   @extend .bg-full-width;
-  top: $header-height;
   position: absolute;
-  margin: 0px;
+  top: $header-height;
   bottom: 0px;
-  border: 1px solid green;
   z-index: -100;
 }
 
