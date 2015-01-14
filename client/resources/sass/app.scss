@@ -20,6 +20,10 @@ td {
   height: $header-height;
 }
 
+.bg-beacons-control-container {
+  position: absolute;
+}
+
 .bg-map-container {
   @extend .bg-full-width;
   position: absolute;
@@ -41,8 +45,7 @@ td {
 .dashboard-beacons-left {
   position: absolute;
   left: $beacons-left-cont-left;
-  // TODO: Changing to relative and removing header-height causes it to stack below the my beacons button
-  top: $beacons-btn-margin + $header-height;
+  top: $beacons-btn-margin;
   width: 300px;
   max-height: 600px;
   border: 0px;
@@ -52,7 +55,7 @@ td {
 .dashboard-beacons-right {
   position: absolute;
   left: 424px;
-  top: 60px;
+  top: $beacons-btn-margin + 20px;
   width: 300px;
   max-height: 580px;
   border: 0px;
@@ -62,7 +65,7 @@ td {
 .bg-db-beacons-btn {
   @extend .btn;
   @include square($beacons-btn-size);
-  position: relative;
+  position: absolute;
   left: $beacons-btn-margin;
   top: $beacons-btn-margin;
   padding: 6px 6px;
