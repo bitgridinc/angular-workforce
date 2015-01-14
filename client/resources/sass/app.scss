@@ -1,24 +1,17 @@
 $header-height: 22px;
 
-.bg-full-width {
-  width: 100%;
-  left: 0px;
-  right: 0px;
+td {
+  padding: 0 .5em;
 }
 
-/* TODO: Fix the padding. It'll probably require creating container classes that go in dashboard and content classes for
-   TODO: the remaining styling. */
-.header {
+.bg-full-width {
+  width: 100%;
+}
+
+.bg-header-container {
   @extend .bg-full-width;
   height: $header-height;
-  margin: auto 0px;
-  padding: auto .5em;
-  /* this will float above or behind the map */
   position: absolute;
-  float: top;
-  overflow: hidden;
-  border: 1px solid orange;
-  background: white;
 }
 
 .map {
