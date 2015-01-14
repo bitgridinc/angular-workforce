@@ -3,6 +3,9 @@
 @import 'bootstrap/buttons';
 
 $header-height: 22px;
+$beacons-btn-size: 70px;
+$beacons-btn-margin: 18px;
+$beacons-left-cont-left: $beacons-btn-size + 2*$beacons-btn-margin;
 
 td {
   padding: 0 .5em;
@@ -14,7 +17,6 @@ td {
 
 .bg-header-container {
   @extend .bg-full-width;
-  position: absolute;
   height: $header-height;
 }
 
@@ -38,8 +40,9 @@ td {
 
 .dashboard-beacons-left {
   position: absolute;
-  left: 106px;
-  top: 40px;
+  left: $beacons-left-cont-left;
+  // TODO: Duplicated with top of bg-db-beacons-btn
+  top: $beacons-btn-margin + $header-height;
   width: 300px;
   max-height: 600px;
   border: 0px;
@@ -58,9 +61,9 @@ td {
 
 .bg-db-beacons-btn {
   @extend .btn;
-  @include square(70px);
+  @include square($beacons-btn-size);
   position: absolute;
-  left: 18px;
-  top: 40px;
+  left: $beacons-btn-margin;
+  top: $beacons-btn-margin + $header-height;
   padding: 6px 6px;
 }
