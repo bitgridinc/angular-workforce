@@ -47,7 +47,7 @@ function bundle() {
     return bundler.bundle();
   });
 
-  return gulp.src([client.entrySrc])
+  return gulp.src(client.entrySrc)
     .pipe(browserified)
     .pipe(rename(server.bundleName))
     .pipe(gulp.dest(server.bundleDir));
@@ -117,7 +117,7 @@ gulp.task('webdriver_standalone', webdriver_standalone);
 gulp.task('webdriver_update', webdriver_update);
 
 gulp.task('aat', ['webdriver_update'], function(cb) {
-  gulp.src([client.aatSrc]).pipe(protractor({
+  gulp.src(client.aatSrc).pipe(protractor({
     configFile: configs.protractor
   })).on('error', notify.onError(function(error) {
     return 'Error in aat task: ' + error.message;
