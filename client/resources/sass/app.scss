@@ -58,10 +58,9 @@ td {
 
 .bg-db-beacons-btn {
   @extend .btn;
+  @include square(70px);
   position: absolute;
   left: 18px;
   top: 40px;
-  width: 70px;
-  height: 70px;
   padding: 6px 6px;
 }
