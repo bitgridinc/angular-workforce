@@ -5,7 +5,7 @@
 $header-height: 22px;
 $beacons-btn-size: 70px;
 $beacons-btn-margin: 18px;
-$beacons-left-cont-left: $beacons-btn-size + 2*$beacons-btn-margin;
+$beacons-left-cont-left: $beacons-btn-size + $beacons-btn-margin;
 
 td {
   padding: 0 .5em;
@@ -22,6 +22,8 @@ td {
 
 .bg-beacons-control-container {
   position: absolute;
+  left: $beacons-btn-margin;
+  top: $beacons-btn-margin + $header-height;
 }
 
 .bg-map-container {
@@ -45,7 +47,6 @@ td {
 .dashboard-beacons-left {
   position: absolute;
   left: $beacons-left-cont-left;
-  top: $beacons-btn-margin;
   width: 300px;
   max-height: 600px;
   border: 0px;
@@ -55,7 +56,7 @@ td {
 .dashboard-beacons-right {
   position: absolute;
   left: 424px;
-  top: $beacons-btn-margin + 20px;
+  top: 20px;
   width: 300px;
   max-height: 580px;
   border: 0px;
@@ -66,7 +67,5 @@ td {
   @extend .btn;
   @include square($beacons-btn-size);
   position: absolute;
-  left: $beacons-btn-margin;
-  top: $beacons-btn-margin;
   padding: 6px 6px;
 }
