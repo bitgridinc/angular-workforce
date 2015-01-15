@@ -1,10 +1,1 @@
-<div ng-show="totalItems > 1">
-    <pagination total-items="totalItems" items-per-page="1" ng-model="currentPage" ng-change="changePage(currentPage)" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;"></pagination>
-</div>
-<div>
-    <p class="small">
-        <organization-label organization="currentItem.organization"></organization-label>
-        offered to assist with {{currentItem.numResponders}} people at {{currentItem.arrivalDate}}.
-    </p>
-    <button class="bg-wide-btn btn btn-sm btn-success" type="button" ng-click="acceptAssistance()">Accept Assistance</button>
-</div>
+<closeable-panel></closeable-panel>

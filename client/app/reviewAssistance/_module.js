@@ -26,6 +26,10 @@ angular
       function($scope,   $rootScope,   $state,   MessageSender,   PaginationControl) {
         console.log('Entering ReviewAssistanceController');
 
+        // These need to be defined for closeablePanel
+        $scope.bodyTemplateUrl = 'templates/reviewAssistance/body.tpl.html';
+        $scope.headerTemplateUrl = 'templates/reviewAssistance/header.tpl.html';
+
         // TODO: The if statement must be tested
         $rootScope.$watchCollection('selectionState.currentBeacon.responses', function(newValue) {
           console.log('selectionState.currentBeacon.responses changed', newValue);

@@ -31,6 +31,11 @@ angular
       function($scope,   $rootScope,   $state,   MessagePacketizer,   MessageSender) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
+
+        // These need to be defined for closeablePanel
+        $scope.bodyTemplateUrl = 'templates/offerAssistance/body.tpl.html';
+        $scope.headerTemplateUrl = 'templates/offerAssistance/header.tpl.html';
+
         $scope.selectionState = $rootScope.selectionState;
         $scope.assistanceOffer = {
           numResponders: 2,
