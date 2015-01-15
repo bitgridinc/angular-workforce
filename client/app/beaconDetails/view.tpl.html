@@ -1,9 +1,9 @@
-<h4>Beacon Details</h4>
 <div ng-show="selectionState.currentBeacon">
     <beacon-summary beacon="selectionState.currentBeacon" on-select-beacon="goToBeaconList" on-review-assistance="goToReviewAssistance"></beacon-summary>
     <div ng-show="selectionState.currentBeacon.acceptedAssistance">
         <accepted-assistance-summary accepted-assistance="selectionState.currentBeacon.acceptedAssistance"></accepted-assistance-summary>
     </div>
+    <h5>Beacon Details</h5>
     <div class="form-group">
         <label>Location:</label>({{selectionState.currentBeacon.lat}}, {{selectionState.currentBeacon.lng}})
     </div>
