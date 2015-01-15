@@ -7,12 +7,14 @@ It is visible in two places:
 
 Ignore the potential problem from long descriptions for now.
 -->
-<li class="list-group-item list-group-item-info">
-    <div id="beacon-summary" class="small" ng-click="onSelectBeacon(beacon)">
+<li class="bg-beacon-summary-container">
+    <div id="beacon-summary" class="bg-bs-text-container small" ng-click="onSelectBeacon(beacon)">
         <h5><organization-label organization="beacon.organization"></organization-label></h5>
         {{beacon.title}}, {{beacon.description}}
     </div>
-    <button class="btn btn-sm btn-default" type="button" ng-show="beacon.responses.length > 0" ng-click="onReviewAssistance(beacon)">
-        Review Offers
-    </button>
+    <div class="bg-bs-review-btn-container">
+        <button class="btn btn-sm btn-default" type="button" ng-show="beacon.responses.length > 0" ng-click="onReviewAssistance(beacon)">
+            Review Offers
+        </button>
+    </div>
 </li>

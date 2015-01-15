@@ -1,6 +1,10 @@
+// Override bootstrap variables
+$list-group-border-radius: 0px;
+
 @import 'bootstrap/variables';
 @import 'bootstrap/mixins';
 @import 'bootstrap/buttons';
+@import 'bootstrap/list-group';
 
 $header-height: 22px;
 $beacons-btn-size: 70px;
@@ -70,4 +74,36 @@ td {
   @include square($beacons-btn-size);
   position: absolute;
   padding: 6px 6px;
+}
+
+/* Beacon Summary Directive */
+$review-btn-width: 97px;
+
+.bg-beacon-list-group {
+  @extend .list-group;
+  margin-bottom: 0px;
+}
+
+.bg-beacon-summary-container {
+  @extend .list-group-item;
+  height: $beacons-btn-size;
+  padding: 0px;
+}
+
+.bg-bs-text-container {
+  position: absolute;
+  left: 0px;
+  right: $review-btn-width;
+  height: $beacons-btn-size;
+}
+
+.bg-bs-review-btn-container {
+  position: absolute;
+  right: 0px;
+  width: $review-btn-width;
+  height: $beacons-btn-size;
+}
+
+ul {
+  list-style-type: none;
 }

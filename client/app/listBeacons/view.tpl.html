@@ -1,6 +1,5 @@
 <div ng-controller="ListBeaconsController">
-  <h4>Beacon Summary List</h4>
-  <ul ng-repeat="beacon in beacons" class="list-group">
+  <ul ng-repeat="beacon in beacons" class="bg-beacon-list-group">
     <beacon-summary beacon="beacon" on-select-beacon="onSelectBeacon" on-review-assistance="onReviewAssistance"></beacon-summary>
   </ul>
   <!-- Prime use case for a directive. -->
