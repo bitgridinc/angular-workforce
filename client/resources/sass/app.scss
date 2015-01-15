@@ -95,21 +95,28 @@ $review-btn-width: 97px;
   margin-bottom: 0px;
 }
 
+$beacon-summary-vertical-padding: 4px;
+
 .bg-beacon-summary-container {
   @extend .list-group-item;
   height: $beacons-btn-size;
   padding: 4px 8px;
 }
 
+.bg-beacon-summary-content {
+  height: $beacons-btn-size - 2*$beacon-summary-vertical-padding;
+}
+
 .bg-bs-text-container {
+  @extend .bg-beacon-summary-content;
   position: absolute;
   left: 8px;
   right: $review-btn-width;
 }
 
 .bg-bs-review-btn-container {
+  @extend .bg-beacon-summary-content;
   position: absolute;
   right: 8px;
   width: $review-btn-width;
-  height: $beacons-btn-size;
 }
