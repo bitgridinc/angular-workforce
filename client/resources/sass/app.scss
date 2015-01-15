@@ -98,19 +98,18 @@ $review-btn-width: 97px;
 .bg-beacon-summary-container {
   @extend .list-group-item;
   height: $beacons-btn-size;
-  padding: 0px;
+  padding: 4px 8px;
 }
 
 .bg-bs-text-container {
   position: absolute;
-  left: 0px;
+  left: 8px;
   right: $review-btn-width;
-  height: $beacons-btn-size;
 }
 
 .bg-bs-review-btn-container {
   position: absolute;
-  right: 0px;
+  right: 8px;
   width: $review-btn-width;
   height: $beacons-btn-size;
 }
