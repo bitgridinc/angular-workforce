@@ -1,8 +1,7 @@
-<div
-  class="bg-closeable-header-container"
-  ng-include src="'' + headerTemplateUrl + ''">
+<div class="bg-closeable-header-container">
+  <div ng-include src="'' + headerTemplateUrl + ''"></div>
+  <div class="bg-close-btn-container">
+    <button class="fa bg-close-btn"></button>
+  </div>
 </div>
-<div
-  ng-include src="'' + bodyTemplateUrl + ''">
-</div>
-<button class="fa bg-close-btn"></button>
+<div ng-include src="'' + bodyTemplateUrl + ''"></div>

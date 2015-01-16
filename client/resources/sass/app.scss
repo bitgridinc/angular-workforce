@@ -134,6 +134,13 @@ $beacon-summary-vertical-padding: 4px;
   margin: 0 auto;
   display: table;
 }
+.bg-close-btn-container {
+  width: 32px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top: 5px
+}
 .bg-close-btn:after {
   content: $fa-var-close
 }
