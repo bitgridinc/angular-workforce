@@ -43,6 +43,7 @@ angular
           console.log("Offering this many people to help: ", $scope.currentItem.numResponders);
           // TODO: Implement treeId
           MessageSender.send($scope.currentItem, undefined, undefined);
+          $state.go('dashboard.beacons.list');
         };
       }
     ]

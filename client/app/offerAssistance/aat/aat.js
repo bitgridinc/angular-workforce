@@ -20,10 +20,11 @@ describe('the offer assistance view', function() {
     expect(element(by.text('has requested')).isPresent()).toBeTruthy();
   });*/
 
-  it('should have a button to send the offer of assistance', function() {
+  it('should navigate to the list of beacons when an offer is sent', function() {
     ptor.findElement(offerAssistanceLocators.assistButton).click();
     expect(browser.getCurrentUrl()).not.toContain('/assist');
     expect(browser.getCurrentUrl()).not.toContain('/detail');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
     // TODO: Ensure it shows up on the UI
   });
 });

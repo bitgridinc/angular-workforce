@@ -57,7 +57,7 @@ angular
             var message = MessagePacketizer.packetize($scope.assistanceOffer, $scope.selectionState.currentBeacon.id);
             MessageSender.send(message);
           }
-          $state.go('^');
+          $state.go('dashboard.beacons.list');
         };
       }
     ]
