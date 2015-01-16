@@ -124,10 +124,10 @@ $beacon-summary-vertical-padding: 4px;
 
 /* Closeable Panels: Offer and Review Assistance */
 .bg-closeable-header-container {
-  position: absolute;
   height: 30px;
   width: 100%;
   background-color: lightgray;
+  overflow: hidden;
 }
 .bg-closeable-header {
   margin: 0 auto;

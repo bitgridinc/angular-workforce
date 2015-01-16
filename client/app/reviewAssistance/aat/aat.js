@@ -13,6 +13,13 @@ describe('the offer assistance view', function() {
     reviewAssistanceLocators = new ReviewAssistanceLocators();
   });
 
+  it('should display the name of the organization that offered assistance', function() {
+    var organizationLabelElement = element(reviewAssistanceLocators.organizationLabel);
+    expect(organizationLabelElement.getText()).toContain('Their Organization');
+    expect(organizationLabelElement.getText()).toContain('with 4 people');
+    expect(organizationLabelElement.getText()).toContain('2015');
+  });
+
   // TODO: Deal with the duplication between this and offerAssistance. Tricky given how this functionality will change
   // TODO: when it is possible to accept multiple beacons.
   it('should navigate to the list of beacons when an offer is accepted', function() {
