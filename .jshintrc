@@ -23,7 +23,8 @@
 
         "L", // The Leaflet object
 
-        // Jasmine methods
+        // Jasmine
+        "jasmine",
         "beforeEach",
         "afterEach",
         "describe",
