@@ -79,7 +79,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('icons', function() {
-  return gulp.src(client.bowerDir + '/fontawesome/fonts/**.*')
+  return gulp.src([client.bowerDir + '/fontawesome/fonts/**.*', client.bowerDir + '/bootstrap-sass-official/assets/fonts/bootstrap/**.*'])
     .pipe(gulp.dest(server.fontsDir));
 });
 
