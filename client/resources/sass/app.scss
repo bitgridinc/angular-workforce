@@ -5,6 +5,7 @@ $list-group-border-radius: 0px;
 @import 'bootstrap/mixins';
 @import 'bootstrap/buttons';
 @import 'bootstrap/list-group';
+@import 'font-awesome';
 
 $header-height: 22px;
 $beacons-btn-size: 70px;
@@ -132,4 +133,7 @@ $beacon-summary-vertical-padding: 4px;
 .bg-closeable-header {
   margin: 0 auto;
   display: table;
+}
+.bg-close-btn:after {
+  content: $fa-var-close
 }
