@@ -5,7 +5,12 @@ require('./_module_init.js')
     function() {
       return {
         restrict: 'E',
-        templateUrl: '/templates/directives/closeablePanel.tpl.html'
+        templateUrl: '/templates/directives/closeablePanel.tpl.html',
+        controller: function($scope, $state) {
+          $scope.close = function() {
+            $state.go('^');
+          };
+        }
       }
     }
   );
