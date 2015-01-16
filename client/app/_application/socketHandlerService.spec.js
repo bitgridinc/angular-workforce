@@ -61,9 +61,13 @@ describe('the service that wraps SocketIO', function() {
           null,
           undefined
         ];
+        var invocation = function() {
+          service.onMessage(message);
+        };
+
         for (var message in invalidMessages) {
           // Act/Assert
-          expect(function() { service.onMessage(message); }).toThrow();
+          expect(invocation).toThrow();
         }
       });
 
