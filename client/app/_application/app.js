@@ -34,7 +34,6 @@ angular
       }
     ]
   )
-  // TODO: Test this
   .config(
     [         '$urlRouterProvider',
       function($urlRouterProvider) {
