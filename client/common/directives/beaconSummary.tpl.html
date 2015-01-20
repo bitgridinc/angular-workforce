@@ -13,8 +13,13 @@ Ignore the potential problem from long descriptions for now.
         {{beacon.title}}, {{beacon.description}}
     </div>
     <div class="bg-bs-review-btn-container">
-        <button class="btn btn-sm btn-default" type="button" ng-show="beacon.responses.length > 0" ng-click="onReviewAssistance(beacon)">
-            Review Offers
+        <button
+          id="openReviewAssistanceBtn"
+          class="btn btn-sm btn-default"
+          type="button"
+          ng-show="beacon.responses.length > 0"
+          ng-click="onReviewAssistance(beacon)">
+            <i class="fa fa-anchor"></i>
         </button>
     </div>
 </li>

@@ -1,10 +1,12 @@
 "use strict";
 
 var BeaconDetailsLocators = require('./locators.js');
+var BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js');
 
 describe('the view that displays the details of a particular beacon', function() {
   var ptor,
-      beaconDetailsLocators;
+      beaconDetailsLocators,
+      beaconSummaryLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();
@@ -13,6 +15,7 @@ describe('the view that displays the details of a particular beacon', function()
 
   beforeEach(function() {
     beaconDetailsLocators = new BeaconDetailsLocators();
+    beaconSummaryLocators = new BeaconSummaryLocators();
   });
 
   it('should display detailed information about the beacon', function() {
@@ -37,7 +40,7 @@ describe('the view that displays the details of a particular beacon', function()
   });
 
   it('should display a button that allows the user to review offers of assistance', function() {
-    ptor.findElement(beaconDetailsLocators.reviewOffers).click();
+    ptor.findElement(beaconSummaryLocators.reviewOffers).click();
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/detail/e688af0b-63df-48bc-941c-9cc5f750367b/review');
   });
 });
