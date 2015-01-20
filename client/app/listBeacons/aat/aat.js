@@ -36,7 +36,7 @@ describe('having the My Beacons button clicked to view the list of existing beac
 
     it('should expand the beacon to view its details', function() {
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/detail/');
-      expect(ptor.isElementPresent(locators.createBeaconButton)).toBeFalsy();
+      expect(ptor.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeFalsy();
     });
   });
 });
