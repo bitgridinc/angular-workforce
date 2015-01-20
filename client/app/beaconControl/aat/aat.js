@@ -14,25 +14,17 @@ describe('the main dashboard', function() {
     listBeaconsLocators = new ListBeaconsLocators();
   });
 
-  it('should open the list of beacons when the My Beacons button is clicked', function() {
+  it('should open and close the list of beacons when the My Beacons button is clicked', function() {
     // Arrange
     ptor.get('/#/dashboard');
 
-    // Act
+    // Act/Assert for the first click
     ptor.findElement(beaconControlLocators.myBeaconsButton).click();
-
-    // Assert
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
     expect(ptor.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeTruthy();
-  });
-  it('should close the list of beacons when the My Beacons button is clicked again', function() {
-    // Arrange
-    ptor.get('/#/dashboard/beacons');
 
-    // Act
+    // Act/Assert for the second click
     ptor.findElement(beaconControlLocators.myBeaconsButton).click();
-
-    // Assert
     expect(browser.getCurrentUrl()).toContain('/#/dashboard');
     expect(browser.getCurrentUrl()).not.toContain('/#/dashboard/beacons');
     expect(ptor.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeFalsy();
