@@ -21,12 +21,6 @@ angular
                 templateUrl: 'templates/beaconDetails/view.tpl.html',
                 controller: 'BeaconDetailsController'
               }
-            },
-            onEnter: function($rootScope, $stateParams) {
-              $rootScope.currentlySelectedBeaconId = $stateParams.id;
-            },
-            onExit: function($rootScope) {
-              $rootScope.currentlySelectedBeaconId = undefined;
             }
           });
       }
@@ -42,7 +36,7 @@ angular
         $rootScope.$watch('socketState.beacons.length', function(newVal, oldVal) {
           console.log('The number of beacons changed', newVal, oldVal);
           $rootScope.selectionState.currentBeacon = _.find($rootScope.socketState.beacons, function(beacon) {
-            return beacon.id === $rootScope.currentlySelectedBeaconId;
+            return beacon.id === $rootScope.$stateParams.id;
           });
         });
 
