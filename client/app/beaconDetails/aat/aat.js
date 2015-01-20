@@ -40,7 +40,7 @@ describe('the view that displays the details of a particular beacon', function()
   });
 
   it('should display a button that allows the user to review offers of assistance', function() {
-    ptor.findElement(beaconSummaryLocators.reviewOffers).click();
+    ptor.findElement(beaconSummaryLocators.reviewOffersButton).click();
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/detail/e688af0b-63df-48bc-941c-9cc5f750367b/review');
   });
 });
