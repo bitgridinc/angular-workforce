@@ -24,22 +24,16 @@ angular
             name: 'dashboard.beacons',
             parent: 'dashboard',
             url: '/beacons',
-            templateUrl: 'templates/beaconControl/view2.tpl.html',
-            onEnter: function($rootScope) {
-              $rootScope.isMyCompanyButtonToggled = true;
-            },
-            onExit: function($rootScope) {
-              $rootScope.isMyCompanyButtonToggled = false;
-            }
+            templateUrl: 'templates/beaconControl/view2.tpl.html'
           });
       }
     ]
   )
   .controller('BeaconControlController',
-    [         '$scope', '$rootScope', '$state',
-      function($scope,   $rootScope,   $state) {
+    [         '$scope', '$state',
+      function($scope,   $state) {
         $scope.toggleMyBeaconsButton = function() {
-          if (angular.isDefined($rootScope.isMyCompanyButtonToggled) && $rootScope.isMyCompanyButtonToggled) {
+          if ($state.includes('dashboard.beacons.list')) {
             $state.go('dashboard');
           } else {
             $state.go('dashboard.beacons.list');
