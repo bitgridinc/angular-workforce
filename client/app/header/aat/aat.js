@@ -11,15 +11,15 @@ describe('the header', function() {
     locators = new Locators();
   });
 
-  it('should display a button that the user can click to view their profile', function() {
+  it('should display a button on every page that the user can click to view their profile', function() {
     ptor.get('/#/dashboard');
-  });
-  it('should still be visible in child states', function() {
-    ptor.get('/#/dashboard/beacons');
-  });
+    ptor.findElement(locators.myProfile).click();
+    expect(browser.getCurrentUrl()).toContain('/#/profile');
 
-  afterEach(function() {
+    ptor.get('/#/dashboard/beacons');
     ptor.findElement(locators.myProfile).click();
     expect(browser.getCurrentUrl()).toContain('/#/profile');
   });
+
+  // TODO: Add a test against the currently signed in as <value> text.
 });
