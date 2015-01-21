@@ -25,6 +25,6 @@ describe('the offer assistance view', function() {
     expect(browser.getCurrentUrl()).not.toContain('/assist');
     expect(browser.getCurrentUrl()).not.toContain('/detail');
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
-    // TODO: Ensure it shows up on the UI
+    // TODO: Ensure something changes on the UI. This should not be checking whether the review offers button appears.
   });
 });
