@@ -3,7 +3,7 @@ exports.config = {
   // Uncomment this and run your own Selenium server (command: 'webdriver-manager start')
   // to save 1.5 seconds each time you run the AATs. Remember to comment it again before
   // you check in!
-  seleniumAddress: 'http://localhost:4444/wd/hub',
+  //seleniumAddress: 'http://localhost:4444/wd/hub',
 
   framework: 'jasmine',
                      
