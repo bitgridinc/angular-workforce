@@ -111,6 +111,7 @@ gulp.task('tdd', ['build'], function(done) {
 });
 
 gulp.task('default', ['build', 'server', 'tdd']);
+gulp.task('production', ['build', 'server']);
 
 // Protractor not yet tied into build/development process
 gulp.task('webdriver_standalone', webdriver_standalone);
