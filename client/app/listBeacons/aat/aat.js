@@ -25,13 +25,13 @@ describe('having the My Beacons button clicked to view the list of existing beac
   });
 
   it('should allow the user to review offers of assistance without having to view the beacon details first', function() {
-    ptor.findElement(beaconSummaryLocators.reviewOffersButton).click();
+    element.all(beaconSummaryLocators.reviewOffersButton).get(0).click();
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/detail/e688af0b-63df-48bc-941c-9cc5f750367b/review');
   });
 
   describe('clicking an existing beacon', function() {
     beforeEach(function() {
-      ptor.findElement(listBeaconsLocators.beaconSummaryDirective).click();
+      element.all(listBeaconsLocators.beaconSummaryDirective).get(0).click();
     });
 
     it('should expand the beacon to view its details', function() {
