@@ -40,20 +40,27 @@ var server = {
   bundleName: 'bundle.js'
 };
 
-function bundle() {
-  var browserified = transform(function(filename) {
-    var bundler = watchify(browserify(filename, watchify.args));
-    bundler.on('update', bundle);
-    return bundler.bundle();
-  });
-
+function bundle(bundler) {
+  var browserified = transform(bundler);
   return gulp.src(client.entrySrc)
     .pipe(browserified)
     .pipe(rename(server.bundleName))
     .pipe(gulp.dest(server.bundleDir));
 }
 
-gulp.task('watchify', bundle);
+function runWatchify(filename) {
+  var bundler = watchify(browserify(filename, watchify.args));
+  bundler.on('update', function() { return bundle(runWatchify) });
+  return bundler.bundle();
+}
+
+function runBrowserify(filename) {
+  var b = browserify(filename);
+  return b.bundle();
+}
+
+gulp.task('watchify', function() { return bundle(runWatchify); });
+gulp.task('browserify', function() { return bundle(runBrowserify); });
 
 gulp.task('hint', function () {
   gulp.src([client.moduleSrc, client.commonSrc])
@@ -93,10 +100,11 @@ gulp.task('client-watch', function() {
   });
 });
 
-gulp.task('build', ['watchify', 'hint', 'css', 'icons', 'client-watch']);
+gulp.task('build', ['browserify', 'css', 'icons']);
+gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch']);
 
-// build changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
-gulp.task('server', ['build'], function () {
+// browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
+gulp.task('server', ['build-and-watch'], function () {
   // Nodemon will restart Node when files change. So that it doesn't watch the entire directory, we use cwd to start it
   // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
   // Note: Use ', verbose: true' to debug
@@ -106,12 +114,11 @@ gulp.task('server', ['build'], function () {
     });
 });
 
-gulp.task('tdd', ['build'], function(done) {
+gulp.task('tdd', ['build-and-watch'], function(done) {
   karmaServer.start({ configFile: configs.karma }, done);
 });
 
-gulp.task('default', ['build', 'server', 'tdd']);
-gulp.task('production', ['build', 'server']);
+gulp.task('default', ['server', 'tdd']);
 
 // Protractor not yet tied into build/development process
 gulp.task('webdriver_standalone', webdriver_standalone);
