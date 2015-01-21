@@ -1,3 +1,16 @@
+// This code is very important. The server is configured to run out of the /server directory, not the root directory.
+// I did this initially for the benefit of nodemon; when starting out of /server, nodemon only needed to watch ~20 files
+// for changes rather than ~20k. However, this posed a problem when deploying to Nodejitsu where I *must* run out of the
+// root. By ensuring that this file is always running within /server, we can keep the remainder of the code the same.
+console.log('Starting directory: ' + process.cwd());
+try {
+  process.chdir(__dirname);
+  console.log('New directory: ' + process.cwd());
+}
+catch(err) {
+  console.log('chdir: ' + err);
+}
+
 var hapi = require('hapi');
 //var controller = require('./commented/controllers/everything');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');

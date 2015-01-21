@@ -1,7 +1,7 @@
 {
   "name": "app",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.1-11",
   "description": "A tool to coordinate aid between electric utilities",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "angular-mocks": "^1.3.2",
     "browserify": "^8.1.0",
-    "gulp": "^3.8.9",
+    "gulp": "^3.8.10",
     "gulp-jshint": "^1.8.6",
     "gulp-nodemon": "^1.0.4",
     "gulp-notify": "^2.1.0",
@@ -48,5 +48,12 @@
     "sinon": "^1.11.1",
     "vinyl-transform": "^1.0.0",
     "watchify": "^2.2.1"
+  },
+  "subdomain": "bitgrid",
+  "scripts": {
+    "start": "server/index.js"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
