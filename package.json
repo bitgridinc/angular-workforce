@@ -1,7 +1,7 @@
 {
   "name": "app",
   "private": true,
-  "version": "0.0.1-11",
+  "version": "0.0.1-15",
   "description": "A tool to coordinate aid between electric utilities",
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
   },
   "subdomain": "bitgrid",
   "scripts": {
-    "start": "server/index.js"
+    "start": "node server/index.js"
   },
   "engines": {
     "node": "0.10.x"
