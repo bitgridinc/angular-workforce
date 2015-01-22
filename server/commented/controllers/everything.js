@@ -1,12 +1,12 @@
 /* jslint node: true */
-/*"use strict";
+"use strict";
 
-var everything = require('../models/everything');
-var Hapi = require('hapi');
-var io = require('../socketSetup').instance;
+//var everything = require('../models/everything');
+//var Hapi = require('hapi');
+//var io = require('../../socketSetup').instance;
 
 module.exports = {
-  getBeacons: {
+  /*getBeacons: {
     handler: function (request, reply) {
       console.log('getBeacons handler called');
       everything.getBeacons(function (err, beacons) {
@@ -25,11 +25,13 @@ module.exports = {
     app: {
       name: 'beacon'
     }
-  },
+  },*/
   createBeacon: {
     handler: function (request, reply) {
-      console.log('createBeacon handler called', request.payload);
-      everything.createBeacon(request.payload.organization, request.payload.title, request.payload.description, request.payload.lat, request.payload.lng, function (err, beacon) {
+      console.log('createBeacon handler called', request);
+
+
+      /*everything.createBeacon(request.payload.organization, request.payload.title, request.payload.description, request.payload.lat, request.payload.lng, function (err, beacon) {
         if (err) {
           console.log('createBeacon handler error');
           // TODO: Make a constants file
@@ -40,10 +42,10 @@ module.exports = {
           console.log('createBeacon handler success');
           reply(beacon);
         }
-      });
+      });*/
     },
     app: {
       name: 'beacon'
     }
   }
-};*/
+};
