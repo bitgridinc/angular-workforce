@@ -38,8 +38,7 @@ var server = {
   cssDir: __dirname + '/server/public/css',
   bundleDir: __dirname + '/server/public/js',
   fontsDir: __dirname + '/server/public/fonts',
-  specSrc: __dirname + '/server/commented/controllers/*',
-  specDirs: [__dirname + '/server/commented/controllers'],
+  specDir: __dirname + '/server/commented/controllers',
   scriptName: 'index.js',
   bundleName: 'bundle.js'
 };
@@ -104,18 +103,6 @@ gulp.task('client-watch', function() {
   });
 });
 
-gulp.task('jasmine-node', function() {
-  // This sure isn't pretty, but there's no gulp plugin for jasmine-node. And I want jasmine-node to TDD my server.
-  watch(server.specSrc, function() {
-    exec('jasmine-node ' + server.specDirs, function(error, stdout, stderr) {
-      console.log(stdout, stderr);
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      }
-    });
-  });
-});
-
 gulp.task('build', ['browserify', 'css', 'icons']);
 gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch']);
 
@@ -126,11 +113,17 @@ gulp.task('server', ['build-and-watch'], function () {
   // Note: Use ', verbose: true' to debug
   nodemon({ script: server.scriptName, ext: 'js', cwd: server.parentDir })
     .on('restart', function () {
-      console.log('Node.js server restarted due to file change!')
+      console.log('Node.js server restarted due to file change!');
+      exec('jasmine-node ' + server.specDir, function(error, stdout, stderr) {
+        console.log(stdout, stderr);
+        if (error !== null) {
+          console.log('exec error: ' + error);
+        }
+      });
     });
 });
 
-gulp.task('tdd', ['build-and-watch', 'jasmine-node'], function(done) {
+gulp.task('tdd', ['build-and-watch'], function(done) {
   karmaServer.start({ configFile: configs.karma }, done);
 });
 
