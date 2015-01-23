@@ -3,7 +3,7 @@
 
 //var everything = require('../models/everything');
 //var Hapi = require('hapi');
-//var io = require('../../socketSetup').instance;
+//var io = require('./socketSetup').instance;
 
 module.exports = {
   /*getBeacons: {

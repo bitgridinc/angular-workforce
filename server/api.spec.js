@@ -1,6 +1,6 @@
 "use strict";
 
-var controllers = require('./everything');
+var controllers = require('./api');
 
 describe('the create beacon API method', function() {
   it('should exist', function() {
