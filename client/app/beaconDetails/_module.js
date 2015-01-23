@@ -15,7 +15,7 @@ angular
           .state('dashboard.beacons.detail', {
             name: 'dashboard.beacons.detail',
             parent: 'dashboard.beacons',
-            url: '/detail/:id',
+            url: '/:id',
             views: {
               'left': {
                 templateUrl: 'templates/beaconDetails/view.tpl.html',

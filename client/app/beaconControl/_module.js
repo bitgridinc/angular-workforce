@@ -18,6 +18,8 @@ angular
   .config(
     [         '$stateProvider',
       function($stateProvider) {
+        // In ui-router, an abstract state can have child states but can not be transitioned to. It is activated
+        // implicitly when one of its descendants are activated. TODO: Why am I using it?
         $stateProvider
           .state('dashboard.beacons', {
             abstract: true,

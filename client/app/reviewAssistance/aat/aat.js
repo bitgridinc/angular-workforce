@@ -9,7 +9,7 @@ describe('the offer assistance view', function() {
 
   beforeEach(function() {
     ptor = protractor.getInstance();
-    ptor.get('/#/dashboard/beacons/detail/e688af0b-63df-48bc-941c-9cc5f750367b/review');
+    ptor.get('/#/dashboard/beacons/e688af0b-63df-48bc-941c-9cc5f750367b/review');
     reviewAssistanceLocators = new ReviewAssistanceLocators();
   });
 

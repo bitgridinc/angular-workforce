@@ -123,14 +123,17 @@ $beacon-summary-vertical-padding: 4px;
 }
 
 /* Closeable Panels: Offer and Review Assistance */
+// TODO: Nest these
 .bg-closeable-header-container {
   height: 30px;
   width: 100%;
   background-color: lightgray;
   overflow: hidden;
 }
+// TODO: This should be a general-purpose class for centering
 .bg-closeable-header {
   margin: 0 auto;
+  // This has the effect of centering the header contents
   display: table;
 }
 .bg-close-btn-container {
@@ -140,6 +143,7 @@ $beacon-summary-vertical-padding: 4px;
   right: 0;
   top: 5px
 }
+// This applies the FontAwesome 'X' icon to the close button's contents
 .bg-close-btn:after {
   content: $fa-var-close
 }
