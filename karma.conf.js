@@ -8,8 +8,7 @@ module.exports = function (config) {
     files: [
       'server/public/js/bundle.js',
       'node_modules/angular-mocks/*.js',
-      'client/**/**/*.spec.js',
-      'server/**/*.spec.js'
+      'client/**/**/*.spec.js'
     ],
 
     reporters: ['story'],

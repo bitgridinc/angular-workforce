@@ -13,7 +13,9 @@ var gulp = require('gulp')
   , transform = require('vinyl-transform')
   , rename = require('gulp-rename')
   , sass = require('gulp-ruby-sass')
-  , notify = require('gulp-notify');
+  , notify = require('gulp-notify')
+  , jasmineNode = require('jasmine-node')
+  , exec = require('child_process').exec;
 
 // Note that absolute paths are REQUIRED while we use the cwd parameter with nodemon. I don't know why this is the case,
 // but setting the cwd in nodemon changes the cwd for ALL later tasks. This breaks them if they are relative.
@@ -36,6 +38,8 @@ var server = {
   cssDir: __dirname + '/server/public/css',
   bundleDir: __dirname + '/server/public/js',
   fontsDir: __dirname + '/server/public/fonts',
+  specSrc: __dirname + '/server/commented/controllers/*',
+  specDirs: [__dirname + '/server/commented/controllers'],
   scriptName: 'index.js',
   bundleName: 'bundle.js'
 };
@@ -100,6 +104,18 @@ gulp.task('client-watch', function() {
   });
 });
 
+gulp.task('jasmine-node', function() {
+  // This sure isn't pretty, but there's no gulp plugin for jasmine-node. And I want jasmine-node to TDD my server.
+  watch(server.specSrc, function() {
+    exec('jasmine-node ' + server.specDirs, function(error, stdout, stderr) {
+      console.log(stdout, stderr);
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      }
+    });
+  });
+});
+
 gulp.task('build', ['browserify', 'css', 'icons']);
 gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch']);
 
@@ -114,7 +130,7 @@ gulp.task('server', ['build-and-watch'], function () {
     });
 });
 
-gulp.task('tdd', ['build-and-watch'], function(done) {
+gulp.task('tdd', ['build-and-watch', 'jasmine-node'], function(done) {
   karmaServer.start({ configFile: configs.karma }, done);
 });
 
