@@ -38,7 +38,6 @@ var server = {
   cssDir: __dirname + '/server/public/css',
   bundleDir: __dirname + '/server/public/js',
   fontsDir: __dirname + '/server/public/fonts',
-  specDir: __dirname + '/server/commented/controllers',
   scriptName: 'index.js',
   bundleName: 'bundle.js'
 };
@@ -114,7 +113,7 @@ gulp.task('server', ['build-and-watch'], function () {
   nodemon({ script: server.scriptName, ext: 'js', cwd: server.parentDir })
     .on('restart', function () {
       console.log('Node.js server restarted due to file change!');
-      exec('jasmine-node ' + server.specDir, function(error, stdout, stderr) {
+      exec('jasmine-node ' + server.parentDir, function(error, stdout, stderr) {
         console.log(stdout, stderr);
         if (error !== null) {
           console.log('exec error: ' + error);

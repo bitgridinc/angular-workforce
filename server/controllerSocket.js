@@ -3,12 +3,12 @@
 
 var io = require('./socketSetup').instance;
 var uuid = require('node-uuid');
-var stubbedDb = require('./stubbedDb');
+var database = require('./database');
 
 io.sockets.on('connection', function(socket){
   socket.emit('init', {
-    allEntities: stubbedDb.getAllEntities(),
-    currentEntity: stubbedDb.getCurrentEntity()
+    allEntities: database.getAllEntities(),
+    currentEntity: database.getCurrentEntity()
   });
 
   socket.emit('message', {
