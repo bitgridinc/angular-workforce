@@ -1,7 +1,7 @@
 /* jslint node: true */
 "use strict";
 
-//var everything = require('../models/everything');
+//var everything = require('./models');
 //var Hapi = require('hapi');
 //var io = require('./socketSetup').instance;
 
