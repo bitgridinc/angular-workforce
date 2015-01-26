@@ -20,7 +20,7 @@ var server = new hapi.Server('0.0.0.0', PORT);
 require('./socketSetup')(server);
 
 // Note that this must come after server is passed to socketSetup above.
-require('./controllerSocket');
+require('./socketController');
 
 // TODO: Break out into a routes file
 server.route([
