@@ -1,12 +1,12 @@
 "use strict";
 
-var state = require('./repositoryState');
+var state = require('./storageState');
 
 var nextEntity = 0;
 
 module.exports = {
-  createBeacon: function(beacon) {
-    console.log('repository.createBeacon called.', beacon);
+  saveBeacon: function(beacon) {
+    console.log('repository.saveBeacon called.', beacon);
   },
   getAllMessages: function() {
     return state.messages;

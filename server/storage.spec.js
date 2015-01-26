@@ -1,6 +1,6 @@
 "use strict";
 
-var db = require('./repository');
+var db = require('./storage');
 
 describe('the database', function() {
   it('should initialize with three entities defined', function() {

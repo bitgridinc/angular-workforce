@@ -1,21 +1,21 @@
 "use strict";
 
 var domain = require('./domain');
-var repository = require('./repository');
+var storage = require('./storage');
 var io = require('./socketSetup').instance;
 
 module.exports = {
   createBeacon: {
     handler: function (request, reply) {
       console.log('createBeacon handler called with payload:', request.payload);
+
+      // Be prepared to pass in the entire sender rather than just the id, if necessary
       var beacon = domain.createBeacon(
         request.payload.senderId,
-        request.payload.contents.title,
-        request.payload.contents.description,
-        request.payload.contents.lat,
-        request.payload.contents.lng);
+        request.payload.contents);
 
-      repository.createBeacon(beacon);
+      // Eventually, this should be replaced with a database.add
+      storage.saveBeacon(beacon);
 
       // Indicate success regardless because there's no failure path yet
       reply(beacon);

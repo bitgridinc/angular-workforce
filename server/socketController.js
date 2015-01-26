@@ -3,15 +3,15 @@
 
 var io = require('./socketSetup').instance;
 var uuid = require('node-uuid');
-var repository = require('./repository');
+var storage = require('./storage');
 
 io.sockets.on('connection', function(socket){
   socket.emit('init', {
-    allEntities: repository.getAllEntities(),
-    currentEntity: repository.getCurrentEntity()
+    allEntities: storage.getAllEntities(),
+    currentEntity: storage.getCurrentEntity()
   });
 
-  repository.getAllMessages().forEach(function(item) {
+  storage.getAllMessages().forEach(function(item) {
     socket.emit('message', item);
   });
 
