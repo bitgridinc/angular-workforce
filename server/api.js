@@ -1,7 +1,7 @@
 "use strict";
 
 var domain = require('./domain');
-var database = require('./database');
+var repository = require('./repository');
 
 module.exports = {
   createBeacon: {
@@ -15,7 +15,7 @@ module.exports = {
         request.payload.lat,
         request.payload.lng);
 
-      database.createBeacon(beacon);
+      repository.createBeacon(beacon);
 
       // Indicate success regardless because there's no failure path yet
       reply(beacon);

@@ -18,7 +18,7 @@ var next = 0;
 
 module.exports = {
   createBeacon: function(beacon) {
-    console.log('database.createBeacon called.', beacon);
+    console.log('repository.createBeacon called.', beacon);
   },
   getAllEntities: function() {
     return entities
