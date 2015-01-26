@@ -24,6 +24,7 @@
     "level": "^0.18.0",
     "node-uuid": "^1.4.2",
     "path": "^0.4.9",
+    "request": "^2.51.0",
     "socket.io": "^1.2.1"
   },
   "devDependencies": {
