@@ -38,7 +38,7 @@ var server = {
   cssDir: __dirname + '/server/public/css',
   bundleDir: __dirname + '/server/public/js',
   fontsDir: __dirname + '/server/public/fonts',
-  scriptName: 'index.js',
+  scriptName: 'server.js',
   bundleName: 'bundle.js'
 };
 
