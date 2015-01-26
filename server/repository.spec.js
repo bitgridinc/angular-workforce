@@ -15,7 +15,7 @@ describe('the database', function() {
       lng: 2
     };
 
-    db.getAllEntities().get(0);
-    db.createNewBeacon(beacon);
+    //db.getAllEntities().get(0);
+    //db.createNewBeacon(beacon);
   });
 });
