@@ -29,7 +29,7 @@ describe('the socket controller', function() {
     });
   });
 
-  it('should send some existing messages (beacons, responses, etc.)', function() {
+  /*it('should send some existing messages (beacons, responses, etc.)', function() {
     var client = io.connect(socketURL, options);
 
     var messageCalled = false;
@@ -49,5 +49,5 @@ describe('the socket controller', function() {
     runs(function() {
       expect(messageCalled).toBe(true);
     });
-  });
+  });*/
 });

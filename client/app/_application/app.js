@@ -73,12 +73,23 @@ angular
           initialize: function(socketState) {
             console.log('Initializing socketState in the socketHandlerService', socketState);
             this.socketState = socketState;
-            console.log('test', this.socketState, this);
           },
           onInit: function(data) {
-            console.log('onInit called with', data, this.socketState, this);
-            angular.copy(data.allEntities, this.socketState.allEntities);
-            angular.copy(data.currentEntity, this.socketState.currentEntity);
+            console.log('onInit called with', data, this.socketState);
+            var socketState = {
+              allEntities: data.allEntities,
+              currentEntity: data.currentEntity,
+              beacons: []
+            };
+
+            _.forEach(data.beacons, function(beacon) {
+              beacon.organization = _.find(socketState.allEntities, function(entity) {
+                return entity.id === beacon.senderId;
+              });
+              socketState.beacons.push(beacon);
+            });
+
+            angular.copy(socketState, this.socketState);
           },
           onMessage: function(request) {
             console.log('onMessage called with', request, this.socketState, this);

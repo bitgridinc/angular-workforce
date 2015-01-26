@@ -7,9 +7,10 @@ var nextEntity = 0;
 module.exports = {
   saveBeacon: function(beacon) {
     console.log('repository.saveBeacon called.', beacon);
+    state.beacons.push(beacon);
   },
-  getAllMessages: function() {
-    return state.messages;
+  getAllBeacons: function() {
+    return state.beacons;
   },
   getAllEntities: function() {
     return state.entities;

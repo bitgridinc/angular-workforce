@@ -3,11 +3,11 @@
 var uuid = require('node-uuid');
 
 module.exports = {
-  createBeacon: function(organization, contents){
+  createBeacon: function(senderId, contents){
     var beaconId = uuid.v4();
     var beacon = {
       id: beaconId,
-      organization: organization,
+      senderId: senderId,
       title: contents.title,
       description: contents.description,
       lat: contents.lat,

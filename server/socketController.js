@@ -8,11 +8,8 @@ var storage = require('./storage');
 io.sockets.on('connection', function(socket){
   socket.emit('init', {
     allEntities: storage.getAllEntities(),
-    currentEntity: storage.getCurrentEntity()
-  });
-
-  storage.getAllMessages().forEach(function(item) {
-    socket.emit('message', item);
+    currentEntity: storage.getCurrentEntity(),
+    beacons: storage.getAllBeacons()
   });
 
   socket.on('message', function(message) {
