@@ -12,14 +12,14 @@ catch(err) {
 }
 
 var hapi = require('hapi');
-var api = require('./api');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
 
 var PORT = 8080;
 var server = new hapi.Server('0.0.0.0', PORT);
 require('./socketSetup')(server);
 
-// Note that this must come after server is passed to socketSetup above.
+// Note that these must come after server is passed to socketSetup above.
+var api = require('./api');
 require('./socketController');
 
 // TODO: Break out into a routes file

@@ -8,4 +8,5 @@ require('./authenticationService.js');
 require('./messagePacketizerService.js');
 require('./messageSenderService.js');
 require('./paginationControlFactory.js');
+require('./restService.js');
 require('./socketFactory.js');

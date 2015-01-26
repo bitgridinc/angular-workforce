@@ -40,8 +40,8 @@ angular
     ]
   )
   .factory('NewBeaconFactory',
-    [         'MessagePacketizer', 'MessageSender',
-      function(MessagePacketizer,   MessageSender) {
+    [         'MessagePacketizer', 'RestService',
+      function(MessagePacketizer,   RestService) {
         var scope;
         return {
           initScope: function ($scope) {
@@ -66,7 +66,7 @@ angular
               lat: scope.latitude,
               lng: scope.longitude
             });
-            MessageSender.send(message);
+            RestService.createBeacon(message);
           }
         };
       }

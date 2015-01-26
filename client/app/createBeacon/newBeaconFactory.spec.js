@@ -4,14 +4,14 @@ describe('the new beacon creation factory', function() {
   var scope,
       factory,
       messagePacketizer,
-      messageSender;
+      restService;
 
   beforeEach(module('modules.createBeacon'));
-  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, MessagePacketizer, MessageSender) {
+  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, MessagePacketizer, RestService) {
     scope = $rootScope.$new();
     factory = _NewBeaconFactory_;
     messagePacketizer = MessagePacketizer;
-    messageSender = MessageSender;
+    restService = RestService;
   }));
   beforeEach(function () {
     spyOn(scope, '$on');
@@ -51,7 +51,7 @@ describe('the new beacon creation factory', function() {
 
       beforeEach(function () {
         spyOn(messagePacketizer, 'packetize').and.returnValue(packetizedMessage);
-        spyOn(messageSender, 'send');
+        spyOn(restService, 'createBeacon');
         factory.postNewBeacon();
       });
 
@@ -59,7 +59,7 @@ describe('the new beacon creation factory', function() {
         expect(messagePacketizer.packetize).toHaveBeenCalledWith(packetizedMessage);
       });
       it ('should pass the packetized message data to the socket', function () {
-        expect(messageSender.send).toHaveBeenCalledWith(packetizedMessage);
+        expect(restService.createBeacon).toHaveBeenCalledWith(packetizedMessage);
       });
     });
   });
