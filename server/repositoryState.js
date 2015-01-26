@@ -14,5 +14,38 @@ module.exports = {
       name: 'Third Organization',
       id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
     }
+  ],
+  beacons: [
+    {
+      contents: {
+        id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
+        title: 'Your Title',
+        description: 'Your Description',
+        lat: 38.9,
+        lng: -77.0
+      },
+      senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84', // Your Organization
+      rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+    },
+    {
+      contents: {
+        id: '2cf8faaa-5760-41c9-adbf-5a4482ac3469',
+        numResponders: 4,
+        arrivalDate: new Date()
+      },
+      senderId: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69', // Their Organization
+      rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+    },
+    {
+      contents: {
+        id: 'a7609f5c-2924-4a46-8ba3-aa27837c3d2f',
+        title: 'Their Title',
+        description: 'Their Description',
+        lat: 38.88,
+        lng: -77.02
+      },
+      senderId: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69', // Their Organization
+      rootMessageId: 'a7609f5c-2924-4a46-8ba3-aa27837c3d2f'
+    }
   ]
 };

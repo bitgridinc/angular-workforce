@@ -8,6 +8,9 @@ module.exports = {
   createBeacon: function(beacon) {
     console.log('repository.createBeacon called.', beacon);
   },
+  getAllBeacons: function() {
+    return state.beacons;
+  },
   getAllEntities: function() {
     return state.entities;
   },
