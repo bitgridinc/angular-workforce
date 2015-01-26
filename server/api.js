@@ -1,10 +1,24 @@
 "use strict";
 
+var domain = require('./domain');
+var database = require('./database');
+
 module.exports = {
   createBeacon: {
     handler: function (request, reply) {
       console.log('createBeacon handler called', request);
 
+      var beacon = domain.createBeacon(
+        request.payload.organization,
+        request.payload.title,
+        request.payload.description,
+        request.payload.lat,
+        request.payload.lng);
+
+      database.createBeacon(beacon);
+
+      // Indicate success regardless because there's no failure path yet
+      reply(beacon);
 
       /*everything.createBeacon(request.payload.organization, request.payload.title, request.payload.description, request.payload.lat, request.payload.lng, function (err, beacon) {
         if (err) {
