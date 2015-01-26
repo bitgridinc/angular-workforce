@@ -11,9 +11,9 @@ io.sockets.on('connection', function(socket){
     currentEntity: repository.getCurrentEntity()
   });
 
-  for (var beacon in repository.getAllBeacons()) {
-    socket.emit('message', beacon);
-  }
+  repository.getAllMessages().forEach(function(item) {
+    socket.emit('message', item);
+  });
 
   socket.on('message', function(message) {
     if (message.contents === null || message.contents === undefined) {

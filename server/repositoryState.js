@@ -15,7 +15,7 @@ module.exports = {
       id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
     }
   ],
-  beacons: [
+  messages: [
     {
       contents: {
         id: 'e688af0b-63df-48bc-941c-9cc5f750367b',

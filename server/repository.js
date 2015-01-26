@@ -8,8 +8,8 @@ module.exports = {
   createBeacon: function(beacon) {
     console.log('repository.createBeacon called.', beacon);
   },
-  getAllBeacons: function() {
-    return state.beacons;
+  getAllMessages: function() {
+    return state.messages;
   },
   getAllEntities: function() {
     return state.entities;
