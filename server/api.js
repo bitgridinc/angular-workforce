@@ -1,31 +1,6 @@
-/* jslint node: true */
 "use strict";
 
-//var everything = require('./models');
-//var Hapi = require('hapi');
-//var io = require('./socketSetup').instance;
-
 module.exports = {
-  /*getBeacons: {
-    handler: function (request, reply) {
-      console.log('getBeacons handler called');
-      everything.getBeacons(function (err, beacons) {
-        if (err) {
-          console.log('getBeacons handler error');
-          // TODO: Make a constants file
-          var error = Hapi.error.badRequest('Cannot get beacons!');
-          error.output.statusCode = 400;
-          reply(error);
-        } else {
-          console.log('getBeacons handler success');
-          reply(beacons);
-        }
-      });
-    },
-    app: {
-      name: 'beacon'
-    }
-  },*/
   createBeacon: {
     handler: function (request, reply) {
       console.log('createBeacon handler called', request);
