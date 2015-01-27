@@ -26,6 +26,7 @@ require('./socketController');
 server.route([
   /*{ method: 'GET', path: '/beacons', config: api.getBeacons },*/
   { method: 'POST', path: '/beacon', config: api.createBeacon },
+  { method: 'POST', path: '/beacon/offer', config: api.offerAssistance },
 
   // Expose the public folder
   { method: 'GET', path: '/js/bundle.js', handler: { file: './public/js/bundle.js' } },

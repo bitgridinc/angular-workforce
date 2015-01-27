@@ -14,6 +14,10 @@ require('./_module_init.js')
               .error(function(data, status, headers, config) {
                 console.log('error!');
               });
+          },
+          offerAssistance: function(newOfferData) {
+            console.log('Sending data to create a new offer:', newOfferData);
+            $http.post('/beacon/offer', newOfferData);
           }
         };
       }

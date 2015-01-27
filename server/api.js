@@ -17,13 +17,29 @@ module.exports = {
       // Eventually, this should be replaced with a database.add
       storage.saveBeacon(beacon);
 
-      // Indicate success regardless because there's no failure path yet
-      reply(beacon);
-
+      // Send the new beacon to all connected clients
       io.sockets.emit('message', {
         contents: beacon,
         senderId: request.payload.senderId,
         rootMessageId: beacon.id
+      });
+    },
+    app: {
+      name: 'beacon'
+    }
+  },
+  offerAssistance: {
+    handler: function (request, reply) {
+      console.log('offerAssistance handler called with payload:', request.payload);
+
+      var beacon = storage.getBeaconById(request.payload.rootMessageId);
+      var offer = domain.offerAssistance(request.payload.senderId, beacon, request.payload.contents);
+
+      // TODO: Break these messages up (e.g., new:offer)
+      io.sockets.emit('message', {
+        senderId: request.payload.senderId,
+        rootMessageId: request.payload.rootMessageId,
+        contents: offer
       });
     },
     app: {

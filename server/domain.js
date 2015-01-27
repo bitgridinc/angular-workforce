@@ -16,5 +16,15 @@ module.exports = {
       acceptedAssistance: []
     };
     return beacon;
+  },
+  offerAssistance: function(senderId, beacon, offerContents){
+    var offer = {
+      id: uuid.v4(),
+      numResponders: offerContents.numResponders,
+      arrivalDate: offerContents.arrivalDate
+    };
+    // TODO: Test this specifically
+    beacon.responses.push(offer);
+    return offer;
   }
 };

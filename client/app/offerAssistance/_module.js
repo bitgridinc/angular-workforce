@@ -27,8 +27,8 @@ angular
     ]
   )
   .controller('OfferAssistanceController',
-    [         '$scope', '$rootScope', '$state', 'MessagePacketizer', 'MessageSender',
-      function($scope,   $rootScope,   $state,   MessagePacketizer,   MessageSender) {
+    [         '$scope', '$rootScope', '$state', 'MessagePacketizer', 'RestService',
+      function($scope,   $rootScope,   $state,   MessagePacketizer,   RestService) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
 
@@ -55,7 +55,7 @@ angular
           if (assist) {
             // TODO: Prevent responding to a null beacon
             var message = MessagePacketizer.packetize($scope.assistanceOffer, $scope.selectionState.currentBeacon.id);
-            MessageSender.send(message);
+            RestService.offerAssistance(message);
           }
           $state.go('dashboard.beacons.list');
         };

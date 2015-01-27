@@ -1,6 +1,7 @@
 "use strict";
 
-var state = require('./storageState');
+var state = require('./storageState'),
+    _ = require('lodash');
 
 var nextEntity = 0;
 
@@ -11,6 +12,11 @@ module.exports = {
   },
   getAllBeacons: function() {
     return state.beacons;
+  },
+  getBeaconById: function(id) {
+    return _.find(state.beacons, function(beacon) {
+      return beacon.id === id;
+    });
   },
   getAllEntities: function() {
     return state.entities;

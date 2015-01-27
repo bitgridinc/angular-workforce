@@ -4,14 +4,14 @@ describe('the offer assistance controller', function() {
   var $rootScope,
       $scope,
       $state,
-      messageSender;
+      restService;
 
   beforeEach(module('modules.offerAssistance'));
-  beforeEach(inject(function (_$rootScope_, _$controller_, _$state_, MessagePacketizer, MessageSender) {
+  beforeEach(inject(function (_$rootScope_, _$controller_, _$state_, MessagePacketizer, RestService) {
     $rootScope = _$rootScope_;
     $scope = _$rootScope_.$new();
     $state = _$state_;
-    messageSender = MessageSender;
+    restService = RestService;
 
     $rootScope.selectionState = {
       currentBeacon: {
@@ -29,7 +29,7 @@ describe('the offer assistance controller', function() {
       $rootScope: $rootScope,
       $state: $state,
       MessagePacketizer: MessagePacketizer,
-      MessageSender: messageSender
+      RestService: restService
     })
   }));
 
@@ -48,7 +48,7 @@ describe('the offer assistance controller', function() {
       $scope.assistanceOffer.arrivalDate = newArrivalDate;
     });
     beforeEach(function () {
-      spyOn(messageSender, 'send');
+      spyOn(restService, 'offerAssistance');
       spyOn($state, 'go');
     });
 
@@ -58,7 +58,7 @@ describe('the offer assistance controller', function() {
       });
 
       it ('should pass the packetized message data to the socket', function () {
-        expect(messageSender.send).toHaveBeenCalledWith({
+        expect(restService.offerAssistance).toHaveBeenCalledWith({
           contents: {
             numResponders: newNumResponders,
             arrivalDate: newArrivalDate
@@ -78,7 +78,7 @@ describe('the offer assistance controller', function() {
       });
 
       it ('should not make a socket call', function () {
-        expect(messageSender.send).not.toHaveBeenCalled();
+        expect(restService.offerAssistance).not.toHaveBeenCalled();
       });
       it ('should change our page state', function () {
         expect($state.go).toHaveBeenCalled();
