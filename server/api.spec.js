@@ -1,12 +1,29 @@
 "use strict";
 
 var http = require('http'),
-    request = require('request');
+    request = require('request'),
+    io = require('socket.io-client');
 
 var serverURL = 'http://0.0.0.0:8080';
+var options = {
+  transports: ['websocket'],
+  'force new connection': true
+};
 
 describe('the create beacon API method', function() {
   it('should exist', function() {
+    // Arrange
+    var messageCalled = false;
+    var client = io.connect(serverURL, options);
+    client.on('message', function(data) {
+      messageCalled = true;
+      expect(data.contents).toBeDefined();
+      expect(data.contents.id).toBeDefined();
+      expect(data.senderId).toBeDefined();
+      expect(data.rootMessageId).toBeDefined();
+    });
+
+    // Act
     request.post(
       {
         uri: serverURL + '/beacon',
@@ -28,6 +45,14 @@ describe('the create beacon API method', function() {
       }
     );
 
-    // This should also send a socket-io message
+    // Assert
+    waitsFor(function() {
+      return messageCalled === true;
+    }, 'messageCalled to be set to true', 1000);
+
+    // Jasmine calls waitsFor and runs in order and will wait for waitsFor to finish before calling this runs
+    runs(function() {
+      expect(messageCalled).toBe(true);
+    });
   });
 });
