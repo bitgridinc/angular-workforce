@@ -2,7 +2,8 @@
 
 var http = require('http'),
     request = require('request'),
-    io = require('socket.io-client');
+    io = require('socket.io-client'),
+    apiRoutes = require('../shared/apiRoutes');
 
 var serverURL = 'http://0.0.0.0:8080';
 var options = {
@@ -26,7 +27,7 @@ describe('the create beacon API method', function() {
     // Act
     request.post(
       {
-        uri: serverURL + '/beacon',
+        uri: serverURL + apiRoutes.createBeacon,
         body: JSON.stringify({
           contents: {
             title: 'title',
@@ -67,7 +68,7 @@ describe('the offer assistance API method', function() {
     // Act
     request.post(
       {
-        uri: serverURL + '/beacon/offer',
+        uri: serverURL + apiRoutes.offerAssistance,
         body: JSON.stringify({
           contents: {
             numResponders: 1,

@@ -12,6 +12,7 @@ catch(err) {
 }
 
 var hapi = require('hapi');
+var apiRoutes = require('../shared/apiRoutes');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
 
 var PORT = 8080;
@@ -25,8 +26,8 @@ require('./socketController');
 // TODO: Break out into a routes file
 server.route([
   /*{ method: 'GET', path: '/beacons', config: api.getBeacons },*/
-  { method: 'POST', path: '/beacon', config: api.createBeacon },
-  { method: 'POST', path: '/beacon/offer', config: api.offerAssistance },
+  { method: 'POST', path: apiRoutes.createBeacon, config: api.createBeacon },
+  { method: 'POST', path: apiRoutes.offerAssistance, config: api.offerAssistance },
 
   // Expose the public folder
   { method: 'GET', path: '/js/bundle.js', handler: { file: './public/js/bundle.js' } },

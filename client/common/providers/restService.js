@@ -1,5 +1,7 @@
 "use strict";
 
+var apiRoutes = require('../../../shared/apiRoutes');
+
 require('./_module_init.js')
   .service('RestService',
     [         '$http',
@@ -7,7 +9,7 @@ require('./_module_init.js')
         return {
           createBeacon: function(newBeaconData) {
             console.log('Sending data to create a new beacon:', newBeaconData);
-            $http.post('/beacon', newBeaconData)
+            $http.post(apiRoutes.createBeacon, newBeaconData)
               .success(function(data, status, headers, config) {
                 console.log('success!');
               })
@@ -17,7 +19,7 @@ require('./_module_init.js')
           },
           offerAssistance: function(newOfferData) {
             console.log('Sending data to create a new offer:', newOfferData);
-            $http.post('/beacon/offer', newOfferData);
+            $http.post(apiRoutes.offerAssistance, newOfferData);
           }
         };
       }
