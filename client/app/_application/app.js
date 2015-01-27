@@ -82,10 +82,22 @@ angular
               beacons: []
             };
 
+            // TODO: Test this or...
+            // TODO: Change so that the Organization is retrieved on-demand or...
+            // TODO: Store beacons in a beacons array on the sending Organization
+            // Populate Organization on every beacon
             _.forEach(data.beacons, function(beacon) {
               beacon.organization = _.find(socketState.allEntities, function(entity) {
                 return entity.id === beacon.senderId;
               });
+
+              // And populate Organization on all their responses
+              _.forEach(beacon.responses, function(response) {
+                response.organization = _.find(socketState.allEntities, function(entity) {
+                  return entity.id === response.senderId;
+                });
+              });
+
               socketState.beacons.push(beacon);
             });
 
