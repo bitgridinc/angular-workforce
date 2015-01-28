@@ -1,7 +1,9 @@
 <div ng-show="selectionState.currentBeacon">
     <beacon-summary beacon="selectionState.currentBeacon" on-select-beacon="goToBeaconList" on-review-assistance="goToReviewAssistance"></beacon-summary>
-    <div ng-show="selectionState.currentBeacon.acceptedAssistance">
-        <accepted-assistance-summary accepted-assistance="selectionState.currentBeacon.acceptedAssistance"></accepted-assistance-summary>
+    <div ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
+      <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
+        <accepted-assistance-summary accepted-assistance="acceptedAssistance"></accepted-assistance-summary>
+      </div>
     </div>
     <h5>Beacon Details</h5>
     <div class="form-group">

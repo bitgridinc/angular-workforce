@@ -140,6 +140,7 @@ angular
             }
           },
           onAcceptedAssistance: function(request) {
+            // TODO: Populate organization
             console.log('onAcceptedAssistance called with', request);
             // {
             //   beaconId: beacon.id,
@@ -150,7 +151,7 @@ angular
             });
             var acceptedResponse = _.remove(beacon.responses, function(response) {
               return response.id === request.responseId;
-            });
+            })[0];
             beacon.acceptedAssistance.push(acceptedResponse);
           }
         };

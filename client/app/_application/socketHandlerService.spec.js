@@ -74,7 +74,8 @@ describe('the service that wraps SocketIO', function() {
       describe('after a beacon message has been received', function() {
         var beaconMessage = {
           contents: {
-            id: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+            id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
+            acceptedAssistance: []
           },
           senderId: currentEntity.id,
           rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
@@ -124,6 +125,19 @@ describe('the service that wraps SocketIO', function() {
             // Assert
             expect(service.socketState.beacons[0].responses.length).toBe(1);
             expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage.contents);
+          });
+          it ('should allow for accepting the response by moving the response to the acceptedAssistance array of the beacon', function() {
+            // {
+            //   beaconId: beacon.id,
+            //   responseId: acceptedResponse.id
+            // }
+            service.onAcceptedAssistance({
+              beaconId: 'e688af0b-63df-48bc-941c-9cc5f750367b',
+              responseId: '5eb19570-5567-44f0-ab55-95189383fab0'
+            });
+
+            expect(service.socketState.beacons[0].responses.length).toBe(0);
+            expect(service.socketState.beacons[0].acceptedAssistance.length).toBe(1);
           });
         });
       });
