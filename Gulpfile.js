@@ -135,7 +135,8 @@ gulp.task('webdriver_update', webdriver_update);
 gulp.task('aat', ['webdriver_update'], function(cb) {
   gulp.src(client.aatSrc).pipe(protractor({
     configFile: configs.protractor
-  })).on('error', notify.onError(function(error) {
-    return 'Error in aat task: ' + error.message;
-  })).on('end', cb);
+  })).on('error', function(error) {
+    notify("Error in AAT task: " + error);
+    process.exit(1);
+  }).on('end', cb);
 });
