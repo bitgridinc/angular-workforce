@@ -21,19 +21,19 @@ describe('all closeable panels', function() {
 
   testCloseablePanelCloseButton(
     'review assistance',
-    '/#/dashboard/beacons/e688af0b-63df-48bc-941c-9cc5f750367b/review',
+    '/#/dashboard/beacons/117/review',
     function() {
       expect(browser.getCurrentUrl()).not.toContain('/review');
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/e688af0b-63df-48bc-941c-9cc5f750367b');
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/117');
     }
   );
 
   testCloseablePanelCloseButton(
     'offer assistance',
-    '/#/dashboard/beacons/e688af0b-63df-48bc-941c-9cc5f750367b/assist',
+    '/#/dashboard/beacons/117/assist',
     function() {
       expect(browser.getCurrentUrl()).not.toContain('/assist');
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/e688af0b-63df-48bc-941c-9cc5f750367b');
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/117');
     }
   );
 });

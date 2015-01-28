@@ -4,7 +4,7 @@ var uuid = require('node-uuid');
 
 module.exports = {
   createBeacon: function(senderId, contents){
-    var beaconId = uuid.v4();
+    var beaconId = Math.floor(Math.random() * 10000);
     var beacon = {
       id: beaconId,
       senderId: senderId,

@@ -17,7 +17,7 @@ module.exports = {
   ],
   beacons: [
     {
-      id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
+      id: 117,
       title: 'Your Title',
       description: 'Your Description',
       lat: 38.9,
@@ -32,7 +32,7 @@ module.exports = {
       senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84' // Your Organization
     },
     {
-      id: 'a7609f5c-2924-4a46-8ba3-aa27837c3d2f',
+      id: 1337,
       title: 'Their Title',
       description: 'Their Description',
       lat: 38.88,

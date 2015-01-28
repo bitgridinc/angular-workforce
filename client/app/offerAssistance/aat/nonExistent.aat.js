@@ -8,7 +8,7 @@ describe('trying to assist a non-existent beacon', function() {
 
   beforeEach(function() {
     ptor = protractor.getInstance();
-    ptor.get('/#/dashboard/beacons/99999non-exis-tent-9999-999999999999/assist');
+    ptor.get('/#/dashboard/beacons/707/assist');
   });
 
   beforeEach(function() {
@@ -16,7 +16,7 @@ describe('trying to assist a non-existent beacon', function() {
   });
 
   it('should display an error page', function() {
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/99999non-exis-tent-9999-999999999999/assist');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/707/assist');
     expect(element(locators.assistButton).isDisplayed()).toBeFalsy();
     expect(element(locators.declineButton).isDisplayed()).toBeFalsy();
   });
