@@ -3,7 +3,7 @@
 
 var ReviewAssistanceLocators = require('./locators.js');
 
-describe('the offer assistance view', function() {
+describe('the review assistance view', function() {
   var ptor,
       reviewAssistanceLocators;
 
