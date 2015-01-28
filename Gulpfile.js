@@ -137,6 +137,8 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
     configFile: configs.protractor
   })).on('error', function(error) {
     notify("Error in AAT task: " + error);
+
+    // We must fail hard when the AATs fail to avoid deploying broken code to production.
     process.exit(1);
   }).on('end', cb);
 });
