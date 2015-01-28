@@ -45,5 +45,25 @@ module.exports = {
     app: {
       name: 'beacon'
     }
+  },
+  acceptAssistance: {
+    handler: function (request, reply) {
+      console.log('acceptAssistance handler called with payload:', request.payload);
+
+      var beacon = storage.getBeaconById(request.payload.rootMessageId);
+      var acceptedResponse = domain.acceptAssistance(request.payload.senderId, beacon, request.payload.contents);
+      console.log('This response was accepted:', acceptedResponse);
+
+      // TODO: Send a message that removes the response from the responses array of the beacon in the client
+      var a = {
+        beaconId: beacon.id,
+        responseId: acceptedResponse.id
+      };
+      console.log('Sending this:', a);
+      io.sockets.emit('acceptedAssistance', a);
+    },
+    app: {
+      name: 'beacon'
+    }
   }
 };

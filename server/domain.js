@@ -1,6 +1,7 @@
 "use strict";
 
-var uuid = require('node-uuid');
+var uuid = require('node-uuid'),
+    _ = require('lodash');
 
 module.exports = {
   createBeacon: function(senderId, contents){
@@ -26,5 +27,14 @@ module.exports = {
     // TODO: Test this specifically
     beacon.responses.push(offer);
     return offer;
+  },
+  acceptAssistance: function(senderId, beacon, acceptedOfferId){
+    // TODO: Test this specifically
+    var response = _.remove(beacon.responses, function(response) {
+      return response.id === acceptedOfferId;
+    })[0];
+    console.log('Accepting this offer:', response);
+    beacon.acceptedAssistance.push(response);
+    return response;
   }
 };

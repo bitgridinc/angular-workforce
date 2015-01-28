@@ -2,7 +2,8 @@
 
 var apiRoutes = {
   createBeacon: '/beacon',
-  offerAssistance: '/beacon/offer'
+  offerAssistance: '/beacon/offer',
+  acceptAssistance: '/beacon/accept'
 };
 
 module.exports = apiRoutes;

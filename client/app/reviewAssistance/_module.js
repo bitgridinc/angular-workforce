@@ -22,8 +22,8 @@ angular
   )
   // TODO: Mock backend so I can AAT this.
   .controller('ReviewAssistanceController',
-    [         '$scope', '$rootScope', '$state', 'MessageSender', 'PaginationControl',
-      function($scope,   $rootScope,   $state,   MessageSender,   PaginationControl) {
+    [         '$scope', '$rootScope', '$state', 'MessagePacketizer', 'RestService', 'PaginationControl',
+      function($scope,   $rootScope,   $state,   MessagePacketizer,   RestService,   PaginationControl) {
         console.log('Entering ReviewAssistanceController');
 
         // These need to be defined for closeablePanel
@@ -41,8 +41,8 @@ angular
         $scope.acceptAssistance = function () {
           // TODO: This is garbage :P
           console.log("Offering this many people to help: ", $scope.currentItem.numResponders);
-          // TODO: Implement treeId
-          MessageSender.send($scope.currentItem, undefined, undefined);
+          var message = MessagePacketizer.packetize($scope.currentItem.id, $scope.selectionState.currentBeacon.id);
+          RestService.acceptAssistance(message);
           $state.go('dashboard.beacons.list');
         };
       }

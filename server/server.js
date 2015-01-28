@@ -28,6 +28,7 @@ server.route([
   /*{ method: 'GET', path: '/beacons', config: api.getBeacons },*/
   { method: 'POST', path: apiRoutes.createBeacon, config: api.createBeacon },
   { method: 'POST', path: apiRoutes.offerAssistance, config: api.offerAssistance },
+  { method: 'POST', path: apiRoutes.acceptAssistance, config: api.acceptAssistance },
 
   // Expose the public folder
   { method: 'GET', path: '/js/bundle.js', handler: { file: './public/js/bundle.js' } },

@@ -62,6 +62,7 @@ angular
         SocketHandlerService.initialize($rootScope.socketState);
         socket.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
         socket.on('message', _.bind(SocketHandlerService.onMessage, SocketHandlerService));
+        socket.on('acceptedAssistance', _.bind(SocketHandlerService.onAcceptedAssistance, SocketHandlerService));
       }
     ]
   )
@@ -137,6 +138,20 @@ angular
                 existingBeacon.responses.push(request.contents);
               }
             }
+          },
+          onAcceptedAssistance: function(request) {
+            console.log('onAcceptedAssistance called with', request);
+            // {
+            //   beaconId: beacon.id,
+            //   responseId: acceptedResponse.id
+            // }
+            var beacon = _.find(this.socketState.beacons, function(beacon) {
+              return beacon.id === request.beaconId;
+            });
+            var acceptedResponse = _.remove(beacon.responses, function(response) {
+              return response.id === request.responseId;
+            });
+            beacon.acceptedAssistance.push(acceptedResponse);
           }
         };
       }
