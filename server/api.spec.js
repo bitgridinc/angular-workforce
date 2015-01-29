@@ -3,7 +3,8 @@
 var http = require('http'),
     request = require('request'),
     io = require('socket.io-client'),
-    apiRoutes = require('../shared/apiRoutes');
+    apiRoutes = require('../shared/apiRoutes'),
+    factories = require('../shared/factories');
 
 var serverURL = 'http://0.0.0.0:8080';
 var options = {
@@ -29,12 +30,10 @@ describe('the create beacon API method', function() {
       {
         uri: serverURL + apiRoutes.createBeacon,
         body: JSON.stringify({
-          contents: {
-            title: 'title',
-            description: 'description',
-            lat: 1,
-            lng: 2
-          },
+          contents: factories.newBeaconPostFactory()
+            .withSummaryText('title', 'description')
+            .withLocation(1, 2)
+            .createBeaconPost(),
           senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
         })
       }
