@@ -19,7 +19,7 @@ describe('the service that wraps SocketIO', function() {
 
     describe('after init message has been received', function() {
       var currentEntity = {
-        name: 'Your Organization',
+        name: 'Tupper Lake',
         id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
       };
 
@@ -28,11 +28,11 @@ describe('the service that wraps SocketIO', function() {
           allEntities: [
             currentEntity,
             {
-              name: 'Their Organization',
+              name: 'Silver Springs',
               id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
             },
             {
-              name: 'Third Organization',
+              name: 'Bergen',
               id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
             }
           ],

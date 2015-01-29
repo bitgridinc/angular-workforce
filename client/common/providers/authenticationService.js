@@ -6,7 +6,7 @@ require('./_module_init.js')
       return {
         authenticate: function() {
           return {
-            name: 'Your Organization'
+            name: 'Tupper Lake'
           }
         }
       }

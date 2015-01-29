@@ -15,7 +15,7 @@ describe('the review assistance view', function() {
 
   it('should display the name of the organization that offered assistance', function() {
     var organizationLabelElement = element(reviewAssistanceLocators.organizationLabel);
-    expect(organizationLabelElement.getText()).toContain('Their Organization');
+    expect(organizationLabelElement.getText()).toContain('Silver Springs');
     expect(organizationLabelElement.getText()).toContain('with 4 people');
     expect(organizationLabelElement.getText()).toContain('2015');
   });

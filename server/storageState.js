@@ -3,15 +3,15 @@
 module.exports = {
   entities: [
     {
-      name: 'Your Organization',
+      name: 'Tupper Lake',
       id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
     },
     {
-      name: 'Their Organization',
+      name: 'Silver Springs',
       id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
     },
     {
-      name: 'Third Organization',
+      name: 'Bergen',
       id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
     }
   ],
@@ -29,7 +29,7 @@ module.exports = {
         arrivalDate: new Date()
       }],
       acceptedAssistance: [],
-      senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84' // Your Organization
+      senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84' // Tupper Lake
     },
     {
       id: 1337,
@@ -39,7 +39,7 @@ module.exports = {
       lng: -77.02,
       responses: [],
       acceptedAssistance: [],
-      senderId: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69' // Their Organization
+      senderId: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69' // Silver Springs
     }
   ]
 };
