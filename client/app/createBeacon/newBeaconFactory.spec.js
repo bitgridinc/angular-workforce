@@ -19,10 +19,10 @@ describe('the new beacon creation factory', function() {
   });
 
   it ('should configure scope with the default values for a new project', function () {
-    expect(scope.title).toBeDefined();
-    expect(scope.description).toBeDefined();
-    expect(scope.latitude).toBeDefined();
-    expect(scope.longitude).toBeDefined();
+    expect(scope.beaconPost.title).toBeDefined();
+    expect(scope.beaconPost.description).toBeDefined();
+    expect(scope.beaconPost.lat).toBeDefined();
+    expect(scope.beaconPost.lng).toBeDefined();
   });
   it ('should set up a watch to be notified when the user clicks on the map', function () {
     expect(scope.$on).toHaveBeenCalledWith('leafletDirectiveMap.click', factory.onMapClicked);
@@ -35,10 +35,10 @@ describe('the new beacon creation factory', function() {
         newLongitude = 2;
 
     beforeEach(function () {
-      scope.title = newTitle;
-      scope.description = newDescription;
-      scope.latitude = newLatitude;
-      scope.longitude = newLongitude;
+      scope.beaconPost.title = newTitle;
+      scope.beaconPost.description = newDescription;
+      scope.beaconPost.lat = newLatitude;
+      scope.beaconPost.lng = newLongitude;
     });
 
     describe ('the method to post a new beacon', function () {

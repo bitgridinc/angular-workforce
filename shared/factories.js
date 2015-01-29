@@ -38,8 +38,30 @@ var BeaconFactory = function() {
   }
 };
 
+var BeaconPostFactory = function() {
+  return {
+    beaconPost: {},
+    withSummaryText: function(title, description) {
+      this.beaconPost.title = title;
+      this.beaconPost.description = description;
+      return this;
+    },
+    withLocation: function(latitude, longitude) {
+      this.beaconPost.lat = latitude;
+      this.beaconPost.lng = longitude;
+      return this;
+    },
+    createBeaconPost: function() {
+      return this.beaconPost;
+    }
+  }
+};
+
 module.exports = {
   newBeaconFactory: function() {
     return new BeaconFactory();
+  },
+  newBeaconPostFactory: function() {
+    return new BeaconPostFactory();
   }
 };

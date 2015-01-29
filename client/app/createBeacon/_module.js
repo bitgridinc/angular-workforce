@@ -1,5 +1,7 @@
 "use strict";
 
+var factories = require('../../../shared/factories');
+
 angular
   .module('modules.createBeacon', [
       'ui.router',
@@ -46,10 +48,10 @@ angular
         return {
           initScope: function ($scope) {
             scope = angular.extend($scope, {
-              title: 'My Project',
-              description: 'My Description',
-              latitude: 38.914268,
-              longitude: -77.021098
+              beaconPost: factories.newBeaconPostFactory()
+                .withSummaryText('My Project', 'My Description')
+                .withLocation(38.914268, -77.021098)
+                .createBeaconPost()
             });
 
             scope.$on("leafletDirectiveMap.click", this.onMapClicked);
@@ -60,12 +62,7 @@ angular
             scope.longitude = clickArgs.leafletEvent.latlng.lng;
           },
           postNewBeacon : function () {
-            var message = MessagePacketizer.packetize({
-              title: scope.title,
-              description: scope.description,
-              lat: scope.latitude,
-              lng: scope.longitude
-            });
+            var message = MessagePacketizer.packetize(scope.beaconPost);
             RestService.createBeacon(message);
           }
         };
