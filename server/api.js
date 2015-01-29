@@ -23,6 +23,9 @@ module.exports = {
         senderId: request.payload.senderId,
         rootMessageId: beacon.id
       });
+
+      // This is needed to terminate the request on the client side
+      reply({status: 'ok'});
     },
     app: {
       name: 'beacon'
@@ -41,6 +44,9 @@ module.exports = {
         rootMessageId: request.payload.rootMessageId,
         contents: offer
       });
+
+      // This is needed to terminate the request on the client side
+      reply({status: 'ok'});
     },
     app: {
       name: 'beacon'
@@ -61,6 +67,9 @@ module.exports = {
       };
       console.log('Sending this:', a);
       io.sockets.emit('acceptedAssistance', a);
+
+      // This is needed to terminate the request on the client side
+      reply({status: 'ok'});
     },
     app: {
       name: 'beacon'

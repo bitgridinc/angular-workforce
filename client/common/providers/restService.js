@@ -11,10 +11,10 @@ require('./_module_init.js')
             console.log('Sending data to create a new beacon:', newBeaconData);
             $http.post(apiRoutes.createBeacon, newBeaconData)
               .success(function(data, status, headers, config) {
-                console.log('success!');
+                console.log('POST success!');
               })
               .error(function(data, status, headers, config) {
-                console.log('error!');
+                console.log('POST error!');
               });
           },
           offerAssistance: function(newOfferData) {
