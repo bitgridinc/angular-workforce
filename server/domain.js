@@ -1,22 +1,17 @@
 "use strict";
 
 var uuid = require('node-uuid'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    factories = require('../shared/factories');
 
 module.exports = {
   createBeacon: function(senderId, contents){
-    var beaconId = Math.floor(Math.random() * 10000);
-    var beacon = {
-      id: beaconId,
-      senderId: senderId,
-      title: contents.title,
-      description: contents.description,
-      lat: contents.lat,
-      lng: contents.lng,
-      responses: [],
-      acceptedAssistance: []
-    };
-    return beacon;
+    return factories.newBeaconFactory()
+      .withId(Math.floor(Math.random() * 10000))
+      .withSenderId(senderId)
+      .withSummaryText(contents.title, contents.description)
+      .withLocation(contents.lat, contents.lng)
+      .createBeacon();
   },
   offerAssistance: function(senderId, beacon, offerContents){
     var offer = {
