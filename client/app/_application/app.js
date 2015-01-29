@@ -58,6 +58,12 @@ angular
           currentEntity: {},
           beacons: []
         };
+        $rootScope.findEntityById = function(id) {
+          console.log('Finding organization by id: ', id, $rootScope.socketState.allEntities);
+          return _.find($rootScope.socketState.allEntities, function(entity) {
+            return entity.id === id;
+          });
+        };
 
         SocketHandlerService.initialize($rootScope.socketState);
         socket.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
@@ -76,33 +82,8 @@ angular
             this.socketState = socketState;
           },
           onInit: function(data) {
-            console.log('onInit called with', data, this.socketState);
-            var socketState = {
-              allEntities: data.allEntities,
-              currentEntity: data.currentEntity,
-              beacons: []
-            };
-
-            // TODO: Test this or...
-            // TODO: Change so that the Organization is retrieved on-demand or...
-            // TODO: Store beacons in a beacons array on the sending Organization
-            // Populate Organization on every beacon
-            _.forEach(data.beacons, function(beacon) {
-              beacon.organization = _.find(socketState.allEntities, function(entity) {
-                return entity.id === beacon.senderId;
-              });
-
-              // And populate Organization on all their responses
-              _.forEach(beacon.responses, function(response) {
-                response.organization = _.find(socketState.allEntities, function(entity) {
-                  return entity.id === response.senderId;
-                });
-              });
-
-              socketState.beacons.push(beacon);
-            });
-
-            angular.copy(socketState, this.socketState);
+            console.log('onInit called with: ', data);
+            angular.copy(data, this.socketState);
           },
           onMessage: function(request) {
             console.log('onMessage called with', request, this.socketState, this);
@@ -118,9 +99,8 @@ angular
 
             // We don't want to send copies of the same entity with every message it sends. This matches up the entity
             // based on the senderId property.
-            request.contents.organization = _.find(this.socketState.allEntities, function(entity) {
-              return entity.id === request.senderId;
-            });
+            // TODO: I shouldn't have to do this here
+            request.contents.senderId = request.senderId;
 
             var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
               return beacon.id === request.rootMessageId;
@@ -140,7 +120,6 @@ angular
             }
           },
           onAcceptedAssistance: function(request) {
-            // TODO: Populate organization
             console.log('onAcceptedAssistance called with', request);
             // {
             //   beaconId: beacon.id,
@@ -152,6 +131,7 @@ angular
             var acceptedResponse = _.remove(beacon.responses, function(response) {
               return response.id === request.responseId;
             })[0];
+            console.log('Moving response from pending to accepted: ', acceptedResponse);
             beacon.acceptedAssistance.push(acceptedResponse);
           }
         };

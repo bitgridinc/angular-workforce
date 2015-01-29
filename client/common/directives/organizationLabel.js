@@ -6,19 +6,15 @@ require('./_module_init.js')
       return {
         restrict: 'E',
         scope: {
-          organization: '='
+          organizationId: '='
         },
         template: '{{organization.name}}',
-        controller: function($scope) {
-          if (angular.isUndefined($scope.organization)) {
-            console.log('organization is undefined and it never should be');
-          } else if (!angular.isObject($scope.organization)) {
-            console.log('organization isn\'t an object and it must be.');
-          } else if (angular.isUndefined($scope.organization.name)) {
-            console.log('organization.name is undefined and it never should be');
-          } else if (!angular.isString($scope.organization.name)) {
-            console.log('organization.name isn\'t a string is and must be');
-          }
+        controller: function($rootScope, $scope) {
+          $scope.$watch('organizationId', function(newVal) {
+            if (angular.isDefined(newVal)) {
+              $scope.organization = $rootScope.findEntityById(newVal);
+            }
+          });
         }
       }
     }

@@ -79,7 +79,7 @@ describe('the service that wraps SocketIO', function() {
 
       it ('should add incoming messages to the list of beacons', function () {
         expect(service.socketState.beacons.length).toBe(1);
-        expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
+        expect(service.socketState.beacons[0].senderId).toEqual(currentEntity.id);
       });
       it ('should not add incoming message to the list of beacons if the beacon is already present', function () {
         // Act
@@ -94,7 +94,7 @@ describe('the service that wraps SocketIO', function() {
 
         // Assert
         expect(service.socketState.beacons.length).toBe(1);
-        expect(service.socketState.beacons[0].organization).toEqual(currentEntity);
+        expect(service.socketState.beacons[0].senderId).toEqual(currentEntity.id);
       });
 
       describe('after a response message has been received', function() {

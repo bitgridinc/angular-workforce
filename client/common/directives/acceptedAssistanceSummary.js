@@ -9,7 +9,7 @@ require('./_module_init.js')
           acceptedAssistance: '='
         },
         template: '<div class="panel panel-info">' +
-                    '<organization-label organization="acceptedAssistance.organization"></organization-label> ' +
+                    '<organization-label organization-id="acceptedAssistance.senderId"></organization-label> ' +
                     'is coming with ' +
                     '{{acceptedAssistance.numResponders}} people at ' +
                     '{{acceptedAssistance.arrivalDate}}.' +

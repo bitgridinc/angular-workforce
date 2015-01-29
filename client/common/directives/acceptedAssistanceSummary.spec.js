@@ -6,9 +6,7 @@ describe('directive: summary of accepted assistance', function() {
       compiled,
       html,
       expected = {
-        organization: {
-          name: 'name'
-        },
+        senderId: '1',
         numResponders: 18,
         arrivalDate: new Date()
       };
@@ -20,6 +18,11 @@ describe('directive: summary of accepted assistance', function() {
 
     inject(function($rootScope, $compile) {
       scope = $rootScope.$new();
+      $rootScope.findEntityById = function() {
+        return {
+          name: 'name'
+        };
+      };
 
       element = angular.element(html);
 
@@ -38,7 +41,7 @@ describe('directive: summary of accepted assistance', function() {
   });
 
   it('should contain the name of the responder', function() {
-    expect(element.text()).toContain(expected.organization.name);
+    expect(element.text()).toContain('name');
   });
   it('should contain the number of responders', function() {
     expect(element.text()).toContain(expected.numResponders);
