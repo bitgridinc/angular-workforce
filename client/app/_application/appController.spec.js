@@ -59,7 +59,7 @@ describe('the controller for the root module', function() {
       ];
 
       // Act
-      initCallback({ allEntities: allEntities, currentEntity: currentEntity });
+      initCallback({ allEntities: allEntities, currentEntity: currentEntity, beacons: [] });
     });
 
     it('should have copied the init data to $rootScope', function() {
