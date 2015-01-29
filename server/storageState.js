@@ -1,5 +1,7 @@
 "use strict";
 
+var factories = require('../shared/factories');
+
 module.exports = {
   entities: [
     {
@@ -16,30 +18,23 @@ module.exports = {
     }
   ],
   beacons: [
-    {
-      id: 117,
-      title: 'Your Title',
-      description: 'Your Description',
-      lat: 38.9,
-      lng: -77.0,
-      responses: [{
+    factories.newBeaconFactory()
+      .withId(117)
+      .withSenderId('55a2726e-43ff-4ea9-8d3e-b7c439ef0e84') // Tupper Lake
+      .withSummaryText('Your Title', 'Your Description')
+      .withLocation(38.9, -77.0)
+      .withResponse({
         id: '2cf8faaa-5760-41c9-adbf-5a4482ac3469',
         senderId: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69',
         numResponders: 4,
         arrivalDate: new Date()
-      }],
-      acceptedAssistance: [],
-      senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84' // Tupper Lake
-    },
-    {
-      id: 1337,
-      title: 'Their Title',
-      description: 'Their Description',
-      lat: 38.88,
-      lng: -77.02,
-      responses: [],
-      acceptedAssistance: [],
-      senderId: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69' // Silver Springs
-    }
+      })
+      .createBeacon(),
+    factories.newBeaconFactory()
+      .withId(1337)
+      .withSenderId('7cf52dba-992e-4f3f-bbb7-36f4b1792e69') // Silver Springs
+      .withSummaryText('Their Title', 'Their Description')
+      .withLocation(38.88, -77.02)
+      .createBeacon()
   ]
 };
