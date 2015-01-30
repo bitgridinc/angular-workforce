@@ -36,9 +36,9 @@ module.exports = {
       console.log('offerAssistance handler called with payload:', request.payload);
 
       var beacon = storage.getBeaconById(request.payload.beaconId);
-      var offer = domain.offerAssistance(request.payload.senderId, beacon, request.payload.contents);
+      var assistanceResponse = domain.offerAssistance(request.payload.senderId, beacon, request.payload.contents);
 
-      io.sockets.emit('assistanceResponse', offer);
+      io.sockets.emit('assistanceResponse', assistanceResponse);
 
       // This is needed to terminate the request on the client side
       reply({status: 'ok'});

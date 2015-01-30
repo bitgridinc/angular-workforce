@@ -75,11 +75,40 @@ var BeaconPostFactory = function() {
   }
 };
 
+var AssistanceResponseFactory = function() {
+  return {
+    assistanceResponse: {},
+    withId: function(id) {
+      this.assistanceResponse.id = id;
+      return this;
+    },
+    withSenderId: function(senderId) {
+      this.assistanceResponse.senderId = senderId;
+      return this;
+    },
+    withBeaconId: function(beaconId) {
+      this.assistanceResponse.beaconId = beaconId;
+      return this;
+    },
+    withResponderCrew: function(numResponders, arrivalDate) {
+      this.assistanceResponse.numResponders = numResponders;
+      this.assistanceResponse.arrivalDate = arrivalDate;
+      return this;
+    },
+    createAssistanceResponse: function() {
+      return this.assistanceResponse;
+    }
+  }
+};
+
 module.exports = {
   newBeaconFactory: function() {
     return new BeaconFactory();
   },
   newBeaconPostFactory: function() {
     return new BeaconPostFactory();
+  },
+  newAssistanceResponseFactory: function() {
+    return new AssistanceResponseFactory();
   }
 };

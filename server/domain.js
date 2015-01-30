@@ -14,16 +14,15 @@ module.exports = {
       .createBeacon();
   },
   offerAssistance: function(senderId, beacon, offerContents){
-    var offer = {
-      id: uuid.v4(),
-      numResponders: offerContents.numResponders,
-      arrivalDate: offerContents.arrivalDate,
-      senderId: senderId,
-      beaconId: beacon.id
-    };
+    var assistanceResponse = factories.newAssistanceResponseFactory()
+      .withId(uuid.v4())
+      .withSenderId(senderId)
+      .withBeaconId(beacon.id)
+      .withResponderCrew(offerContents.numResponders, offerContents.arrivalDate)
+      .createAssistanceResponse();
     // TODO: Test this specifically
-    beacon.responses.push(offer);
-    return offer;
+    beacon.responses.push(assistanceResponse);
+    return assistanceResponse;
   },
   acceptAssistance: function(senderId, beacon, acceptedOfferId){
     // TODO: Test this specifically
