@@ -68,7 +68,7 @@ angular
         SocketHandlerService.initialize($rootScope.socketState);
         socket.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
         socket.on('newBeacon', _.bind(SocketHandlerService.onNewBeacon, SocketHandlerService));
-        socket.on('message', _.bind(SocketHandlerService.onMessage, SocketHandlerService));
+        socket.on('assistanceResponse', _.bind(SocketHandlerService.onAssistanceResponse, SocketHandlerService));
         socket.on('acceptedAssistance', _.bind(SocketHandlerService.onAcceptedAssistance, SocketHandlerService));
       }
     ]
@@ -99,39 +99,29 @@ angular
 
             this.socketState.beacons.push(request);
           },
-          onMessage: function(request) {
-            console.log('onMessage called with', request, this.socketState, this);
+          onAssistanceResponse: function(request) {
+            console.log('onAssistanceResponse called with', request, this.socketState, this);
 
-            if (angular.isUndefined(request) ||
+            /*if (angular.isUndefined(request) ||
               angular.isUndefined(request.senderId) ||
-              angular.isUndefined(request.rootMessageId) ||
-              angular.isUndefined(request.contents) ||
-              angular.isUndefined(request.contents.id)) {
-              console.log('Invalid request in onMessage', request);
+              angular.isUndefined(request.beaconId) ||
+              angular.isUndefined(request.id)) {
+              console.log('Invalid request in onAssistanceResponse', request);
               throw new Error('Invalid request');
-            }
-
-            // We don't want to send copies of the same entity with every message it sends. This matches up the entity
-            // based on the senderId property.
-            // TODO: I shouldn't have to do this here
-            request.contents.senderId = request.senderId;
+            }*/
 
             var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
-              return beacon.id === request.rootMessageId;
+              return beacon.id === request.beaconId;
             });
-            if (angular.equals(request.contents.id, request.rootMessageId)) {
-              if (existingBeacon === undefined) {
-                request.contents.responses = [];
-                this.socketState.beacons.push(request.contents);
-              }
-            } else {
-              var existingResponse = _.find(existingBeacon.responses, function(response) {
-                return response.id === request.contents.id;
-              });
-              if (angular.isUndefined(existingResponse)) {
-                existingBeacon.responses.push(request.contents);
-              }
+            var existingResponse = _.find(existingBeacon.responses, function(response) {
+              return response.id === request.id;
+            });
+            if (angular.isDefined(existingResponse)) {
+              console.log('Beacon already exists: ', existingBeacon);
+              return;
             }
+
+            existingBeacon.responses.push(request);
           },
           onAcceptedAssistance: function(request) {
             console.log('onAcceptedAssistance called with', request);

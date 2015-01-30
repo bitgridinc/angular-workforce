@@ -1,5 +1,7 @@
 "use strict";
 
+var _ = require('lodash');
+
 var BeaconFactory = function() {
   return {
     beacon: {
@@ -40,7 +42,13 @@ var BeaconFactory = function() {
 
 var BeaconPostFactory = function() {
   return {
-    beaconPost: {},
+    beaconPost: {
+      recipientIds: []
+    },
+    withSenderId: function(senderId) {
+      this.beaconPost.senderId = senderId;
+      return this;
+    },
     withSummaryText: function(title, description) {
       this.beaconPost.title = title;
       this.beaconPost.description = description;
@@ -49,6 +57,16 @@ var BeaconPostFactory = function() {
     withLocation: function(latitude, longitude) {
       this.beaconPost.lat = latitude;
       this.beaconPost.lng = longitude;
+      return this;
+    },
+    withRecipientId: function(recipientId) {
+      this.beaconPost.recipientIds.push(recipientId);
+      return this;
+    },
+    withRecipientIds: function(recipientIds) {
+      _.forEach.apply(this, recipientIds, function(recipientId) {
+        this.withRecipientId(recipientId);
+      });
       return this;
     },
     createBeaconPost: function() {

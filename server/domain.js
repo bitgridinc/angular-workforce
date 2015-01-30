@@ -5,19 +5,21 @@ var uuid = require('node-uuid'),
     factories = require('../shared/factories');
 
 module.exports = {
-  createBeacon: function(senderId, contents){
+  createBeacon: function(payload){
     return factories.newBeaconFactory()
       .withId(Math.floor(Math.random() * 10000))
-      .withSenderId(senderId)
-      .withSummaryText(contents.title, contents.description)
-      .withLocation(contents.lat, contents.lng)
+      .withSenderId(payload.senderId)
+      .withSummaryText(payload.title, payload.description)
+      .withLocation(payload.lat, payload.lng)
       .createBeacon();
   },
   offerAssistance: function(senderId, beacon, offerContents){
     var offer = {
       id: uuid.v4(),
       numResponders: offerContents.numResponders,
-      arrivalDate: offerContents.arrivalDate
+      arrivalDate: offerContents.arrivalDate,
+      senderId: senderId,
+      beaconId: beacon.id
     };
     // TODO: Test this specifically
     beacon.responses.push(offer);

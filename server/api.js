@@ -11,15 +11,14 @@ module.exports = {
       console.log('createBeacon handler called with payload:', request.payload);
 
       // Be prepared to pass in the entire sender rather than just the id, if necessary
-      var beacon = domain.createBeacon(
-        request.payload.senderId,
-        request.payload.contents);
+      var beacon = domain.createBeacon(request.payload);
 
       // Eventually, this should be replaced with a database.add
       storage.saveBeacon(beacon);
 
       // Send the new beacon to all recipients
       _.forEach(request.payload.recipientIds, function(recipientId) {
+        console.log('Sending new beacon to recipient: ', recipientId);
         io.to(recipientId).emit('newBeacon', beacon);
       });
       // And send it back to the sender as well
@@ -36,15 +35,10 @@ module.exports = {
     handler: function (request, reply) {
       console.log('offerAssistance handler called with payload:', request.payload);
 
-      var beacon = storage.getBeaconById(request.payload.rootMessageId);
+      var beacon = storage.getBeaconById(request.payload.beaconId);
       var offer = domain.offerAssistance(request.payload.senderId, beacon, request.payload.contents);
 
-      // TODO: Break these messages up (e.g., new:offer)
-      io.sockets.emit('message', {
-        senderId: request.payload.senderId,
-        rootMessageId: request.payload.rootMessageId,
-        contents: offer
-      });
+      io.sockets.emit('assistanceResponse', offer);
 
       // This is needed to terminate the request on the client side
       reply({status: 'ok'});

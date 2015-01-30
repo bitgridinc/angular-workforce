@@ -48,7 +48,7 @@ describe('the service that wraps SocketIO', function() {
         });
       });
 
-      it ('should error if the incoming message does not specify the sender, root message, contents, or is completely empty', function () {
+      /*it ('should error if the incoming message does not specify the id, sender id, or is completely empty', function () {
         // Arrange
         var invalidMessages = [
           {
@@ -77,7 +77,7 @@ describe('the service that wraps SocketIO', function() {
           // Act/Assert
           expect(invocation).toThrow();
         }
-      });
+      });*/
 
       it ('should store beacons sent in the init message', function() {
         expect(service.socketState.beacons.length).toBe(1);
@@ -110,29 +110,27 @@ describe('the service that wraps SocketIO', function() {
 
       describe('after a response message has been received', function() {
         var responseMessage = {
-          contents: {
-            id: '5eb19570-5567-44f0-ab55-95189383fab0'
-          },
+          id: '5eb19570-5567-44f0-ab55-95189383fab0',
           senderId: currentEntity.id,
-          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          beaconId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
         };
 
         beforeEach(function() {
-          service.onMessage(responseMessage);
+          service.onAssistanceResponse(responseMessage);
         });
 
         it ('should add incoming messages to the responses array of its beacon if the message is not the root', function () {
           expect(service.socketState.beacons.length).toBe(1);
           expect(service.socketState.beacons[0].responses.length).toBe(1);
-          expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage.contents);
+          expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage);
         });
         it ('should not add duplicate incoming response messages', function () {
           // Act
-          service.onMessage(responseMessage);
+          service.onAssistanceResponse(responseMessage);
 
           // Assert
           expect(service.socketState.beacons[0].responses.length).toBe(1);
-          expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage.contents);
+          expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage);
         });
         it ('should allow for accepting the response by moving the response to the acceptedAssistance array of the beacon', function() {
           // {

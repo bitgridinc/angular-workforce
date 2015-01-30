@@ -1,16 +1,16 @@
 "use strict";
 
 describe('the new beacon creation factory', function() {
-  var scope,
+  var rootScope,
+      scope,
       factory,
-      messagePacketizer,
       restService;
 
   beforeEach(module('modules.createBeacon'));
-  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, MessagePacketizer, RestService) {
+  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, RestService) {
+    rootScope = $rootScope;
     scope = $rootScope.$new();
     factory = _NewBeaconFactory_;
-    messagePacketizer = MessagePacketizer;
     restService = RestService;
   }));
   beforeEach(function () {
@@ -19,10 +19,10 @@ describe('the new beacon creation factory', function() {
   });
 
   it ('should configure scope with the default values for a new project', function () {
-    expect(scope.beaconPost.title).toBeDefined();
-    expect(scope.beaconPost.description).toBeDefined();
-    expect(scope.beaconPost.lat).toBeDefined();
-    expect(scope.beaconPost.lng).toBeDefined();
+    expect(scope.title).toBeDefined();
+    expect(scope.description).toBeDefined();
+    expect(scope.lat).toBeDefined();
+    expect(scope.lng).toBeDefined();
   });
   it ('should set up a watch to be notified when the user clicks on the map', function () {
     expect(scope.$on).toHaveBeenCalledWith('leafletDirectiveMap.click', factory.onMapClicked);
@@ -35,31 +35,36 @@ describe('the new beacon creation factory', function() {
         newLongitude = 2;
 
     beforeEach(function () {
-      scope.beaconPost.title = newTitle;
-      scope.beaconPost.description = newDescription;
-      scope.beaconPost.lat = newLatitude;
-      scope.beaconPost.lng = newLongitude;
+      scope.title = newTitle;
+      scope.description = newDescription;
+      scope.lat = newLatitude;
+      scope.lng = newLongitude;
     });
 
     describe ('the method to post a new beacon', function () {
-      var packetizedMessage = {
+      var expectedPost = {
         title: newTitle,
         description: newDescription,
         lat: newLatitude,
-        lng: newLongitude
+        lng: newLongitude,
+        senderId: '1',
+        recipientIds: []
       };
 
-      beforeEach(function () {
-        spyOn(messagePacketizer, 'packetize').and.returnValue(packetizedMessage);
+      it ('should pass the new beacon POST to the socket', function () {
+        // Arrange
         spyOn(restService, 'createBeacon');
-        factory.postNewBeacon();
-      });
+        rootScope.socketState = {
+          currentEntity: {
+            id: '1'
+          }
+        };
 
-      it ('should pass the scoped values to the packetizer', function () {
-        expect(messagePacketizer.packetize).toHaveBeenCalledWith(packetizedMessage, undefined, undefined);
-      });
-      it ('should pass the packetized message data to the socket', function () {
-        expect(restService.createBeacon).toHaveBeenCalledWith(packetizedMessage);
+        // Act
+        factory.postNewBeacon();
+
+        // Assert
+        expect(restService.createBeacon).toHaveBeenCalledWith(expectedPost);
       });
     });
   });

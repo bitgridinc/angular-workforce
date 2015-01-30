@@ -65,29 +65,33 @@ angular
     ]
   )
   .factory('NewBeaconFactory',
-    [         'MessagePacketizer', 'RestService',
-      function(MessagePacketizer,   RestService) {
+    [         '$rootScope', 'RestService',
+      function($rootScope,   RestService) {
         var scope;
         return {
           initScope: function ($scope) {
             scope = angular.extend($scope, {
-              beaconPost: factories.newBeaconPostFactory()
-                .withSummaryText('My Project', 'My Description')
-                .withLocation(38.914268, -77.021098)
-                .createBeaconPost()
+              title: 'My Project',
+              description: 'My Description',
+              lat: 38.914268,
+              lng: -77.021098
             });
 
             scope.$on("leafletDirectiveMap.click", this.onMapClicked);
           },
           onMapClicked: function (clickEvent, clickArgs) {
             console.log('The map was clicked at:', clickArgs.leafletEvent.latlng);
-            scope.latitude = clickArgs.leafletEvent.latlng.lat;
-            scope.longitude = clickArgs.leafletEvent.latlng.lng;
+            scope.lat = clickArgs.leafletEvent.latlng.lat;
+            scope.lng = clickArgs.leafletEvent.latlng.lng;
           },
           postNewBeacon : function (recipientIds) {
-            // TODO: Make this a fluent library
-            var message = MessagePacketizer.packetize(scope.beaconPost, undefined, recipientIds);
-            RestService.createBeacon(message);
+            var beaconPost = factories.newBeaconPostFactory()
+              .withSenderId($rootScope.socketState.currentEntity.id)
+              .withSummaryText(scope.title, scope.description)
+              .withLocation(scope.lat, scope.lng)
+              .withRecipientIds(recipientIds)
+              .createBeaconPost();
+            RestService.createBeacon(beaconPost);
           }
         };
       }

@@ -17,27 +17,25 @@ describe('the create beacon API method', function() {
   it('should be able to send a new beacon back to the client', function() {
     // Arrange
     var messageCalled = false;
+    // TODO: Must be able to specify who you are
     var client = io.connect(serverURL, options);
     client.on('newBeacon', function(data) {
       messageCalled = true;
-      expect(data.contents).toBeDefined();
-      expect(data.contents.id).toBeDefined();
+      expect(data.id).toBeDefined();
       expect(data.senderId).toBeDefined();
-      expect(data.rootMessageId).toBeDefined();
     });
 
     // Act
     request.post(
       {
         uri: serverURL + apiRoutes.createBeacon,
-        body: JSON.stringify({
-          contents: factories.newBeaconPostFactory()
-            .withSummaryText('title', 'description')
-            .withLocation(1, 2)
-            .createBeaconPost(),
-          senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
-          recipientIds: ['55a2726e-43ff-4ea9-8d3e-b7c439ef0e84']
-        })
+        body: JSON.stringify(factories.newBeaconPostFactory()
+          .withSenderId('55a2726e-43ff-4ea9-8d3e-b7c439ef0e84')
+          .withSummaryText('title', 'description')
+          .withLocation(1, 2)
+          .withRecipientId('55a2726e-43ff-4ea9-8d3e-b7c439ef0e84')
+          .createBeaconPost()
+        )
       }
     );
 
@@ -58,12 +56,13 @@ describe('the offer assistance API method', function() {
     // Arrange
     var messageCalled = false;
     var client = io.connect(serverURL, options);
-    client.on('message', function(data) {
+    client.on('assistanceResponse', function(data) {
       messageCalled = true;
-      expect(data.contents).toBeDefined();
-      expect(data.contents.id).toBeDefined();
+      expect(data.id).toBeDefined();
+      expect(data.numResponders).toBeDefined();
+      expect(data.arrivalDate).toBeDefined();
       expect(data.senderId).toBeDefined();
-      expect(data.rootMessageId).toBeDefined();
+      expect(data.beaconId).toBeDefined();
     });
 
     // Act
@@ -76,7 +75,7 @@ describe('the offer assistance API method', function() {
             arrivalDate: new Date()
           },
           senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
-          rootMessageId: 117
+          beaconId: 117
         })
       }
     );
