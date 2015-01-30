@@ -12,8 +12,9 @@ var options = {
   'force new connection': true
 };
 
+// TODO: Test recipients
 describe('the create beacon API method', function() {
-  it('should send the new beacon to all connected clients', function() {
+  it('should be able to send a new beacon back to the client', function() {
     // Arrange
     var messageCalled = false;
     var client = io.connect(serverURL, options);
@@ -34,7 +35,8 @@ describe('the create beacon API method', function() {
             .withSummaryText('title', 'description')
             .withLocation(1, 2)
             .createBeaconPost(),
-          senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
+          senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
+          recipientIds: ['55a2726e-43ff-4ea9-8d3e-b7c439ef0e84']
         })
       }
     );
@@ -74,7 +76,7 @@ describe('the offer assistance API method', function() {
             arrivalDate: new Date()
           },
           senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
-          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          rootMessageId: 117
         })
       }
     );

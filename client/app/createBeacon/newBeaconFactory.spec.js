@@ -56,7 +56,7 @@ describe('the new beacon creation factory', function() {
       });
 
       it ('should pass the scoped values to the packetizer', function () {
-        expect(messagePacketizer.packetize).toHaveBeenCalledWith(packetizedMessage);
+        expect(messagePacketizer.packetize).toHaveBeenCalledWith(packetizedMessage, undefined, undefined);
       });
       it ('should pass the packetized message data to the socket', function () {
         expect(restService.createBeacon).toHaveBeenCalledWith(packetizedMessage);

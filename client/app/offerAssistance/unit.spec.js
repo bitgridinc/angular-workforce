@@ -64,7 +64,8 @@ describe('the offer assistance controller', function() {
             arrivalDate: newArrivalDate
           },
           senderId : $rootScope.socketState.currentEntity.id,
-          rootMessageId : $rootScope.selectionState.currentBeacon.id
+          rootMessageId : $rootScope.selectionState.currentBeacon.id,
+          recipientIds: undefined
         });
       });
       it ('should change our page state', function () {

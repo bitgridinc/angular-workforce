@@ -1,8 +1,9 @@
 "use strict";
 
-var domain = require('./domain');
-var storage = require('./storage');
-var io = require('./socketSetup').instance;
+var domain = require('./domain'),
+    storage = require('./storage'),
+    io = require('./socketSetup').instance,
+    _ = require('lodash');
 
 module.exports = {
   createBeacon: {
@@ -17,11 +18,13 @@ module.exports = {
       // Eventually, this should be replaced with a database.add
       storage.saveBeacon(beacon);
 
-      // Send the new beacon to all connected clients
-      io.sockets.emit('message', {
-        contents: beacon,
-        senderId: request.payload.senderId,
-        rootMessageId: beacon.id
+      // Send the new beacon to all recipients
+      _.forEach(request.payload.recipientIds, function(recipientId) {
+        io.to(recipientId).emit('message', {
+          contents: beacon,
+          senderId: request.payload.senderId,
+          rootMessageId: beacon.id
+        });
       });
 
       // This is needed to terminate the request on the client side
