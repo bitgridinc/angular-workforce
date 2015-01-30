@@ -75,15 +75,9 @@ var BeaconPostFactory = function() {
 var AssistanceResponseFactory = function() {
   return {
     assistanceResponse: {},
-    withId: function(id) {
+    withIds: function(id, senderId, beaconId) {
       this.assistanceResponse.id = id;
-      return this;
-    },
-    withSenderId: function(senderId) {
       this.assistanceResponse.senderId = senderId;
-      return this;
-    },
-    withBeaconId: function(beaconId) {
       this.assistanceResponse.beaconId = beaconId;
       return this;
     },

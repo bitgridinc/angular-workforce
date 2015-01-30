@@ -14,9 +14,7 @@ module.exports = {
   },
   offerAssistance: function(senderId, beacon, offerContents){
     var assistanceResponse = factories.newAssistanceResponseFactory()
-      .withId(uuid.v4())
-      .withSenderId(senderId)
-      .withBeaconId(beacon.id)
+      .withIds(uuid.v4(), senderId, beacon.id)
       .withResponderCrew(offerContents.numResponders, offerContents.arrivalDate)
       .createAssistanceResponse();
     // TODO: Test this specifically

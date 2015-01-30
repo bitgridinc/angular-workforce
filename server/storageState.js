@@ -23,9 +23,7 @@ module.exports = {
       .withSummaryText('Your Title', 'Your Description')
       .withLocation(38.9, -77.0)
       .withResponse(factories.newAssistanceResponseFactory()
-        .withId('2cf8faaa-5760-41c9-adbf-5a4482ac3469')
-        .withSenderId('7cf52dba-992e-4f3f-bbb7-36f4b1792e69')
-        .withBeaconId(117)
+        .withIds('2cf8faaa-5760-41c9-adbf-5a4482ac3469', '7cf52dba-992e-4f3f-bbb7-36f4b1792e69', 117)
         .withResponderCrew(4, new Date())
         .createAssistanceResponse())
       .createBeacon(),
