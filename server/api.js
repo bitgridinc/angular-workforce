@@ -26,6 +26,12 @@ module.exports = {
           rootMessageId: beacon.id
         });
       });
+      // And send it back to the sender as well
+      io.to(request.payload.senderId).emit('message', {
+        contents: beacon,
+        senderId: request.payload.senderId,
+        rootMessageId: beacon.id
+      });
 
       // This is needed to terminate the request on the client side
       reply({status: 'ok'});
