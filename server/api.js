@@ -55,13 +55,12 @@ module.exports = {
       var acceptedResponse = domain.acceptAssistance(request.payload.senderId, beacon, request.payload.contents);
       console.log('This response was accepted:', acceptedResponse);
 
-      // TODO: Send a message that removes the response from the responses array of the beacon in the client
-      var a = {
+      var acceptResponseMessage = {
         beaconId: beacon.id,
         responseId: acceptedResponse.id
       };
-      console.log('Sending this:', a);
-      io.sockets.emit('acceptedAssistance', a);
+      console.log('Sending this:', acceptResponseMessage);
+      io.sockets.emit('acceptedAssistance', acceptResponseMessage);
 
       // This is needed to terminate the request on the client side
       reply({status: 'ok'});
