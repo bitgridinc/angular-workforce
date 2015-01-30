@@ -18,7 +18,7 @@ describe('the create beacon API method', function() {
     // Arrange
     var messageCalled = false;
     var client = io.connect(serverURL, options);
-    client.on('message', function(data) {
+    client.on('newBeacon', function(data) {
       messageCalled = true;
       expect(data.contents).toBeDefined();
       expect(data.contents.id).toBeDefined();

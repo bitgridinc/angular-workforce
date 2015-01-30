@@ -20,18 +20,10 @@ module.exports = {
 
       // Send the new beacon to all recipients
       _.forEach(request.payload.recipientIds, function(recipientId) {
-        io.to(recipientId).emit('message', {
-          contents: beacon,
-          senderId: request.payload.senderId,
-          rootMessageId: beacon.id
-        });
+        io.to(recipientId).emit('newBeacon', beacon);
       });
       // And send it back to the sender as well
-      io.to(request.payload.senderId).emit('message', {
-        contents: beacon,
-        senderId: request.payload.senderId,
-        rootMessageId: beacon.id
-      });
+      io.to(request.payload.senderId).emit('newBeacon', beacon);
 
       // This is needed to terminate the request on the client side
       reply({status: 'ok'});

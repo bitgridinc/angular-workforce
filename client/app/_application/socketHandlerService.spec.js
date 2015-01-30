@@ -1,5 +1,7 @@
 "use strict";
 
+// Remember, you can't use require here :C
+
 describe('the service that wraps SocketIO', function() {
   var service;
 
@@ -77,24 +79,33 @@ describe('the service that wraps SocketIO', function() {
         }
       });
 
-      it ('should add incoming messages to the list of beacons', function () {
+      it ('should store beacons sent in the init message', function() {
         expect(service.socketState.beacons.length).toBe(1);
         expect(service.socketState.beacons[0].senderId).toEqual(currentEntity.id);
       });
+      it ('should store new messages in the list of beacons', function () {
+        // Act
+        var id = '97b12600-51de-472a-8cff-08b67a4f0340';
+        service.onNewBeacon({
+          id: id,
+          senderId: currentEntity.id,
+          acceptedAssistance: []
+        });
+
+        // Assert
+        expect(service.socketState.beacons.length).toBe(2);
+        expect(service.socketState.beacons[1].id).toEqual(id);
+      });
       it ('should not add incoming message to the list of beacons if the beacon is already present', function () {
         // Act
-        service.onMessage({
-          contents: {
-            id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
-            acceptedAssistance: []
-          },
+        service.onNewBeacon({
+          id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
           senderId: currentEntity.id,
-          rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
+          acceptedAssistance: []
         });
 
         // Assert
         expect(service.socketState.beacons.length).toBe(1);
-        expect(service.socketState.beacons[0].senderId).toEqual(currentEntity.id);
       });
 
       describe('after a response message has been received', function() {

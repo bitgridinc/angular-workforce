@@ -67,6 +67,7 @@ angular
 
         SocketHandlerService.initialize($rootScope.socketState);
         socket.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
+        socket.on('newBeacon', _.bind(SocketHandlerService.onNewBeacon, SocketHandlerService));
         socket.on('message', _.bind(SocketHandlerService.onMessage, SocketHandlerService));
         socket.on('acceptedAssistance', _.bind(SocketHandlerService.onAcceptedAssistance, SocketHandlerService));
       }
@@ -84,6 +85,19 @@ angular
           onInit: function(data) {
             console.log('onInit called with: ', data);
             angular.copy(data, this.socketState);
+          },
+          onNewBeacon: function(request) {
+            console.log('onNewBeacon called with', request, this.socketState);
+
+            var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
+              return beacon.id === request.id;
+            });
+            if (angular.isDefined(existingBeacon)) {
+              console.log('Beacon already exists: ', existingBeacon);
+              return;
+            }
+
+            this.socketState.beacons.push(request);
           },
           onMessage: function(request) {
             console.log('onMessage called with', request, this.socketState, this);
