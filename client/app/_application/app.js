@@ -88,6 +88,14 @@ angular
           },
           onNewBeacon: function(request) {
             console.log('onNewBeacon called with', request, this.socketState);
+            // {
+            //   id: Math.floor(Math.random() * 10000),
+            //   senderId: payload.senderId,
+            //   title: payload.title
+            //   description: payload.description,
+            //   lat: payload.lat,
+            //   lng: payload.lng
+            // }
 
             var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
               return beacon.id === request.id;
@@ -101,6 +109,13 @@ angular
           },
           onAssistanceResponse: function(request) {
             console.log('onAssistanceResponse called with', request, this.socketState, this);
+            // {
+            //   id: uuid.v4(),
+            //   numResponders: offerContents.numResponders,
+            //   arrivalDate: offerContents.arrivalDate,
+            //   senderId: senderId,
+            //   beaconId: beacon.id
+            // }
 
             /*if (angular.isUndefined(request) ||
               angular.isUndefined(request.senderId) ||
@@ -129,6 +144,7 @@ angular
             //   beaconId: beacon.id,
             //   responseId: acceptedResponse.id
             // }
+
             var beacon = _.find(this.socketState.beacons, function(beacon) {
               return beacon.id === request.beaconId;
             });
