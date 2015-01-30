@@ -19,8 +19,7 @@ module.exports = {
   ],
   beacons: [
     factories.newBeaconFactory()
-      .withId(117)
-      .withSenderId('55a2726e-43ff-4ea9-8d3e-b7c439ef0e84') // Tupper Lake
+      .withIds(117, '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84') // Tupper Lake
       .withSummaryText('Your Title', 'Your Description')
       .withLocation(38.9, -77.0)
       .withResponse({
@@ -31,8 +30,7 @@ module.exports = {
       })
       .createBeacon(),
     factories.newBeaconFactory()
-      .withId(1337)
-      .withSenderId('7cf52dba-992e-4f3f-bbb7-36f4b1792e69') // Silver Springs
+      .withIds(1337, '7cf52dba-992e-4f3f-bbb7-36f4b1792e69') // Silver Springs
       .withSummaryText('Their Title', 'Their Description')
       .withLocation(38.88, -77.02)
       .createBeacon()

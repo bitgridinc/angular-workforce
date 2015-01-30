@@ -8,11 +8,8 @@ var BeaconFactory = function() {
       responses: [],
       acceptedAssistance: []
     },
-    withId: function(id) {
+    withIds: function(id, senderId) {
       this.beacon.id = id;
-      return this;
-    },
-    withSenderId: function(senderId) {
       this.beacon.senderId = senderId;
       return this;
     },

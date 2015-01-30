@@ -7,8 +7,7 @@ var uuid = require('node-uuid'),
 module.exports = {
   createBeacon: function(payload){
     return factories.newBeaconFactory()
-      .withId(Math.floor(Math.random() * 10000))
-      .withSenderId(payload.senderId)
+      .withIds(Math.floor(Math.random() * 10000), payload.senderId)
       .withSummaryText(payload.title, payload.description)
       .withLocation(payload.lat, payload.lng)
       .createBeacon();
