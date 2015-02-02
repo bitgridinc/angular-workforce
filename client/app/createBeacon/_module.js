@@ -1,7 +1,6 @@
 "use strict";
 
-var factories = require('../../../shared/factories'),
-    _ = require('../../bower_components/lodash/dist/lodash.js');
+var factories = require('../../../shared/factories');
 
 angular
   .module('modules.createBeacon', [
@@ -28,8 +27,8 @@ angular
     ]
   )
   .controller('CreateBeaconController',
-    [         '$rootScope', '$scope', '$state', 'NewBeaconFactory',
-      function($rootScope,   $scope,   $state,   NewBeaconFactory) {
+    [         '$rootScope', '$scope', '$state', 'NewBeaconFactory', '_',
+      function($rootScope,   $scope,   $state,   NewBeaconFactory,   _) {
         NewBeaconFactory.initScope($scope);
 
         // Note that a filter *might* be better as we grow as it would be reusable.

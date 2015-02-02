@@ -3,7 +3,6 @@
 require('../../bower_components/angular/angular.js');
 require('../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
 require('../../bower_components/angular-ui-router/release/angular-ui-router.js');
-var _ = require('../../bower_components/lodash/dist/lodash.js');
 
 require('../../common/directives/_module_init.js');
 require('../../common/providers/_module_init.js');
@@ -50,8 +49,8 @@ angular
   )
   // This controller wires up the $rootScope for consumption by the entire application.
   .controller('AppController',
-    [         '$rootScope', 'socket', 'SocketHandlerService',
-      function($rootScope,   socket,   SocketHandlerService) {
+    [         '$rootScope', 'socket', 'SocketHandlerService', '_',
+      function($rootScope,   socket,   SocketHandlerService,   _) {
 
         $rootScope.socketState = {
           allEntities: [],
@@ -64,6 +63,12 @@ angular
             return entity.id === id;
           });
         };
+        $rootScope.findBeaconById = function(id) {
+          console.log('Finding beacon by id: ', id, $rootScope.socketState.beacons);
+          return _.find($rootScope.socketState.beacons, function(beacon) {
+            return beacon.id === id;
+          });
+        };
 
         SocketHandlerService.initialize($rootScope.socketState);
         socket.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
@@ -74,8 +79,8 @@ angular
     ]
   )
   .service('SocketHandlerService',
-    [
-      function() {
+    [         '_',
+      function(_) {
         return {
           socketState: undefined,
           initialize: function(socketState) {

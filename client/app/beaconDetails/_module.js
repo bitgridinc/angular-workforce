@@ -1,7 +1,5 @@
 "use strict";
 
-var _ = require('../../bower_components/lodash/dist/lodash.js');
-
 angular
   .module('modules.beaconDetails', [
       'ui.router',
@@ -35,9 +33,7 @@ angular
 
         $rootScope.$watch('socketState.beacons.length', function(newVal, oldVal) {
           console.log('The number of beacons changed', newVal, oldVal);
-          $rootScope.selectionState.currentBeacon = _.find($rootScope.socketState.beacons, function(beacon) {
-            return beacon.id === $rootScope.$stateParams.id;
-          });
+          $rootScope.selectionState.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
         });
 
         $scope.goToBeaconList = function() { $state.go('dashboard.beacons.list'); };

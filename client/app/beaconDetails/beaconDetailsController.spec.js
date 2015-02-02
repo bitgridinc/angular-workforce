@@ -25,7 +25,7 @@ describe('the beacon details controller', function() {
 
   it('should update $rootScope with the corresponding beacon once it has been received from the server', function() {
     // Arrange
-    $rootScope.socketState.beacons.push({ id: 'e688af0b-63df-48bc-941c-9cc5f750367b' });
+    $rootScope.findBeaconById = function() { return { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' }; };
     $rootScope.$stateParams = { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' };
 
     // Act
@@ -36,7 +36,7 @@ describe('the beacon details controller', function() {
   });
   it('should do nothing when the currently selected beacon does not match any beacons yet received from the server', function() {
     // Arrange
-    $rootScope.socketState.beacons.push({ id: '99999999-9999-9999-9999-999999999999' });
+    $rootScope.findBeaconById = function() { return undefined; };
     $rootScope.$stateParams = { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' };
 
     // Act
