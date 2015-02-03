@@ -36,6 +36,11 @@ module.exports = {
       console.log('offerAssistance handler called with payload:', request.payload);
 
       var beacon = storage.getBeaconById(request.payload.beaconId);
+      if (beacon === undefined) {
+        console.log('Beacon not found with id: ', request.payload);
+        reply({ status: 'error' });
+      }
+
       var assistanceResponse = domain.offerAssistance(request.payload.senderId, beacon, request.payload.contents);
 
       io.sockets.emit('assistanceResponse', assistanceResponse);
@@ -51,7 +56,7 @@ module.exports = {
     handler: function (request, reply) {
       console.log('acceptAssistance handler called with payload:', request.payload);
 
-      var beacon = storage.getBeaconById(request.payload.rootMessageId);
+      var beacon = storage.getBeaconById(request.payload.beaconId);
       var acceptedResponse = domain.acceptAssistance(request.payload.senderId, beacon, request.payload.contents);
       console.log('This response was accepted:', acceptedResponse);
 

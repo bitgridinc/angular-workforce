@@ -5,12 +5,12 @@ require('./_module_init.js')
     [         '$rootScope',
       function($rootScope) {
         return {
-          // TODO: Somehow test that rootMessageId is passed in, the server requires
-          packetize: function(contents, rootMessageId, recipientIds) {
+          // TODO: Somehow test that beaconId is passed in, the server requires
+          packetize: function(contents, beaconId, recipientIds) {
             var packetizedMessage = {
               contents: contents,
               senderId: $rootScope.socketState.currentEntity.id,
-              rootMessageId: rootMessageId,
+              beaconId: beaconId,
               recipientIds: recipientIds
             };
             console.log('Packetized:', packetizedMessage);
