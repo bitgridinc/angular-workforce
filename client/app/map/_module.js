@@ -10,11 +10,12 @@ angular
     ]
   )
   .controller('MapController',
-    [         '$scope', '$rootScope',
-      function($scope,   $rootScope) {
+    [         '$scope', '$rootScope', 'leafletData',
+      function($scope,   $rootScope,   leafletData) {
         angular.extend($scope, {
           defaults: {
-            tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
+            // Note: This MUST be "" as any other values negatively affect the performance of loading tiles. Don't know why.
+            tileLayer: "",
             zoomControl: false
           },
           center: {
@@ -23,6 +24,10 @@ angular
             zoom: 13
           },
           socketState: $rootScope.socketState
+        });
+
+        leafletData.getMap('leaflet').then(function(map) {
+          L.esri.basemapLayer('Streets').addTo(map);
         });
       }
     ]

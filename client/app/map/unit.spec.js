@@ -16,7 +16,8 @@ describe("the map module (unit)", function() {
 
   it('should define a defaults object', function() {
     expect(scope.defaults).toBeDefined();
-    expect(scope.defaults.tileLayer).toBeDefined();
+    // This must be an empty string. Leaving it undefined negatively impacts performance as does not defining it.
+    expect(scope.defaults.tileLayer).toBe("");
     expect(scope.defaults.zoomControl).toBe(false);
   });
   it('should define a center object', function() {
