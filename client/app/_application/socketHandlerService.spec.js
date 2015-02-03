@@ -107,6 +107,17 @@ describe('the service that wraps SocketIO', function() {
         // Assert
         expect(service.socketState.beacons.length).toBe(1);
       });
+      it ('should not throw an error if an assistance response is received for a beacon that is not present', function () {
+        // Act
+        service.onAssistanceResponse({
+          id: '5eb19570-5567-44f0-ab55-95189383fab0',
+          senderId: currentEntity.id,
+          beaconId: 'NOPE9999-63df-48bc-941c-9cc5f750367b'
+        });
+
+        // Assert
+        expect(service.socketState.beacons[0].responses.length).toBe(0);
+      });
 
       describe('after a response message has been received', function() {
         var responseMessage = {

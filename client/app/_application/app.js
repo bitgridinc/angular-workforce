@@ -133,16 +133,23 @@ angular
             var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
               return beacon.id === request.beaconId;
             });
+            if (angular.isUndefined(existingBeacon)) {
+              // TODO: Ideally, the server will never send these responses.
+              console.log('Beacon doesn\'t exist, cannot add response: ', request.beaconId);
+              return;
+            }
+
             var existingResponse = _.find(existingBeacon.responses, function(response) {
               return response.id === request.id;
             });
             if (angular.isDefined(existingResponse)) {
-              console.log('Beacon already exists: ', existingBeacon);
+              console.log('Response already exists on beacon, cannot add it: ', request.id, existingBeacon);
               return;
             }
 
             existingBeacon.responses.push(request);
           },
+          // TODO: Add tests for this method
           onAcceptedAssistance: function(request) {
             console.log('onAcceptedAssistance called with', request);
             // {
@@ -150,14 +157,25 @@ angular
             //   responseId: acceptedResponse.id
             // }
 
-            var beacon = _.find(this.socketState.beacons, function(beacon) {
+            var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
               return beacon.id === request.beaconId;
             });
-            var acceptedResponse = _.remove(beacon.responses, function(response) {
+            if (angular.isUndefined(existingBeacon)) {
+              // TODO: Ideally, the server will never send these responses.
+              console.log('Beacon doesn\'t exist, cannot add response: ', request.beaconId);
+              return;
+            }
+
+            var acceptedResponse = _.remove(existingBeacon.responses, function(response) {
               return response.id === request.responseId;
             })[0];
+            if (angular.isUndefined(acceptedResponse)) {
+              console.log('Response doens\'t exist in the responses array, cannot accept it: ', request.responseId, existingBeacon);
+              return;
+            }
+
             console.log('Moving response from pending to accepted: ', acceptedResponse);
-            beacon.acceptedAssistance.push(acceptedResponse);
+            existingBeacon.acceptedAssistance.push(acceptedResponse);
           }
         };
       }
