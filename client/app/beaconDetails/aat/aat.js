@@ -23,8 +23,8 @@ describe('the view that displays the details of a particular beacon', function()
     expect(summaryHeaderElement.getText()).toContain('Tupper Lake');
     expect(summaryHeaderElement.getText()).toContain('Your Title');
     expect(summaryHeaderElement.getText()).toContain('Your Description');
-    expect(element(beaconDetailsLocators.latitude).getText()).toContain('38.9');
-    expect(element(beaconDetailsLocators.longitude).getText()).toContain('-77');
+    expect(element(beaconDetailsLocators.latitude).getText()).toContain('44.');
+    expect(element(beaconDetailsLocators.longitude).getText()).toContain('-74.');
   });
 
   it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
