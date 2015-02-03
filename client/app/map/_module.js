@@ -16,7 +16,8 @@ angular
           defaults: {
             // Note: This MUST be "" as any other values negatively affect the performance of loading tiles. Don't know why.
             tileLayer: "",
-            zoomControl: false
+            zoomControl: false,
+            attributionControl: false
           },
           center: {
             lat: 43.428,
