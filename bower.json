@@ -12,6 +12,7 @@
     "socket.io-client": "~1.2.1",
     "bootstrap-sass-official": "~3.3.1",
     "fontawesome": "~4.2.0",
-    "esri-leaflet": "~1.0.0-rc.5"
+    "esri-leaflet": "~1.0.0-rc.5",
+    "leaflet-control-geocoder": "~0.2.1"
   }
 }

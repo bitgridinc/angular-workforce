@@ -29,6 +29,7 @@ angular
 
         leafletData.getMap('leaflet').then(function(map) {
           L.esri.basemapLayer('Streets').addTo(map);
+          L.Control.geocoder().addTo(map);
         });
       }
     ]
