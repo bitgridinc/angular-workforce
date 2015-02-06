@@ -25,8 +25,8 @@ angular
     ]
   )
   .controller('BeaconDetailsController',
-    [         '$scope', '$rootScope', '$state',
-      function($scope,   $rootScope,   $state) {
+    [         '$scope', '$rootScope', '$state', 'leafletData',
+      function($scope,   $rootScope,   $state,   leafletData) {
         $rootScope.selectionState = $scope.selectionState = {
           currentBeacon: undefined
         };
@@ -34,6 +34,27 @@ angular
         $rootScope.$watch('socketState.beacons.length', function(newVal, oldVal) {
           console.log('The number of beacons changed', newVal, oldVal);
           $rootScope.selectionState.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
+        });
+
+        // TODO: Use a service wrapper around leafletData?
+        // TODO: Test
+        $rootScope.$watch('selectionState.currentBeacon', function(newVal) {
+          if (angular.isDefined(newVal)) {
+            leafletData.getMap('leaflet').then(function(map) {
+
+              var mustContainPoints = [
+                [$rootScope.socketState.currentEntity.center.lat, $rootScope.socketState.currentEntity.center.lng],
+                [$rootScope.selectionState.currentBeacon.lat, $rootScope.selectionState.currentBeacon.lng]
+              ];
+
+              var bounds = map.getBounds();
+              if (!bounds.contains(mustContainPoints[0]) || !bounds.contains(mustContainPoints[1])) {
+                map.fitBounds(mustContainPoints, {
+                  padding: [50, 50]
+                });
+              }
+            });
+          }
         });
 
         $scope.goToBeaconList = function() { $state.go('dashboard.beacons.list'); };
