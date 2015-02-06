@@ -14,6 +14,10 @@ $beacons-left-container-left: $beacons-btn-size + $beacons-btn-margin;
 $beacons-left-container-width: 300px;
 $beacons-right-container-left: $beacons-left-container-left + $beacons-left-container-width + $beacons-btn-margin;
 
+.bg-shadow {
+  box-shadow: 0px 0px 10px #888888;
+}
+
 td {
   padding: 0 .5em;
 }
@@ -24,6 +28,7 @@ td {
 
 .bg-header-container {
   @extend .bg-full-width;
+  @extend .bg-shadow;
   height: $header-height;
 }
 
@@ -51,27 +56,30 @@ td {
   outline: none;
 }
 
-.dashboard-beacons-left {
+.dashboard-beacons-base {
+  @extend .bg-shadow;
   position: absolute;
+  border: 0px;
+  margin: 0px;
+}
+.dashboard-beacons-left {
+  @extend .dashboard-beacons-base;
   left: $beacons-left-container-left;
   width: 300px;
   max-height: 600px;
-  border: 0px;
-  margin: 0px;
-  /* Wait for sass to implement border to subtract from total width */
+  /* TODO: Implement border to subtract from total width */
 }
 .dashboard-beacons-right {
-  position: absolute;
+  @extend .dashboard-beacons-base;
   left: $beacons-right-container-left;
   top: 20px;
   width: $beacons-left-container-width;
   max-height: 580px;
-  border: 0px;
-  margin: 0px;
 }
 
 .bg-db-beacons-btn {
   @extend .btn;
+  @extend .bg-shadow;
   @include square($beacons-btn-size);
   position: absolute;
   padding: 6px 6px;
