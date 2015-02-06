@@ -33,6 +33,7 @@ server.route([
   // Expose the public folder
   { method: 'GET', path: '/js/bundle.js', handler: { file: './public/js/bundle.js' } },
   { method: 'GET', path: '/css/{path*}', handler: { directory: { path: './public/css' } } },
+  { method: 'GET', path: '/images/{path*}', handler: { directory: { path: './public/images' } } },
   { method: 'GET', path: '/fonts/{path*}', handler: { directory: { path: './public/fonts' } } },
   { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './public/stylesheets' } } },
 
