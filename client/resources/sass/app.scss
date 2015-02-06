@@ -8,7 +8,7 @@ $list-group-border-radius: 0px;
 @import 'font-awesome';
 
 $header-height: 22px;
-$beacons-btn-size: 70px;
+$beacons-btn-size: 79px;
 $beacons-btn-margin: 18px;
 $beacons-left-container-left: $beacons-btn-size + $beacons-btn-margin;
 $beacons-left-container-width: 300px;
@@ -96,12 +96,12 @@ $review-btn-width: 30px;
   margin-bottom: 0px;
 }
 
-$beacon-summary-vertical-padding: 4px;
+$beacon-summary-vertical-padding: 8px;
 
 .bg-beacon-summary-container {
   @extend .list-group-item;
   height: $beacons-btn-size;
-  padding: 4px 8px;
+  padding: $beacon-summary-vertical-padding 8px;
 }
 
 .bg-beacon-summary-content {
