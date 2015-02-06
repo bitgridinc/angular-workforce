@@ -75,6 +75,7 @@ td {
   @include square($beacons-btn-size);
   position: absolute;
   padding: 6px 6px;
+  background-color: white;
 }
 
 .bg-wide-btn {
