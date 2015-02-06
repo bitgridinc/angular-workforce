@@ -36,6 +36,20 @@ angular
             zoomLevelOffset: -6
           }).addTo(map);
         });
+
+        // Adds icon centered over the utility headquarters
+        // TODO: Test coverage
+        $rootScope.$watch('socketState.currentEntity', function(newVal) {
+          if (angular.isDefined(newVal)) {
+            var homeIcon = L.icon({
+              iconUrl: '/images/electric-home.png',
+              iconSize: [32, 32]
+            });
+            leafletData.getMap('leaflet').then(function(map) {
+              L.marker([newVal.center.lat, newVal.center.lng], { icon: homeIcon }).addTo(map);
+            });
+          }
+        });
       }
     ]
   );
