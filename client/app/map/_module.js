@@ -19,11 +19,6 @@ angular
             zoomControl: false,
             attributionControl: false
           },
-          center: {
-            lat: 43.428,
-            lng: -76.215,
-            zoom: 8
-          },
           socketState: $rootScope.socketState
         });
 

@@ -6,15 +6,39 @@ module.exports = {
   entities: [
     {
       name: 'Tupper Lake',
-      id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
+      id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
+      center: {
+        lat: 44.222908,
+        lng: -74.466358,
+        zoom: 15
+      }
     },
     {
-      name: 'Silver Springs',
-      id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
+      name: 'Solvay',
+      id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69',
+      center: {
+        lat: 43.061184,
+        lng: -76.212784,
+        zoom: 15
+      }
     },
     {
-      name: 'Bergen',
-      id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
+      name: 'Richmondville',
+      id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54',
+      center: {
+        lat: 42.634715,
+        lng: -74.562904,
+        zoom: 15
+      }
+    },
+    {
+      name: 'Philadelphia',
+      id: '92f2e499-be81-4f48-b573-5e021250028f',
+      center: {
+        lat: 44.158101,
+        lng: -75.707763,
+        zoom: 15
+      }
     }
   ],
   beacons: [
