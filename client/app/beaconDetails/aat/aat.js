@@ -2,11 +2,13 @@
 
 var BeaconDetailsLocators = require('./locators.js');
 var BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js');
+var MapLocators = require('../../map/aat/locators.js');
 
 describe('the view that displays the details of a particular beacon', function() {
   var ptor,
       beaconDetailsLocators,
-      beaconSummaryLocators;
+      beaconSummaryLocators,
+      mapLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();
@@ -16,6 +18,7 @@ describe('the view that displays the details of a particular beacon', function()
   beforeEach(function() {
     beaconDetailsLocators = new BeaconDetailsLocators();
     beaconSummaryLocators = new BeaconSummaryLocators();
+    mapLocators = new MapLocators();
   });
 
   it('should display detailed information about the beacon', function() {
@@ -25,6 +28,17 @@ describe('the view that displays the details of a particular beacon', function()
     expect(summaryHeaderElement.getText()).toContain('Your Description');
     expect(element(beaconDetailsLocators.latitude).getText()).toContain('44.');
     expect(element(beaconDetailsLocators.longitude).getText()).toContain('-74.');
+  });
+
+  it('should ensure the beacon and utility headquarters are visible on the map', function() {
+    var markersPromise = ptor.findElements(mapLocators.marker);
+    protractor.promise.filter(markersPromise, function(marker) {
+        return marker.isDisplayed();
+      })
+      .then(function(visibleMarkers) {
+        // This is the best I know how to test right now. With few markers on the map, it's likely it will stay valid.
+        expect(visibleMarkers.length).toBeGreaterThan(1);
+      });
   });
 
   it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
