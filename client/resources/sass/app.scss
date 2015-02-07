@@ -114,6 +114,8 @@ $beacon-summary-vertical-padding: 14px;
   @extend .list-group-item;
   height: $beacons-btn-height;
   padding: $beacon-summary-vertical-padding 8px;
+  border: 0px;
+  border-bottom: 1px solid #ddd;
 }
 
 .bg-beacon-summary-content {
