@@ -52,7 +52,7 @@ module.exports = {
         .createAssistanceResponse())
       .createBeacon(),
     factories.newBeaconFactory()
-      .withIds(1337, '7cf52dba-992e-4f3f-bbb7-36f4b1792e69') // Silver Springs
+      .withIds(1337, '7cf52dba-992e-4f3f-bbb7-36f4b1792e69') // Solvay
       .withSummaryText('Their Title', 'Their Description')
       .withLocation(42.658379, -78.081735)
       .createBeacon()
