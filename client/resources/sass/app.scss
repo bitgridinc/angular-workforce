@@ -100,6 +100,12 @@ td {
   width: 45%;
 }
 
+.bg-vertically-centered {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* Beacon Summary Directive */
 $review-btn-width: 30px;
 
@@ -132,7 +138,7 @@ $beacon-summary-vertical-padding: 14px;
 .bg-bs-review-btn-container {
   @extend .bg-beacon-summary-content;
   position: absolute;
-  right: 8px;
+  right: 23px;
   width: $review-btn-width;
 }
 
