@@ -3,7 +3,8 @@
 angular
   .module('modules.beaconDetails', [
       'ui.router',
-      'modules.providers'
+      'modules.providers',
+      'leaflet-directive'
     ]
   )
   .config(

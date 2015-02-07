@@ -6,7 +6,7 @@ describe('the beacon details controller', function() {
       $state;
 
   beforeEach(module('modules.beaconDetails'));
-  beforeEach(inject(function(_$rootScope_, _$state_, _$controller_) {
+  beforeEach(inject(function(_$rootScope_, _$state_, _$controller_, _leafletData_) {
     $scope = _$rootScope_.$new();
     $state = _$state_;
     $rootScope = _$rootScope_;
@@ -14,7 +14,8 @@ describe('the beacon details controller', function() {
     _$controller_('BeaconDetailsController', {
       $scope: $scope,
       $rootScope: $rootScope,
-      $state: $state
+      $state: $state,
+      leafletData: _leafletData_
     });
 
     // This is the basic state required by the SUT (system under test)
