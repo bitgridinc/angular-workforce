@@ -35,7 +35,7 @@ angular
     [         '$scope', '$state',
       function($scope,   $state) {
         $scope.toggleMyBeaconsButton = function() {
-          if ($state.includes('dashboard.beacons.list')) {
+          if ($state.includes('dashboard.beacons')) {
             $state.go('dashboard');
           } else {
             $state.go('dashboard.beacons.list');

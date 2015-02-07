@@ -1,11 +1,13 @@
 "use strict";
 
+var BeaconControlLocators = require('../../beaconControl/aat/locators.js');
 var BeaconDetailsLocators = require('./locators.js');
 var BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js');
 var MapLocators = require('../../map/aat/locators.js');
 
 describe('the view that displays the details of a particular beacon', function() {
   var ptor,
+      beaconControlLocators,
       beaconDetailsLocators,
       beaconSummaryLocators,
       mapLocators;
@@ -16,6 +18,7 @@ describe('the view that displays the details of a particular beacon', function()
   });
 
   beforeEach(function() {
+    beaconControlLocators = new BeaconControlLocators();
     beaconDetailsLocators = new BeaconDetailsLocators();
     beaconSummaryLocators = new BeaconSummaryLocators();
     mapLocators = new MapLocators();
@@ -46,6 +49,12 @@ describe('the view that displays the details of a particular beacon', function()
     ptor.findElement(beaconDetailsLocators.summaryHeader).click();
     expect(browser.getCurrentUrl()).not.toContain('/117');
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
+  });
+
+  it('should close the entire left control when the My Beacons button (in the upper left) is clicked', function() {
+    ptor.findElement(beaconControlLocators.myBeaconsButton).click();
+    expect(browser.getCurrentUrl()).not.toContain('/beacons');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard');
   });
 
   it('should display a button that allows the user to offer assistance to the sender of the beacon', function() {
