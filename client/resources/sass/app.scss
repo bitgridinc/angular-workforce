@@ -8,9 +8,10 @@ $list-group-border-radius: 0px;
 @import 'font-awesome';
 
 $header-height: 0px;
-$beacons-btn-size: 79px;
+$beacons-btn-width: 79px;
+$beacons-btn-height: $beacons-btn-width + 12px;
 $beacons-btn-margin: 18px;
-$beacons-left-container-left: $beacons-btn-size + $beacons-btn-margin;
+$beacons-left-container-left: $beacons-btn-width + $beacons-btn-margin;
 $beacons-left-container-width: 300px;
 $beacons-right-container-left: $beacons-left-container-left + $beacons-left-container-width + $beacons-btn-margin;
 
@@ -80,7 +81,9 @@ td {
 .bg-db-beacons-btn {
   @extend .btn;
   @extend .bg-shadow;
-  @include square($beacons-btn-size);
+  //@include square($beacons-btn-size);
+  width: $beacons-btn-width;
+  height: $beacons-btn-height;
   position: absolute;
   padding: 6px 6px;
   background-color: white;
@@ -105,16 +108,16 @@ $review-btn-width: 30px;
   margin-bottom: 0px;
 }
 
-$beacon-summary-vertical-padding: 8px;
+$beacon-summary-vertical-padding: 14px;
 
 .bg-beacon-summary-container {
   @extend .list-group-item;
-  height: $beacons-btn-size;
+  height: $beacons-btn-height;
   padding: $beacon-summary-vertical-padding 8px;
 }
 
 .bg-beacon-summary-content {
-  height: $beacons-btn-size - 2*$beacon-summary-vertical-padding;
+  height: $beacons-btn-height - 2*$beacon-summary-vertical-padding;
 }
 
 .bg-bs-text-container {
