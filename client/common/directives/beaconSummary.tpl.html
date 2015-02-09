@@ -7,19 +7,18 @@ It is visible in two places:
 
 Ignore the potential problem from long descriptions for now.
 -->
-<li class="bg-beacon-summary-container" ng-click="onSelectBeacon(beacon)">
-    <div id="beacon-summary" class="bg-bs-text-container small">
-        <h5><organization-label organization-id="beacon.senderId"></organization-label></h5>
-        {{beacon.title}}, {{beacon.description}}
-    </div>
-    <div class="bg-bs-review-btn-container">
-        <button
-          id="openReviewAssistanceBtn"
-          class="btn btn-sm bg-transparent-btn bg-vertically-centered"
-          type="button"
-          ng-show="beacon.responses.length > 0"
-          ng-click="onReviewAssistance(beacon)">
-            <img src="images/magenta_mail_infilled.png" alt="Review Offers of Assistance">
-        </button>
-    </div>
+<li class="bg-beacon-summary-container " ng-click="onSelectBeacon(beacon)">
+  <div id="beacon-summary" class="bg-bs-text-container small">
+    <h5><organization-label organization-id="beacon.senderId"></organization-label></h5>
+    {{beacon.title}}, {{beacon.description}}
+  </div>
+  <div class="bg-bs-review-btn-container">
+    <button id="openReviewAssistanceBtn"
+            class="btn btn-sm bg-transparent-btn bg-vertically-centered"
+            type="button"
+            ng-show="beacon.responses.length > 0"
+            ng-click="onReviewAssistance(beacon)">
+      <img src="images/magenta_mail_infilled.png" alt="Review Offers of Assistance">
+    </button>
+  </div>
 </li>
