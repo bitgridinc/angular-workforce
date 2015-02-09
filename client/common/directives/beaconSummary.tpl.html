@@ -7,8 +7,8 @@ It is visible in two places:
 
 Ignore the potential problem from long descriptions for now.
 -->
-<li class="bg-beacon-summary-container">
-    <div id="beacon-summary" class="bg-bs-text-container small" ng-click="onSelectBeacon(beacon)">
+<li class="bg-beacon-summary-container" ng-click="onSelectBeacon(beacon)">
+    <div id="beacon-summary" class="bg-bs-text-container small">
         <h5><organization-label organization-id="beacon.senderId"></organization-label></h5>
         {{beacon.title}}, {{beacon.description}}
     </div>
