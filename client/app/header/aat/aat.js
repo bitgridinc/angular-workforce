@@ -11,7 +11,8 @@ describe('the header', function() {
     locators = new Locators();
   });
 
-  it('should display a button on every page that the user can click to view their profile', function() {
+  // I'm no longer displaying the header, at least until we give the demo.
+  /*it('should display a button on every page that the user can click to view their profile', function() {
     ptor.get('/#/dashboard');
     ptor.findElement(locators.myProfile).click();
     expect(browser.getCurrentUrl()).toContain('/#/profile');
@@ -19,7 +20,7 @@ describe('the header', function() {
     ptor.get('/#/dashboard/beacons');
     ptor.findElement(locators.myProfile).click();
     expect(browser.getCurrentUrl()).toContain('/#/profile');
-  });
+  });*/
 
   // TODO: Add a test against the currently signed in as <value> text.
 });
