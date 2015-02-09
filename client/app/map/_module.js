@@ -39,14 +39,15 @@ angular
 
         // Adds icon centered over the utility headquarters
         // TODO: Test coverage
-        $rootScope.$watch('socketState.currentEntity', function(newVal) {
-          if (angular.isDefined(newVal)) {
+        $rootScope.$watch('socketState.currentEntity', function(entity) {
+          console.log('socketState.currentEntity changed: ', entity);
+          if (angular.isDefined(entity) && angular.isDefined(entity.center)) {
             var homeIcon = L.icon({
               iconUrl: '/images/electric-home.png',
               iconSize: [32, 32]
             });
             leafletData.getMap('leaflet').then(function(map) {
-              L.marker([newVal.center.lat, newVal.center.lng], { icon: homeIcon }).addTo(map);
+              L.marker([entity.center.lat, entity.center.lng], { icon: homeIcon }).addTo(map);
             });
           }
         });
