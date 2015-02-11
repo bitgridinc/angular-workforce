@@ -32,13 +32,13 @@ angular
     ]
   )
   .controller('BeaconControlController',
-    [         '$scope', '$state',
-      function($scope,   $state) {
+    [         '$scope', '$state', 'state',
+      function($scope,   $state,   state) {
         $scope.toggleMyBeaconsButton = function() {
           if ($state.includes('dashboard.beacons')) {
-            $state.go('dashboard');
+            state.go('dashboard');
           } else {
-            $state.go('dashboard.beacons.list');
+            state.go('dashboard.beacons.list');
           }
         };
       }

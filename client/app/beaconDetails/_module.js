@@ -26,11 +26,14 @@ angular
     ]
   )
   .controller('BeaconDetailsController',
-    [         '$scope', '$rootScope', '$state', 'leafletData',
-      function($scope,   $rootScope,   $state,   leafletData) {
+    [         '$scope', '$rootScope', 'state', 'leafletData',
+      function($scope,   $rootScope,   state,   leafletData) {
         $rootScope.selectionState = $scope.selectionState = {
           currentBeacon: undefined
         };
+
+        // This is required for the coloredContainer to work
+        $scope.coloredContainerBodyTemplateUrl = 'templates/beaconDetails/coloredContainerBody.tpl.html';
 
         $rootScope.$watch('socketState.beacons.length', function(newVal, oldVal) {
           console.log('The number of beacons changed', newVal, oldVal);
@@ -58,9 +61,9 @@ angular
           }
         });
 
-        $scope.goToBeaconList = function() { $state.go('dashboard.beacons.list'); };
-        $scope.goToOfferAssistance = function() { $state.go('dashboard.beacons.detail.assist'); };
-        $scope.goToReviewAssistance = function() { $state.go('dashboard.beacons.detail.review'); };
+        $scope.goToBeaconList = function() { state.go('dashboard.beacons.list'); };
+        $scope.goToOfferAssistance = function() { state.go('dashboard.beacons.detail.assist'); };
+        $scope.goToReviewAssistance = function() { state.go('dashboard.beacons.detail.review'); };
       }
     ]
   );

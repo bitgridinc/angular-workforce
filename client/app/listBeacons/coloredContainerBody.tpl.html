@@ -1,0 +1,12 @@
+<div class="media bg-vertically-centered" ng-click="onSelectBeacon(beacon)">
+  <div class="media-body bg-full-width">
+    <organization-label class="media-header" organization-id="beacon.senderId"></organization-label>
+    <div id="beacon-summary" class="small">
+      {{beacon.title}}, {{beacon.description}}
+    </div>
+  </div>
+  <open-review-assistance-button class="media-right media-middle" beacon="beacon"></open-review-assistance-button>
+  <div class="media-right media-middle">
+    <img src="images/arrow_right.png" alt="View Beacon Details">
+  </div>
+</div>

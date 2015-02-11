@@ -1,8 +1,7 @@
 <div ng-controller="ListBeaconsController">
-  <ul ng-repeat="beacon in beacons" class="bg-beacon-list-group">
-    <beacon-summary beacon="beacon" on-select-beacon="onSelectBeacon" on-review-assistance="onReviewAssistance"></beacon-summary>
+  <ul class="bg-beacon-list-group" ng-repeat="beacon in beacons">
+    <colored-container></colored-container>
   </ul>
-  <!-- Prime use case for a directive. -->
   <button type="button" class="bg-wide-btn bg-transparent-btn panel-footer" ng-click="onCreateBeaconClick()">
     Create Beacon
   </button>

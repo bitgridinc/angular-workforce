@@ -68,6 +68,7 @@ td {
   left: $beacons-left-container-left;
   width: 300px;
   max-height: 600px;
+  overflow: hidden;
   /* TODO: Implement border to subtract from total width */
 }
 .dashboard-beacons-right {
@@ -106,6 +107,11 @@ td {
   transform: translateY(-50%);
 }
 
+.bg-borderless-button {
+  line-height: 0;
+  padding: 0;
+}
+
 /* Beacon Summary Directive */
 $review-btn-width: 30px;
 
@@ -115,32 +121,6 @@ $review-btn-width: 30px;
 }
 
 $beacon-summary-vertical-padding: 14px;
-
-.bg-beacon-summary-container {
-  @extend .list-group-item;
-  height: $beacons-btn-height;
-  padding: $beacon-summary-vertical-padding 8px;
-  border: 0px;
-  border-bottom: 1px solid #ddd;
-}
-
-.bg-beacon-summary-content {
-  height: $beacons-btn-height - 2*$beacon-summary-vertical-padding;
-}
-
-.bg-bs-text-container {
-  @extend .bg-beacon-summary-content;
-  position: absolute;
-  left: 8px;
-  right: $review-btn-width;
-}
-
-.bg-bs-review-btn-container {
-  @extend .bg-beacon-summary-content;
-  position: absolute;
-  right: 23px;
-  width: $review-btn-width;
-}
 
 /* Closeable Panels: Offer and Review Assistance */
 // TODO: Nest these
@@ -166,4 +146,28 @@ $beacon-summary-vertical-padding: 14px;
 // This applies the FontAwesome 'X' icon to the close button's contents
 .bg-close-btn:after {
   content: $fa-var-close
+}
+
+/* Colored Container: Beacon Details and Beacon List */
+colored-container {
+  @extend .list-group-item;
+  height: $beacons-btn-height;
+  padding: 0px;
+  border: 0px;
+  border-bottom: 1px solid #ddd;
+}
+$bg-cc-bar-width: 10px;
+.bg-cc-container {
+  display: inline-block;
+  position: absolute;
+  height: $beacons-btn-height;
+  width: $beacons-left-container-width - 2*$bg-cc-bar-width;
+  padding: $bg-cc-bar-width;
+}
+.bg-cc-colored-bar {
+  display: inline-block;
+  height: 100%;
+  width: $bg-cc-bar-width;
+  padding-left: 0px;
+  background-color: #D02643;
 }

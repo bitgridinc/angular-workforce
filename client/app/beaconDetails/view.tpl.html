@@ -1,21 +1,25 @@
-<div ng-show="selectionState.currentBeacon">
-    <beacon-summary beacon="selectionState.currentBeacon" on-select-beacon="goToBeaconList" on-review-assistance="goToReviewAssistance"></beacon-summary>
-    <div ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
-      <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
-        <accepted-assistance-summary accepted-assistance="acceptedAssistance"></accepted-assistance-summary>
-      </div>
+<ul class="bg-beacon-list-group" ng-show="selectionState.currentBeacon">
+  <colored-container></colored-container>
+  <li class="list-group-item" ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
+    <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
+      <accepted-assistance-summary accepted-assistance="acceptedAssistance"></accepted-assistance-summary>
     </div>
+  </li>
+  <li class="list-group-item">
     <h5>Beacon Details</h5>
-    <div class="form-group">
-        <label>Location:</label>({{selectionState.currentBeacon.lat}}, {{selectionState.currentBeacon.lng}})
-    </div>
+  </li>
+  <li class="list-group-item">
+    <label>Location:</label>({{selectionState.currentBeacon.lat}}, {{selectionState.currentBeacon.lng}})
+  </li>
+  <li class="list-group-item">
     <button class="bg-wide-btn btn btn-sm btn-default" type="button" ng-click="goToOfferAssistance()">
-        Offer Assistance
+      Offer Assistance
     </button>
-</div>
+  </li>
+</ul>
 <div ng-show="!selectionState.currentBeacon">
-    We were unable to locate the beacon you requested.
-    <button class="btn btn-sm btn-default" type="button" ng-click="goToBeaconList()">
-        Go Back
-    </button>
+  We were unable to locate the beacon you requested.
+  <button class="btn btn-sm btn-default" type="button" ng-click="goToBeaconList()">
+    Go Back
+  </button>
 </div>

@@ -11,3 +11,4 @@ require('./messagePacketizerService.js');
 require('./paginationControlFactory.js');
 require('./restService.js');
 require('./socketFactory.js');
+require('./stateService.js');
