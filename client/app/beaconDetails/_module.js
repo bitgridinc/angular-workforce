@@ -32,9 +32,6 @@ angular
           currentBeacon: undefined
         };
 
-        // This is required for the coloredContainer to work
-        $scope.coloredContainerBodyTemplateUrl = 'templates/beaconDetails/coloredContainerBody.tpl.html';
-
         $rootScope.$watch('socketState.beacons.length', function(newVal, oldVal) {
           console.log('The number of beacons changed', newVal, oldVal);
           $rootScope.selectionState.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);

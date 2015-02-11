@@ -1,5 +1,19 @@
 <ul class="bg-beacon-list-group" ng-show="selectionState.currentBeacon">
-  <colored-container></colored-container>
+  <colored-container>
+    <div class="media bg-vertically-centered" ng-click="goToBeaconList(selectionState.currentBeacon)">
+      <div class="media-left media-middle">
+        <img src="images/arrow_left.png" alt="Collapse Beacon Details">
+      </div>
+      <!-- TODO: Remove duplication with listBeacons -->
+      <div id="beacon-summary" class="media-body bg-full-width">
+        <organization-label class="media-header" organization-id="selectionState.currentBeacon.senderId"></organization-label>
+        <div class="small">
+          {{selectionState.currentBeacon.title}}, {{selectionState.currentBeacon.description}}
+        </div>
+      </div>
+      <open-review-assistance-button class="media-right media-middle" beacon="selectionState.currentBeacon"></open-review-assistance-button>
+    </div>
+  </colored-container>
   <li class="list-group-item" ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
     <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
       <accepted-assistance-summary accepted-assistance="acceptedAssistance"></accepted-assistance-summary>

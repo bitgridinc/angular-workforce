@@ -28,9 +28,6 @@ angular
       function($scope,    $rootScope,   state) {
         $scope.beacons = $rootScope.socketState.beacons;
 
-        // This is required for the coloredContainer to work
-        $scope.coloredContainerBodyTemplateUrl = 'templates/listBeacons/coloredContainerBody.tpl.html';
-
         // We don't require logic for backing up as the Create Beacon view covers this functionality
         $scope.onCreateBeaconClick = function() {
           state.go('^.create');

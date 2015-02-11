@@ -1,6 +1,20 @@
 <div ng-controller="ListBeaconsController">
   <ul class="bg-beacon-list-group" ng-repeat="beacon in beacons">
-    <colored-container></colored-container>
+    <colored-container>
+      <div class="media bg-vertically-centered" ng-click="onSelectBeacon(beacon)">
+        <!-- TODO: Remove duplication with beaconDetails -->
+        <div id="beacon-summary" class="media-body bg-full-width">
+          <organization-label class="media-header" organization-id="beacon.senderId"></organization-label>
+          <div class="small">
+            {{beacon.title}}, {{beacon.description}}
+          </div>
+        </div>
+        <open-review-assistance-button class="media-right media-middle" beacon="beacon"></open-review-assistance-button>
+        <div class="media-right media-middle">
+          <img src="images/arrow_right.png" alt="View Beacon Details">
+        </div>
+      </div>
+    </colored-container>
   </ul>
   <button type="button" class="bg-wide-btn bg-transparent-btn panel-footer" ng-click="onCreateBeaconClick()">
     Create Beacon
