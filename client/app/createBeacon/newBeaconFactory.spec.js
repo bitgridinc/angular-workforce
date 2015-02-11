@@ -19,8 +19,6 @@ describe('the new beacon creation factory', function() {
   });
 
   it ('should configure scope with the default values for a new project', function () {
-    expect(scope.title).toBeDefined();
-    expect(scope.description).toBeDefined();
     expect(scope.lat).toBeDefined();
     expect(scope.lng).toBeDefined();
   });

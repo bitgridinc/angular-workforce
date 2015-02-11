@@ -70,8 +70,8 @@ angular
         return {
           initScope: function ($scope) {
             scope = angular.extend($scope, {
-              title: 'My Project',
-              description: 'My Description',
+              title: undefined,
+              description: undefined,
               lat: 38.914268,
               lng: -77.021098
             });
