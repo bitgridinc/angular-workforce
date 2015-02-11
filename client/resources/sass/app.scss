@@ -160,7 +160,7 @@ $bg-cc-bar-width: 10px;
 .bg-cc-container {
   display: inline-block;
   position: absolute;
-  height: $beacons-btn-height;
+  height: 100%;
   width: $beacons-left-container-width - 2*$bg-cc-bar-width;
   padding: $bg-cc-bar-width;
 }
