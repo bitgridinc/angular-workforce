@@ -79,6 +79,16 @@ angular
             });
           },
           postNewBeacon : function (recipientIds) {
+            if (!angular.isDefined(scope.beaconData.title)) {
+              throw new Error('Title is required');
+            } else if (!angular.isDefined(scope.beaconData.description)) {
+              throw new Error('Description is required');
+            } else if (!angular.isDefined(scope.beaconData.streetAddress)) {
+              throw new Error('Street Address is required');
+            } else if (!angular.isDefined(scope.beaconData.city)) {
+              throw new Error('City is required');
+            }
+
             geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city).then(
               function(address) {
                 var beaconPost = factories.newBeaconPostFactory()

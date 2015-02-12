@@ -71,6 +71,43 @@ describe('the new beacon creation factory', function() {
         expect(geocoder.geocodeAddress).toHaveBeenCalledWith(newStreetAddress, newCity);
         expect(restService.createBeacon).toHaveBeenCalledWith(expectedPost);
       });
+
+      it('should fail if the title is undefined', function() {
+        // Arrange
+        scope.beaconData.title = undefined;
+
+        // Act/Assert
+        expect(function() {
+          factory.postNewBeacon();
+        }).toThrowError();
+      });
+      it('should fail if the description is undefined', function() {
+        // Arrange
+        scope.beaconData.description = undefined;
+
+        // Act/Assert
+        expect(function() {
+          factory.postNewBeacon();
+        }).toThrowError();
+      });
+      it('should fail if the street address is undefined', function() {
+        // Arrange
+        scope.beaconData.streetAddress = undefined;
+
+        // Act/Assert
+        expect(function() {
+          factory.postNewBeacon();
+        }).toThrowError();
+      });
+      it('should fail if the city is undefined', function() {
+        // Arrange
+        scope.beaconData.city = undefined;
+
+        // Act/Assert
+        expect(function() {
+          factory.postNewBeacon();
+        }).toThrowError();
+      });
     });
   });
 });
