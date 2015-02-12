@@ -43,7 +43,7 @@ angular
           console.log('socketState.currentEntity changed: ', entity);
           if (angular.isDefined(entity) && angular.isDefined(entity.center)) {
             var homeIcon = L.icon({
-              iconUrl: '/images/electric-home.png',
+              iconUrl: '/images/orange_utility_marker.png',
               iconSize: [32, 32]
             });
             leafletData.getMap('leaflet').then(function(map) {
