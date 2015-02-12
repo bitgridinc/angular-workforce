@@ -64,33 +64,31 @@ angular
     ]
   )
   .factory('NewBeaconFactory',
-    [         '$rootScope', 'RestService',
-      function($rootScope,   RestService) {
+    [         '$rootScope', 'RestService', 'geocoder',
+      function($rootScope,   RestService,   geocoder) {
         var scope;
         return {
           initScope: function ($scope) {
             scope = angular.extend($scope, {
-              title: undefined,
-              description: undefined,
-              lat: 38.914268,
-              lng: -77.021098
+              beaconData: {
+                title: undefined,
+                description: undefined,
+                streetAddress: undefined,
+                city: undefined
+              }
             });
-
-            scope.$on("leafletDirectiveMap.click", this.onMapClicked);
-          },
-          onMapClicked: function (clickEvent, clickArgs) {
-            console.log('The map was clicked at:', clickArgs.leafletEvent.latlng);
-            scope.lat = clickArgs.leafletEvent.latlng.lat;
-            scope.lng = clickArgs.leafletEvent.latlng.lng;
           },
           postNewBeacon : function (recipientIds) {
-            var beaconPost = factories.newBeaconPostFactory()
-              .withSenderId($rootScope.socketState.currentEntity.id)
-              .withSummaryText(scope.title, scope.description)
-              .withLocation(scope.lat, scope.lng)
-              .withRecipientIds(recipientIds)
-              .createBeaconPost();
-            RestService.createBeacon(beaconPost);
+            geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city).then(
+              function(address) {
+                var beaconPost = factories.newBeaconPostFactory()
+                  .withSenderId($rootScope.socketState.currentEntity.id)
+                  .withSummaryText(scope.beaconData.title, scope.beaconData.description)
+                  .withLocation(address.lat, address.lng)
+                  .withRecipientIds(recipientIds)
+                  .createBeaconPost();
+                RestService.createBeacon(beaconPost);
+              });
           }
         };
       }

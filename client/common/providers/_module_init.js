@@ -6,6 +6,7 @@ var _ = require('../../bower_components/lodash/dist/lodash.js');
 module.exports = angular.module('modules.providers', []);
 
 require('./authenticationService.js');
+require('./geocoderService.js');
 require('./lodashService.js');
 require('./messagePacketizerService.js');
 require('./paginationControlFactory.js');

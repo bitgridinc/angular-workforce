@@ -12,8 +12,7 @@
                    type="text"
                    name="title"
                    autofocus="autofocus"
-                   required
-                   ng-model="title"
+                   ng-model="beaconData.title"
                    placeholder="Job Title" />
           </div>
           <div class="form-group">
@@ -21,26 +20,27 @@
                    class="form-control"
                    type="text"
                    name="description"
-                   required
-                   ng-model="description"
+                   ng-model="beaconData.description"
                    placeholder="Job Description" />
           </div>
         </div>
       </colored-container>
       <icon-container icon-url="images/wizard_location.png">
         <div class="form-group">
-          <input class="form-control"
-                 type="text"
-                 name="streetAddress"
-                 required
-                 ng-model="streetAddress"
-                 placeholder="Street Address" />
-          <input class="form-control"
-                 type="text"
-                 name="city"
-                 required
-                 ng-model="city"
-                 placeholder="City" />
+          <div class="form-group">
+            <input class="form-control"
+                   type="text"
+                   name="streetAddress"
+                   ng-model="beaconData.streetAddress"
+                   placeholder="Street Address" />
+          </div>
+          <div class="form-group">
+            <input class="form-control"
+                   type="text"
+                   name="city"
+                   ng-model="beaconData.city"
+                   placeholder="City" />
+          </div>
         </div>
       </icon-container>
       <div class="panel panel-default">
