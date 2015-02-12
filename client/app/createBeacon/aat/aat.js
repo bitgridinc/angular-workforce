@@ -25,9 +25,10 @@ describe('the page used to create a new beacon', function() {
     ptor.findElement(createBeaconLocators.titleInput).sendKeys('Fix The BitGrid');
     ptor.findElement(createBeaconLocators.descriptionInput).sendKeys('At My House');
     ptor.findElement(createBeaconLocators.streetAddressInput).sendKeys('2729 Merrilee Drive');
-    ptor.findElement(createBeaconLocators.cityInput).sendKeys('Fairfax');
-    browser.driver.sleep(100);
-    ptor.findElement(createBeaconLocators.submitButton).click();
+    ptor.findElement(createBeaconLocators.cityInput).sendKeys('Fairfax')
+      .then(function() {
+        ptor.findElement(createBeaconLocators.submitButton).click();
+      });
 
     // Assert - ensure we're back at the list of beacons and the new one is there
     expect(browser.getCurrentUrl()).not.toContain('/create');
