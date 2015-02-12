@@ -45,17 +45,19 @@
           </div>
         </div>
       </icon-container>
-      <div class="panel panel-default">
-        <div class="panel-heading">Recipients</div>
+      <icon-container icon-url="images/wizard_linemen.png">
+        <div class="panel panel-default">
+          <div class="panel-heading">Recipients</div>
 
-        <table class="table" ng-repeat="recipient in possibleRecipients">
-          <tr>
-            <!-- What-eva! I do what I want!! -->
-            <td style="width: 13px;"><input type="checkbox" ng-model="recipient.include"></td>
-            <td align="left">{{recipient.entity.name}}</td>
-          </tr>
-        </table>
-      </div>
+          <table class="table" ng-repeat="recipient in possibleRecipients">
+            <tr>
+              <!-- What-eva! I do what I want!! -->
+              <td style="width: 13px;"><input type="checkbox" ng-model="recipient.include"></td>
+              <td align="left">{{recipient.entity.name}}</td>
+            </tr>
+          </table>
+        </div>
+      </icon-container>
     </div>
     <div>
       <button class="btn btn-sm btn-success" type="button" ng-click="completeNewBeacon(true)">Submit Beacon</button>
