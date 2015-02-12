@@ -22,6 +22,11 @@ describe('the page used to create a new beacon', function() {
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/create');
 
     // Act - create a new beacon
+    ptor.findElement(createBeaconLocators.titleInput).sendKeys('Fix The BitGrid');
+    ptor.findElement(createBeaconLocators.descriptionInput).sendKeys('At My House');
+    ptor.findElement(createBeaconLocators.streetAddressInput).sendKeys('2729 Merrilee Drive');
+    ptor.findElement(createBeaconLocators.cityInput).sendKeys('Fairfax');
+    browser.driver.sleep(100);
     ptor.findElement(createBeaconLocators.submitButton).click();
 
     // Assert - ensure we're back at the list of beacons and the new one is there
