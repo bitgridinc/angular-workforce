@@ -5,7 +5,7 @@
         <div class="media-left media-middle">
           <img src="images/arrow_left.png" alt="Collapse Beacon Details">
         </div>
-        <div class="media-body">
+        <div class="media-body bg-full-width">
           <div class="form-group">
             <input id="title"
                    class="form-control"
@@ -27,6 +27,22 @@
           </div>
         </div>
       </colored-container>
+      <icon-container icon-url="images/wizard_location.png">
+        <div class="form-group">
+          <input class="form-control"
+                 type="text"
+                 name="streetAddress"
+                 required
+                 ng-model="streetAddress"
+                 placeholder="Street Address" />
+          <input class="form-control"
+                 type="text"
+                 name="city"
+                 required
+                 ng-model="city"
+                 placeholder="City" />
+        </div>
+      </icon-container>
       <div class="panel panel-default">
         <div class="panel-heading">Recipients</div>
 
