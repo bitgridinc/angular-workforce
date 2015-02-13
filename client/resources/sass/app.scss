@@ -6,6 +6,7 @@ $list-group-border-radius: 0px;
 @import 'bootstrap/buttons';
 @import 'bootstrap/list-group';
 @import 'bootstrap/forms';
+@import 'bootstrap/media';
 @import 'font-awesome';
 
 $header-height: 20px;
@@ -123,6 +124,10 @@ td {
 }
 
 /* Form Inputs */
+.bg-border-bottom {
+  border-bottom: 1px solid #ddd;
+}
+
 .bg-form-control {
   @extend .form-control;
   margin: 6px 0px;
@@ -186,4 +191,21 @@ $bg-cc-bar-width: 10px;
   width: $bg-cc-bar-width;
   padding-left: 0px;
   background-color: #D02643;
+}
+
+/* Icon Container */
+.bg-ic-container {
+  @extend .media;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+.bg-ic-left {
+  @extend .media-left;
+  @extend .media-middle;
+  padding-right: 20px;
+}
+.bg-ic-right {
+  @extend .media-body;
+  @extend .media-middle;
+  @extend .bg-full-width;
 }
