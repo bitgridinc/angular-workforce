@@ -74,7 +74,8 @@ angular
                 title: undefined,
                 description: undefined,
                 streetAddress: undefined,
-                city: undefined
+                city: undefined,
+                numberOfPeople: undefined
               }
             });
           },
@@ -87,6 +88,8 @@ angular
               throw new Error('Street Address is required');
             } else if (!angular.isDefined(scope.beaconData.city)) {
               throw new Error('City is required');
+            } else if (!angular.isDefined(scope.beaconData.numberOfPeople)) {
+              throw new Error('Number of People is required');
             }
 
             geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city).then(

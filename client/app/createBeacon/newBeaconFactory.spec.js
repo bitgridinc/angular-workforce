@@ -108,6 +108,15 @@ describe('the new beacon creation factory', function() {
           factory.postNewBeacon();
         }).toThrowError();
       });
+      it('should fail if the number of people is undefined', function() {
+        // Arrange
+        scope.beaconData.numberOfPeople = undefined;
+
+        // Act/Assert
+        expect(function() {
+          factory.postNewBeacon();
+        }).toThrowError();
+      });
     });
   });
 });
