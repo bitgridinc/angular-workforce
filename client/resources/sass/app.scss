@@ -128,9 +128,13 @@ td {
   border-bottom: 1px solid #ddd;
 }
 
+.bg-input-margin {
+  margin: 6px 0px;
+}
+
 .bg-form-control {
   @extend .form-control;
-  margin: 6px 0px;
+  @extend .bg-input-margin;
 }
 
 /* Beacon Summary Directive */
