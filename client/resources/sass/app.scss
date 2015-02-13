@@ -37,6 +37,9 @@ td {
 .bg-full-width {
   width: 100%;
 }
+.bg-no-padding {
+  padding: 0;
+}
 
 .bg-header-container {
   @extend .bg-full-width;
@@ -146,6 +149,15 @@ $review-btn-width: 30px;
 }
 
 $beacon-summary-vertical-padding: 14px;
+
+/* Double-wide buttons */
+.bg-dw-button-table {
+  @extend .bg-full-width;
+  border-collapse: separate;
+  border-spacing: 20px 0px;
+  table-layout: fixed;
+  margin: 16px 0px;
+}
 
 /* Closeable Panels: Offer and Review Assistance */
 // TODO: Nest these

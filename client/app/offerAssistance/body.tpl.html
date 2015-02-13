@@ -15,8 +15,13 @@
       </span>
     </p>
   </div>
-  <div class="bg-full-width">
-    <button class="bg-half-btn btn btn-sm btn-success" type="button" ng-click="respond(true)">Assist</button>
-    <button class="bg-half-btn btn btn-sm btn-danger" type="button" ng-click="respond(false)">Stuff 'Em</button>
-  </div>
+  <!-- TODO: Make a directive for the double-wide buttons. -->
+  <table class="bg-dw-button-table">
+    <td class="bg-no-padding">
+      <button class="bg-full-width btn btn-sm btn-success" type="button" ng-click="respond(true)">Assist</button>
+    </td>
+    <td class="bg-no-padding">
+      <button class="bg-full-width btn btn-sm btn-danger" type="button" ng-click="respond(false)">Stuff 'Em</button>
+    </td>
+  </table>
 </form>
