@@ -25,7 +25,8 @@
   <li class="list-group-item">
     <label>Location:</label>({{selectionState.currentBeacon.lat}}, {{selectionState.currentBeacon.lng}})
   </li>
-  <li class="list-group-item">
+  <!-- TODO: Test this when I can consistently mock the backend during my AATs. -->
+  <li class="list-group-item" ng-show="selectionState.currentBeacon.senderId !== socketState.currentEntity.id">
     <button class="bg-wide-btn btn btn-sm btn-default" type="button" ng-click="goToOfferAssistance()">
       Offer Assistance
     </button>
