@@ -1,6 +1,6 @@
 <div ng-controller="ListBeaconsController">
   <ul class="bg-beacon-list-group" ng-repeat="beacon in beacons">
-    <colored-container ng-click="onSelectBeacon(beacon)">
+    <colored-container class="disable-text-selection" ng-click="onSelectBeacon(beacon)">
       <div class="media bg-vertically-centered">
         <!-- TODO: Remove duplication with beaconDetails -->
         <div id="beacon-summary" class="media-body bg-full-width">

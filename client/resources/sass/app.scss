@@ -19,6 +19,15 @@ $beacons-right-container-left: $beacons-left-container-left + $beacons-left-cont
   box-shadow: 0px 0px 15px #666666;
 }
 
+.disable-text-selection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 td {
   padding: 0 .5em;
 }
