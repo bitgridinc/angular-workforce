@@ -6,56 +6,42 @@
           <img src="images/arrow_left_gray.png" alt="Collapse Beacon Details">
         </div>
         <div class="media-body bg-full-width">
-          <div class="form-group">
-            <input id="title"
-                   class="form-control"
-                   type="text"
-                   name="title"
-                   autofocus="autofocus"
-                   ng-model="beaconData.title"
-                   placeholder="Job Title" />
-          </div>
-          <div class="form-group">
-            <input id="description"
-                   class="form-control"
-                   type="text"
-                   name="description"
-                   ng-model="beaconData.description"
-                   placeholder="Job Description" />
-          </div>
+          <input id="title"
+                 class="bg-form-control"
+                 type="text"
+                 name="title"
+                 autofocus="autofocus"
+                 ng-model="beaconData.title"
+                 placeholder="Job Title" />
+          <input id="description"
+                 class="bg-form-control"
+                 type="text"
+                 name="description"
+                 ng-model="beaconData.description"
+                 placeholder="Job Description" />
         </div>
       </colored-container>
       <icon-container icon-url="images/wizard_location.png">
-        <div class="form-group">
-          <div class="form-group">
-            <input id="streetAddress"
-                   class="form-control"
-                   type="text"
-                   name="streetAddress"
-                   ng-model="beaconData.streetAddress"
-                   placeholder="Street Address" />
-          </div>
-          <div class="form-group">
-            <input id="city"
-                   class="form-control"
-                   type="text"
-                   name="city"
-                   ng-model="beaconData.city"
-                   placeholder="City" />
-          </div>
-        </div>
+        <input id="streetAddress"
+               class="bg-form-control"
+               type="text"
+               name="streetAddress"
+               ng-model="beaconData.streetAddress"
+               placeholder="Street Address" />
+        <input id="city"
+               class="bg-form-control"
+               type="text"
+               name="city"
+               ng-model="beaconData.city"
+               placeholder="City" />
       </icon-container>
       <icon-container icon-url="images/wizard_linemen.png">
-        <div class="form-group">
-          <div class="form-group">
-            <input id="numberOfPeople"
-                   class="form-control"
-                   type="text"
-                   name="numberOfPeople"
-                   ng-model="beaconData.numberOfPeople"
-                   placeholder="Number of People (e.g., 6-8)" />
-          </div>
-        </div>
+        <input id="numberOfPeople"
+               class="bg-form-control"
+               type="text"
+               name="numberOfPeople"
+               ng-model="beaconData.numberOfPeople"
+               placeholder="Number of People (e.g., 6-8)" />
       </icon-container>
       <icon-container icon-url="images/wizard_linemen.png">
         <div class="panel panel-default">
