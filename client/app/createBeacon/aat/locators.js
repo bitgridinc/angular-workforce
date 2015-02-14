@@ -6,6 +6,7 @@ var createBeaconLocators = function() {
   this.descriptionInput = by.id('description');
   this.streetAddressInput = by.id('streetAddress');
   this.cityInput = by.id('city');
+  this.numberOfPeopleInput = by.id('numberOfPeople');
 };
 
 module.exports = createBeaconLocators;
