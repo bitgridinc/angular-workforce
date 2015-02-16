@@ -31,8 +31,7 @@ describe('the view that displays the details of', function() {
       expect(summaryHeaderElement.getText()).toContain('Tupper Lake');
       expect(summaryHeaderElement.getText()).toContain('Your Title');
       expect(summaryHeaderElement.getText()).toContain('Your Description');
-      expect(element(beaconDetailsLocators.latitude).getText()).toContain('44.');
-      expect(element(beaconDetailsLocators.longitude).getText()).toContain('-74.');
+      expect(element(beaconDetailsLocators.streetAddress).getText()).toContain('53 Park Street');
     });
 
     it('should ensure the beacon and utility headquarters are visible on the map', function() {
