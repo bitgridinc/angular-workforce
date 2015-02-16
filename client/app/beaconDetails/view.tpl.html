@@ -19,9 +19,9 @@
       <accepted-assistance-summary accepted-assistance="acceptedAssistance"></accepted-assistance-summary>
     </div>
   </li>
-  <li class="list-group-item">
-    <label>Location:</label>({{selectionState.currentBeacon.lat}}, {{selectionState.currentBeacon.lng}})
-  </li>
+  <icon-container icon-url="images/wizard_location.png">
+    {{selectionState.currentBeacon.lat}}, {{selectionState.currentBeacon.lng}}
+  </icon-container>
   <icon-container icon-url="images/wizard_linemen.png">
     {{selectionState.currentBeacon.numberOfPeople}}
   </icon-container>
