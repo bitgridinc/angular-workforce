@@ -34,10 +34,9 @@ td {
   padding: 0 .5em;
 }
 
-// Centers all images within their container
-/*img {
-  @extend .center-block;
-}*/
+centered-image {
+  display: block;
+}
 
 .bg-full-width {
   width: 100%;
