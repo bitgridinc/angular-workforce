@@ -17,7 +17,7 @@ describe('the service that authenticates a user and loads their organization pro
 
   describe('the geocode address method', function() {
     it('should return the latitude and longitude parsed from a Nominatim response', function() {
-      var expectedGetUrl = 'http://nominatim.openstreetmap.org/search?q=2729+Merrilee+Dr+Fairfax&format=json';
+      var expectedGetUrl = 'http://nominatim.openstreetmap.org/search?q=2729+Merrilee+Dr+Fairfax&addressdetails=1&format=json';
       $httpBackend.expectGET(expectedGetUrl);
       $httpBackend.when('GET', expectedGetUrl)
         .respond([
@@ -35,7 +35,17 @@ describe('the service that authenticates a user and loads their organization pro
             display_name: "2729, Merrilee Drive, Merrifield, Fairfax County, Virginia, 22031, United States of America",
             class: "place",
             type: "house",
-            importance: 0.411
+            importance: 0.411,
+            address: {
+              house_number: "2729",
+              road: "Merrilee Drive",
+              locality: "Merrifield",
+              county: "Fairfax County",
+              state: "Virginia",
+              postcode: "22031",
+              country: "United States of America",
+              country_code: "us"
+            }
           }
         ]);
 

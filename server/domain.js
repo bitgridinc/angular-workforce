@@ -10,6 +10,7 @@ module.exports = {
       .withIds(Math.floor(Math.random() * 10000), payload.senderId)
       .withSummaryText(payload.title, payload.description)
       .withLocation(payload.lat, payload.lng)
+      .withAddress(payload.streetAddress)
       .withNumberOfPeople(payload.numberOfPeople)
       .createBeacon();
   },

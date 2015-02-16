@@ -46,6 +46,7 @@ module.exports = {
       .withIds(117, '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84') // Tupper Lake
       .withSummaryText('Your Title', 'Your Description')
       .withLocation(44.248961, -74.485675)
+      .withAddress('53 Park Street')
       .withNumberOfPeople('4-6')
       .withResponse(factories.newAssistanceResponseFactory()
         .withIds('2cf8faaa-5760-41c9-adbf-5a4482ac3469', '7cf52dba-992e-4f3f-bbb7-36f4b1792e69', 117)
@@ -56,6 +57,7 @@ module.exports = {
       .withIds(1337, '7cf52dba-992e-4f3f-bbb7-36f4b1792e69') // Solvay
       .withSummaryText('Their Title', 'Their Description')
       .withLocation(42.658379, -78.081735)
+      .withAddress('1100 Woods Road')
       .withNumberOfPeople('~8')
       .createBeacon()
   ]

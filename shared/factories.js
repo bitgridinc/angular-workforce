@@ -23,6 +23,10 @@ var BeaconFactory = function() {
       this.beacon.lng = longitude;
       return this;
     },
+    withAddress: function(streetAddress) {
+      this.beacon.streetAddress = streetAddress;
+      return this;
+    },
     withNumberOfPeople: function(numberOfPeople) {
       this.beacon.numberOfPeople = numberOfPeople;
       return this;
@@ -58,6 +62,10 @@ var BeaconPostFactory = function() {
     withLocation: function(latitude, longitude) {
       this.beaconPost.lat = latitude;
       this.beaconPost.lng = longitude;
+      return this;
+    },
+    withAddress: function(streetAddress) {
+      this.beaconPost.streetAddress = streetAddress;
       return this;
     },
     withNumberOfPeople: function(numberOfPeople) {
