@@ -23,6 +23,10 @@ var BeaconFactory = function() {
       this.beacon.lng = longitude;
       return this;
     },
+    withNumberOfPeople: function(numberOfPeople) {
+      this.beacon.numberOfPeople = numberOfPeople;
+      return this;
+    },
     withResponse: function(response) {
       this.beacon.responses.push(response);
       return this;
