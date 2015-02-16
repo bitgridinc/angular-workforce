@@ -28,13 +28,15 @@ describe('the new beacon creation factory', function() {
     var newTitle = 'New Title',
         newDescription = 'New Description',
         newStreetAddress = '2729 Merrilee Dr',
-        newCity = 'Fairfax';
+        newCity = 'Fairfax',
+        newNumberOfPeople = 4;
 
     beforeEach(function () {
       scope.beaconData.title = newTitle;
       scope.beaconData.description = newDescription;
       scope.beaconData.streetAddress = newStreetAddress;
       scope.beaconData.city = newCity;
+      scope.beaconData.numberOfPeople = newNumberOfPeople;
     });
 
     describe ('the method to post a new beacon', function () {
@@ -43,6 +45,7 @@ describe('the new beacon creation factory', function() {
         description: newDescription,
         lat: 1,
         lng: 2,
+        numberOfPeople: 4,
         senderId: '1',
         recipientIds: []
       };

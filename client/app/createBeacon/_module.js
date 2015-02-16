@@ -98,6 +98,7 @@ angular
                   .withSenderId($rootScope.socketState.currentEntity.id)
                   .withSummaryText(scope.beaconData.title, scope.beaconData.description)
                   .withLocation(address.lat, address.lng)
+                  .withNumberOfPeople(scope.beaconData.numberOfPeople)
                   .withRecipientIds(recipientIds)
                   .createBeaconPost();
                 RestService.createBeacon(beaconPost);

@@ -56,6 +56,10 @@ var BeaconPostFactory = function() {
       this.beaconPost.lng = longitude;
       return this;
     },
+    withNumberOfPeople: function(numberOfPeople) {
+      this.beaconPost.numberOfPeople = numberOfPeople;
+      return this;
+    },
     withRecipientId: function(recipientId) {
       this.beaconPost.recipientIds.push(recipientId);
       return this;
