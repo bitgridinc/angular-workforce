@@ -34,6 +34,13 @@ td {
   padding: 0 .5em;
 }
 
+// Centers all images within their container
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .bg-full-width {
   width: 100%;
 }
@@ -219,6 +226,9 @@ $bg-cc-bar-width: 10px;
   @extend .media-left;
   @extend .media-middle;
   padding-right: 20px;
+}
+.bg-ic-left-innerdiv {
+  width: 32px;
 }
 .bg-ic-right {
   @extend .media-body;
