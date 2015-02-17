@@ -111,6 +111,9 @@ centered-image {
   padding: 6px 6px;
   background-color: white;
 }
+.bg-db-beacons-btn-selected {
+  width: $beacons-btn-width + $beacons-btn-margin;
+}
 
 .bg-wide-btn {
   display: block;
