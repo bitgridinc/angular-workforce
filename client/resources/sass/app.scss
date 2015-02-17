@@ -33,9 +33,11 @@ $beacons-right-container-left: $beacons-left-container-left + $beacons-left-cont
 td {
   padding: 0 .5em;
 }
-
 centered-image {
   display: block;
+}
+.btn:focus {
+  outline: none;
 }
 
 .borderless {
