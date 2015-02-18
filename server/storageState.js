@@ -11,6 +11,10 @@ module.exports = {
         lat: 44.222908,
         lng: -74.466358,
         zoom: 15
+      },
+      contact: {
+        name: 'Charlie',
+        phone: '111-555-1111'
       }
     },
     {
@@ -20,6 +24,10 @@ module.exports = {
         lat: 43.061184,
         lng: -76.212784,
         zoom: 15
+      },
+      contact: {
+        name: 'Chris',
+        phone: '222-555-2222'
       }
     },
     {
@@ -29,6 +37,10 @@ module.exports = {
         lat: 42.634715,
         lng: -74.562904,
         zoom: 15
+      },
+      contact: {
+        name: 'Justin',
+        phone: '333-555-3333'
       }
     },
     {
@@ -38,6 +50,10 @@ module.exports = {
         lat: 44.158101,
         lng: -75.707763,
         zoom: 15
+      },
+      contact: {
+        name: 'Sahil',
+        phone: '444-555-4444'
       }
     }
   ],

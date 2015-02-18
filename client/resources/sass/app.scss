@@ -252,3 +252,14 @@ $bg-cc-bar-width: 10px;
   @extend .media-middle;
   @extend .bg-full-width;
 }
+
+/* Entity Card */
+.bg-ec-container {
+  margin: 12px 30px;
+}
+.bg-ec-media {
+  @extend .media;
+  margin: 0px;
+  padding: 5px 10px;
+  background: white;
+}

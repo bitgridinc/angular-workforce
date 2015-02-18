@@ -71,6 +71,7 @@ angular
         $scope.currentItem = _.find(currentBeacon.responses, function(response) {
           return response.id === $stateParams.responseId;
         });
+        $scope.currentEntity = $rootScope.findEntityById($scope.currentItem.senderId);
 
         $scope.acceptAssistance = function() {
           // TODO: This is garbage :P

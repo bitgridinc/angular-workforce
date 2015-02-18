@@ -8,6 +8,7 @@ require('./acceptedAssistanceSummary.js');
 require('./centeredImage.js');
 //require('./closeablePanel.js');
 require('./coloredContainer.js');
+require('./entityCard.js');
 require('./iconContainer.js');
 require('./openReviewAssistanceButton.js');
 require('./organizationLabel.js');
