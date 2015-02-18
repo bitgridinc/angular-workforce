@@ -60,7 +60,7 @@ angular
 
         $scope.goToBeaconList = function() { state.go('dashboard.beacons.list'); };
         $scope.goToOfferAssistance = function() { state.go('dashboard.beacons.detail.assist'); };
-        $scope.goToReviewAssistance = function() { state.go('dashboard.beacons.detail.review'); };
+        $scope.goToReviewAssistance = function() { state.go('dashboard.beacons.detail.review.response',  { responseId: $rootScope.selectionState.currentBeacon.responses[0].id }); };
       }
     ]
   );

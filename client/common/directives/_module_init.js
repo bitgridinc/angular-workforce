@@ -6,7 +6,7 @@ module.exports = angular.module('modules.directives', []);
 
 require('./acceptedAssistanceSummary.js');
 require('./centeredImage.js');
-require('./closeablePanel.js');
+//require('./closeablePanel.js');
 require('./coloredContainer.js');
 require('./iconContainer.js');
 require('./openReviewAssistanceButton.js');

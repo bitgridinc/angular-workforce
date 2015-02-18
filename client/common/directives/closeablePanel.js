@@ -1,6 +1,6 @@
 "use strict";
 
-require('./_module_init.js')
+/*require('./_module_init.js')
   .directive('closeablePanel',
     function() {
       return {
@@ -13,4 +13,4 @@ require('./_module_init.js')
         }
       }
     }
-  );
+  );*/

@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the pagination control state factory', function() {
+/*('the pagination control state factory', function() {
   var factory,
       scope;
 
@@ -40,4 +40,4 @@ describe('the pagination control state factory', function() {
       })
     });
   });
-});
+});*/

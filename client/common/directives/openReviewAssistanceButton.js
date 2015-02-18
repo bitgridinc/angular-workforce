@@ -14,7 +14,7 @@ require('./_module_init.js')
             if ($state.includes('dashboard.beacons.detail.review')) {
               state.go('dashboard.beacons.detail');
             } else {
-              state.go('dashboard.beacons.detail.review', { id: beacon.id });
+              state.go('dashboard.beacons.detail.review.response', { id: beacon.id, responseId: beacon.responses[0].id });
             }
           };
         }

@@ -1,6 +1,6 @@
 "use strict";
 
-require('./_module_init.js')
+/*require('./_module_init.js')
   .factory('PaginationControl',
     function() {
       return {
@@ -19,4 +19,4 @@ require('./_module_init.js')
         }
       };
     }
-  );
+  );*/

@@ -1,4 +1,4 @@
-"use strict";
+/*"use strict";
 
 var CloseablePanelLocators = require('./closeablePanel.locators.js');
 
@@ -36,4 +36,4 @@ describe('all closeable panels', function() {
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/117');
     }
   );
-});
+});*/
