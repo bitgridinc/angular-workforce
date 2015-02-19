@@ -53,7 +53,8 @@ describe('the service that authenticates a user and loads their organization pro
         function(address) {
           expect(address).toEqual({
             lat: 38.8793003636364,
-            lng: -77.230676
+            lng: -77.230676,
+            streetAddress: '2729 Merrilee Drive'
           });
         });
       $httpBackend.flush();
