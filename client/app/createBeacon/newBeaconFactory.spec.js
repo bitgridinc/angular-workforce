@@ -45,6 +45,7 @@ describe('the new beacon creation factory', function() {
         description: newDescription,
         lat: 1,
         lng: 2,
+        streetAddress: 'address',
         numberOfPeople: 4,
         senderId: '1',
         recipientIds: []
@@ -61,7 +62,8 @@ describe('the new beacon creation factory', function() {
           then: function(thenFunc) {
             thenFunc({
               lat: expectedPost.lat,
-              lng: expectedPost.lng
+              lng: expectedPost.lng,
+              streetAddress: expectedPost.streetAddress
             });
           }
         });
