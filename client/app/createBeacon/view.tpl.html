@@ -21,41 +21,47 @@
                  placeholder="Job Description" />
         </div>
       </colored-container>
-      <icon-container icon-url="images/wizard_location.png">
-        <input id="streetAddress"
-               class="bg-form-control"
-               type="text"
-               name="streetAddress"
-               ng-model="beaconData.streetAddress"
-               placeholder="Street Address" />
-        <input id="city"
-               class="bg-form-control"
-               type="text"
-               name="city"
-               ng-model="beaconData.city"
-               placeholder="City" />
-      </icon-container>
-      <icon-container icon-url="images/wizard_linemen.png">
-        <input id="numberOfPeople"
-               class="bg-form-control"
-               type="text"
-               name="numberOfPeople"
-               ng-model="beaconData.numberOfPeople"
-               placeholder="Number of People (e.g., 6-8)" />
-      </icon-container>
-      <icon-container icon-url="images/wizard_linemen.png">
-        <div class="panel panel-default bg-input-margin">
-          <div class="panel-heading">Recipients</div>
+      <li class="list-group-item">
+        <icon-container icon-url="images/wizard_location.png">
+          <input id="streetAddress"
+                 class="bg-form-control"
+                 type="text"
+                 name="streetAddress"
+                 ng-model="beaconData.streetAddress"
+                 placeholder="Street Address" />
+          <input id="city"
+                 class="bg-form-control"
+                 type="text"
+                 name="city"
+                 ng-model="beaconData.city"
+                 placeholder="City" />
+        </icon-container>
+      </li>
+      <li class="list-group-item">
+        <icon-container icon-url="images/wizard_linemen.png">
+          <input id="numberOfPeople"
+                 class="bg-form-control"
+                 type="text"
+                 name="numberOfPeople"
+                 ng-model="beaconData.numberOfPeople"
+                 placeholder="Number of People (e.g., 6-8)" />
+        </icon-container>
+      </li>
+      <li class="list-group-item">
+        <icon-container icon-url="images/wizard_linemen.png">
+          <div class="panel panel-default bg-input-margin">
+            <div class="panel-heading">Recipients</div>
 
-          <table class="table" ng-repeat="recipient in possibleRecipients">
-            <tr>
-              <!-- What-eva! I do what I want!! -->
-              <td style="width: 13px;"><input type="checkbox" ng-model="recipient.include"></td>
-              <td align="left">{{recipient.entity.name}}</td>
-            </tr>
-          </table>
-        </div>
-      </icon-container>
+            <table class="table" ng-repeat="recipient in possibleRecipients">
+              <tr>
+                <!-- What-eva! I do what I want!! -->
+                <td style="width: 13px;"><input type="checkbox" ng-model="recipient.include"></td>
+                <td align="left">{{recipient.entity.name}}</td>
+              </tr>
+            </table>
+          </div>
+        </icon-container>
+      </li>
     </div>
     <table class="bg-dw-button-table">
       <td class="bg-no-padding">
