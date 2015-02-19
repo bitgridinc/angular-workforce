@@ -126,6 +126,7 @@ centered-image {
 }
 .bg-db-beacons-btn-selected {
   width: $beacons-btn-width + $beacons-btn-margin;
+  @include border-right-radius(0px);
 }
 
 .bg-wide-btn {
