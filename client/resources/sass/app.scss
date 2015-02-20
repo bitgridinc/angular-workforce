@@ -20,7 +20,8 @@ $beacons-left-container-width: 300px;
 $beacons-right-container-left: $beacons-left-container-left + $beacons-left-container-width + $beacons-btn-margin;
 
 .bg-shadow {
-  box-shadow: 0px 0px 15px #666666;
+  //box-shadow: 0px 0px 15px #666666;
+  box-shadow: none;
 }
 
 .disable-text-selection {
