@@ -1,10 +1,9 @@
 // Override bootstrap variables
 $list-group-border-radius:  0px;
 $padding-base-vertical:     3px;
-$border-radius-base:        5px; // was 4px
-$border-radius-large:       7px; // was 6px
+$border-radius-base:        7px; // was 4px
+//$border-radius-large:       6px; // was 6px
 $border-radius-small:       4px; // was 3px
-$panel-border-radius:       0px;
 
 // Core variables and mixins
 @import "bootstrap/variables";
