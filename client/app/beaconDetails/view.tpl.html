@@ -18,7 +18,12 @@
     <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
       <entity-card icon-url="images/icon_ring1.png" entity-id="acceptedAssistance.senderId"></entity-card>
       <contact-card entity-id="acceptedAssistance.senderId"></contact-card>
-      <accepted-assistance-summary accepted-assistance="acceptedAssistance"></accepted-assistance-summary>
+      <icon-container icon-url="images/orange_linemen.png">
+        {{acceptedAssistance.numResponders}}
+      </icon-container>
+      <icon-container icon-url="images/wizard_calendar.png">
+        {{acceptedAssistance.arrivalDate}}
+      </icon-container>
     </div>
   </li>
   <li class="list-group-item">
