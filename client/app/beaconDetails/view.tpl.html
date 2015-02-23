@@ -23,7 +23,7 @@
           {{acceptedAssistance.numResponders}} on their way
         </icon-container>
         <icon-container class="list-group-item borderless" icon-url="images/wizard_calendar.png">
-          {{acceptedAssistance.arrivalDate}}
+          {{acceptedAssistance.arrivalDate | date:'short'}}
         </icon-container>
       </ul>
     </div>
