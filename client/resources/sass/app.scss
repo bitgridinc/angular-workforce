@@ -157,6 +157,7 @@ centered-image {
   max-height: 580px;
   z-index: 11;
   clip: rect(0px, 1000px, 1000px, -20px);
+  @include border-top-radius(0px);
 }
 .dashboard-beacons-right-header {
   @extend .dashboard-beacons-base;
