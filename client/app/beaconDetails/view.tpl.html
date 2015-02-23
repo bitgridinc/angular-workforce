@@ -1,4 +1,4 @@
-<ul class="bg-beacon-list-group" ng-show="selectionState.currentBeacon">
+<ul class="bg-list-group" ng-show="selectionState.currentBeacon">
   <colored-container class="disable-text-selection" ng-click="goToBeaconList(selectionState.currentBeacon)">
     <div class="media bg-vertically-centered">
       <div class="media-left media-middle">
@@ -17,13 +17,15 @@
   <li class="list-group-item" ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
     <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
       <entity-card icon-url="images/icon_ring1.png" entity-id="acceptedAssistance.senderId"></entity-card>
-      <contact-card entity-id="acceptedAssistance.senderId"></contact-card>
-      <icon-container icon-url="images/orange_linemen.png">
-        {{acceptedAssistance.numResponders}}
-      </icon-container>
-      <icon-container icon-url="images/wizard_calendar.png">
-        {{acceptedAssistance.arrivalDate}}
-      </icon-container>
+      <ul class="bg-list-group">
+        <contact-card class="list-group-item borderless" entity-id="acceptedAssistance.senderId"></contact-card>
+        <icon-container class="list-group-item borderless" icon-url="images/orange_linemen.png">
+          {{acceptedAssistance.numResponders}}
+        </icon-container>
+        <icon-container class="list-group-item borderless" icon-url="images/wizard_calendar.png">
+          {{acceptedAssistance.arrivalDate}}
+        </icon-container>
+      </ul>
     </div>
   </li>
   <li class="list-group-item">
