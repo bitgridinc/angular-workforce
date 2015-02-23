@@ -1,9 +1,6 @@
 <li class="list-group-item">
   <entity-card icon-url="images/icon_ring1.png" entity-id="currentEntity.id"></entity-card>
-  <icon-container icon-url="images/orange_phone.png">
-    {{currentEntity.contact.name}}<br>
-    {{currentEntity.contact.phone}}
-  </icon-container>
+  <contact-card contact="currentEntity.contact"></contact-card>
 </li>
 <li class="list-group-item">
   <p id="offerSummaryText" class="small">
