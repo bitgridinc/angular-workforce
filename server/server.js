@@ -35,7 +35,6 @@ server.route([
   { method: 'GET', path: '/css/{path*}', handler: { directory: { path: './public/css' } } },
   { method: 'GET', path: '/images/{path*}', handler: { directory: { path: './public/images' } } },
   { method: 'GET', path: '/fonts/{path*}', handler: { directory: { path: './public/fonts' } } },
-  { method: 'GET', path: '/stylesheets/{path*}', handler: { directory: { path: './public/stylesheets' } } },
 
   // Expose our feature templates
   { method: 'GET', path: '/templates/_application/{file}',
