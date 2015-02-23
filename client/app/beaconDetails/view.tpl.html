@@ -17,6 +17,7 @@
   <li class="list-group-item" ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
     <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
       <entity-card icon-url="images/icon_ring1.png" entity-id="acceptedAssistance.senderId"></entity-card>
+      <contact-card entity-id="acceptedAssistance.senderId"></contact-card>
       <accepted-assistance-summary accepted-assistance="acceptedAssistance"></accepted-assistance-summary>
     </div>
   </li>

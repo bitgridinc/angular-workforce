@@ -7,7 +7,14 @@ require('./_module_init.js')
         restrict: 'E',
         templateUrl: '/templates/directives/contactCard.tpl.html',
         scope: {
-          contact: '='
+          entityId: '='
+        },
+        controller: function($rootScope, $scope) {
+          $scope.$watch('entityId', function(newVal) {
+            if (angular.isDefined(newVal)) {
+              $scope.entity = $rootScope.findEntityById(newVal);
+            }
+          });
         }
       }
     }
