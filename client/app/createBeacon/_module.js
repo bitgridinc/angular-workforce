@@ -1,11 +1,13 @@
 "use strict";
 
+require('../../bower_components/angular-elastic/elastic.js');
 var factories = require('../../../shared/factories');
 
 angular
   .module('modules.createBeacon', [
       'ui.router',
-      'modules.providers'
+      'modules.providers',
+      'monospaced.elastic'
     ]
   )
   .config(
@@ -60,6 +62,19 @@ angular
 
           $state.go('^.list');
         };
+      }
+    ]
+  )
+  .controller('ColoredContainerHeightController',
+    [         '$scope',
+      function($scope) {
+        var absoluteMinHeight = 132,
+            nonDescriptionTextareaHeight = 67;
+        $scope.coloredContainerHeight = absoluteMinHeight;
+        $scope.$on('elastic:resize', function(event, element) {
+          var newMinHeight = element[0].offsetHeight + nonDescriptionTextareaHeight;
+          $scope.coloredContainerHeight = Math.max(absoluteMinHeight, newMinHeight);
+        });
       }
     ]
   )

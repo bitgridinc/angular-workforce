@@ -1,7 +1,7 @@
 <div>
   <form method="post">
-    <div>
-      <colored-container height="132" class="media">
+    <div ng-controller="ColoredContainerHeightController">
+      <colored-container height="coloredContainerHeight" class="media">
         <div class="media-left media-middle">
           <img src="images/arrow_left_gray.png" alt="Collapse Beacon Details">
         </div>
@@ -15,56 +15,57 @@
                  placeholder="Job Title" />
           <textarea id="description"
                     class="bg-form-control"
+                    msd-elastic
                     rows="3"
                     name="description"
                     ng-model="beaconData.description"
                     placeholder="Job Description"
-                    style="max-width: 243px;">
+                    style="max-width: 243px; max-height: 122px; resize: none;">
           </textarea>
         </div>
       </colored-container>
-      <li class="list-group-item">
-        <icon-container icon-url="images/wizard_location.png">
-          <input id="streetAddress"
-                 class="bg-form-control"
-                 type="text"
-                 name="streetAddress"
-                 ng-model="beaconData.streetAddress"
-                 placeholder="Street Address" />
-          <input id="city"
-                 class="bg-form-control"
-                 type="text"
-                 name="city"
-                 ng-model="beaconData.city"
-                 placeholder="City" />
-        </icon-container>
-      </li>
-      <li class="list-group-item">
-        <icon-container icon-url="images/wizard_linemen.png">
-          <input id="numberOfPeople"
-                 class="bg-form-control"
-                 type="text"
-                 name="numberOfPeople"
-                 ng-model="beaconData.numberOfPeople"
-                 placeholder="Number of People (e.g., 6-8)" />
-        </icon-container>
-      </li>
-      <li class="list-group-item">
-        <icon-container icon-url="images/wizard_newutility.png">
-          <div class="panel panel-default bg-input-margin">
-            <div class="panel-heading">Recipients</div>
-
-            <table class="table" ng-repeat="recipient in possibleRecipients">
-              <tr>
-                <!-- What-eva! I do what I want!! -->
-                <td style="width: 13px;"><input type="checkbox" ng-model="recipient.include"></td>
-                <td align="left">{{recipient.entity.name}}</td>
-              </tr>
-            </table>
-          </div>
-        </icon-container>
-      </li>
     </div>
+    <li class="list-group-item">
+      <icon-container icon-url="images/wizard_location.png">
+        <input id="streetAddress"
+               class="bg-form-control"
+               type="text"
+               name="streetAddress"
+               ng-model="beaconData.streetAddress"
+               placeholder="Street Address" />
+        <input id="city"
+               class="bg-form-control"
+               type="text"
+               name="city"
+               ng-model="beaconData.city"
+               placeholder="City" />
+      </icon-container>
+    </li>
+    <li class="list-group-item">
+      <icon-container icon-url="images/wizard_linemen.png">
+        <input id="numberOfPeople"
+               class="bg-form-control"
+               type="text"
+               name="numberOfPeople"
+               ng-model="beaconData.numberOfPeople"
+               placeholder="Number of People (e.g., 6-8)" />
+      </icon-container>
+    </li>
+    <li class="list-group-item">
+      <icon-container icon-url="images/wizard_newutility.png">
+        <div class="panel panel-default bg-input-margin">
+          <div class="panel-heading">Recipients</div>
+
+          <table class="table" ng-repeat="recipient in possibleRecipients">
+            <tr>
+              <!-- What-eva! I do what I want!! -->
+              <td style="width: 13px;"><input type="checkbox" ng-model="recipient.include"></td>
+              <td align="left">{{recipient.entity.name}}</td>
+            </tr>
+          </table>
+        </div>
+      </icon-container>
+    </li>
     <table class="bg-dw-button-table">
       <td class="bg-no-padding">
         <button class="bg-full-width btn btn-sm btn-success" type="button" ng-click="completeNewBeacon(true)">Submit Beacon</button>
