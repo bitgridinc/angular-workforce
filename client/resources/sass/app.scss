@@ -167,7 +167,7 @@ centered-image {
   max-height: $right-header-height;
   padding-left: $beacons-btn-margin;
   overflow: hidden;
-  z-index: 9;
+  z-index: 7;
   clip: rect(-20px, 10000px, 10000px, 0px);
   @include border-left-radius(0px);
   border-bottom-right-radius: 0px;
