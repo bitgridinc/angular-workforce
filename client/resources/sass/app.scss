@@ -288,7 +288,7 @@ $bg-cc-bar-width: 10px;
   position: absolute;
   height: 100%;
   width: $beacons-left-container-width - 2*$bg-cc-bar-width;
-  padding: $bg-cc-bar-width;
+  padding: 9px 5px 9px $bg-cc-bar-width;
 }
 .bg-cc-colored-bar {
   display: inline-block;
