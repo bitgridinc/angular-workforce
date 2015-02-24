@@ -1,7 +1,7 @@
 <div>
   <form method="post">
     <div>
-      <colored-container height="106" class="media">
+      <colored-container height="132" class="media">
         <div class="media-left media-middle">
           <img src="images/arrow_left_gray.png" alt="Collapse Beacon Details">
         </div>
@@ -13,12 +13,14 @@
                  autofocus="autofocus"
                  ng-model="beaconData.title"
                  placeholder="Job Title" />
-          <input id="description"
-                 class="bg-form-control"
-                 type="text"
-                 name="description"
-                 ng-model="beaconData.description"
-                 placeholder="Job Description" />
+          <textarea id="description"
+                    class="bg-form-control"
+                    rows="3"
+                    name="description"
+                    ng-model="beaconData.description"
+                    placeholder="Job Description"
+                    style="max-width: 243px;">
+          </textarea>
         </div>
       </colored-container>
       <li class="list-group-item">
