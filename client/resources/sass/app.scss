@@ -64,7 +64,7 @@ $beacons-btn-width: 79px;
 $beacons-btn-height: $beacons-btn-width + 12px;
 $right-header-height: 30px;
 $right-header-top: ($beacons-btn-height - $right-header-height) / 2;
-$beacons-btn-margin: 18px;
+$beacons-btn-margin: 10px;
 $beacons-left-container-left: $beacons-btn-width + $beacons-btn-margin;
 $beacons-left-container-width: 300px;
 $beacons-right-container-left: $beacons-left-container-left + $beacons-left-container-width + $beacons-btn-margin;
@@ -156,7 +156,7 @@ centered-image {
   width: $beacons-left-container-width;
   max-height: 580px;
   z-index: 11;
-  clip: rect(0px, 1000px, 1000px, -20px);
+  clip: rect(0px, 10000px, 10000px, -20px);
   @include border-top-radius(0px);
 }
 .dashboard-beacons-right-header {
@@ -168,7 +168,7 @@ centered-image {
   padding-left: $beacons-btn-margin;
   overflow: hidden;
   z-index: 9;
-  clip: rect(-20px, 1000px, 1000px, 0px);
+  clip: rect(-20px, 10000px, 10000px, 0px);
   @include border-left-radius(0px);
   border-bottom-right-radius: 0px;
 }
@@ -187,7 +187,7 @@ centered-image {
   width: $beacons-btn-width + $beacons-btn-margin;
   @include border-right-radius(0px);
   z-index: 10;
-  clip: rect(-20px, 97px, 1000px, -20px)
+  clip: rect(-20px, $beacons-btn-width + $beacons-btn-margin, 1000px, -20px)
 }
 
 .bg-wide-btn {
