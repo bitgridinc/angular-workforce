@@ -1,30 +1,28 @@
 <div>
-  <form method="post">
-    <div ng-controller="ColoredContainerHeightController">
-      <colored-container height="coloredContainerHeight" class="media">
-        <div class="media-left media-middle">
-          <img src="images/arrow_left_gray.png" alt="Collapse Beacon Details">
-        </div>
-        <div class="media-body bg-full-width">
-          <input id="title"
-                 class="bg-form-control"
-                 type="text"
-                 name="title"
-                 autofocus="autofocus"
-                 ng-model="beaconData.title"
-                 placeholder="Job Title" />
-          <textarea id="description"
-                    class="bg-form-control"
-                    msd-elastic
-                    rows="3"
-                    name="description"
-                    ng-model="beaconData.description"
-                    placeholder="Job Description"
-                    style="max-width: 248px; max-height: 122px; resize: none;">
-          </textarea>
-        </div>
-      </colored-container>
-    </div>
+  <form method="post" ng-controller="ColoredContainerHeightController">
+    <colored-container height="coloredContainerHeight" class="media">
+      <div class="media-left media-middle">
+        <img src="images/arrow_left_gray.png" alt="Collapse Beacon Details">
+      </div>
+      <div class="media-body bg-full-width">
+        <input id="title"
+               class="bg-form-control"
+               type="text"
+               name="title"
+               autofocus="autofocus"
+               ng-model="beaconData.title"
+               placeholder="Job Title" />
+        <textarea id="description"
+                  class="bg-form-control"
+                  msd-elastic
+                  rows="3"
+                  name="description"
+                  ng-model="beaconData.description"
+                  placeholder="Job Description"
+                  style="max-width: 248px; max-height: 122px; resize: none;">
+        </textarea>
+      </div>
+    </colored-container>
     <li class="list-group-item">
       <icon-container icon-url="images/wizard_location.png">
         <input id="streetAddress"
