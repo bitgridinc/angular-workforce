@@ -41,7 +41,18 @@
     </li>
     <li class="list-group-item">
       <icon-container icon-url="images/wizard_calendar.png">
-        <h5>Text</h5>
+        <input type="text"
+               id="startDate"
+               name="startDate"
+               placeholder="Start Date"
+               class="form-control"
+               ng-model="beaconData.startDate"
+               data-date-format="yyyy-MM-dd"
+               data-min-date="today"
+               data-autoclose="1"
+               data-icon-left="fa fa-chevron-left"
+               data-icon-right="fa fa-chevron-right"
+               bs-datepicker>
       </icon-container>
     </li>
     <li class="list-group-item">

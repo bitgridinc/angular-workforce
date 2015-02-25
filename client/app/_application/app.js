@@ -2,6 +2,8 @@
 
 require('../../bower_components/angular/angular.js');
 require('../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js');
+require('../../bower_components/angular-strap/dist/angular-strap.min.js');
+require('../../bower_components/angular-strap/dist/angular-strap.tpl.min.js');
 require('../../bower_components/angular-ui-router/release/angular-ui-router.js');
 
 require('../../common/directives/_module_init.js');
@@ -17,7 +19,8 @@ angular
       'modules.directives',
       'modules.providers',
       'modules.dashboard',
-      'modules.profile'
+      'modules.profile',
+      'mgcrea.ngStrap'
     ]
   )
   .run(
