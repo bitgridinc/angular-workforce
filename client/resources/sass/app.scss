@@ -279,6 +279,7 @@ colored-container {
   @extend .list-group-item;
   height: $beacons-btn-height;
   padding: 0px;
+  border-left: 0px;
 }
 $bg-cc-bar-width: 10px;
 .bg-cc-container {
