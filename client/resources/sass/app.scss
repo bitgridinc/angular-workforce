@@ -55,16 +55,6 @@ td {
   z-index: -100;
 }
 
-/* The Create Beacon button is transparent */
-.bg-transparent-btn {
-  @extend .btn;
-  background-color: Transparent;
-  background-repeat: no-repeat;
-  border: none;
-  overflow: hidden;
-  outline: none;
-}
-
 .dashboard-beacons-base {
   @extend .bg-shadow;
   position: absolute;

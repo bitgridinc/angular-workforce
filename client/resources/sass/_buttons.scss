@@ -16,6 +16,15 @@
   padding: 0;
 }
 
+.bg-transparent-btn {
+  @extend .btn;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  overflow: hidden;
+  outline: none;
+}
+
 .bg-wide-btn {
   display: block;
   margin: 6px auto 6px auto;
