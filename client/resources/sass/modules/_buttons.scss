@@ -1,0 +1,8 @@
+/* Double-wide buttons */
+.bg-dw-button-table {
+  @extend .bg-full-width;
+  border-collapse: separate;
+  border-spacing: 20px 0px;
+  table-layout: fixed;
+  margin: 16px 0px;
+}
