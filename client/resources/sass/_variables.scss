@@ -1,0 +1,9 @@
+$header-height: 20px;
+$beacons-btn-width: 79px;
+$beacons-btn-height: $beacons-btn-width + 12px;
+$right-header-height: 30px;
+$right-header-top: ($beacons-btn-height - $right-header-height) / 2;
+$beacons-btn-margin: 10px;
+$beacons-left-container-left: $beacons-btn-width + $beacons-btn-margin;
+$beacons-left-container-width: 300px;
+$beacons-right-container-left: $beacons-left-container-left + $beacons-left-container-width + $beacons-btn-margin;
