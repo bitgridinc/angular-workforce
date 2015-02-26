@@ -1,3 +1,7 @@
+.btn:focus {
+  outline: none;
+}
+
 /* Double-wide buttons */
 .bg-dw-button-table {
   @extend .bg-full-width;
@@ -5,4 +9,20 @@
   border-spacing: 20px 0px;
   table-layout: fixed;
   margin: 16px 0px;
+}
+
+.bg-borderless-button {
+  line-height: 0;
+  padding: 0;
+}
+
+.bg-wide-btn {
+  display: block;
+  margin: 6px auto 6px auto;
+  width: 95%;
+}
+
+.bg-half-btn {
+  margin: 6px;
+  width: 45%;
 }

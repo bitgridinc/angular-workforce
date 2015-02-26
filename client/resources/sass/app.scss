@@ -24,9 +24,6 @@ td {
 centered-image {
   display: block;
 }
-.btn:focus {
-  outline: none;
-}
 
 .borderless {
   border: none;
@@ -125,27 +122,12 @@ centered-image {
   clip: rect(-20px, $beacons-btn-width + $beacons-btn-margin, 1000px, -20px)
 }
 
-.bg-wide-btn {
-  display: block;
-  margin: 6px auto 6px auto;
-  width: 95%;
-}
-
-.bg-half-btn {
-  margin: 6px;
-  width: 45%;
-}
-
 .bg-vertically-centered {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.bg-borderless-button {
-  line-height: 0;
-  padding: 0;
-}
 .bg-no-border-radius {
   border-radius: 0px;
 }
