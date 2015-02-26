@@ -1,6 +1,8 @@
 @import '_imports';
 @import '_variables';
 @import '_buttons';
+
+@import 'directives/_centeredImage';
 @import 'directives/_coloredContainer';
 @import 'directives/_entityCard';
 @import 'directives/_iconContainer';
@@ -20,9 +22,6 @@
 
 td {
   padding: 0 .5em;
-}
-centered-image {
-  display: block;
 }
 
 .borderless {
