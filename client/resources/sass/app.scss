@@ -1,6 +1,7 @@
 @import '_imports';
 @import '_variables';
 @import 'modules/_buttons';
+@import 'modules/_entityCard';
 
 .bg-shadow {
   box-shadow: 0px 0px 15px #666666;
@@ -212,15 +213,4 @@ $bg-cc-bar-width: 10px;
   @extend .media-body;
   @extend .media-middle;
   @extend .bg-full-width;
-}
-
-/* Entity Card */
-.bg-ec-container {
-  margin: 12px 30px;
-}
-.bg-ec-media {
-  @extend .media;
-  margin: 0px;
-  padding: 5px 10px;
-  background: white;
 }

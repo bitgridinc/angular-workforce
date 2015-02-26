@@ -1,0 +1,10 @@
+/* Entity Card */
+.bg-ec-container {
+  margin: 12px 30px;
+}
+.bg-ec-media {
+  @extend .media;
+  margin: 0px;
+  padding: 5px 10px;
+  background: white;
+}

@@ -31,7 +31,7 @@ var client = {
   entrySrc: __dirname + '/client/app/_application/app.js',
   aatSrc: [__dirname + '/client/app/**/aat/*aat.js', __dirname + '/client/common/**/aat/*aat.js'],
   bowerDir: __dirname + '/client/bower_components',
-  allSassSrc: __dirname + '/client/resources/sass/*.scss'
+  allSassSrc: [__dirname + '/client/resources/sass/*.scss', __dirname + '/client/resources/sass/modules/*.scss']
 };
 var server = {
   parentDir: __dirname + '/server',
@@ -75,7 +75,6 @@ gulp.task('css', function() {
     .pipe(sass({
         style: 'compressed',
         loadPath: [
-          client.sassDir,
           client.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
           client.bowerDir + '/fontawesome/scss'
         ]
