@@ -1,9 +1,9 @@
 @import '_imports';
 @import '_variables';
-@import 'modules/_buttons';
-@import 'modules/_coloredContainer';
-@import 'modules/_entityCard';
-@import 'modules/_iconContainer';
+@import '_buttons';
+@import 'directives/_coloredContainer';
+@import 'directives/_entityCard';
+@import 'directives/_iconContainer';
 
 .bg-shadow {
   box-shadow: 0px 0px 15px #666666;

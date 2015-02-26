@@ -31,7 +31,7 @@ var client = {
   entrySrc: __dirname + '/client/app/_application/app.js',
   aatSrc: [__dirname + '/client/app/**/aat/*aat.js', __dirname + '/client/common/**/aat/*aat.js'],
   bowerDir: __dirname + '/client/bower_components',
-  allSassSrc: [__dirname + '/client/resources/sass/*.scss', __dirname + '/client/resources/sass/modules/*.scss']
+  allSassSrc: [__dirname + '/client/resources/sass/*.scss', __dirname + '/client/resources/sass/directives/*.scss']
 };
 var server = {
   parentDir: __dirname + '/server',
