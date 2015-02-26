@@ -9,6 +9,7 @@ require('./centeredImage.js');
 //require('./closeablePanel.js');
 require('./coloredContainer.js');
 require('./contactCard.js');
+require('./dateTimePicker.js');
 require('./entityCard.js');
 require('./iconContainer.js');
 require('./openReviewAssistanceButton.js');
