@@ -1,7 +1,9 @@
 @import '_imports';
 @import '_variables';
 @import 'modules/_buttons';
+@import 'modules/_coloredContainer';
 @import 'modules/_entityCard';
+@import 'modules/_iconContainer';
 
 .bg-shadow {
   box-shadow: 0px 0px 15px #666666;
@@ -162,55 +164,7 @@ centered-image {
   @extend .bg-input-margin;
 }
 
-/* Beacon Summary Directive */
-$review-btn-width: 30px;
-
 .bg-list-group {
   @extend .list-group;
   margin-bottom: 0px;
-}
-
-$beacon-summary-vertical-padding: 14px;
-
-/* Colored Container: Beacon Details and Beacon List */
-colored-container {
-  @extend .list-group-item;
-  height: $beacons-btn-height;
-  padding: 0px;
-  border-left: 0px;
-}
-$bg-cc-bar-width: 10px;
-.bg-cc-container {
-  display: inline-block;
-  position: absolute;
-  height: 100%;
-  width: $beacons-left-container-width - 2*$bg-cc-bar-width;
-  padding: 9px 5px 9px $bg-cc-bar-width;
-}
-.bg-cc-colored-bar {
-  display: inline-block;
-  height: 100%;
-  width: $bg-cc-bar-width;
-  padding-left: 0px;
-  background-color: #D02643;
-}
-
-/* Icon Container */
-.bg-ic-container {
-  @extend .media;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ddd;
-}
-.bg-ic-left {
-  @extend .media-left;
-  @extend .media-middle;
-  padding-right: 20px;
-}
-.bg-ic-left-innerdiv {
-  width: 32px;
-}
-.bg-ic-right {
-  @extend .media-body;
-  @extend .media-middle;
-  @extend .bg-full-width;
 }

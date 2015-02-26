@@ -1,0 +1,19 @@
+/* Icon Container */
+.bg-ic-container {
+  @extend .media;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+.bg-ic-left {
+  @extend .media-left;
+  @extend .media-middle;
+  padding-right: 20px;
+}
+.bg-ic-left-innerdiv {
+  width: 32px;
+}
+.bg-ic-right {
+  @extend .media-body;
+  @extend .media-middle;
+  @extend .bg-full-width;
+}

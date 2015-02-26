@@ -1,0 +1,25 @@
+$bg-cc-bar-width: 10px;
+
+/* Colored Container: Beacon Details and Beacon List */
+colored-container {
+  @extend .list-group-item;
+  height: $beacons-btn-height;
+  padding: 0px;
+  border-left: 0px;
+}
+
+.bg-cc-container {
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  width: $beacons-left-container-width - 2*$bg-cc-bar-width;
+  padding: 9px 5px 9px $bg-cc-bar-width;
+}
+
+.bg-cc-colored-bar {
+  display: inline-block;
+  height: 100%;
+  width: $bg-cc-bar-width;
+  padding-left: 0px;
+  background-color: #D02643;
+}
