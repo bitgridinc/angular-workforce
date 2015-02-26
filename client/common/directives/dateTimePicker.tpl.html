@@ -1,9 +1,9 @@
 <input type="text"
-       id="startDate"
-       name="startDate"
-       placeholder="Start Date"
-       class="form-control"
-       ng-model="beaconData.startDate"
+       id="dtpTimeId"
+       name="{{dtpDateId}}"
+       placeholder="{{dtpDatePlaceholder}}"
+       class="bg-form-control"
+       ng-model="dtpModel"
        data-date-format="yyyy-MM-dd"
        data-min-date="today"
        data-autoclose="1"
@@ -12,12 +12,11 @@
        bs-datepicker
        style="float: left; width: 52%;">
 <input type="text"
-       id="startTime"
-       name="startTime"
+       id="{{dtpTimeId}}"
+       name="{{dtpTimeId}}"
        placeholder="Time"
-       class="form-control"
-       ng-model="beaconData.startDate"
-       data-min-date="today"
+       class="bg-form-control"
+       ng-model="dtpModel"
        data-autoclose="1"
        bs-timepicker
        style="float: right; width: 46%;">
