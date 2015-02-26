@@ -6,6 +6,11 @@ colored-container {
   height: $beacons-btn-height;
   padding: 0px;
   border-left: 0px;
+
+  // Round the first items
+  &:first-child {
+    border-top-right-radius: $border-radius-base;
+  }
 }
 
 .bg-cc-container {
