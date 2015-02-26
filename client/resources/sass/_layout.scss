@@ -1,0 +1,73 @@
+/* Here lie the classes required for the layout of the UI components. */
+
+.bg-map-container {
+  @extend .bg-full-width;
+  position: absolute;
+  top: $header-height;
+  bottom: 0px;
+  z-index: -100;
+}
+
+.bg-header-container {
+  @extend .bg-full-width;
+  @extend .bg-shadow;
+  height: $header-height;
+}
+
+.bg-beacons-control-container {
+  position: absolute;
+  left: $beacons-btn-margin;
+  top: $beacons-btn-margin + $header-height;
+}
+
+.dashboard-beacons-left {
+  @extend .dashboard-beacons-base;
+  left: $beacons-left-container-left;
+  width: $beacons-left-container-width;
+  max-height: 600px;
+  border-top-left-radius: 0px;
+  z-index: 8;
+  /* TODO: Implement border to subtract from total width */
+}
+
+.dashboard-beacons-right-body {
+  @extend .dashboard-beacons-base;
+  left: $beacons-right-container-left;
+  top: $right-header-height + $right-header-top;
+  width: $beacons-left-container-width;
+  max-height: 580px;
+  z-index: 11;
+  clip: rect(0px, 10000px, 10000px, -20px);
+  @include border-top-radius(0px);
+}
+
+.dashboard-beacons-right-header {
+  @extend .dashboard-beacons-base;
+  left: $beacons-left-container-left + $beacons-left-container-width;
+  top: $right-header-top;
+  width: $beacons-btn-margin + $beacons-left-container-width;
+  max-height: $right-header-height;
+  padding-left: $beacons-btn-margin;
+  overflow: hidden;
+  z-index: 7;
+  clip: rect(-20px, 10000px, 10000px, 0px);
+  @include border-left-radius(0px);
+  border-bottom-right-radius: 0px;
+}
+
+.bg-db-beacons-btn {
+  @extend .btn;
+  @extend .bg-shadow;
+  width: $beacons-btn-width;
+  height: $beacons-btn-height;
+  position: absolute;
+  padding: 6px 6px;
+  background-color: white;
+}
+
+.bg-db-beacons-btn-selected {
+  width: $beacons-btn-width + $beacons-btn-margin;
+  @include border-right-radius(0px);
+  z-index: 10;
+  clip: rect(-20px, $beacons-btn-width + $beacons-btn-margin, 1000px, -20px)
+}
