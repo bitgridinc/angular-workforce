@@ -2,7 +2,7 @@
   <form method="post" ng-controller="ColoredContainerHeightController">
     <colored-container height="coloredContainerHeight" class="media">
       <div class="media-left media-middle">
-        <img src="images/arrow_left_gray.png" alt="Collapse Beacon Details">
+        <img src="images/arrow_left_gray.png" ng-click="goBackToList()">
       </div>
       <div class="media-body bg-full-width">
         <input id="title"

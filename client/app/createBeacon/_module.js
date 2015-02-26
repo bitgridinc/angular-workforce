@@ -29,8 +29,8 @@ angular
     ]
   )
   .controller('CreateBeaconController',
-    [         '$rootScope', '$scope', '$state', 'NewBeaconFactory', '_',
-      function($rootScope,   $scope,   $state,   NewBeaconFactory,   _) {
+    [         '$rootScope', '$scope', 'state', 'NewBeaconFactory', '_',
+      function($rootScope,   $scope,   state,   NewBeaconFactory,   _) {
         NewBeaconFactory.initScope($scope);
 
         // Note that a filter *might* be better as we grow as it would be reusable.
@@ -60,8 +60,12 @@ angular
             }
           }
 
-          $state.go('^.list');
+          $scope.goBackToList();
         };
+
+        $scope.goBackToList = function() {
+          state.go('^.list');
+        }
       }
     ]
   )
