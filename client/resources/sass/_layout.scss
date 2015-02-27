@@ -24,7 +24,7 @@
   @extend .bg-ui-control-base;
   left: $beacons-left-container-left;
   width: $beacons-left-container-width;
-  max-height: 600px;
+  max-height: 800px;
   border-top-left-radius: 0px;
   z-index: 8;
   /* TODO: Implement border to subtract from total width */
@@ -35,7 +35,7 @@
   left: $beacons-right-container-left;
   top: $right-header-height + $right-header-top;
   width: $beacons-left-container-width;
-  max-height: 580px;
+  max-height: 780px;
   z-index: 11;
   clip: rect(0px, 10000px, 10000px, -20px);
   @include border-top-radius(0px);
