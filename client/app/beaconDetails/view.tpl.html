@@ -14,7 +14,7 @@
       <open-review-assistance-button class="media-right media-middle" beacon="selectionState.currentBeacon"></open-review-assistance-button>
     </div>
   </colored-container>
-  <li class="list-group-item" ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
+  <li class="bg-list-group-item" ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
     <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
       <entity-card icon-url="images/icon_ring1.png" entity-id="acceptedAssistance.senderId"></entity-card>
       <ul class="bg-list-group">
@@ -28,18 +28,18 @@
       </ul>
     </div>
   </li>
-  <li class="list-group-item">
+  <li class="bg-list-group-item">
     <icon-container icon-url="images/wizard_dark_location.png">
       {{selectionState.currentBeacon.streetAddress}}
     </icon-container>
   </li>
-  <li class="list-group-item">
+  <li class="bg-list-group-item">
     <icon-container icon-url="images/wizard_dark_linemen.png">
       {{selectionState.currentBeacon.numberOfPeople}} requested
     </icon-container>
   </li>
   <!-- TODO: Test this when I can consistently mock the backend during my AATs. -->
-  <li class="list-group-item" ng-show="selectionState.currentBeacon.senderId !== socketState.currentEntity.id">
+  <li class="bg-list-group-item" ng-if="selectionState.currentBeacon.senderId !== socketState.currentEntity.id">
     <button class="bg-wide-btn btn btn-sm btn-default" type="button" ng-click="goToOfferAssistance()">
       Offer Assistance
     </button>
