@@ -58,22 +58,20 @@ describe('the new beacon creation factory', function() {
             id: '1'
           }
         };
-        spyOn(geocoder, 'geocodeAddress').and.returnValue({
-          then: function(thenFunc) {
-            thenFunc({
-              lat: expectedPost.lat,
-              lng: expectedPost.lng,
-              streetAddress: expectedPost.streetAddress
-            });
-          }
-        });
+        var geocoderResponse = {
+          lat: expectedPost.lat,
+          lng: expectedPost.lng,
+          streetAddress: expectedPost.streetAddress
+        };
+        spyOn(geocoder, 'geocodeAddress');
         spyOn(restService, 'createBeacon');
 
         // Act
         factory.postNewBeacon();
 
         // Assert
-        expect(geocoder.geocodeAddress).toHaveBeenCalledWith(newStreetAddress, newCity);
+        expect(geocoder.geocodeAddress).toHaveBeenCalledWith(newStreetAddress, newCity, jasmine.any(Function));
+        geocoder.geocodeAddress.calls.argsFor(0)[2](geocoderResponse);
         expect(restService.createBeacon).toHaveBeenCalledWith(expectedPost);
       });
 

@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the service that authenticates a user and loads their organization profile', function() {
+describe('the geocoder service (address -> lat/lng)', function() {
   var geocoder,
       $httpBackend;
 
@@ -49,14 +49,14 @@ describe('the service that authenticates a user and loads their organization pro
           }
         ]);
 
-      geocoder.geocodeAddress('2729 Merrilee Dr', 'Fairfax').then(
-        function(address) {
-          expect(address).toEqual({
-            lat: 38.8793003636364,
-            lng: -77.230676,
-            streetAddress: '2729 Merrilee Drive'
-          });
+      geocoder.geocodeAddress('2729 Merrilee Dr', 'Fairfax', function(address) {
+        console.log('Geocoder returned: ', address);
+        expect(address).toEqual({
+          lat: 38.8793003636364,
+          lng: -77.230676,
+          streetAddress: '2729 Merrilee Drive'
         });
+      });
       $httpBackend.flush();
     });
   });

@@ -9,13 +9,7 @@ require('./_module_init.js')
         return {
           createBeacon: function(newBeaconData) {
             console.log('Sending data to create a new beacon:', newBeaconData);
-            $http.post(apiRoutes.createBeacon, newBeaconData)
-              .success(function(data, status, headers, config) {
-                console.log('POST success!');
-              })
-              .error(function(data, status, headers, config) {
-                console.log('POST error!');
-              });
+            $http.post(apiRoutes.createBeacon, newBeaconData);
           },
           offerAssistance: function(newOfferData) {
             console.log('Sending data to create a new offer:', newOfferData);

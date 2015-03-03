@@ -112,18 +112,17 @@ angular
               throw new Error('Number of People is required');
             }
 
-            geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city).then(
-              function(address) {
-                var beaconPost = factories.newBeaconPostFactory()
-                  .withSenderId($rootScope.socketState.currentEntity.id)
-                  .withSummaryText(scope.beaconData.title, scope.beaconData.description)
-                  .withLocation(address.lat, address.lng)
-                  .withAddress(address.streetAddress)
-                  .withNumberOfPeople(scope.beaconData.numberOfPeople)
-                  .withRecipientIds(recipientIds)
-                  .createBeaconPost();
-                RestService.createBeacon(beaconPost);
-              });
+            geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
+              var beaconPost = factories.newBeaconPostFactory()
+                .withSenderId($rootScope.socketState.currentEntity.id)
+                .withSummaryText(scope.beaconData.title, scope.beaconData.description)
+                .withLocation(address.lat, address.lng)
+                .withAddress(address.streetAddress)
+                .withNumberOfPeople(scope.beaconData.numberOfPeople)
+                .withRecipientIds(recipientIds)
+                .createBeaconPost();
+              RestService.createBeacon(beaconPost);
+            });
           }
         };
       }
