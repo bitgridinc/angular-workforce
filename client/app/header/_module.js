@@ -6,8 +6,8 @@ angular
     ]
   )
   .controller('HeaderController',
-    [         '$scope', '$rootScope', '$state',
-      function($scope,   $rootScope,   $state) {
+    [         '$scope', '$rootScope',
+      function($scope,   $rootScope) {
         $scope.socketState = $rootScope.socketState;
       }
     ]
