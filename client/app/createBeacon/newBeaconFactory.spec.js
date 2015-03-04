@@ -75,7 +75,7 @@ describe('the new beacon creation factory', function() {
         expect(restService.createBeacon).toHaveBeenCalledWith(expectedPost);
       });
 
-      it('should fail if the title is undefined', function() {
+      it('should fail if the title is undefined because a beacon without a title doesn\'t display correctly', function() {
         // Arrange
         scope.beaconData.title = undefined;
 
@@ -84,7 +84,7 @@ describe('the new beacon creation factory', function() {
           factory.postNewBeacon();
         }).toThrowError();
       });
-      it('should fail if the description is undefined', function() {
+      it('should fail if the description is undefined because a beacon without a description doesn\'t display correctly', function() {
         // Arrange
         scope.beaconData.description = undefined;
 
@@ -93,25 +93,7 @@ describe('the new beacon creation factory', function() {
           factory.postNewBeacon();
         }).toThrowError();
       });
-      it('should fail if the street address is undefined', function() {
-        // Arrange
-        scope.beaconData.streetAddress = undefined;
-
-        // Act/Assert
-        expect(function() {
-          factory.postNewBeacon();
-        }).toThrowError();
-      });
-      it('should fail if the city is undefined', function() {
-        // Arrange
-        scope.beaconData.city = undefined;
-
-        // Act/Assert
-        expect(function() {
-          factory.postNewBeacon();
-        }).toThrowError();
-      });
-      it('should fail if the number of people is undefined', function() {
+      it('should fail if the number of people is undefined because the UI doesn\'t support not defining this', function() {
         // Arrange
         scope.beaconData.numberOfPeople = undefined;
 

@@ -104,10 +104,6 @@ angular
               throw new Error('Title is required');
             } else if (!angular.isDefined(scope.beaconData.description)) {
               throw new Error('Description is required');
-            } else if (!angular.isDefined(scope.beaconData.streetAddress)) {
-              throw new Error('Street Address is required');
-            } else if (!angular.isDefined(scope.beaconData.city)) {
-              throw new Error('City is required');
             } else if (!angular.isDefined(scope.beaconData.numberOfPeople)) {
               throw new Error('Number of People is required');
             }
