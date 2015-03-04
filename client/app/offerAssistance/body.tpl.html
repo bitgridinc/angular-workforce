@@ -7,7 +7,7 @@
     <input class="form-control" type="number" name="numResponders" id="numResponders" required ng-model="assistanceOffer.numResponders" />
   </div>
   <div class="form-group">
-    <label class="small">When can they arrive?</label>
+    <label class="small">When can <organization-label organization-id="selectionState.currentBeacon.senderId"></organization-label> expect assistance?</label>
     <p class="input-group">
       <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="assistanceOffer.arrivalDate" date-disabled="disabled(date, mode)" is-open="opened" ng-required="true" />
       <span class="input-group-btn">
