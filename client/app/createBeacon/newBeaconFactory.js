@@ -1,11 +1,9 @@
 "use strict";
 
-var factories = require('../../../shared/factories');
-
 require('./_module')
   .factory('NewBeaconFactory',
-    [         '$rootScope', 'RestService', 'geocoder',
-      function($rootScope,   RestService,   geocoder) {
+    [         '$rootScope', 'RestService', 'geocoder', 'FluentSharedLibraries',
+      function($rootScope,   RestService,   geocoder,   FluentSharedLibraries) {
         var scope;
         return {
           initScope: function ($scope) {
@@ -29,7 +27,7 @@ require('./_module')
               alert('Number of People is required.');
             } else {
               geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
-                var beaconPost = factories.newBeaconPostFactory()
+                var beaconPost = FluentSharedLibraries.newBeaconPostFactory()
                   .withSenderId($rootScope.dataFromServer.currentEntity.id)
                   .withSummaryText(scope.beaconData.title, scope.beaconData.description)
                   .withLocation(address.lat, address.lng)

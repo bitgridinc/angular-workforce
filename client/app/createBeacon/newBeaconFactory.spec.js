@@ -9,7 +9,7 @@ describe('the new beacon creation factory', function() {
 
   beforeEach(module('modules.providers'));
   beforeEach(module('modules.createBeacon'));
-  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, RestService, _geocoder_) {
+  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, RestService, _geocoder_, _FluentSharedLibraries_) {
     rootScope = $rootScope;
     scope = $rootScope.$new();
     factory = _NewBeaconFactory_;
