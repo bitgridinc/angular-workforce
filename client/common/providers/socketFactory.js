@@ -1,6 +1,6 @@
 "use strict";
 
-var io = require('../../bower_components/socket.io-client/socket.io.js');
+var io = require('../../bower_components/socket.io-client/socket.io');
 
 // socket.on('connect') only fires once when the connect event occurs, but socket.connectPromise will fire both:
 // 1) asynchronously when the connect event occurs, and

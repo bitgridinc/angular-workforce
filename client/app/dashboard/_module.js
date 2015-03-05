@@ -1,8 +1,8 @@
 "use strict";
 
-require('../beaconControl/_module.js');
-require('../header/_module.js');
-require('../map/_module.js');
+require('../beaconControl/_module');
+require('../header/_module');
+require('../map/_module');
 
 module.exports =
   angular.module('modules.dashboard', [

@@ -1,6 +1,6 @@
 "use strict";
 
-require('../../bower_components/angular/angular.js');
+require('../../bower_components/angular/angular');
 
 module.exports = angular.module('modules.directives', []);
 

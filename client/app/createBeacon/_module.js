@@ -1,6 +1,6 @@
 "use strict";
 
-require('../../bower_components/angular-elastic/elastic.js');
+require('../../bower_components/angular-elastic/elastic');
 
 module.exports =
   angular.module('modules.createBeacon', [

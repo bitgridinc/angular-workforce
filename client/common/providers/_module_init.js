@@ -1,7 +1,6 @@
 "use strict";
 
-require('../../bower_components/angular/angular.js');
-var _ = require('../../bower_components/lodash/dist/lodash.js');
+require('../../bower_components/angular/angular');
 
 module.exports = angular.module('modules.providers', []);
 

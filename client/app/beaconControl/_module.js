@@ -1,10 +1,10 @@
 "use strict";
 
-require('../beaconDetails/_module.js');
-require('../createBeacon/_module.js');
-require('../listBeacons/_module.js');
-require('../offerAssistance/_module.js');
-require('../reviewAssistance/_module.js');
+require('../beaconDetails/_module');
+require('../createBeacon/_module');
+require('../listBeacons/_module');
+require('../offerAssistance/_module');
+require('../reviewAssistance/_module');
 
 module.exports =
   angular.module('modules.beaconControl', [
