@@ -51,6 +51,11 @@ describe('the new beacon creation factory', function() {
         recipientIds: []
       };
 
+      beforeEach(function() {
+        spyOn(geocoder, 'geocodeAddress');
+        spyOn(restService, 'createBeacon');
+      });
+
       it('should lookup the street address and city with the geocoder and then pass the new beacon POST to the socket', function() {
         // Arrange
         rootScope.socketState = {
@@ -63,8 +68,6 @@ describe('the new beacon creation factory', function() {
           lng: expectedPost.lng,
           streetAddress: expectedPost.streetAddress
         };
-        spyOn(geocoder, 'geocodeAddress');
-        spyOn(restService, 'createBeacon');
 
         // Act
         factory.postNewBeacon();
@@ -79,28 +82,34 @@ describe('the new beacon creation factory', function() {
         // Arrange
         scope.beaconData.title = undefined;
 
-        // Act/Assert
-        expect(function() {
-          factory.postNewBeacon();
-        }).toThrowError();
+        // Act
+        factory.postNewBeacon();
+
+        // Assert
+        expect(geocoder.geocodeAddress).not.toHaveBeenCalled();
+        expect(restService.createBeacon).not.toHaveBeenCalled();
       });
       it('should fail if the description is undefined because a beacon without a description doesn\'t display correctly', function() {
         // Arrange
         scope.beaconData.description = undefined;
 
-        // Act/Assert
-        expect(function() {
-          factory.postNewBeacon();
-        }).toThrowError();
+        // Act
+        factory.postNewBeacon();
+
+        // Assert
+        expect(geocoder.geocodeAddress).not.toHaveBeenCalled();
+        expect(restService.createBeacon).not.toHaveBeenCalled();
       });
       it('should fail if the number of people is undefined because the UI doesn\'t support not defining this', function() {
         // Arrange
         scope.beaconData.numberOfPeople = undefined;
 
-        // Act/Assert
-        expect(function() {
-          factory.postNewBeacon();
-        }).toThrowError();
+        // Act
+        factory.postNewBeacon();
+
+        // Assert
+        expect(geocoder.geocodeAddress).not.toHaveBeenCalled();
+        expect(restService.createBeacon).not.toHaveBeenCalled();
       });
     });
   });

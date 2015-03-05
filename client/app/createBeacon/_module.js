@@ -100,25 +100,26 @@ angular
             });
           },
           postNewBeacon : function (recipientIds) {
+            // TODO: Consider returning ALL errors at once
             if (!angular.isDefined(scope.beaconData.title)) {
-              throw new Error('Title is required');
+              alert('Title is required.');
             } else if (!angular.isDefined(scope.beaconData.description)) {
-              throw new Error('Description is required');
+              alert('Description is required.');
             } else if (!angular.isDefined(scope.beaconData.numberOfPeople)) {
-              throw new Error('Number of People is required');
+              alert('Number of People is required.');
+            } else {
+              geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
+                var beaconPost = factories.newBeaconPostFactory()
+                  .withSenderId($rootScope.socketState.currentEntity.id)
+                  .withSummaryText(scope.beaconData.title, scope.beaconData.description)
+                  .withLocation(address.lat, address.lng)
+                  .withAddress(address.streetAddress)
+                  .withNumberOfPeople(scope.beaconData.numberOfPeople)
+                  .withRecipientIds(recipientIds)
+                  .createBeaconPost();
+                RestService.createBeacon(beaconPost);
+              });
             }
-
-            geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
-              var beaconPost = factories.newBeaconPostFactory()
-                .withSenderId($rootScope.socketState.currentEntity.id)
-                .withSummaryText(scope.beaconData.title, scope.beaconData.description)
-                .withLocation(address.lat, address.lng)
-                .withAddress(address.streetAddress)
-                .withNumberOfPeople(scope.beaconData.numberOfPeople)
-                .withRecipientIds(recipientIds)
-                .createBeaconPost();
-              RestService.createBeacon(beaconPost);
-            });
           }
         };
       }
