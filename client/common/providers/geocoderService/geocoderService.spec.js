@@ -1,13 +1,13 @@
 "use strict";
 
 describe('the geocoder service (address -> lat/lng)', function() {
-  var geocoder,
+  var geocoderService,
       $httpBackend;
 
   beforeEach(module('modules.providers'));
-  beforeEach(inject(function(_$injector_, _geocoder_) {
+  beforeEach(inject(function(_$injector_, _GeocoderService_) {
     $httpBackend = _$injector_.get("$httpBackend");
-    geocoder = _geocoder_;
+    geocoderService = _GeocoderService_;
   }));
 
   afterEach(function() {
@@ -49,7 +49,7 @@ describe('the geocoder service (address -> lat/lng)', function() {
           }
         ]);
 
-      geocoder.geocodeAddress('2729 Merrilee Dr', 'Fairfax', function(address) {
+      geocoderService.geocodeAddress('2729 Merrilee Dr', 'Fairfax', function(address) {
         console.log('Geocoder returned: ', address);
         expect(address).toEqual({
           lat: 38.8793003636364,

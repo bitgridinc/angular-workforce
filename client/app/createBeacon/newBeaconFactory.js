@@ -2,8 +2,8 @@
 
 require('./_module')
   .factory('NewBeaconFactory',
-    [         '$rootScope', 'RestService', 'geocoder', 'FluentSharedLibraries',
-      function($rootScope,   RestService,   geocoder,   FluentSharedLibraries) {
+    [         '$rootScope', 'RestService', 'GeocoderService', 'FluentSharedLibrariesService',
+      function($rootScope,   RestService,   GeocoderService,   FluentSharedLibrariesService) {
         var scope;
         return {
           initScope: function ($scope) {
@@ -26,8 +26,8 @@ require('./_module')
             } else if (!angular.isDefined(scope.beaconData.numberOfPeople)) {
               alert('Number of People is required.');
             } else {
-              geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
-                var beaconPost = FluentSharedLibraries.newBeaconPostFactory()
+              GeocoderService.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
+                var beaconPost = FluentSharedLibrariesService.newBeaconPostFactory()
                   .withSenderId($rootScope.dataFromServer.currentEntity.id)
                   .withSummaryText(scope.beaconData.title, scope.beaconData.description)
                   .withLocation(address.lat, address.lng)

@@ -1,7 +1,7 @@
 "use strict";
 
 require('./../_module_init.js')
-  .service('geocoder',
+  .service('GeocoderService',
     function($http) {
       return {
         geocodeAddress: function(street, city, onResponseCallback) {

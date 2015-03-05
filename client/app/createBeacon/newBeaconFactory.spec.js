@@ -5,16 +5,16 @@ describe('the new beacon creation factory', function() {
       scope,
       factory,
       restService,
-      geocoder;
+      geocoderService;
 
   beforeEach(module('modules.providers'));
   beforeEach(module('modules.createBeacon'));
-  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, RestService, _geocoder_, _FluentSharedLibraries_) {
+  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, RestService, _GeocoderService_, _FluentSharedLibrariesService_) {
     rootScope = $rootScope;
     scope = $rootScope.$new();
     factory = _NewBeaconFactory_;
     restService = RestService;
-    geocoder = _geocoder_;
+    geocoderService = _GeocoderService_;
   }));
   beforeEach(function () {
     factory.initScope(scope);
@@ -52,7 +52,7 @@ describe('the new beacon creation factory', function() {
       };
 
       beforeEach(function() {
-        spyOn(geocoder, 'geocodeAddress');
+        spyOn(geocoderService, 'geocodeAddress');
         spyOn(restService, 'createBeacon');
       });
 
@@ -73,8 +73,8 @@ describe('the new beacon creation factory', function() {
         factory.postNewBeacon();
 
         // Assert
-        expect(geocoder.geocodeAddress).toHaveBeenCalledWith(newStreetAddress, newCity, jasmine.any(Function));
-        geocoder.geocodeAddress.calls.argsFor(0)[2](geocoderResponse);
+        expect(geocoderService.geocodeAddress).toHaveBeenCalledWith(newStreetAddress, newCity, jasmine.any(Function));
+        geocoderService.geocodeAddress.calls.argsFor(0)[2](geocoderResponse);
         expect(restService.createBeacon).toHaveBeenCalledWith(expectedPost);
       });
 
@@ -86,7 +86,7 @@ describe('the new beacon creation factory', function() {
         factory.postNewBeacon();
 
         // Assert
-        expect(geocoder.geocodeAddress).not.toHaveBeenCalled();
+        expect(geocoderService.geocodeAddress).not.toHaveBeenCalled();
         expect(restService.createBeacon).not.toHaveBeenCalled();
       });
       it('should fail if the description is undefined because a beacon without a description doesn\'t display correctly', function() {
@@ -97,7 +97,7 @@ describe('the new beacon creation factory', function() {
         factory.postNewBeacon();
 
         // Assert
-        expect(geocoder.geocodeAddress).not.toHaveBeenCalled();
+        expect(geocoderService.geocodeAddress).not.toHaveBeenCalled();
         expect(restService.createBeacon).not.toHaveBeenCalled();
       });
       it('should fail if the number of people is undefined because the UI doesn\'t support not defining this', function() {
@@ -108,7 +108,7 @@ describe('the new beacon creation factory', function() {
         factory.postNewBeacon();
 
         // Assert
-        expect(geocoder.geocodeAddress).not.toHaveBeenCalled();
+        expect(geocoderService.geocodeAddress).not.toHaveBeenCalled();
         expect(restService.createBeacon).not.toHaveBeenCalled();
       });
     });
