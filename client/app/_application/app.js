@@ -125,14 +125,6 @@ angular
             //   beaconId: beacon.id
             // }
 
-            /*if (angular.isUndefined(request) ||
-              angular.isUndefined(request.senderId) ||
-              angular.isUndefined(request.beaconId) ||
-              angular.isUndefined(request.id)) {
-              console.log('Invalid request in onAssistanceResponse', request);
-              throw new Error('Invalid request');
-            }*/
-
             var existingBeacon = _.find(this.dataFromServer.beacons, function(beacon) {
               return beacon.id === request.beaconId;
             });
