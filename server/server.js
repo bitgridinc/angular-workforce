@@ -83,8 +83,8 @@ server.route([
   },
 
   // Expose our directive templates
-  { method: 'GET', path: '/templates/directives/{file}',
-    handler: { directory: { path: '../client/common/directives' } },
+  { method: 'GET', path: '/templates/directives/templates/{file}',
+    handler: { directory: { path: '../client/common/directives/templates' } },
     config: { validate: { params: { file: templateValidator } } }
   },
 

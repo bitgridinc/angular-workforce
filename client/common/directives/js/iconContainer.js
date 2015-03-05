@@ -1,21 +1,17 @@
 "use strict";
 
-require('./_module_init.js')
-  .directive('coloredContainer',
+require('./../_module_init.js')
+  .directive('iconContainer',
     function() {
       return {
         restrict: 'E',
-        templateUrl: '/templates/directives/coloredContainer.tpl.html',
+        templateUrl: '/templates/directives/templates/iconContainer.tpl.html',
         transclude: true,
         scope: {
-          height: '='
+          iconUrl: '@'
         },
         link: function(scope, element, attrs) {
           if (angular.isDefined(scope.height)) {
-            scope.$watch('height', function() {
-              element.css('height', scope.height + 'px');
-            });
-
             element.css('height', scope.height + 'px');
           }
         }

@@ -1,8 +1,8 @@
 "use strict";
 
-var apiRoutes = require('../../../shared/apiRoutes');
+var apiRoutes = require('../../../../shared/apiRoutes');
 
-require('./_module_init.js')
+require('./../_module_init.js')
   .service('RestService',
     [         '$http',
       function($http) {

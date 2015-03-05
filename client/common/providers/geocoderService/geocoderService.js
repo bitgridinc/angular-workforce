@@ -1,6 +1,6 @@
 "use strict";
 
-require('./_module_init.js')
+require('./../_module_init.js')
   .service('geocoder',
     function($http) {
       return {

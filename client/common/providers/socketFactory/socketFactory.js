@@ -1,6 +1,6 @@
 "use strict";
 
-var io = require('../../bower_components/socket.io-client/socket.io');
+var io = require('../../../bower_components/socket.io-client/socket.io.js');
 
 // socket.on('connect') only fires once when the connect event occurs, but socket.connectPromise will fire both:
 // 1) asynchronously when the connect event occurs, and
@@ -12,7 +12,7 @@ var io = require('../../bower_components/socket.io-client/socket.io');
 // the purpose of the wrappedSocket is to provide the same functionality as a socket.io emitter, but without the hassle of having to apply the scope
 // it also adds some functionality, such as onConnect, which uses the connectPromise, and offOn, which first un-registers, then re-registers callbacks
 
-require('./_module_init.js')
+require('./../_module_init.js')
   .factory('unwrappedSocket', ['$q', function($q){
     var socket = io();
     var deferred = $q.defer();

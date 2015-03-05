@@ -4,12 +4,12 @@ require('../../bower_components/angular/angular');
 
 module.exports = angular.module('modules.directives', []);
 
-require('./acceptedAssistanceSummary.js');
-require('./centeredImage.js');
-require('./coloredContainer.js');
-require('./contactCard.js');
-require('./dateTimePicker.js');
-require('./entityCard.js');
-require('./iconContainer.js');
-require('./openReviewAssistanceButton.js');
-require('./organizationLabel.js');
+require('./js/acceptedAssistanceSummary');
+require('./js/centeredImage');
+require('./js/coloredContainer');
+require('./js/contactCard');
+require('./js/dateTimePicker');
+require('./js/entityCard');
+require('./js/iconContainer');
+require('./js/openReviewAssistanceButton');
+require('./js/organizationLabel');

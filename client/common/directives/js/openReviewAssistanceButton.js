@@ -1,11 +1,11 @@
 "use strict";
 
-require('./_module_init.js')
+require('./../_module_init.js')
   .directive('openReviewAssistanceButton',
     function() {
       return {
         restrict: 'E',
-        templateUrl: '/templates/directives/openReviewAssistanceButton.tpl.html',
+        templateUrl: '/templates/directives/templates/openReviewAssistanceButton.tpl.html',
         scope: {
           beacon: '='
         },

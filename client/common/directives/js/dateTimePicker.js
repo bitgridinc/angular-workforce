@@ -1,11 +1,11 @@
 "use strict";
 
-require('./_module_init.js')
+require('./../_module_init.js')
   .directive('dateTimePicker',
     function() {
       return {
         restrict: 'E',
-        templateUrl: '/templates/directives/dateTimePicker.tpl.html',
+        templateUrl: '/templates/directives/templates/dateTimePicker.tpl.html',
         scope: {
           dtpModel: '=',
           dtpDateId: '@',
