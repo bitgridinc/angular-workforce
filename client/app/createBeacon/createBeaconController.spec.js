@@ -19,7 +19,7 @@ describe('the create beacon controller', function() {
       name: 'Tupper Lake',
       id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
     };
-    $rootScope.socketState = {
+    $rootScope.dataFromServer = {
       allEntities: [
         currentEntity,
         {
@@ -41,7 +41,7 @@ describe('the create beacon controller', function() {
 
   it('should populate the list of available recipients', function() {
     // The current entity should be filtered out of this list
-    expect($scope.possibleRecipients.length).toBe($rootScope.socketState.allEntities.length - 1);
+    expect($scope.possibleRecipients.length).toBe($rootScope.dataFromServer.allEntities.length - 1);
   });
   it('should error when no recipients are selected', function() {
     spyOn($state, 'go');

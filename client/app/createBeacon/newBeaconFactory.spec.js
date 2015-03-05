@@ -58,7 +58,7 @@ describe('the new beacon creation factory', function() {
 
       it('should lookup the street address and city with the geocoder and then pass the new beacon POST to the socket', function() {
         // Arrange
-        rootScope.socketState = {
+        rootScope.dataFromServer = {
           currentEntity: {
             id: '1'
           }

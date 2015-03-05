@@ -80,8 +80,8 @@ describe('the service that wraps SocketIO', function() {
       });*/
 
       it ('should store beacons sent in the init message', function() {
-        expect(service.socketState.beacons.length).toBe(1);
-        expect(service.socketState.beacons[0].senderId).toEqual(currentEntity.id);
+        expect(service.dataFromServer.beacons.length).toBe(1);
+        expect(service.dataFromServer.beacons[0].senderId).toEqual(currentEntity.id);
       });
       it ('should store new messages in the list of beacons', function () {
         // Act
@@ -93,8 +93,8 @@ describe('the service that wraps SocketIO', function() {
         });
 
         // Assert
-        expect(service.socketState.beacons.length).toBe(2);
-        expect(service.socketState.beacons[1].id).toEqual(id);
+        expect(service.dataFromServer.beacons.length).toBe(2);
+        expect(service.dataFromServer.beacons[1].id).toEqual(id);
       });
       it ('should not add incoming message to the list of beacons if the beacon is already present', function () {
         // Act
@@ -105,7 +105,7 @@ describe('the service that wraps SocketIO', function() {
         });
 
         // Assert
-        expect(service.socketState.beacons.length).toBe(1);
+        expect(service.dataFromServer.beacons.length).toBe(1);
       });
       it ('should not throw an error if an assistance response is received for a beacon that is not present', function () {
         // Act
@@ -116,7 +116,7 @@ describe('the service that wraps SocketIO', function() {
         });
 
         // Assert
-        expect(service.socketState.beacons[0].responses.length).toBe(0);
+        expect(service.dataFromServer.beacons[0].responses.length).toBe(0);
       });
 
       describe('after a response message has been received', function() {
@@ -131,17 +131,17 @@ describe('the service that wraps SocketIO', function() {
         });
 
         it ('should add incoming messages to the responses array of its beacon if the message is not the root', function () {
-          expect(service.socketState.beacons.length).toBe(1);
-          expect(service.socketState.beacons[0].responses.length).toBe(1);
-          expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage);
+          expect(service.dataFromServer.beacons.length).toBe(1);
+          expect(service.dataFromServer.beacons[0].responses.length).toBe(1);
+          expect(service.dataFromServer.beacons[0].responses[0]).toBe(responseMessage);
         });
         it ('should not add duplicate incoming response messages', function () {
           // Act
           service.onAssistanceResponse(responseMessage);
 
           // Assert
-          expect(service.socketState.beacons[0].responses.length).toBe(1);
-          expect(service.socketState.beacons[0].responses[0]).toBe(responseMessage);
+          expect(service.dataFromServer.beacons[0].responses.length).toBe(1);
+          expect(service.dataFromServer.beacons[0].responses[0]).toBe(responseMessage);
         });
         it ('should allow for accepting the response by moving the response to the acceptedAssistance array of the beacon', function() {
           // {
@@ -153,8 +153,8 @@ describe('the service that wraps SocketIO', function() {
             responseId: '5eb19570-5567-44f0-ab55-95189383fab0'
           });
 
-          expect(service.socketState.beacons[0].responses.length).toBe(0);
-          expect(service.socketState.beacons[0].acceptedAssistance.length).toBe(1);
+          expect(service.dataFromServer.beacons[0].responses.length).toBe(0);
+          expect(service.dataFromServer.beacons[0].acceptedAssistance.length).toBe(1);
         });
       });
     });

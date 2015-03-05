@@ -17,7 +17,7 @@ describe('the beacon list controller', function() {
 
   it('should tie the list of beacons from $rootScope into the $scope for display by the view', function() {
     // Arrange
-    $rootScope.socketState = {
+    $rootScope.dataFromServer = {
       beacons: []
     };
 
@@ -29,6 +29,6 @@ describe('the beacon list controller', function() {
     });
 
     // Assert
-    expect($scope.beacons).toBe($rootScope.socketState.beacons);
+    expect($scope.beacons).toBe($rootScope.dataFromServer.beacons);
   });
 });

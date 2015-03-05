@@ -35,8 +35,8 @@ angular
 
         // Note that a filter *might* be better as we grow as it would be reusable.
         $scope.possibleRecipients = [];
-        _.forEach($rootScope.socketState.allEntities, function(entity) {
-          if (entity.id !== $rootScope.socketState.currentEntity.id) {
+        _.forEach($rootScope.dataFromServer.allEntities, function(entity) {
+          if (entity.id !== $rootScope.dataFromServer.currentEntity.id) {
             $scope.possibleRecipients.push({
               include: true,
               entity: entity
@@ -110,7 +110,7 @@ angular
             } else {
               geocoder.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
                 var beaconPost = factories.newBeaconPostFactory()
-                  .withSenderId($rootScope.socketState.currentEntity.id)
+                  .withSenderId($rootScope.dataFromServer.currentEntity.id)
                   .withSummaryText(scope.beaconData.title, scope.beaconData.description)
                   .withLocation(address.lat, address.lng)
                   .withAddress(address.streetAddress)

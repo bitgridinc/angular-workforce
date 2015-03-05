@@ -55,25 +55,25 @@ angular
     [         '$rootScope', 'socket', 'SocketHandlerService', '_',
       function($rootScope,   socket,   SocketHandlerService,   _) {
 
-        $rootScope.socketState = {
+        $rootScope.dataFromServer = {
           allEntities: [],
           currentEntity: {},
           beacons: []
         };
         $rootScope.findEntityById = function(id) {
-          console.log('Finding organization by id: ', id, $rootScope.socketState.allEntities);
-          return _.find($rootScope.socketState.allEntities, function(entity) {
+          console.log('Finding organization by id: ', id, $rootScope.dataFromServer.allEntities);
+          return _.find($rootScope.dataFromServer.allEntities, function(entity) {
             return entity.id === id;
           });
         };
         $rootScope.findBeaconById = function(id) {
-          console.log('Finding beacon by id: ', id, $rootScope.socketState.beacons);
-          return _.find($rootScope.socketState.beacons, function(beacon) {
+          console.log('Finding beacon by id: ', id, $rootScope.dataFromServer.beacons);
+          return _.find($rootScope.dataFromServer.beacons, function(beacon) {
             return beacon.id === id;
           });
         };
 
-        SocketHandlerService.initialize($rootScope.socketState);
+        SocketHandlerService.initialize($rootScope.dataFromServer);
         socket.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
         socket.on('newBeacon', _.bind(SocketHandlerService.onNewBeacon, SocketHandlerService));
         socket.on('assistanceResponse', _.bind(SocketHandlerService.onAssistanceResponse, SocketHandlerService));
@@ -85,17 +85,17 @@ angular
     [         '_',
       function(_) {
         return {
-          socketState: undefined,
-          initialize: function(socketState) {
-            console.log('Initializing socketState in the socketHandlerService', socketState);
-            this.socketState = socketState;
+          dataFromServer: undefined,
+          initialize: function(dataFromServer) {
+            console.log('Initializing dataFromServer in the socketHandlerService', dataFromServer);
+            this.dataFromServer = dataFromServer;
           },
           onInit: function(data) {
             console.log('onInit called with: ', data);
-            angular.copy(data, this.socketState);
+            angular.copy(data, this.dataFromServer);
           },
           onNewBeacon: function(request) {
-            console.log('onNewBeacon called with', request, this.socketState);
+            console.log('onNewBeacon called with', request, this.dataFromServer);
             // {
             //   id: Math.floor(Math.random() * 10000),
             //   senderId: payload.senderId,
@@ -105,7 +105,7 @@ angular
             //   lng: payload.lng
             // }
 
-            var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
+            var existingBeacon = _.find(this.dataFromServer.beacons, function(beacon) {
               return beacon.id === request.id;
             });
             if (angular.isDefined(existingBeacon)) {
@@ -113,10 +113,10 @@ angular
               return;
             }
 
-            this.socketState.beacons.push(request);
+            this.dataFromServer.beacons.push(request);
           },
           onAssistanceResponse: function(request) {
-            console.log('onAssistanceResponse called with', request, this.socketState, this);
+            console.log('onAssistanceResponse called with', request, this.dataFromServer, this);
             // {
             //   id: uuid.v4(),
             //   numResponders: offerContents.numResponders,
@@ -133,7 +133,7 @@ angular
               throw new Error('Invalid request');
             }*/
 
-            var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
+            var existingBeacon = _.find(this.dataFromServer.beacons, function(beacon) {
               return beacon.id === request.beaconId;
             });
             if (angular.isUndefined(existingBeacon)) {
@@ -160,7 +160,7 @@ angular
             //   responseId: acceptedResponse.id
             // }
 
-            var existingBeacon = _.find(this.socketState.beacons, function(beacon) {
+            var existingBeacon = _.find(this.dataFromServer.beacons, function(beacon) {
               return beacon.id === request.beaconId;
             });
             if (angular.isUndefined(existingBeacon)) {

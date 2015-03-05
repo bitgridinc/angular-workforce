@@ -8,7 +8,7 @@ describe("the map module (unit)", function() {
   beforeEach(module("modules.providers"));
   beforeEach(module("modules.map"));
   beforeEach(inject(function($rootScope, $controller) {
-    $rootScope.socketState = {
+    $rootScope.dataFromServer = {
       currentEntity: {
         center: {
           lat: 1,
@@ -30,9 +30,9 @@ describe("the map module (unit)", function() {
     expect(scope.defaults.zoomControl).toBe(false);
   });
   it('should define a center object', function() {
-    expect(scope.socketState.currentEntity.center).toBeDefined();
-    expect(scope.socketState.currentEntity.center.lat).toBeDefined();
-    expect(scope.socketState.currentEntity.center.lng).toBeDefined();
-    expect(scope.socketState.currentEntity.center.zoom).toBeDefined();
+    expect(scope.dataFromServer.currentEntity.center).toBeDefined();
+    expect(scope.dataFromServer.currentEntity.center.lat).toBeDefined();
+    expect(scope.dataFromServer.currentEntity.center.lng).toBeDefined();
+    expect(scope.dataFromServer.currentEntity.center.zoom).toBeDefined();
   });
 });

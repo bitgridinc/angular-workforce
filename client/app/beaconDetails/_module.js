@@ -32,7 +32,7 @@ angular
           currentBeacon: undefined
         };
 
-        $rootScope.$watch('socketState.beacons.length', function(newVal, oldVal) {
+        $rootScope.$watch('dataFromServer.beacons.length', function(newVal, oldVal) {
           console.log('The number of beacons changed', newVal, oldVal);
           $rootScope.selectionState.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
         });
@@ -44,7 +44,7 @@ angular
             leafletData.getMap('leaflet').then(function(map) {
 
               var mustContainPoints = [
-                [$rootScope.socketState.currentEntity.center.lat, $rootScope.socketState.currentEntity.center.lng],
+                [$rootScope.dataFromServer.currentEntity.center.lat, $rootScope.dataFromServer.currentEntity.center.lng],
                 [$rootScope.selectionState.currentBeacon.lat, $rootScope.selectionState.currentBeacon.lng]
               ];
 

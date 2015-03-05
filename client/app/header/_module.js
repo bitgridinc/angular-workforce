@@ -8,7 +8,7 @@ angular
   .controller('HeaderController',
     [         '$scope', '$rootScope',
       function($scope,   $rootScope) {
-        $scope.socketState = $rootScope.socketState;
+        $scope.dataFromServer = $rootScope.dataFromServer;
       }
     ]
   );

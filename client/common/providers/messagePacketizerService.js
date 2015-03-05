@@ -9,7 +9,7 @@ require('./_module_init.js')
           packetize: function(contents, beaconId, recipientIds) {
             var packetizedMessage = {
               contents: contents,
-              senderId: $rootScope.socketState.currentEntity.id,
+              senderId: $rootScope.dataFromServer.currentEntity.id,
               beaconId: beaconId,
               recipientIds: recipientIds
             };

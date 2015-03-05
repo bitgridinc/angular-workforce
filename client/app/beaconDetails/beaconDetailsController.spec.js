@@ -19,7 +19,7 @@ describe('the beacon details controller', function() {
     });
 
     // This is the basic state required by the SUT (system under test)
-    $rootScope.socketState = {
+    $rootScope.dataFromServer = {
       beacons: []
     };
   }));

@@ -19,7 +19,7 @@ angular
             zoomControl: false,
             attributionControl: false
           },
-          socketState: $rootScope.socketState
+          dataFromServer: $rootScope.dataFromServer
         });
 
         leafletData.getMap('leaflet').then(function(map) {
@@ -39,8 +39,8 @@ angular
 
         // Adds icon centered over the utility headquarters
         // TODO: Test coverage
-        $rootScope.$watch('socketState.currentEntity', function(entity) {
-          console.log('socketState.currentEntity changed: ', entity);
+        $rootScope.$watch('dataFromServer.currentEntity', function(entity) {
+          console.log('dataFromServer.currentEntity changed: ', entity);
           if (angular.isDefined(entity) && angular.isDefined(entity.center)) {
             var homeIcon = L.icon({
               iconUrl: '/images/orange_utility_marker.png',

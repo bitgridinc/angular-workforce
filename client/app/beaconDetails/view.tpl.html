@@ -39,7 +39,7 @@
     </icon-container>
   </li>
   <!-- TODO: Test this when I can consistently mock the backend during my AATs. -->
-  <li class="bg-list-group-item" ng-if="selectionState.currentBeacon.senderId !== socketState.currentEntity.id">
+  <li class="bg-list-group-item" ng-if="selectionState.currentBeacon.senderId !== dataFromServer.currentEntity.id">
     <button class="bg-wide-btn btn btn-sm btn-default" type="button" ng-click="goToOfferAssistance()">
       Offer Assistance
     </button>

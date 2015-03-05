@@ -37,9 +37,9 @@ describe('the controller for the root module', function() {
 
   // TODO: This is a unit test while the below are integration tests
   it('should have initialized $rootScope with an object to store state from the socket', function() {
-    expect($rootScope.socketState.allEntities).toBeDefined();
-    expect($rootScope.socketState.currentEntity).toBeDefined();
-    expect($rootScope.socketState.beacons).toBeDefined();
+    expect($rootScope.dataFromServer.allEntities).toBeDefined();
+    expect($rootScope.dataFromServer.currentEntity).toBeDefined();
+    expect($rootScope.dataFromServer.beacons).toBeDefined();
   });
 
   describe('after init has been received', function() {
@@ -64,8 +64,8 @@ describe('the controller for the root module', function() {
 
     it('should have copied the init data to $rootScope', function() {
       // Assert
-      expect($rootScope.socketState.allEntities.length).toBe(2);
-      expect($rootScope.socketState.allEntities[0]).toEqual($rootScope.socketState.currentEntity);
+      expect($rootScope.dataFromServer.allEntities.length).toBe(2);
+      expect($rootScope.dataFromServer.allEntities[0]).toEqual($rootScope.dataFromServer.currentEntity);
     });
 
     describe('after message has been received', function() {
@@ -83,7 +83,7 @@ describe('the controller for the root module', function() {
         messageCallback(request);
 
         // Assert
-        expect($rootScope.socketState.beacons.length).toBe(1);
+        expect($rootScope.dataFromServer.beacons.length).toBe(1);
       });
     });
   });

@@ -26,7 +26,7 @@ angular
   .controller('ListBeaconsController',
     [         '$scope',  '$rootScope', 'state',
       function($scope,    $rootScope,   state) {
-        $scope.beacons = $rootScope.socketState.beacons;
+        $scope.beacons = $rootScope.dataFromServer.beacons;
 
         // We don't require logic for backing up as the Create Beacon view covers this functionality
         $scope.onCreateBeaconClick = function() {
