@@ -9,7 +9,6 @@ require('./fluentSharedLibrariesService/fluentSharedLibrariesService.js');
 require('./geocoderService/geocoderService.js');
 require('./lodashService/lodashService.js');
 require('./messagePacketizerService/messagePacketizerService.js');
-//require('./paginationControlFactory.js');
 require('./restService/restService.js');
 require('./socketFactory/socketFactory.js');
 require('./stateService/stateService.js');
