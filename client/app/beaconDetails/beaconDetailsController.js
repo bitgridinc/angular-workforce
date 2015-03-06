@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('BeaconDetailsController',
-    [         '$scope', '$rootScope', 'state', 'leafletData',
-      function($scope,   $rootScope,   state,   leafletData) {
+    [         '$scope', '$rootScope', 'StateService', 'leafletData',
+      function($scope,   $rootScope,   StateService,   leafletData) {
         $rootScope.selectionState = $scope.selectionState = {
           currentBeacon: undefined
         };
@@ -34,9 +34,9 @@ require('./_module')
           }
         });
 
-        $scope.goToBeaconList = function() { state.go('dashboard.beacons.list'); };
-        $scope.goToOfferAssistance = function() { state.go('dashboard.beacons.detail.assist'); };
-        $scope.goToReviewAssistance = function() { state.go('dashboard.beacons.detail.review.response',  { responseId: $rootScope.selectionState.currentBeacon.responses[0].id }); };
+        $scope.goToBeaconList = function() { StateService.go('dashboard.beacons.list'); };
+        $scope.goToOfferAssistance = function() { StateService.go('dashboard.beacons.detail.assist'); };
+        $scope.goToReviewAssistance = function() { StateService.go('dashboard.beacons.detail.review.response',  { responseId: $rootScope.selectionState.currentBeacon.responses[0].id }); };
       }
     ]
   );

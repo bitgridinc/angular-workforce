@@ -9,15 +9,18 @@ require('./../_module_init.js')
         scope: {
           beacon: '='
         },
-        controller: function($scope, $state, state) {
-          $scope.onReviewAssistance = function(beacon) {
-            if ($state.includes('dashboard.beacons.detail.review')) {
-              state.go('dashboard.beacons.detail');
-            } else {
-              state.go('dashboard.beacons.detail.review.response', { id: beacon.id, responseId: beacon.responses[0].id });
-            }
-          };
-        }
+        controller: [
+                  '$scope', '$state', 'StateService',
+          function($scope,   $state,   StateService) {
+            $scope.onReviewAssistance = function(beacon) {
+              if ($state.includes('dashboard.beacons.detail.review')) {
+                StateService.go('dashboard.beacons.detail');
+              } else {
+                StateService.go('dashboard.beacons.detail.review.response', { id: beacon.id, responseId: beacon.responses[0].id });
+              }
+            };
+          }
+        ]
       }
     }
   );

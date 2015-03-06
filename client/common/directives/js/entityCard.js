@@ -10,13 +10,16 @@ require('./../_module_init.js')
           iconUrl: '@',
           entityId: '='
         },
-        controller: function($rootScope, $scope) {
-          $scope.$watch('entityId', function(newVal) {
-            if (angular.isDefined(newVal)) {
-              $scope.entity = $rootScope.findEntityById(newVal);
-            }
-          });
-        }
+        controller: [
+                  '$rootScope', '$scope',
+          function($rootScope,   $scope) {
+            $scope.$watch('entityId', function(newVal) {
+              if (angular.isDefined(newVal)) {
+                $scope.entity = $rootScope.findEntityById(newVal);
+              }
+            });
+          }
+        ]
       }
     }
   );

@@ -3,8 +3,8 @@
 require('./_module')
   // TODO: Mock backend so I can AAT this.
   .controller('ReviewAssistanceBodyController',
-    [         '_', '$scope', '$rootScope', 'MessagePacketizer', 'RestService',
-      function(_,   $scope,   $rootScope,   MessagePacketizer,   RestService) {
+    [         '_', '$scope', '$rootScope', 'MessagePacketizerService', 'RestService',
+      function(_,   $scope,   $rootScope,   MessagePacketizerService,   RestService) {
         console.log('Entering ReviewAssistanceBodyController');
 
         var currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
@@ -16,7 +16,7 @@ require('./_module')
         $scope.acceptAssistance = function() {
           // TODO: This is garbage :P
           console.log("Offering this many people to help: ", $scope.currentItem.numResponders);
-          var message = MessagePacketizer.packetize($scope.currentItem.id, $scope.selectionState.currentBeacon.id);
+          var message = MessagePacketizerService.packetize($scope.currentItem.id, $scope.selectionState.currentBeacon.id);
           RestService.acceptAssistance(message);
           $rootScope.$state.go('dashboard.beacons.list');
         };

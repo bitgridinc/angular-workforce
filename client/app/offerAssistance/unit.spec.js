@@ -3,14 +3,14 @@
 describe('the offer assistance controller', function() {
   var $rootScope,
       $scope,
-      $state,
+      stateService,
       restService;
 
   beforeEach(module('modules.offerAssistance'));
-  beforeEach(inject(function (_$rootScope_, _$controller_, _$state_, MessagePacketizer, RestService) {
+  beforeEach(inject(function (_$rootScope_, _$controller_, _StateService_, MessagePacketizerService, RestService) {
     $rootScope = _$rootScope_;
     $scope = _$rootScope_.$new();
-    $state = _$state_;
+    stateService = _StateService_;
     restService = RestService;
 
     $rootScope.selectionState = {
@@ -27,8 +27,8 @@ describe('the offer assistance controller', function() {
     _$controller_('OfferAssistanceController', {
       $scope: $scope,
       $rootScope: $rootScope,
-      $state: $state,
-      MessagePacketizer: MessagePacketizer,
+      StateService: stateService,
+      MessagePacketizerService: MessagePacketizerService,
       RestService: restService
     })
   }));
@@ -49,7 +49,7 @@ describe('the offer assistance controller', function() {
     });
     beforeEach(function () {
       spyOn(restService, 'offerAssistance');
-      spyOn($state, 'go');
+      spyOn(stateService, 'go');
     });
 
     describe ('sending the assistance offer', function () {
@@ -69,7 +69,7 @@ describe('the offer assistance controller', function() {
         });
       });
       it ('should change our page state', function () {
-        expect($state.go).toHaveBeenCalled();
+        expect(stateService.go).toHaveBeenCalled();
       });
     });
 
@@ -82,7 +82,7 @@ describe('the offer assistance controller', function() {
         expect(restService.offerAssistance).not.toHaveBeenCalled();
       });
       it ('should change our page state', function () {
-        expect($state.go).toHaveBeenCalled();
+        expect(stateService.go).toHaveBeenCalled();
       });
     });
   });

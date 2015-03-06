@@ -1,4 +1,4 @@
-<ul class="bg-list-group" ng-show="selectionState.currentBeacon">
+<ul class="bg-list-group" ng-if="selectionState.currentBeacon">
   <colored-container class="disable-text-selection" ng-click="goToBeaconList(selectionState.currentBeacon)">
     <div class="media bg-vertically-centered">
       <div class="media-left media-middle">
@@ -45,7 +45,7 @@
     </button>
   </li>
 </ul>
-<div ng-show="!selectionState.currentBeacon">
+<div ng-if="!selectionState.currentBeacon">
   We were unable to locate the beacon you requested.
   <button class="btn btn-sm btn-default" type="button" ng-click="goToBeaconList()">
     Go Back

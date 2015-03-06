@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('OfferAssistanceController',
-    [         '$scope', '$rootScope', '$state', 'MessagePacketizer', 'RestService',
-      function($scope,   $rootScope,   $state,   MessagePacketizer,   RestService) {
+    [         '$scope', '$rootScope', 'StateService', 'MessagePacketizerService', 'RestService',
+      function($scope,   $rootScope,   StateService,   MessagePacketizerService,   RestService) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
 
@@ -25,10 +25,10 @@ require('./_module')
           console.log("You've responded to a beacon with", assist);
           if (assist) {
             // TODO: Prevent responding to a null beacon
-            var message = MessagePacketizer.packetize($scope.assistanceOffer, $scope.selectionState.currentBeacon.id);
+            var message = MessagePacketizerService.packetize($scope.assistanceOffer, $scope.selectionState.currentBeacon.id);
             RestService.offerAssistance(message);
           }
-          $state.go('dashboard.beacons.list');
+          StateService.go('dashboard.beacons.list');
         };
       }
     ]

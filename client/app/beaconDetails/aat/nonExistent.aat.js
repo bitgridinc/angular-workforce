@@ -18,8 +18,8 @@ describe('trying to view the details of a non-existent beacon', function() {
   it('should display an error page', function() {
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/707');
     expect(ptor.isElementPresent(beaconDetailsLocators.goBack)).toBeTruthy();
-    expect(element(beaconDetailsLocators.summaryHeader).isDisplayed()).toBeFalsy();
-    expect(element(beaconDetailsLocators.offerAssistance).isDisplayed()).toBeFalsy();
+    expect(ptor.isElementPresent(beaconDetailsLocators.summaryHeader)).toBeFalsy();
+    expect(ptor.isElementPresent(beaconDetailsLocators.offerAssistance)).toBeFalsy();
   });
 
   it('should provide a Go Back button to go back to the list of beacons', function() {

@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('CreateBeaconController',
-    [         '$rootScope', '$scope', 'state', 'NewBeaconFactory', '_',
-      function($rootScope,   $scope,   state,   NewBeaconFactory,   _) {
+    [         '$rootScope', '$scope', 'StateService', 'NewBeaconFactory', '_',
+      function($rootScope,   $scope,   StateService,   NewBeaconFactory,   _) {
         NewBeaconFactory.initScope($scope);
 
         // Note that a filter *might* be better as we grow as it would be reusable.
@@ -37,7 +37,7 @@ require('./_module')
         };
 
         $scope.goBackToList = function() {
-          state.go('^.list');
+          StateService.go('^.list');
         }
       }
     ]

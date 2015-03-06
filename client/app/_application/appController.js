@@ -3,8 +3,8 @@
 // This controller wires up the $rootScope for consumption by the entire application.
 require('./_module')
   .controller('AppController',
-    [         '$rootScope', 'socket', 'SocketHandlerService', '_',
-      function($rootScope,   socket,   SocketHandlerService,   _) {
+    [         '$rootScope', 'SocketFactory', 'SocketHandlerService', '_',
+      function($rootScope,   SocketFactory,   SocketHandlerService,   _) {
 
         $rootScope.dataFromServer = {
           allEntities: [],
@@ -25,10 +25,10 @@ require('./_module')
         };
 
         SocketHandlerService.initialize($rootScope.dataFromServer);
-        socket.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
-        socket.on('newBeacon', _.bind(SocketHandlerService.onNewBeacon, SocketHandlerService));
-        socket.on('assistanceResponse', _.bind(SocketHandlerService.onAssistanceResponse, SocketHandlerService));
-        socket.on('acceptedAssistance', _.bind(SocketHandlerService.onAcceptedAssistance, SocketHandlerService));
+        SocketFactory.on('init', _.bind(SocketHandlerService.onInit, SocketHandlerService));
+        SocketFactory.on('newBeacon', _.bind(SocketHandlerService.onNewBeacon, SocketHandlerService));
+        SocketFactory.on('assistanceResponse', _.bind(SocketHandlerService.onAssistanceResponse, SocketHandlerService));
+        SocketFactory.on('acceptedAssistance', _.bind(SocketHandlerService.onAcceptedAssistance, SocketHandlerService));
       }
     ]
   );

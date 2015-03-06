@@ -1,7 +1,7 @@
 "use strict";
 
 require('./../_module_init.js')
-  .service('state',
+  .service('StateService',
     [         '$state',
       function($state) {
         return {
@@ -12,4 +12,16 @@ require('./../_module_init.js')
         };
       }
     ]
-  );
+  )
+  .service('state',
+  [         '$state',
+    function($state) {
+      console.log('HERE HERE');
+      return {
+        go: function(to, /**Object=*/params) {
+          console.log('WHOA: Transitioning to state: ', to, params);
+        }
+      };
+    }
+  ]
+);

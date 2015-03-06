@@ -1,7 +1,7 @@
 "use strict";
 
 require('./../_module_init.js')
-  .service('MessagePacketizer',
+  .service('MessagePacketizerService',
     [         '$rootScope',
       function($rootScope) {
         return {

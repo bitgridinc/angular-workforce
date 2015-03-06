@@ -9,13 +9,16 @@ require('./../_module_init.js')
           organizationId: '='
         },
         template: '{{organization.name}}',
-        controller: function($rootScope, $scope) {
-          $scope.$watch('organizationId', function(newVal) {
-            if (angular.isDefined(newVal)) {
-              $scope.organization = $rootScope.findEntityById(newVal);
-            }
-          });
-        }
+        controller: [
+                  '$rootScope', '$scope',
+          function($rootScope,   $scope) {
+            $scope.$watch('organizationId', function(newVal) {
+              if (angular.isDefined(newVal)) {
+                $scope.organization = $rootScope.findEntityById(newVal);
+              }
+            });
+          }
+        ]
       }
     }
   );

@@ -9,13 +9,16 @@ require('./../_module_init.js')
         scope: {
           entityId: '='
         },
-        controller: function($rootScope, $scope) {
-          $scope.$watch('entityId', function(newVal) {
-            if (angular.isDefined(newVal)) {
-              $scope.entity = $rootScope.findEntityById(newVal);
-            }
-          });
-        }
+        controller: [
+                  '$rootScope', '$scope',
+          function($rootScope,   $scope) {
+            $scope.$watch('entityId', function(newVal) {
+              if (angular.isDefined(newVal)) {
+                $scope.entity = $rootScope.findEntityById(newVal);
+              }
+            });
+          }
+        ]
       }
     }
   );

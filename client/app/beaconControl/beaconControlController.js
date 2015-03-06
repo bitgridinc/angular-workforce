@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('BeaconControlController',
-    [         '$scope', '$state', 'state',
-      function($scope,   $state,   state) {
+    [         '$scope', '$state', 'StateService',
+      function($scope,   $state,   StateService) {
         function isMyBeaconsViewOpen() {
           return $state.includes('dashboard.beacons');
         }
@@ -11,10 +11,10 @@ require('./_module')
         $scope.isToggled = isMyBeaconsViewOpen();
         $scope.toggleMyBeaconsButton = function() {
           if (isMyBeaconsViewOpen()) {
-            state.go('dashboard');
+            StateService.go('dashboard');
             $scope.isToggled = false;
           } else {
-            state.go('dashboard.beacons.list');
+            StateService.go('dashboard.beacons.list');
             $scope.isToggled = true;
           }
         };

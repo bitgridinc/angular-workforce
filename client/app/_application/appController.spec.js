@@ -1,7 +1,7 @@
 "use strict";
 
 describe('the controller for the root module', function() {
-  var socketMock,
+  var socketFactoryMock,
       $rootScope,
       service,
       initCallback,
@@ -14,25 +14,25 @@ describe('the controller for the root module', function() {
     };
 
     module(function($provide) {
-      $provide.value('socket', socketMock);
+      $provide.value('SocketFactory', socketMock);
     });
   });*/
   beforeEach(inject(function(_$rootScope_, _SocketHandlerService_, _$controller_) {
     $rootScope = _$rootScope_;
     service = _SocketHandlerService_;
-    socketMock = {
+    socketFactoryMock = {
       on: jasmine.createSpy()
     };
 
     _$controller_('AppController', {
       $rootScope: $rootScope,
-      socket: socketMock,
+      SocketFactory: socketFactoryMock,
       SocketHandlerService: service
     });
   }));
   beforeEach(function() {
-    initCallback = socketMock.on.calls.argsFor(0)[1];
-    messageCallback = socketMock.on.calls.argsFor(1)[1];
+    initCallback = socketFactoryMock.on.calls.argsFor(0)[1];
+    messageCallback = socketFactoryMock.on.calls.argsFor(1)[1];
   });
 
   // TODO: This is a unit test while the below are integration tests

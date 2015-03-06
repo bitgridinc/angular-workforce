@@ -46,7 +46,7 @@ describe('the view that displays the details of', function() {
     });
 
     it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
-      expect(element(beaconDetailsLocators.goBack).isDisplayed()).toBeFalsy();
+      expect(ptor.isElementPresent(beaconDetailsLocators.goBack)).toBeFalsy();
       ptor.findElement(beaconDetailsLocators.summaryHeader).click();
       expect(browser.getCurrentUrl()).not.toContain('/117');
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');

@@ -23,7 +23,7 @@ require('./../_module_init.js')
     });
     return socket;
   }])
-  .factory('socket', ['$rootScope', 'unwrappedSocket', function($rootScope, socket){
+  .factory('SocketFactory', ['$rootScope', 'unwrappedSocket', function($rootScope, socket){
     var wrappedSocket = {};
 
     wrappedSocket.bare = socket;

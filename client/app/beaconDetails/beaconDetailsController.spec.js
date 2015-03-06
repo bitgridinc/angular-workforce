@@ -3,18 +3,18 @@
 describe('the beacon details controller', function() {
   var $scope,
       $rootScope,
-      $state;
+      stateService;
 
   beforeEach(module('modules.beaconDetails'));
-  beforeEach(inject(function(_$rootScope_, _$state_, _$controller_, _leafletData_) {
+  beforeEach(inject(function(_$rootScope_, _StateService_, _$controller_, _leafletData_) {
     $scope = _$rootScope_.$new();
-    $state = _$state_;
+    stateService = _StateService_;
     $rootScope = _$rootScope_;
 
     _$controller_('BeaconDetailsController', {
       $scope: $scope,
       $rootScope: $rootScope,
-      $state: $state,
+      StateService: stateService,
       leafletData: _leafletData_
     });
 
