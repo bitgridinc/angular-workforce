@@ -16,7 +16,6 @@ require('./_module')
 
         leafletData.getMap('leaflet').then(function(map) {
           L.esri.basemapLayer('Streets').addTo(map);
-          L.Control.geocoder().addTo(map);
 
           var miniMapLayer = L.esri.basemapLayer('Streets', {
             hideLogo: true,
