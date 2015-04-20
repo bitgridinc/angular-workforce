@@ -16,16 +16,6 @@ require('./_module')
 
         leafletData.getMap('leaflet').then(function(map) {
           L.esri.basemapLayer('Streets').addTo(map);
-
-          var miniMapLayer = L.esri.basemapLayer('Streets', {
-            hideLogo: true,
-            minZoom: 0,
-            maxZoom: 13
-          });
-          new L.Control.MiniMap(miniMapLayer, {
-            toggleDisplay: true,
-            zoomLevelOffset: -6
-          }).addTo(map);
         });
 
         // TODO: Test (perhaps break away first)
