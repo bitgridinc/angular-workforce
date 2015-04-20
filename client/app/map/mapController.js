@@ -2,21 +2,21 @@
 
 require('./_module')
   .controller('MapController',
-    [         '$scope', '$rootScope', 'leafletData', 'MapExtentService',
-      function($scope,   $rootScope,   leafletData,   MapExtentService) {
+    [         '$scope', '$rootScope', 'MapExtentService',
+      function($scope,   $rootScope,   MapExtentService) {
         angular.extend($scope, {
-          defaults: {
+          /*defaults: {
             // Note: This MUST be "" as any other values negatively affect the performance of loading tiles. Don't know why.
             tileLayer: "",
             zoomControl: false,
             attributionControl: false
-          },
+          },*/
           dataFromServer: $rootScope.dataFromServer
         });
 
-        leafletData.getMap('leaflet').then(function(map) {
+        /*leafletData.getMap('leaflet').then(function(map) {
           L.esri.basemapLayer('Streets').addTo(map);
-        });
+        });*/
 
         // TODO: Test (perhaps break away first)
         $rootScope.$watch('$stateParams.id', function(newlySelectedBeaconId) {
@@ -32,7 +32,7 @@ require('./_module')
 
         // Adds icon centered over the utility headquarters
         // TODO: Test coverage
-        $rootScope.$watch('dataFromServer.currentEntity', function(entity) {
+        /*$rootScope.$watch('dataFromServer.currentEntity', function(entity) {
           console.log('dataFromServer.currentEntity changed: ', entity);
           if (angular.isDefined(entity) && angular.isDefined(entity.center)) {
             var homeIcon = L.icon({
@@ -43,7 +43,7 @@ require('./_module')
               L.marker([entity.center.lat, entity.center.lng], { icon: homeIcon }).addTo(map);
             });
           }
-        });
+        });*/
       }
     ]
   );
