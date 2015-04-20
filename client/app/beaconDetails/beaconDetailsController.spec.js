@@ -6,15 +6,14 @@ describe('the beacon details controller', function() {
       userNavigationService;
 
   beforeEach(module('modules.beaconDetails'));
-  beforeEach(inject(function(_$rootScope_, _UserNavigationService_, _$controller_, _leafletData_) {
+  beforeEach(inject(function(_$rootScope_, _UserNavigationService_, _$controller_) {
     $scope = _$rootScope_.$new();
     userNavigationService = _UserNavigationService_;
     $rootScope = _$rootScope_;
 
     _$controller_('BeaconDetailsController', {
       $scope: $scope,
-      $rootScope: $rootScope,
-      leafletData: _leafletData_
+      $rootScope: $rootScope
     });
 
     // This is the basic state required by the SUT (system under test)
