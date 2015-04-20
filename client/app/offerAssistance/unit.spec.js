@@ -48,7 +48,7 @@ describe('the offer assistance controller', function() {
     });
     beforeEach(function () {
       spyOn(restService, 'offerAssistance');
-      spyOn($rootScope.userNavigationService, 'go');
+      spyOn($rootScope.userNavigationService, 'navigateTo');
     });
 
     describe ('sending the assistance offer', function () {
@@ -68,7 +68,7 @@ describe('the offer assistance controller', function() {
         });
       });
       it ('should change our page state', function () {
-        expect($rootScope.userNavigationService.go).toHaveBeenCalled();
+        expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalled();
       });
     });
 
@@ -81,7 +81,7 @@ describe('the offer assistance controller', function() {
         expect(restService.offerAssistance).not.toHaveBeenCalled();
       });
       it ('should change our page state', function () {
-        expect($rootScope.userNavigationService.go).toHaveBeenCalled();
+        expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalled();
       });
     });
   });

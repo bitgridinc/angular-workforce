@@ -8,15 +8,15 @@ require('./_module')
 
         // We don't require logic for backing up as the Create Beacon view covers this functionality
         $scope.onCreateBeaconClick = function() {
-          $rootScope.userNavigationService.go('^.create');
+          $rootScope.userNavigationService.navigateTo('^.create');
         };
 
         $scope.onSelectBeacon = function(beacon) {
-          $rootScope.userNavigationService.go('^.detail', { id: beacon.id });
+          $rootScope.userNavigationService.navigateTo('^.detail', { id: beacon.id });
         };
 
         $scope.onReviewAssistance = function(beacon) {
-          $rootScope.userNavigationService.go('^.detail.review', { id: beacon.id });
+          $rootScope.userNavigationService.navigateTo('^.detail.review', { id: beacon.id });
         };
       }
     ]

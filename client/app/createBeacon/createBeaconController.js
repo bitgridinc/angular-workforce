@@ -37,7 +37,7 @@ require('./_module')
         };
 
         $scope.goBackToList = function() {
-          $rootScope.userNavigationService.go('^.list');
+          $rootScope.userNavigationService.navigateTo('^.list');
         }
       }
     ]

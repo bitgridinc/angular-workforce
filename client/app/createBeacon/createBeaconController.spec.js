@@ -2,16 +2,14 @@
 
 describe('the create beacon controller', function() {
   var $scope,
-      $state,
       $rootScope,
       factory;
 
   beforeEach(module('modules.createBeacon'));
-  beforeEach(inject(function (_$rootScope_, _$state_, _$controller_, _NewBeaconFactory_) {
+  beforeEach(inject(function (_$rootScope_, _$controller_, _NewBeaconFactory_) {
     factory = _NewBeaconFactory_;
 
     $scope = _$rootScope_.$new();
-    $state = _$state_;
     $rootScope = _$rootScope_;
 
     // This is the basic state required by the SUT (system under test)
@@ -34,7 +32,6 @@ describe('the create beacon controller', function() {
     _$controller_('CreateBeaconController', {
       $scope: $scope,
       $rootScope: $rootScope,
-      $state: $state,
       NewBeaconFactory: _NewBeaconFactory_
     });
   }));
@@ -44,9 +41,7 @@ describe('the create beacon controller', function() {
     expect($scope.possibleRecipients.length).toBe($rootScope.dataFromServer.allEntities.length - 1);
   });
   it('should error when no recipients are selected', function() {
-    spyOn($state, 'go');
     $scope.possibleRecipients[0].include = false;
     expect(function() { return $scope.completeNewBeacon(true); }).toThrowError();
-    expect($state.go).not.toHaveBeenCalled();
   });
 });

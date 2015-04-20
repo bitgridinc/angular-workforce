@@ -56,7 +56,7 @@ describe('the controller for the My Beacons button', function() {
 
     it('should maintain a scope\'d variable that corresponds to whether the My Beacons button is open or closed', function() {
       // Arrange
-      spyOn(userNavigationService, 'go');
+      spyOn(userNavigationService, 'navigateTo');
 
       // Act
       $scope.toggleMyBeaconsButton();

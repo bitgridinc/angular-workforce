@@ -28,7 +28,7 @@ require('./_module')
             var message = MessagePacketizerService.packetize($scope.assistanceOffer, $scope.selectionState.currentBeacon.id);
             RestService.offerAssistance(message);
           }
-          $rootScope.userNavigationService.go('dashboard.beacons.list');
+          $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');
         };
       }
     ]

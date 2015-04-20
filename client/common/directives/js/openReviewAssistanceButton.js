@@ -14,9 +14,9 @@ require('./../_module_init.js')
           function($scope,   UserNavigationService) {
             $scope.onReviewAssistance = function(beacon) {
               if (UserNavigationService.doesUserNavigationStateInclude('dashboard.beacons.detail.review')) {
-                UserNavigationService.go('dashboard.beacons.detail');
+                UserNavigationService.navigateTo('dashboard.beacons.detail');
               } else {
-                UserNavigationService.go('dashboard.beacons.detail.review.response', { id: beacon.id, responseId: beacon.responses[0].id });
+                UserNavigationService.navigateTo('dashboard.beacons.detail.review.response', { id: beacon.id, responseId: beacon.responses[0].id });
               }
             };
           }

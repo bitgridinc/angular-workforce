@@ -11,10 +11,10 @@ require('./_module')
         $scope.isToggled = isMyBeaconsViewOpen();
         $scope.toggleMyBeaconsButton = function() {
           if (isMyBeaconsViewOpen()) {
-            UserNavigationService.go('dashboard');
+            UserNavigationService.navigateTo('dashboard');
             $scope.isToggled = false;
           } else {
-            UserNavigationService.go('dashboard.beacons.list');
+            UserNavigationService.navigateTo('dashboard.beacons.list');
             $scope.isToggled = true;
           }
         };

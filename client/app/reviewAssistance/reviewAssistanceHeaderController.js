@@ -14,7 +14,7 @@ require('./_module')
           $scope.totalItems = items.length;
 
           $scope.changePage = function(newPageIndex) {
-            $rootScope.userNavigationService.go('dashboard.beacons.detail.review.response', { responseId: items[newPageIndex-1].id })
+            $rootScope.userNavigationService.navigateTo('dashboard.beacons.detail.review.response', { responseId: items[newPageIndex-1].id })
           };
 
           $scope.changePage(1);
