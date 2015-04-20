@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('OfferAssistanceController',
-    [         '$scope', '$rootScope', 'StateService', 'MessagePacketizerService', 'RestService',
-      function($scope,   $rootScope,   StateService,   MessagePacketizerService,   RestService) {
+    [         '$scope', '$rootScope', 'UserNavigationService', 'MessagePacketizerService', 'RestService',
+      function($scope,   $rootScope,   UserNavigationService,   MessagePacketizerService,   RestService) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
 
@@ -28,7 +28,7 @@ require('./_module')
             var message = MessagePacketizerService.packetize($scope.assistanceOffer, $scope.selectionState.currentBeacon.id);
             RestService.offerAssistance(message);
           }
-          StateService.go('dashboard.beacons.list');
+          UserNavigationService.go('dashboard.beacons.list');
         };
       }
     ]

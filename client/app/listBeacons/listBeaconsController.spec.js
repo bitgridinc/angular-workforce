@@ -3,14 +3,14 @@
 describe('the beacon list controller', function() {
   var $scope,
       $rootScope,
-      stateService,
+      userNavigationService,
       $controller;
 
   beforeEach(module('modules.providers'));
   beforeEach(module('modules.listBeacons'));
-  beforeEach(inject(function(_$rootScope_, _StateService_, _$controller_) {
+  beforeEach(inject(function(_$rootScope_, _UserNavigationService_, _$controller_) {
     $scope = _$rootScope_.$new();
-    stateService = _StateService_;
+    userNavigationService = _UserNavigationService_;
     $rootScope = _$rootScope_;
     $controller = _$controller_;
   }));
@@ -25,7 +25,7 @@ describe('the beacon list controller', function() {
     $controller('ListBeaconsController', {
       $rootScope: $rootScope,
       $scope: $scope,
-      StateService: stateService
+      UserNavigationService: userNavigationService
     });
 
     // Assert

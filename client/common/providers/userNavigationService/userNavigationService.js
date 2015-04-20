@@ -1,7 +1,7 @@
 "use strict";
 
 require('./../_module_init.js')
-  .service('StateService',
+  .service('UserNavigationService',
     [         '$state',
       function($state) {
         return {

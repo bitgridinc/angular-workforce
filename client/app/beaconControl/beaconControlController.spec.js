@@ -4,22 +4,22 @@ describe('the controller for the My Beacons button', function() {
   var $scope,
       $rootScope,
       $state,
-      stateService,
+      userNavigationService,
       $controller;
 
   function initializeController() {
     $controller('BeaconControlController', {
       $scope: $scope,
       $state: $state,
-      StateService: stateService
+      UserNavigationService: userNavigationService
     });
   }
 
   beforeEach(module('modules.beaconControl'));
-  beforeEach(inject(function(_$rootScope_, _$state_, _StateService_, _$controller_) {
+  beforeEach(inject(function(_$rootScope_, _$state_, _UserNavigationService_, _$controller_) {
     $scope = _$rootScope_.$new();
     $state = _$state_;
-    stateService = _StateService_;
+    userNavigationService = _UserNavigationService_;
     $rootScope = _$rootScope_;
     $controller = _$controller_;
   }));
@@ -56,7 +56,7 @@ describe('the controller for the My Beacons button', function() {
 
     it('should maintain a scope\'d variable that corresponds to whether the My Beacons button is open or closed', function() {
       // Arrange
-      spyOn(stateService, 'go');
+      spyOn(userNavigationService, 'go');
 
       // Act
       $scope.toggleMyBeaconsButton();

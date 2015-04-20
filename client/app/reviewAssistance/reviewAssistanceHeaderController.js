@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('ReviewAssistanceHeaderController',
-    [         '$scope', '$rootScope', 'StateService',
-      function($scope,   $rootScope,   StateService) {
+    [         '$scope', '$rootScope', 'UserNavigationService',
+      function($scope,   $rootScope,   UserNavigationService) {
         console.log('Entering ReviewAssistanceHeaderController');
 
         function initializeScope($scope, items) {
@@ -14,7 +14,7 @@ require('./_module')
           $scope.totalItems = items.length;
 
           $scope.changePage = function(newPageIndex) {
-            StateService.go('dashboard.beacons.detail.review.response', { responseId: items[newPageIndex-1].id })
+            UserNavigationService.go('dashboard.beacons.detail.review.response', { responseId: items[newPageIndex-1].id })
           };
 
           $scope.changePage(1);
