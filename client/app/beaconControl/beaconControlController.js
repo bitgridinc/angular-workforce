@@ -2,10 +2,10 @@
 
 require('./_module')
   .controller('BeaconControlController',
-    [         '$scope', '$state', 'UserNavigationService',
-      function($scope,   $state,   UserNavigationService) {
+    [         '$scope', 'UserNavigationService',
+      function($scope,   UserNavigationService) {
         function isMyBeaconsViewOpen() {
-          return $state.includes('dashboard.beacons');
+          return UserNavigationService.doesUserNavigationStateInclude('dashboard.beacons');
         }
 
         $scope.isToggled = isMyBeaconsViewOpen();

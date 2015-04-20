@@ -10,10 +10,10 @@ require('./../_module_init.js')
           beacon: '='
         },
         controller: [
-                  '$scope', '$state', 'UserNavigationService',
-          function($scope,   $state,   UserNavigationService) {
+                  '$scope', 'UserNavigationService',
+          function($scope,   UserNavigationService) {
             $scope.onReviewAssistance = function(beacon) {
-              if ($state.includes('dashboard.beacons.detail.review')) {
+              if (UserNavigationService.doesUserNavigationStateInclude('dashboard.beacons.detail.review')) {
                 UserNavigationService.go('dashboard.beacons.detail');
               } else {
                 UserNavigationService.go('dashboard.beacons.detail.review.response', { id: beacon.id, responseId: beacon.responses[0].id });
