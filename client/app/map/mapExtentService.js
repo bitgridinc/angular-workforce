@@ -2,11 +2,19 @@
 
 require('./_module')
   .service('MapExtentService',
-    [
-      function() {
+    [         '$rootScope', 'leafletData',
+      function($rootScope,   leafletData) {
         return {
-          ensureExtentContainsCurrentBeacon: function(beacon) {
-            console.log('AAAAAAAAFDHGFSD New Current Beacon: ', beacon);
+          ensureContainsPoints: function(pointsToContain) {
+            console.log('ensureContainsPoints called with: ', pointsToContain);
+            leafletData.getMap('leaflet').then(function(map) {
+              var bounds = map.getBounds();
+              if (!bounds.contains(pointsToContain[0]) || !bounds.contains(pointsToContain[1])) {
+                map.fitBounds(pointsToContain, {
+                  padding: [50, 50]
+                });
+              }
+            });
           }
         }
       }

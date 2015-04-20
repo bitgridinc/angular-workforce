@@ -29,8 +29,16 @@ require('./_module')
           }).addTo(map);
         });
 
-        $rootScope.$watch('selectionState.currentBeacon', function(newCurrentBeacon) {
-          MapExtentService.ensureExtentContainsCurrentBeacon(newCurrentBeacon);
+        // TODO: Test (perhaps break away first)
+        $rootScope.$watch('$stateParams.id', function(newlySelectedBeaconId) {
+          var newlySelectedBeacon = $rootScope.findBeaconById(newlySelectedBeaconId);
+          if (angular.isDefined(newlySelectedBeacon)) {
+            var mustContainPoints = [
+              [ $rootScope.dataFromServer.currentEntity.center.lat, $rootScope.dataFromServer.currentEntity.center.lng ],
+              [ newlySelectedBeacon.lat, newlySelectedBeacon.lng ]
+            ];
+            MapExtentService.ensureContainsPoints(mustContainPoints);
+          }
         });
 
         // Adds icon centered over the utility headquarters
