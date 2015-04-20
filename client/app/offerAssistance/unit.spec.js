@@ -10,9 +10,9 @@ describe('the offer assistance controller', function() {
   beforeEach(inject(function (_$rootScope_, _$controller_, _UserNavigationService_, MessagePacketizerService, RestService) {
     $rootScope = _$rootScope_;
     $scope = _$rootScope_.$new();
-    userNavigationService = _UserNavigationService_;
     restService = RestService;
 
+    $rootScope.userNavigationService = _UserNavigationService_;
     $rootScope.selectionState = {
       currentBeacon: {
         id: '1'
@@ -27,7 +27,6 @@ describe('the offer assistance controller', function() {
     _$controller_('OfferAssistanceController', {
       $scope: $scope,
       $rootScope: $rootScope,
-      UserNavigationService: userNavigationService,
       MessagePacketizerService: MessagePacketizerService,
       RestService: restService
     })
@@ -49,7 +48,7 @@ describe('the offer assistance controller', function() {
     });
     beforeEach(function () {
       spyOn(restService, 'offerAssistance');
-      spyOn(userNavigationService, 'go');
+      spyOn($rootScope.userNavigationService, 'go');
     });
 
     describe ('sending the assistance offer', function () {
@@ -69,7 +68,7 @@ describe('the offer assistance controller', function() {
         });
       });
       it ('should change our page state', function () {
-        expect(userNavigationService.go).toHaveBeenCalled();
+        expect($rootScope.userNavigationService.go).toHaveBeenCalled();
       });
     });
 
@@ -82,7 +81,7 @@ describe('the offer assistance controller', function() {
         expect(restService.offerAssistance).not.toHaveBeenCalled();
       });
       it ('should change our page state', function () {
-        expect(userNavigationService.go).toHaveBeenCalled();
+        expect($rootScope.userNavigationService.go).toHaveBeenCalled();
       });
     });
   });

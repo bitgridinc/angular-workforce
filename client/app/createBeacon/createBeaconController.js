@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('CreateBeaconController',
-    [         '$rootScope', '$scope', 'UserNavigationService', 'NewBeaconFactory', '_',
-      function($rootScope,   $scope,   UserNavigationService,   NewBeaconFactory,   _) {
+    [         '$rootScope', '$scope', 'NewBeaconFactory', '_',
+      function($rootScope,   $scope,   NewBeaconFactory,   _) {
         NewBeaconFactory.initScope($scope);
 
         // Note that a filter *might* be better as we grow as it would be reusable.
@@ -37,7 +37,7 @@ require('./_module')
         };
 
         $scope.goBackToList = function() {
-          UserNavigationService.go('^.list');
+          $rootScope.userNavigationService.go('^.list');
         }
       }
     ]

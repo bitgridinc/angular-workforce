@@ -14,7 +14,6 @@ describe('the beacon details controller', function() {
     _$controller_('BeaconDetailsController', {
       $scope: $scope,
       $rootScope: $rootScope,
-      UserNavigationService: userNavigationService,
       leafletData: _leafletData_
     });
 
