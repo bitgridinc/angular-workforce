@@ -34,9 +34,17 @@ require('./_module')
           }
         });
 
-        $scope.goToBeaconList = function() { $rootScope.userNavigationService.navigateTo('dashboard.beacons.list'); };
-        $scope.goToOfferAssistance = function() { $rootScope.userNavigationService.navigateTo('dashboard.beacons.detail.assist'); };
-        $scope.goToReviewAssistance = function() { $rootScope.userNavigationService.navigateTo('dashboard.beacons.detail.review.response',  { responseId: $rootScope.selectionState.currentBeacon.responses[0].id }); };
+        $scope.goToBeaconList = function() {
+          $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');
+        };
+        $scope.goToOfferAssistance = function() {
+          $rootScope.userNavigationService.navigateTo('dashboard.beacons.detail.assist');
+        };
+        $scope.goToReviewAssistance = function() {
+          $rootScope.userNavigationService.navigateTo(
+            'dashboard.beacons.detail.review.response',
+            { responseId: $rootScope.selectionState.currentBeacon.responses[0].id });
+        };
       }
     ]
   );
