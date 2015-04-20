@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('MapController',
-    [         '$scope', '$rootScope', 'leafletData',
-      function($scope,   $rootScope,   leafletData) {
+    [         '$scope', '$rootScope', 'leafletData', 'MapExtentService',
+      function($scope,   $rootScope,   leafletData,   MapExtentService) {
         angular.extend($scope, {
           defaults: {
             // Note: This MUST be "" as any other values negatively affect the performance of loading tiles. Don't know why.
@@ -27,6 +27,10 @@ require('./_module')
             toggleDisplay: true,
             zoomLevelOffset: -6
           }).addTo(map);
+        });
+
+        $rootScope.$watch('selectionState.currentBeacon', function(newCurrentBeacon) {
+          MapExtentService.ensureExtentContainsCurrentBeacon(newCurrentBeacon);
         });
 
         // Adds icon centered over the utility headquarters

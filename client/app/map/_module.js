@@ -11,3 +11,4 @@ module.exports =
   );
 
 require('./mapController');
+require('./mapExtentService');
