@@ -1,13 +1,6 @@
-
 <!DOCTYPE html>
 <html ng-app="app">
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <script>
-      var dojoConfig = { isDebug: true };
-    </script>
-
     <base href="/">
     <title>BitGrid</title>
     <link rel="stylesheet" href="bower/ngDialog/css/ngDialog.css">
@@ -15,12 +8,13 @@
     <link rel="stylesheet" href="bower/bootstrap-additions/dist/bootstrap-additions.min.css">
     <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.13/esri/css/esri.css">
     <link rel="stylesheet" href="css/app.css">
-    <script type="text/javascript" src="http://js.arcgis.com/3.13"></script>
     <script type="text/javascript" src="js/bundle.js"></script>
+    <!-- TODO: Why doesn't this work when loaded through Bower? -->
+    <script src="bower/angular-esri-map/dist/angular-esri-map.js"></script>
+    <script type="text/javascript" src="http://js.arcgis.com/3.13compact"></script>
   </head>
-  <body ng-controller="AppController">
-  
-    <div ui-view></div>
 
+  <body ng-controller="AppController">
+    <div ui-view></div>
   </body>
 </html>

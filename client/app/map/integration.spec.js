@@ -28,7 +28,7 @@ describe('the map module (integration)', function() {
       expect(moduleDependencies.length).toEqual(1);
     });
     it ('should include Angular directives for Leaflet', function() {
-      expect(dependencyListHasModule('leaflet-directive')).toEqual(true);
+      expect(dependencyListHasModule('esri.map')).toEqual(true);
     });
   })
 });

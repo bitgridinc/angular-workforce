@@ -4,22 +4,8 @@ require('./_module')
   .controller('MapController',
     [         '$scope', '$rootScope', 'MapExtentService',
       function($scope,   $rootScope,   MapExtentService) {
-        /*$scope.map = {
-          center: {
-            lng: -122.45,
-            lat: 37.75
-          },
-          zoom: 13
-        };*/
-        angular.extend($scope, {
-          /*defaults: {
-            // Note: This MUST be "" as any other values negatively affect the performance of loading tiles. Don't know why.
-            tileLayer: "",
-            zoomControl: false,
-            attributionControl: false
-          },*/
-          dataFromServer: $rootScope.dataFromServer
-        });
+        console.log('Entering MapController: ', $rootScope);
+        $scope.dataFromServer = $rootScope.dataFromServer;
 
         /*leafletData.getMap('leaflet').then(function(map) {
           L.esri.basemapLayer('Streets').addTo(map);
