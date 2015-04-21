@@ -1,6 +1,7 @@
 <!-- LeafletController adds variables related to our specific usage around the leaflet tag, such as where the map centers. -->
 <div ng-controller="MapController">
   <esri-map id="map"
+            register-as="map"
             basemap="topo"
             center="dataFromServer.currentEntity.center"
             zoom="dataFromServer.currentEntity.center.zoom">

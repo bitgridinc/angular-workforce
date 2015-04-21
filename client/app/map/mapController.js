@@ -12,7 +12,7 @@ require('./_module')
         });*/
 
         // TODO: Test (perhaps break away first)
-        /*$rootScope.$watch('$stateParams.id', function(newlySelectedBeaconId) {
+        $rootScope.$watch('$stateParams.id', function(newlySelectedBeaconId) {
           var newlySelectedBeacon = $rootScope.findBeaconById(newlySelectedBeaconId);
           if (angular.isDefined(newlySelectedBeacon)) {
             var mustContainPoints = [
@@ -21,7 +21,7 @@ require('./_module')
             ];
             MapExtentService.ensureContainsPoints(mustContainPoints);
           }
-        });*/
+        });
 
         // Adds icon centered over the utility headquarters
         // TODO: Test coverage
