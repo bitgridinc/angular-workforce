@@ -11,7 +11,7 @@ require('./_module')
         $scope.currentItem = _.find(currentBeacon.responses, function(response) {
           return response.id === $rootScope.$stateParams.responseId;
         });
-        $scope.currentEntity = $rootScope.findEntityById($scope.currentItem.senderId);
+        $scope.senderEntity = $rootScope.findEntityById($scope.currentItem.senderId);
 
         $scope.acceptAssistance = function() {
           // TODO: This is garbage :P

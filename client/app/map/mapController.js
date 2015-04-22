@@ -5,7 +5,7 @@ require('./_module')
     [         '$scope', '$rootScope', 'MapExtentService',
       function($scope,   $rootScope,   MapExtentService) {
         console.log('Entering MapController: ', $rootScope);
-        $scope.dataFromServer = $rootScope.dataFromServer;
+        //$scope.dataFromServer = $rootScope.dataFromServer;
 
         /*leafletData.getMap('leaflet').then(function(map) {
           L.esri.basemapLayer('Streets').addTo(map);
