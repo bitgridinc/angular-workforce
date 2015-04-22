@@ -2,9 +2,9 @@
 
 require('./_module')
   .controller('ListBeaconsController',
-    [         '$scope',  '$rootScope',
-      function($scope,    $rootScope) {
-        $scope.beacons = $rootScope.dataFromServer.beacons;
+    [         '$scope',  '$rootScope', 'BeaconVisibilityService',
+      function($scope,    $rootScope,   BeaconVisibilityService) {
+        $scope.beacons = BeaconVisibilityService.filterBeacons($rootScope.dataFromServer.beacons);
 
         // We don't require logic for backing up as the Create Beacon view covers this functionality
         $scope.onCreateBeaconClick = function() {
