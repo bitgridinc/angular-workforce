@@ -2,12 +2,15 @@
 
 require('./_module')
   .service('BeaconVisibilityService',
-    [         '_',
-      function(_) {
-        // TODO: filter beacons where beacon.senderId === currentEntity.id &&
+    [         '_', '$rootScope',
+      function(_,   $rootScope) {
         return {
           filterBeacons: function(beacons) {
-            return beacons;
+            return _.filter(beacons, function(beacon) {
+              // TODO: allow sent ones with responses and no accepted
+              return beacon.senderId !== $rootScope.dataFromServer.currentEntity.id ||
+                     beacon.responses.length > 0;
+            });
           }
         };
       }

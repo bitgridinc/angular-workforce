@@ -26,6 +26,6 @@ describe('the beacon list controller', function() {
     });
 
     // Assert
-    expect($scope.beacons).toBe($rootScope.dataFromServer.beacons);
+    expect($scope.beacons).toEqual($rootScope.dataFromServer.beacons);
   });
 });
