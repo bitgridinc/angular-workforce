@@ -16,14 +16,6 @@ require('./_module')
           },
           onNewBeacon: function(request) {
             console.log('onNewBeacon called with', request, this.dataFromServer);
-            // {
-            //   id: Math.floor(Math.random() * 10000),
-            //   senderId: payload.senderId,
-            //   title: payload.title
-            //   description: payload.description,
-            //   lat: payload.lat,
-            //   lng: payload.lng
-            // }
 
             var existingBeacon = _.find(this.dataFromServer.beacons, function(beacon) {
               return beacon.id === request.id;
@@ -37,13 +29,6 @@ require('./_module')
           },
           onAssistanceResponse: function(request) {
             console.log('onAssistanceResponse called with', request, this.dataFromServer, this);
-            // {
-            //   id: uuid.v4(),
-            //   numResponders: offerContents.numResponders,
-            //   arrivalDate: offerContents.arrivalDate,
-            //   senderId: senderId,
-            //   beaconId: beacon.id
-            // }
 
             var existingBeacon = _.find(this.dataFromServer.beacons, function(beacon) {
               return beacon.id === request.beaconId;
@@ -67,10 +52,6 @@ require('./_module')
           // TODO: Add tests for this method
           onAcceptedAssistance: function(request) {
             console.log('onAcceptedAssistance called with', request);
-            // {
-            //   beaconId: beacon.id,
-            //   responseId: acceptedResponse.id
-            // }
 
             var existingBeacon = _.find(this.dataFromServer.beacons, function(beacon) {
               return beacon.id === request.beaconId;
