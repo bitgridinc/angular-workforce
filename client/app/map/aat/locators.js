@@ -1,8 +1,7 @@
 "use strict";
 
 var mapLocators = function() {
-  this.loadedTile = by.className('leaflet-tile-loaded');
-  this.marker = by.className('leaflet-marker-icon');
+  this.mapLayers = by.id('map_layers');
 };
 
 module.exports = mapLocators;

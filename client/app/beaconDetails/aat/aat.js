@@ -34,17 +34,6 @@ describe('the view that displays the details of', function() {
       expect(element(beaconDetailsLocators.streetAddress).getText()).toContain('53 Park Street');
     });
 
-    it('should ensure the beacon and utility headquarters are visible on the map', function() {
-      var markersPromise = ptor.findElements(mapLocators.marker);
-      protractor.promise.filter(markersPromise, function(marker) {
-        return marker.isDisplayed();
-      })
-        .then(function(visibleMarkers) {
-          // This is the best I know how to test right now. With few markers on the map, it's likely it will stay valid.
-          expect(visibleMarkers.length).toBeGreaterThan(1);
-        });
-    });
-
     it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
       expect(ptor.isElementPresent(beaconDetailsLocators.goBack)).toBeFalsy();
       ptor.findElement(beaconDetailsLocators.summaryHeader).click();
