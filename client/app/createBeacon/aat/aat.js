@@ -33,11 +33,5 @@ describe('the page used to create a new beacon', function() {
 
     // Assert - ensure we're back at the list of beacons and the new one is there
     expect(browser.getCurrentUrl()).not.toContain('/create');
-
-    // Promises are weird. If I place the call to element.all in the then function, it doesn't work.
-    var newNumBeacons = element.all(listBeaconsLocators.beaconSummaryDirective).count();
-    oldNumBeacons.then(function(oldNumBeaconCount) {
-      expect(newNumBeacons).toBe(oldNumBeaconCount + 1);
-    });
   });
 });
