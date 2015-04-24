@@ -7,8 +7,8 @@ require('./_module')
       function(_,   $scope,   $rootScope,   MessagePacketizerService,   RestService) {
         console.log('Entering ReviewAssistanceBodyController');
 
-        var currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
-        $scope.currentItem = _.find(currentBeacon.responses, function(response) {
+        $scope.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
+        $scope.currentItem = _.find($scope.currentBeacon.responses, function(response) {
           return response.id === $rootScope.$stateParams.responseId;
         });
         $scope.senderEntity = $rootScope.findEntityById($scope.currentItem.senderId);
