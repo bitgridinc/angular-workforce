@@ -7,9 +7,10 @@ require('./_module')
         return {
           filterBeacons: function(beacons) {
             return _.filter(beacons, function(beacon) {
-              // TODO: allow sent ones with responses and no accepted
+              // We should only see beacons from other utilities or our own that have responses with none yet accepted
               return beacon.senderId !== $rootScope.dataFromServer.currentEntity.id ||
-                     beacon.responses.length > 0;
+                     (beacon.responses.length > 0 &&
+                      angular.isUndefined(beacon.acceptedAssistance));
             });
           }
         };
