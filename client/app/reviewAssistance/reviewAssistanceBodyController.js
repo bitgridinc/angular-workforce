@@ -18,7 +18,7 @@ require('./_module')
           console.log("Offering this many people to help: ", $scope.currentItem.numResponders);
           var message = MessagePacketizerService.packetize($scope.currentItem.id, $scope.selectionState.currentBeacon.id);
           RestService.acceptAssistance(message);
-          $rootScope.$state.navigateTo('dashboard.beacons.list');
+          $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');
         };
       }
     ]
