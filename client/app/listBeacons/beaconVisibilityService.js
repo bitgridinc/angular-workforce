@@ -10,7 +10,7 @@ require('./_module')
               // We should only see beacons from other utilities or our own that have responses with none yet accepted
               return beacon.senderId !== $rootScope.dataFromServer.currentEntity.id ||
                      (beacon.responses.length > 0 &&
-                      angular.isUndefined(beacon.acceptedAssistance));
+                      beacon.acceptedAssistance.length === 0);
             });
           }
         };

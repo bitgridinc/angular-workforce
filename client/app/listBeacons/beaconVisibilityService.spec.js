@@ -25,22 +25,23 @@ describe('the beacon list controller', function() {
     service = _BeaconVisibilityService_;
   }));
 
-  // TODO: "and finalized"
   it('should filter sender\'s unanswered beacons', function() {
     // Arrange
     var beacons = [
       { // Should be filtered out
         senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
-        responses: []
+        responses: [],
+        acceptedAssistance: []
       },
       { // Should remain because it has a response
         senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
-        responses: [{}]
+        responses: [{}],
+        acceptedAssistance: []
       },
       { // Should be filtered out because it has an accepted response
         senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
         responses: [{}],
-        acceptedAssistance: {}
+        acceptedAssistance: [{}]
       }
     ];
 
