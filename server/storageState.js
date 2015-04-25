@@ -5,64 +5,64 @@ var factories = require('../shared/factories');
 module.exports = {
   entities: [
     {
-      name: 'Tupper Lake',
-      id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
+      name: 'Murfreesboro Electric Department',
+      id: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
       center: {
-        lat: 44.222908,
-        lng: -74.466358,
+        lat: 35.847379,
+        lng: -86.393580,
         zoom: 15
       },
       contact: {
         name: 'Charlie',
-        phone: '111-555-1111'
+        phone: '615-893-5514'
       }
     },
     {
-      name: 'Solvay',
-      id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69',
+      name: 'Morristown Utility Systems',
+      id: '323f8a60-37c6-4d97-a2f8-331c2231e92b',
       center: {
-        lat: 43.061184,
-        lng: -76.212784,
+        lat: 36.195129,
+        lng: -83.309222,
         zoom: 15
       },
       contact: {
         name: 'Chris',
-        phone: '222-555-2222'
+        phone: '423-585-6700'
       }
     },
     {
-      name: 'Richmondville',
-      id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54',
+      name: 'Greeneville Light & Power System',
+      id: '83a33674-be04-4c93-81a3-71a9ca0ce339',
       center: {
-        lat: 42.634715,
-        lng: -74.562904,
+        lat: 36.162546,
+        lng: -82.829386,
         zoom: 15
       },
       contact: {
         name: 'Justin',
-        phone: '333-555-3333'
+        phone: '423-636-6200'
       }
     },
     {
-      name: 'Philadelphia',
-      id: '92f2e499-be81-4f48-b573-5e021250028f',
+      name: 'Memphis Light, Gas and Water',
+      id: '0be19f21-40ca-47b1-9a07-9c9657fe27b5',
       center: {
-        lat: 44.158101,
-        lng: -75.707763,
+        lat: 35.139590,
+        lng: -90.055134,
         zoom: 15
       },
       contact: {
         name: 'Sahil',
-        phone: '444-555-4444'
+        phone: '901-544-6500'
       }
     }
   ],
   beacons: [
     factories.newBeaconFactory()
-      .withIds(117, '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84') // Tupper Lake
-      .withSummaryText('Your Title', 'Your Description')
-      .withLocation(44.248961, -74.485675)
-      .withAddress('53 Park Street')
+      .withIds(117, '7a95759f-3df8-4f16-bb43-24f4329fe3df') // Murfreesboro
+      .withSummaryText('Murfreesboro Title', 'Murfreesboro Description')
+      .withLocation(35.891781, -86.423536)
+      .withAddress('1563 N Thompson Ln')
       .withNumberOfPeople('4-6')
       .withResponse(factories.newAssistanceResponseFactory()
         .withIds('2cf8faaa-5760-41c9-adbf-5a4482ac3469', '7cf52dba-992e-4f3f-bbb7-36f4b1792e69', 117)
@@ -70,8 +70,8 @@ module.exports = {
         .createAssistanceResponse())
       .createBeacon(),
     factories.newBeaconFactory()
-      .withIds(1337, '7cf52dba-992e-4f3f-bbb7-36f4b1792e69') // Solvay
-      .withSummaryText('Their Title', 'Their Description')
+      .withIds(1337, '323f8a60-37c6-4d97-a2f8-331c2231e92b') // Morristown
+      .withSummaryText('Morristown Title', 'Morristown Description')
       .withLocation(42.658379, -78.081735)
       .withAddress('1100 Woods Road')
       .withNumberOfPeople('~8')
