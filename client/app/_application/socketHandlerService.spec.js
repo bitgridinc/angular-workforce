@@ -21,8 +21,8 @@ describe('the service that wraps SocketIO', function() {
 
     describe('after init message has been received', function() {
       var currentEntity = {
-        name: 'Tupper Lake',
-        id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
+        name: 'Murfreesboro Electric Department',
+        id: '7a95759f-3df8-4f16-bb43-24f4329fe3df'
       };
 
       beforeEach(function() {
@@ -30,12 +30,12 @@ describe('the service that wraps SocketIO', function() {
           allEntities: [
             currentEntity,
             {
-              name: 'Silver Springs',
-              id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
+              name: 'Morristown Utility Systems',
+              id: '323f8a60-37c6-4d97-a2f8-331c2231e92b'
             },
             {
-              name: 'Bergen',
-              id: 'c1d8d77c-b4d7-4007-a5ea-a0564c751f54'
+              name: 'Greeneville Light & Power System',
+              id: '83a33674-be04-4c93-81a3-71a9ca0ce339'
             }
           ],
           currentEntity: currentEntity,

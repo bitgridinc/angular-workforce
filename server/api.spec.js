@@ -30,10 +30,10 @@ describe('the create beacon API method', function() {
       {
         uri: serverURL + apiRoutes.createBeacon,
         body: JSON.stringify(factories.newBeaconPostFactory()
-          .withSenderId('55a2726e-43ff-4ea9-8d3e-b7c439ef0e84')
+          .withSenderId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
           .withSummaryText('title', 'description')
           .withLocation(1, 2)
-          .withRecipientId('55a2726e-43ff-4ea9-8d3e-b7c439ef0e84')
+          .withRecipientId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
           .createBeaconPost()
         )
       }
@@ -74,7 +74,7 @@ describe('the offer assistance API method', function() {
             numResponders: 1,
             arrivalDate: new Date()
           },
-          senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
+          senderId: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
           beaconId: 117
         })
       }

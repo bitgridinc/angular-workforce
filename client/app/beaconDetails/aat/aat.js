@@ -20,7 +20,7 @@ describe('the view that displays the details of', function() {
     mapLocators = new MapLocators();
   });
 
-  describe('the Tupper Lake beacon', function() {
+  describe('the Murfreesboro Electric Department beacon', function() {
     beforeEach(function() {
       ptor = protractor.getInstance();
       ptor.get('/#/dashboard/beacons/117');
@@ -28,7 +28,7 @@ describe('the view that displays the details of', function() {
 
     it('should display detailed information about the beacon', function() {
       var summaryHeaderElement = element(beaconDetailsLocators.summaryHeader);
-      expect(summaryHeaderElement.getText()).toContain('Tupper Lake');
+      expect(summaryHeaderElement.getText()).toContain('Murfreesboro Electric Department');
       expect(summaryHeaderElement.getText()).toContain('Your Title');
       expect(summaryHeaderElement.getText()).toContain('Your Description');
       expect(element(beaconDetailsLocators.streetAddress).getText()).toContain('53 Park Street');
@@ -54,7 +54,7 @@ describe('the view that displays the details of', function() {
   });
 
   /* TODO: FIX FIRST */
-  /*describe('the Solvay beacon', function() {
+  /*describe('the Morristown Utility Systems beacon', function() {
     beforeEach(function() {
       ptor = protractor.getInstance();
       ptor.get('/#/dashboard/beacons/1337');

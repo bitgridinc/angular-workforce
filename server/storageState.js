@@ -65,7 +65,7 @@ module.exports = {
       .withAddress('1563 N Thompson Ln')
       .withNumberOfPeople('4-6')
       .withResponse(factories.newAssistanceResponseFactory()
-        .withIds('2cf8faaa-5760-41c9-adbf-5a4482ac3469', '7cf52dba-992e-4f3f-bbb7-36f4b1792e69', 117)
+        .withIds('2cf8faaa-5760-41c9-adbf-5a4482ac3469', '323f8a60-37c6-4d97-a2f8-331c2231e92b', 117)
         .withResponderCrew(4, new Date())
         .createAssistanceResponse())
       .createBeacon(),

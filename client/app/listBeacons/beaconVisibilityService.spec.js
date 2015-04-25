@@ -7,15 +7,15 @@ describe('the beacon list controller', function() {
   beforeEach(module('modules.listBeacons'));
   beforeEach(inject(function($rootScope, _BeaconVisibilityService_) {
     var currentEntity = {
-      name: 'Tupper Lake',
-      id: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84'
+      name: 'Murfreesboro Electric Department',
+      id: '7a95759f-3df8-4f16-bb43-24f4329fe3df'
     };
     $rootScope.dataFromServer = {
       allEntities: [
         currentEntity,
         {
-          name: 'Silver Springs',
-          id: '7cf52dba-992e-4f3f-bbb7-36f4b1792e69'
+          name: 'Morristown Utility Systems',
+          id: '323f8a60-37c6-4d97-a2f8-331c2231e92b'
         }
       ],
       currentEntity: currentEntity,
@@ -29,17 +29,17 @@ describe('the beacon list controller', function() {
     // Arrange
     var beacons = [
       { // Should be filtered out
-        senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
+        senderId: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
         responses: [],
         acceptedAssistance: []
       },
       { // Should remain because it has a response
-        senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
+        senderId: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
         responses: [{}],
         acceptedAssistance: []
       },
       { // Should be filtered out because it has an accepted response
-        senderId: '55a2726e-43ff-4ea9-8d3e-b7c439ef0e84',
+        senderId: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
         responses: [{}],
         acceptedAssistance: [{}]
       }
