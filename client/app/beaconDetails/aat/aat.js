@@ -29,9 +29,9 @@ describe('the view that displays the details of', function() {
     it('should display detailed information about the beacon', function() {
       var summaryHeaderElement = element(beaconDetailsLocators.summaryHeader);
       expect(summaryHeaderElement.getText()).toContain('Murfreesboro Electric Department');
-      expect(summaryHeaderElement.getText()).toContain('Your Title');
-      expect(summaryHeaderElement.getText()).toContain('Your Description');
-      expect(element(beaconDetailsLocators.streetAddress).getText()).toContain('53 Park Street');
+      expect(summaryHeaderElement.getText()).toContain('Murfreesboro Title');
+      expect(summaryHeaderElement.getText()).toContain('Murfreesboro Description');
+      expect(element(beaconDetailsLocators.streetAddress).getText()).toContain('1563 N Thompson Ln');
     });
 
     it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
