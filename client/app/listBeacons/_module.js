@@ -7,5 +7,5 @@ module.exports =
   );
 
 require('./_stateConfig');
-require('./beaconVisibilityService');
 require('./listBeaconsController');
+require('./requiresInputFilter');

@@ -15,7 +15,7 @@ describe('the socket controller', function() {
     var initCalled = false;
     client.on('init', function(data) {
       initCalled = true;
-      expect(data.allEntities.length).toBe(3);
+      expect(data.allEntities.length).toBe(4);
       expect(data.currentEntity.id).toBeDefined();
       expect(data.beacons.length).toBeGreaterThan(1);
     });

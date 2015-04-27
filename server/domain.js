@@ -7,18 +7,18 @@ var uuid = require('node-uuid'),
 module.exports = {
   createBeacon: function(payload){
     return factories.newBeaconFactory()
-      .withIds(Math.floor(Math.random() * 10000), payload.senderId)
-      .withSummaryText(payload.title, payload.description)
-      .withLocation(payload.lat, payload.lng)
-      .withAddress(payload.streetAddress)
-      .withNumberOfPeople(payload.numberOfPeople)
-      .createBeacon();
+                    .withIds(Math.floor(Math.random() * 10000), payload.senderId)
+                    .withSummaryText(payload.title, payload.description)
+                    .withLocation(payload.lat, payload.lng)
+                    .withAddress(payload.streetAddress)
+                    .withNumberOfPeople(payload.numberOfPeople)
+                    .createBeacon();
   },
   offerAssistance: function(senderId, beacon, offerContents){
     var assistanceResponse = factories.newAssistanceResponseFactory()
-      .withIds(uuid.v4(), senderId, beacon.id)
-      .withResponderCrew(offerContents.numResponders, offerContents.arrivalDate)
-      .createAssistanceResponse();
+                                      .withIds(uuid.v4(), senderId, beacon.id)
+                                      .withResponderCrew(offerContents.numResponders, offerContents.arrivalDate)
+                                      .createAssistanceResponse();
     // TODO: Test this specifically
     beacon.responses.push(assistanceResponse);
     return assistanceResponse;
