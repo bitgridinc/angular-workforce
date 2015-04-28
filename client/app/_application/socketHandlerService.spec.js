@@ -48,37 +48,6 @@ describe('the service that wraps SocketIO', function() {
         });
       });
 
-      /*it ('should error if the incoming message does not specify the id, sender id, or is completely empty', function () {
-        // Arrange
-        var invalidMessages = [
-          {
-            contents: {},
-            senderId: currentEntity.id,
-            rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-          },
-          {
-            contents: { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' },
-            senderId: undefined,
-            rootMessageId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-          },
-          {
-            contents: { id: 'e688af0b-63df-48bc-941c-9cc5f750367b' },
-            senderId: currentEntity.id,
-            rootMessageId: undefined
-          },
-          null,
-          undefined
-        ];
-        var invocation = function() {
-          service.onMessage(message);
-        };
-
-        for (var message in invalidMessages) {
-          // Act/Assert
-          expect(invocation).toThrow();
-        }
-      });*/
-
       it ('should store beacons sent in the init message', function() {
         expect(service.dataFromServer.beacons.length).toBe(1);
         expect(service.dataFromServer.beacons[0].senderId).toEqual(currentEntity.id);

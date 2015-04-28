@@ -1,9 +1,12 @@
 <table class="bg-header-container">
   <tr>
     <td class="text-left">
-      You are currently signed in as <b>{{dataFromServer.currentEntity.name}}</b>
+      You are currently signed in as <span ng-if="user"><b>{{user.username}}</b> of</span> <b>{{dataFromServer.currentEntity.name}}</b>
     </td>
-    <td class="text-right">
+    <td class="text-right" style="width: 80px;">
+      <a href="https://www.arcgis.com/sharing/oauth2/authorize?client_id=DwyN6u6H5N2hWTTg&response_type=token&redirect_uri=http://localhost:8080">Login</a>
+    </td>
+    <td class="text-right" style="width: 80px;">
       <a href="#/profile">My Profile</a>
     </td>
   </tr>
