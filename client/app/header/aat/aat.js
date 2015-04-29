@@ -9,18 +9,15 @@ describe('the header', function() {
   beforeEach(function() {
     ptor = protractor.getInstance();
     locators = new Locators();
+    ptor.get('/#/dashboard');
   });
 
-  // I'm no longer displaying the header, at least until we give the demo.
-  /*it('should display a button on every page that the user can click to view their profile', function() {
-    ptor.get('/#/dashboard');
+  it('should display a link that the user can click to view their profile', function() {
     ptor.findElement(locators.myProfile).click();
     expect(browser.getCurrentUrl()).toContain('/#/profile');
-
-    ptor.get('/#/dashboard/beacons');
-    ptor.findElement(locators.myProfile).click();
-    expect(browser.getCurrentUrl()).toContain('/#/profile');
-  });*/
-
-  // TODO: Add a test against the currently signed in as <value> text.
+  });
+  it('should display a link to login to ArcGIS Online', function() {
+    ptor.findElement(locators.login).click();
+    expect(browser.getCurrentUrl()).toContain('https://www.arcgis.com/sharing/oauth2/authorize');
+  });
 });
