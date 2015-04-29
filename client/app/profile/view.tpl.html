@@ -7,6 +7,14 @@
       <label>Organization Name:</label>
       <input class="form-control" type="text" name="name" autofocus="autofocus" id="name" required ng-model="organization.name" />
     </div>
+    <div class="form-group">
+      <label>AGO Username:</label>
+      <input class="form-control" type="text" name="username" autofocus="autofocus" id="username" required ng-model="user.username" />
+    </div>
+    <div class="form-group">
+      <label>AGO Access Token:</label>
+      <input class="form-control" type="text" name="token" autofocus="autofocus" id="token" required ng-model="user.accessToken" />
+    </div>
   </div>
   <div>
     <button class="btn btn-sm btn-success" type="button" ng-click="save()">Save</button>
