@@ -9,10 +9,9 @@ require('./_module')
         return {
           parse: function(url) {
             var result = pathRegex.exec(url);
-            return {
-              accessToken: result[1],
-              username: result[2]
-            }
+            return angular.isArray(result) && result.length >= 3
+              ? { accessToken: result[1], username: result[2] }
+              : undefined;
           }
         };
       }

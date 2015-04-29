@@ -21,4 +21,14 @@ describe("the ArcGIS Online redirect URL parser", function() {
       username: 'chairfield'
     });
   });
+  it('should return undefined if the url is null', function() {
+    // Arrange
+    var url = null;
+
+    // Act
+    var result = service.parse(url);
+
+    // Assert
+    expect(result).toBeUndefined();
+  })
 });
