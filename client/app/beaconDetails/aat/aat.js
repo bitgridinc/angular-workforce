@@ -23,7 +23,8 @@ describe('the view that displays the details of', function() {
   describe('the Murfreesboro Electric Department beacon', function() {
     beforeEach(function() {
       ptor = protractor.getInstance();
-      ptor.get('/#/dashboard/beacons/117');
+      ptor.get('/#/dashboard/beacons/30');
+      browser.driver.sleep(1000);
     });
 
     it('should display detailed information about the beacon', function() {
@@ -37,7 +38,7 @@ describe('the view that displays the details of', function() {
     it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
       expect(ptor.isElementPresent(beaconDetailsLocators.goBack)).toBeFalsy();
       ptor.findElement(beaconDetailsLocators.summaryHeader).click();
-      expect(browser.getCurrentUrl()).not.toContain('/117');
+      expect(browser.getCurrentUrl()).not.toContain('/30');
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
     });
 
@@ -49,7 +50,7 @@ describe('the view that displays the details of', function() {
 
     it('should display a button that allows the user to review offers of assistance', function() {
       ptor.findElement(beaconSummaryLocators.reviewOffersButton).click();
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/117/review');
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/review');
     });
   });
 

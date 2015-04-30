@@ -26,7 +26,7 @@ describe('having the My Beacons button clicked to view the list of existing beac
 
   it('should allow the user to review offers of assistance without having to view the beacon details first', function() {
     element.all(beaconSummaryLocators.reviewOffersButton).get(0).click();
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/117/review');
+    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/review');
   });
 
   describe('clicking an existing beacon', function() {

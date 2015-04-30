@@ -8,7 +8,7 @@ describe('the offer assistance view', function() {
 
   beforeEach(function() {
     ptor = protractor.getInstance();
-    ptor.get('/#/dashboard/beacons/117/assist');
+    ptor.get('/#/dashboard/beacons/30/assist');
   });
 
   beforeEach(function() {
