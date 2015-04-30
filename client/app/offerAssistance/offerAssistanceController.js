@@ -7,18 +7,14 @@ require('./_module')
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
 
+        RestService.getAllUsers().then(function(users) {
+          $scope.users = users.data.users;
+        });
+
         $scope.selectionState = $rootScope.selectionState;
         $scope.assistanceOffer = {
           numResponders: 2,
           arrivalDate: new Date()
-        };
-
-        $scope.open = function($event) {
-          console.log("open called.", $event);
-          $event.preventDefault();
-          $event.stopPropagation();
-
-          $scope.opened = true;
         };
 
         $scope.respond = function(assist) {

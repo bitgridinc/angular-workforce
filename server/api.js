@@ -2,6 +2,7 @@
 
 var domain = require('./domain'),
     beaconDatabase = require('./esri/beaconDatabase/beaconDatabase'),
+    userDatabase = require('./esri/userDatabase/userDatabase'),
     io = require('./socketSetup').instance,
     _ = require('lodash');
 
@@ -73,6 +74,18 @@ module.exports = {
     },
     app: {
       name: 'beacon'
+    }
+  },
+  getAllUsers: {
+    handler: function(request, reply) {
+      console.log('getAllUsers handler called with payload: ', request.payload);
+      userDatabase.getAllUsers().then(function(json) {
+        console.log('getAllUsers handler returning: ', json);
+        reply(json);
+      });
+    },
+    app: {
+      name: 'users'
     }
   }
 };

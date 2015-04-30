@@ -8,4 +8,5 @@ module.exports =
   );
 
 require('./_stateConfig');
+require('./calendarController');
 require('./offerAssistanceController');

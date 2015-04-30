@@ -18,6 +18,10 @@ require('./../_module_init.js')
           acceptAssistance: function(acceptedOfferData) {
             console.log('Sending data to accept an offer:', acceptedOfferData);
             $http.post(apiRoutes.acceptAssistance, acceptedOfferData);
+          },
+          getAllUsers: function() {
+            console.log('Getting all users of our organization: ');
+            return $http.get(apiRoutes.getAllUsers);
           }
         };
       }

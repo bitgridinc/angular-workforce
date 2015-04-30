@@ -8,13 +8,23 @@
   </div>
   <div class="form-group">
     <label class="small">When can <organization-label organization-id="selectionState.currentBeacon.senderId"></organization-label> expect assistance?</label>
-    <p class="input-group">
-      <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="assistanceOffer.arrivalDate" date-disabled="disabled(date, mode)" is-open="opened" ng-required="true" />
+    <p class="input-group" ng-controller="CalendarController">
+      <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="assistanceOffer.arrivalDate" date-disabled="disabled(date, mode)" is-open="calendarOpened" ng-required="true" />
       <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        <button type="button" class="btn btn-default" ng-click="openCalendar($event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
     </p>
   </div>
+  <li class="bg-list-group-item">
+    <icon-container icon-url="images/wizard_dark_linemen.png">
+      <table class="table">
+        <tr ng-repeat="user in users">
+          <td style="width: 13px;"><input type="checkbox" ng-model="user.include"></td>
+          <td align="left">{{user.fullName}}</td>
+        </tr>
+      </table>
+    </icon-container>
+  </li>
   <!-- TODO: Make a directive for the double-wide buttons. -->
   <table class="bg-dw-button-table">
     <td class="bg-no-padding">
