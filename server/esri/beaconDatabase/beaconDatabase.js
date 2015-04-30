@@ -1,6 +1,6 @@
 "use strict";
 
-var state = require('./../entities/entityDatabase'),
+var state = require('../../entities/entityDatabase'),
     _ = require('lodash'),
     beaconFeatureConverter = require('./beaconFeatureConverter'),
     featureServer = require('./featureServer');

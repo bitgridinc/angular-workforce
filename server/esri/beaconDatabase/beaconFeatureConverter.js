@@ -1,7 +1,7 @@
 "use strict";
 
 var _ = require('lodash'),
-    factories = require('../../shared/factories');
+    factories = require('../../../shared/factories');
 
 module.exports = {
   featureToBeacon: function(feature) {

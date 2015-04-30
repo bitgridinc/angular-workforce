@@ -1,7 +1,7 @@
 "use strict";
 
 var domain = require('./domain'),
-    beaconStorage = require('./ago/beaconStorage'),
+    beaconDatabase = require('./esri/beaconDatabase/beaconDatabase'),
     io = require('./socketSetup').instance,
     _ = require('lodash');
 
@@ -10,8 +10,8 @@ module.exports = {
     handler: function (request, reply) {
       console.log('createBeacon handler called with payload:', request.payload);
 
-      beaconStorage.saveBeacon(domain.createBeacon(request.payload), function(result) {
-        beaconStorage.getBeaconById(result.objectId, function(beacon) {
+      beaconDatabase.saveBeacon(domain.createBeacon(request.payload), function(result) {
+        beaconDatabase.getBeaconById(result.objectId, function(beacon) {
           // Send the new beacon to all recipients
           _.forEach(request.payload.recipientIds, function(recipientId) {
             console.log('Sending new beacon to recipient: ', recipientId);
@@ -34,7 +34,7 @@ module.exports = {
     handler: function (request, reply) {
       console.log('offerAssistance handler called with payload:', request.payload);
 
-      beaconStorage.getBeaconById(request.payload.beaconId, function(beacon) {
+      beaconDatabase.getBeaconById(request.payload.beaconId, function(beacon) {
         if (beacon === undefined) {
           console.log('Beacon not found with id: ', request.payload);
           reply({ status: 'error' });
@@ -56,7 +56,7 @@ module.exports = {
     handler: function (request, reply) {
       console.log('acceptAssistance handler called with payload:', request.payload);
 
-      beaconStorage.getBeaconById(request.payload.beaconId, function(beacon) {
+      beaconDatabase.getBeaconById(request.payload.beaconId, function(beacon) {
         var acceptedResponse = domain.acceptAssistance(request.payload.senderId, beacon, request.payload.contents);
         console.log('This response was accepted:', acceptedResponse);
 
