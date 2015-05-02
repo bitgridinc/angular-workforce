@@ -14,7 +14,6 @@ var gulp = require('gulp')
   , rename = require('gulp-rename')
   , sass = require('gulp-ruby-sass')
   , notify = require('gulp-notify')
-  , jasmineNode = require('jasmine-node')
   , exec = require('child_process').exec;
 
 // Note that absolute paths are REQUIRED while we use the cwd parameter with nodemon. I don't know why this is the case,
@@ -112,10 +111,10 @@ gulp.task('server', ['build-and-watch'], function () {
   nodemon({ script: server.scriptName, ext: 'js', cwd: server.parentDir })
     .on('restart', function () {
       console.log('Node.js server restarted due to file change!');
-      exec('jasmine-node ' + server.parentDir, function(error, stdout, stderr) {
-        console.log(stdout, stderr);
+      exec('jasmine', function(error, stdout, stderr) {
+        console.log('jasmine output: ', stdout, stderr);
         if (error !== null) {
-          console.log('exec error: ' + error);
+          console.log('jasmine exec error: ' + error);
         }
       });
     });
