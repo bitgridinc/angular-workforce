@@ -21,7 +21,6 @@
   "dependencies": {
     "esri-portal-api": "0.0.1",
     "geoservices": "^1.1.0",
-    "gulp-notify": "^2.1.0",
     "hapi": "^7.2.0",
     "joi": "^5.0.1",
     "level": "^0.18.0",
@@ -41,6 +40,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-ruby-sass": "^0.7.1",
     "gulp-watch": "^3.0.0",
+    "gulp-notify": "^2.1.0",
     "jasmine": "^2.3.0",
     "jasmine-core": "^2.1.2",
     "jshint-stylish": "^1.0.0",
