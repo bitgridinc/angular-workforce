@@ -103,20 +103,26 @@ gulp.task('client-watch', function() {
 gulp.task('build', ['browserify', 'css', 'icons']);
 gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch']);
 
+function runJasmineServerTests() {
+  exec('jasmine', function(error, stdout, stderr) {
+    console.log('jasmine output: ', stdout, stderr);
+    if (error !== null) {
+      console.log('jasmine exec error: ' + error);
+    }
+  });
+}
+
 // browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
 gulp.task('server', ['build-and-watch'], function () {
   // Nodemon will restart Node when files change. So that it doesn't watch the entire directory, we use cwd to start it
   // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
   // Note: Use ', verbose: true' to debug
   nodemon({ script: server.scriptName, ext: 'js', cwd: server.parentDir })
+    .on('start', function() {
+      runJasmineServerTests();
+    })
     .on('restart', function () {
-      console.log('Node.js server restarted due to file change!');
-      exec('jasmine', function(error, stdout, stderr) {
-        console.log('jasmine output: ', stdout, stderr);
-        if (error !== null) {
-          console.log('jasmine exec error: ' + error);
-        }
-      });
+      runJasmineServerTests();
     });
 });
 
