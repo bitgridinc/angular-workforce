@@ -14,7 +14,8 @@ var gulp = require('gulp')
   , rename = require('gulp-rename')
   , sass = require('gulp-ruby-sass')
   , notify = require('gulp-notify')
-  , exec = require('child_process').exec;
+  , exec = require('child_process').exec
+  , argv = require('yargs').argv;
 
 // Note that absolute paths are REQUIRED while we use the cwd parameter with nodemon. I don't know why this is the case,
 // but setting the cwd in nodemon changes the cwd for ALL later tasks. This breaks them if they are relative.
@@ -121,11 +122,11 @@ gulp.task('server', ['build-and-watch'], function () {
   };
 
   // We need to pass the aat env var through if it's set, so that we can mock data for our AATs
-  if (process.env.aat) {
+  if (argv.aat) {
     nodemonParams.env = {
-      "aat": process.env.aat
+      "aat": "true"
     }
-  };
+  }
 
   // Nodemon will restart Node when files change. So that it doesn't watch the entire directory, we use cwd to start it
   // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
