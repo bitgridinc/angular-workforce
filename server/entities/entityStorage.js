@@ -9,7 +9,6 @@ module.exports = {
   },
   getCurrentEntity: function() {
     if (process.env.aat) {
-      console.log('HERE', process.env);
       return entityDatabase.entities[1];
     }
 
