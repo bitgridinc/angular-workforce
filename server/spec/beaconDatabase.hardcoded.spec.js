@@ -11,6 +11,18 @@ function expectMurfreesboroBeacon(beacon) {
   expect(beacon.numberOfPeople).toEqual('4');
   expect(beacon.lat).toBeDefined();
   expect(beacon.lng).toBeDefined();
+
+  // Assert it contains a single response from Morristown
+  expect(beacon.responses.length).toBe(1);
+  var response = beacon.responses[0];
+  expect(response.id).toBe('2cf8faaa-5760-41c9-adbf-5a4482ac3469');
+  expect(response.senderId).toBe('323f8a60-37c6-4d97-a2f8-331c2231e92b');
+  expect(response.beaconId).toBe(30);
+  expect(response.numResponders).toBe('4');
+  expect(response.arrivalDate.getFullYear()).toBe(2015);
+
+  // Assert it contains no accepted offers of assistance
+  expect(beacon.acceptedAssistance.length).toBe(0);
 }
 
 function expectNumberOfBeacons(number) {
