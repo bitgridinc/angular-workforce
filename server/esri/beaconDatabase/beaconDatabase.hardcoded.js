@@ -1,6 +1,7 @@
 "use strict";
 
-var factories = require('../../../shared/factories');
+var _ = require('lodash'),
+    factories = require('../../../shared/factories');
 
 var beacons = [
   factories.newBeaconFactory()
@@ -18,12 +19,28 @@ var beacons = [
 
 module.exports = {
   saveBeacon: function(beacon, successCallback) {
+    // This mimics ArcGIS by adding 1 to the highest ObjectID
+    if (!beacon.id) {
+      beacon.id = _.max(beacons, function(beacon) {
+        return beacon.id;
+      }).id + 1;
+    }
+
     beacons.push(beacon);
+
+    successCallback({
+      objectId: beacon.id
+    });
   },
   getAllBeacons: function(successCallback) {
     successCallback(beacons);
   },
   getBeaconById: function(id, successCallback) {
-    successCallback(beacons[0]);
+    var beacon = _.find(beacons, function(beacon) {
+      return beacon.id === id;
+    });
+    if (beacon) {
+      successCallback(beacon);
+    }
   }
 };

@@ -25,17 +25,6 @@ function expectMurfreesboroBeacon(beacon) {
   expect(beacon.acceptedAssistance.length).toBe(0);
 }
 
-function expectNumberOfBeacons(number) {
-  // Arrange the callback
-  var callback = function(beacons) {
-    // Assert that there is only {number} beacon
-    expect(beacons.length).toBe(number);
-  };
-
-  // Act by getting the array of beacons (there should be {number})
-  db.getAllBeacons(callback);
-}
-
 describe('the beacon storage', function() {
   describe('when the aat environment is true', function() {
     beforeEach(function() {
@@ -58,7 +47,14 @@ describe('the beacon storage', function() {
         expect(callbackCalled).toBeTruthy();
       });
       it('should have 1 hardcoded beacon', function() {
-        expectNumberOfBeacons(1);
+        // Arrange the callback
+        var callback = function(beacons) {
+          // Assert that there is only 1 beacon
+          expect(beacons.length).toBe(1);
+        };
+
+        // Act by getting the array of beacons (there should be 1)
+        db.getAllBeacons(callback);
       });
       it('should have a beacon from Murfreesboro', function() {
         // Arrange the callback
@@ -73,6 +69,41 @@ describe('the beacon storage', function() {
     });
 
     describe('the getBeaconById function', function() {
+      it('should call the callback if the correct id is specified', function() {
+        // Arrange a callback that knows if it is called
+        var callbackCalled = false;
+        var callback = function() {
+          callbackCalled = true;
+        };
+
+        // Act by passing the callback
+        db.getBeaconById(30, callback);
+
+        // Assert that the callback was called
+        expect(callbackCalled).toBeTruthy();
+      });
+      it('should return the Murfreesboro beacon if the correct id is specified', function() {
+        // Arrange the callback
+        var callback = function(beacon) {
+          // Assert that it contains the data required by our AATs
+          expectMurfreesboroBeacon(beacon);
+        };
+
+        // Act by getting the beacon by the correct id
+        db.getBeaconById(30, callback);
+      });
+      it('should not call the callback if an id is passed for a beacon that doesn\'t exist', function() {
+        // Arrange the callback
+        var callback = function() {
+          throw new Error();
+        };
+
+        // Act by getting the beacon by the correct id
+        db.getBeaconById(-5346, callback);
+      });
+    });
+
+    describe('the saveBeacon function', function() {
       it('should call the callback', function() {
         // Arrange a callback that knows if it is called
         var callbackCalled = false;
@@ -81,33 +112,43 @@ describe('the beacon storage', function() {
         };
 
         // Act by passing the callback
-        db.getBeaconById(0, callback);
+        db.saveBeacon({}, callback);
 
         // Assert that the callback was called
         expect(callbackCalled).toBeTruthy();
       });
-      it('should return the Murfreesboro beacon always', function() {
-        // Arrange the callback
-        var callback = function(beacon) {
-          // Assert that it contains the data required by our AATs
-          expectMurfreesboroBeacon(beacon);
+      it('should return a result object containing the objectId of the new beacon, which can then be used to retrieve it', function() {
+        var callbackChainCompleted = false;
+
+        // Arrange the callback to assert the result object
+        var callback = function(result) {
+          expect(result.objectId).toBeGreaterThan(0);
+
+          // Act by getting the beacon by its id
+          db.getBeaconById(result.objectId, function(beacon) {
+            // Assert it is the correct beacon returned
+            expect(beacon.id).toBe(result.objectId);
+            callbackChainCompleted = true;
+          });
         };
 
-        // Act by getting the first beacon with some arbitrary (and incorrect) id
-        db.getBeaconById(-593457, callback);
+        // Act by saving the beacon
+        db.saveBeacon({}, callback);
+
+        // Assert that each callback was called
+        expect(callbackChainCompleted).toBeTruthy();
       });
-    });
-
-    describe('the saveBeacon function', function() {
       it('should add to the hardcoded list of beacons', function() {
-        // Arrange a new beacon to add
+        // Arrange a new beacon to add and the callback to ensure there is more than 1
         var beacon = {};
+        var getAllBeaconsCallback = function(beacons) {
+          // Assert that there is more than one beacon, to prove that new ones can be added
+          expect(beacons.length).toBeGreaterThan(1);
+        };
 
-        // Act by passing the beacon
-        db.saveBeacon(beacon);
-
-        // Assert that there's a new beacon
-        expectNumberOfBeacons(2);
+        // Act by passing the beacon followed by getting the list of all beacons
+        db.saveBeacon(beacon, function() {});
+        db.getAllBeacons(getAllBeaconsCallback);
       });
     });
   });

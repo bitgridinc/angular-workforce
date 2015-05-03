@@ -17,7 +17,6 @@ describe('the page used to create a new beacon', function() {
   it('should allow for the creation of a new beacon', function() {
     // Arrange - count existing beacons and select the button to create a new one
     ptor.get('/#/dashboard/beacons');
-    var oldNumBeacons = element.all(listBeaconsLocators.beaconSummaryDirective).count();
     ptor.findElement(listBeaconsLocators.createBeaconButton).click();
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/create');
 
