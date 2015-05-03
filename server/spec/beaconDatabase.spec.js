@@ -13,6 +13,17 @@ function expectMurfreesboroBeacon(beacon) {
   expect(beacon.lng).toBeDefined();
 }
 
+function expectNumberOfBeacons(number) {
+  // Arrange the callback
+  var callback = function(beacons) {
+    // Assert that there is only {number} beacon
+    expect(beacons.length).toBe(number);
+  };
+
+  // Act by getting the array of beacons (there should be {number})
+  db.getAllBeacons(callback);
+}
+
 describe('the beacon storage', function() {
   describe('when the aat environment is true', function() {
     beforeEach(function() {
@@ -35,14 +46,7 @@ describe('the beacon storage', function() {
         expect(callbackCalled).toBeTruthy();
       });
       it('should have 1 hardcoded beacon', function() {
-        // Arrange the callback
-        var callback = function(beacons) {
-          // Assert that there is only 1 beacon
-          expect(beacons.length).toBe(1);
-        };
-
-        // Act by getting the array of beacons (there should be 1)
-        db.getAllBeacons(callback);
+        expectNumberOfBeacons(1);
       });
       it('should have a beacon from Murfreesboro', function() {
         // Arrange the callback
@@ -79,6 +83,19 @@ describe('the beacon storage', function() {
 
         // Act by getting the first beacon with some arbitrary (and incorrect) id
         db.getBeaconById(-593457, callback);
+      });
+    });
+
+    describe('the saveBeacon function', function() {
+      it('should add to the hardcoded list of beacons', function() {
+        // Arrange a new beacon to add
+        var beacon = {};
+
+        // Act by passing the beacon
+        db.saveBeacon(beacon);
+
+        // Assert that there's a new beacon
+        expectNumberOfBeacons(2);
       });
     });
   });

@@ -7,6 +7,10 @@ var _ = require('lodash'),
 
 module.exports = {
   saveBeacon: function(beacon, successCallback) {
+    if (process.env.aat) {
+      testBeaconData.beacons.push(beacon);
+    }
+
     var add_params = {
       f: 'json',
       features: [ beaconFeatureConverter.beaconToFeature(beacon) ]
