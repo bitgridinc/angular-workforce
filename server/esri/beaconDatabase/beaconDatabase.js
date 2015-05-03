@@ -26,7 +26,7 @@ module.exports = {
     return false;
   },
   getAllBeacons: function(successCallback) {
-    if (process.env.AFGH) {
+    if (process.env.aat) {
       successCallback(testBeaconData.beacons);
     }
 

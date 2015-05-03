@@ -3,10 +3,10 @@
 var db = require('../esri/beaconDatabase/beaconDatabase');
 
 describe('the beacon storage', function() {
-  describe('when the AFGH environment is true', function() {
+  describe('when the aat environment is true', function() {
     beforeEach(function() {
       // Arrange the environment to use our hardcoded data instead of hitting ArcGIS Online
-      process.env.AFGH = true;
+      process.env.aat = true;
     });
 
     it('should call the callback', function() {
