@@ -42,6 +42,10 @@ module.exports = {
     });
   },
   getBeaconById: function(id, successCallback) {
+    if (process.env.aat) {
+      successCallback(testBeaconData.beacons[0]);
+    }
+
     var queryParams = {
       f: 'json',
       returnGeometry: true,
