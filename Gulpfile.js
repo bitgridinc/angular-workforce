@@ -114,10 +114,23 @@ function runJasmineServerTests() {
 
 // browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
 gulp.task('server', ['build-and-watch'], function () {
+  var nodemonParams = {
+    script: server.scriptName,
+    ext: 'js',
+    cwd: server.parentDir
+  };
+
+  // We need to pass the aat env var through if it's set, so that we can mock data for our AATs
+  if (process.env.aat) {
+    nodemonParams.env = {
+      "aat": process.env.aat
+    }
+  };
+
   // Nodemon will restart Node when files change. So that it doesn't watch the entire directory, we use cwd to start it
   // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
   // Note: Use ', verbose: true' to debug
-  nodemon({ script: server.scriptName, ext: 'js', cwd: server.parentDir })
+  nodemon(nodemonParams)
     .on('start', function() {
       runJasmineServerTests();
     })
