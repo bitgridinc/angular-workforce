@@ -2,7 +2,8 @@
 
 var _ = require('lodash'),
     beaconFeatureConverter = require('./beaconFeatureConverter'),
-    featureServer = require('./featureServer');
+    featureServer = require('./featureServer'),
+    testBeaconData = require('./testBeaconData');
 
 module.exports = {
   saveBeacon: function(beacon, successCallback) {
@@ -25,6 +26,10 @@ module.exports = {
     return false;
   },
   getAllBeacons: function(successCallback) {
+    if (process.env.AFGH) {
+      return testBeaconData.beacons;
+    }
+
     var queryParams = {
       f: 'json',
       returnGeometry: true,
