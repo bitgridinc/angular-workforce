@@ -16,8 +16,4 @@ describe('the header', function() {
     ptor.findElement(locators.myProfile).click();
     expect(browser.getCurrentUrl()).toContain('/#/profile');
   });
-  it('should display a link to login to ArcGIS Online', function() {
-    ptor.findElement(locators.login).click();
-    expect(browser.getCurrentUrl()).toContain('https://www.arcgis.com/sharing/oauth2/authorize');
-  });
 });
