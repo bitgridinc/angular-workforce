@@ -27,6 +27,8 @@ describe('the beacon storage', function() {
       expect(firstBeacon.description).toEqual('Murfreesboro Description');
       expect(firstBeacon.streetAddress).toEqual('1563 N Thompson Ln');
       expect(firstBeacon.numberOfPeople).toEqual('4');
+      expect(firstBeacon.lat).toBeDefined();
+      expect(firstBeacon.lng).toBeDefined();
     });
   });
 });
