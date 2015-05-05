@@ -7,12 +7,12 @@ module.exports = {
   featureToBeacon: function(feature) {
     var attributes = feature.attributes;
     return factories.newBeaconFactory()
-      .withIds(attributes.ObjectId, attributes.senderId)
-      .withSummaryText(attributes.title, attributes.description)
-      .withLocation(feature.geometry.y, feature.geometry.x)
-      .withAddress(attributes.streetAddress)
-      .withNumberOfPeople(attributes.numberOfPeople)
-      .createBeacon()
+                    .withIds(attributes.ObjectId, attributes.senderId)
+                    .withSummaryText(attributes.title, attributes.description)
+                    .withLocation(feature.geometry.y, feature.geometry.x)
+                    .withAddress(attributes.streetAddress)
+                    .withNumberOfPeople(attributes.numberOfPeople)
+                    .createBeacon();
   },
   beaconToFeature: function(beacon) {
     return {
