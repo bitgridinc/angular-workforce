@@ -52,18 +52,10 @@ describe('the view that displays the details of', function() {
       ptor.findElement(beaconSummaryLocators.reviewOffersButton).click();
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/review');
     });
-  });
 
-  /* TODO: FIX FIRST */
-  /*describe('the Morristown Utility Systems beacon', function() {
-    beforeEach(function() {
-      ptor = protractor.getInstance();
-      ptor.get('/#/dashboard/beacons/1337');
-    });
-
-    it('should display a button that allows the user to offer assistance to the sender of the beacon', function() {
+    it('should display a button that allows the user to offer assistance to Murfreesboro', function() {
       ptor.findElement(beaconDetailsLocators.offerAssistance).click();
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/1337/assist');
+      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/assist');
     });
-  });*/
+  });
 });
