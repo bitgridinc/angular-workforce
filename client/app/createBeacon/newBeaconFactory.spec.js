@@ -5,7 +5,8 @@ describe('the new beacon creation factory', function() {
       scope,
       factory,
       restService,
-      geocoderService;
+      geocoderService,
+      fluentSharedLibraryService;
 
   beforeEach(module('modules.providers'));
   beforeEach(module('modules.createBeacon'));
@@ -15,6 +16,7 @@ describe('the new beacon creation factory', function() {
     factory = _NewBeaconFactory_;
     restService = RestService;
     geocoderService = _GeocoderService_;
+    fluentSharedLibraryService = _FluentSharedLibrariesService_;
   }));
   beforeEach(function () {
     factory.initScope(scope);
@@ -40,17 +42,17 @@ describe('the new beacon creation factory', function() {
     });
 
     describe ('the method to post a new beacon', function () {
-      var expectedPost = {
-        title: newTitle,
-        description: newDescription,
-        lat: 1,
-        lng: 2,
-        streetAddress: 'address',
-        numberOfPeople: 4,
-        senderId: '1',
-        recipientIds: []
-      };
+      var expectedPost;
 
+      beforeEach(function() {
+        expectedPost = fluentSharedLibraryService.newBeaconPostFactory()
+          .withSenderId('1')
+          .withSummaryText(newTitle, newDescription)
+          .withLocation(1, 2)
+          .withAddress(newStreetAddress)
+          .withNumberOfPeople(newNumberOfPeople)
+          .createBeaconPost();
+      });
       beforeEach(function() {
         spyOn(geocoderService, 'geocodeAddress');
         spyOn(restService, 'createBeacon');
