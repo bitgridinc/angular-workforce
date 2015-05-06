@@ -1,34 +1,30 @@
 "use strict";
 
-var http = require('http'),
-    request = require('request'),
-    io = require('socket.io-client'),
-    apiRoutes = require('../../shared/apiRoutes'),
-    factories = require('../../shared/factories');
-
-var serverURL = 'http://0.0.0.0:8080';
-var options = {
-  transports: ['websocket'],
-  'force new connection': true
-};
+var http = require('http')
+  , request = require('request')
+  , apiRoutes = require('../../shared/apiRoutes')
+  , factories = require('../../shared/factories')
+  , waitsForAndRuns = require('./support/waitsForAndRuns')
+  , constants = require('./support/constants')
+  , Client = require('./support/socketClient');
 
 // TODO: Test recipients
-describe('the create beacon API method', function() {
-  it('should be able to send a new beacon back to the client', function() {/*
+/*describe('the create beacon API method', function() {
+  it('should be able to send a new beacon back to the client', function(done) {
     // Arrange
     var messageCalled = false;
     // TODO: Must be able to specify who you are
-    var client = io.connect(serverURL, options);
-    client.on('newBeacon', function(data) {
+    Client().on('newBeacon', function(data) {
       messageCalled = true;
       expect(data.id).toBeDefined();
       expect(data.senderId).toBeDefined();
+      done();
     });
 
     // Act
     request.post(
       {
-        uri: serverURL + apiRoutes.createBeacon,
+        uri: constants.serverUrl + apiRoutes.createBeacon,
         body: JSON.stringify(factories.newBeaconPostFactory()
           .withSenderId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
           .withSummaryText('title', 'description')
@@ -40,35 +36,31 @@ describe('the create beacon API method', function() {
     );
 
     // Assert
-    waitsFor(function() {
-      return messageCalled === true;
-    }, 'messageCalled to be set to true', 1000);
-
-    // Jasmine calls waitsFor and runs in order and will wait for waitsFor to finish before calling this runs
-    runs(function() {
-      expect(messageCalled).toBe(true);
-    });*/
+    waitsForAndRuns(
+      function() { return messageCalled === true; },
+      function() { expect(messageCalled).toBe(true); },
+      1000);
   });
 });
 
 describe('the offer assistance API method', function() {
-  it('should send the offer to all connected clients', function() {/*
+  it('should send the offer to all connected clients', function(done) {
     // Arrange
     var messageCalled = false;
-    var client = io.connect(serverURL, options);
-    client.on('assistanceResponse', function(data) {
+    Client().on('assistanceResponse', function(data) {
       messageCalled = true;
       expect(data.id).toBeDefined();
       expect(data.numResponders).toBeDefined();
       expect(data.arrivalDate).toBeDefined();
       expect(data.senderId).toBeDefined();
       expect(data.beaconId).toBeDefined();
+      done();
     });
 
     // Act
     request.post(
       {
-        uri: serverURL + apiRoutes.offerAssistance,
+        uri: constants.serverUrl + apiRoutes.offerAssistance,
         body: JSON.stringify({
           contents: {
             numResponders: 1,
@@ -81,13 +73,9 @@ describe('the offer assistance API method', function() {
     );
 
     // Assert
-    waitsFor(function() {
-      return messageCalled === true;
-    }, 'messageCalled to be set to true', 1000);
-
-    // Jasmine calls waitsFor and runs in order and will wait for waitsFor to finish before calling this runs
-    runs(function() {
-      expect(messageCalled).toBe(true);
-    });*/
+    waitsForAndRuns(
+      function() { return messageCalled === true; },
+      function() { expect(messageCalled).toBe(true); },
+      1000);
   });
-});
+});*/
