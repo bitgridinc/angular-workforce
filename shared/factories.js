@@ -5,6 +5,8 @@ var _ = require('lodash');
 var BeaconFactory = function() {
   return {
     beacon: {
+      lat: 0,
+      lng: 0,
       responses: [],
       acceptedAssistance: []
     },
