@@ -5,8 +5,12 @@ var _ = require('lodash');
 var BeaconFactory = function() {
   return {
     beacon: {
+      title: 'title',
+      description: 'description',
       lat: 0,
       lng: 0,
+      streetAddress: 'streetAddress',
+      numberOfPeople: 'numberOfPeople',
       responses: [],
       acceptedAssistance: []
     },
@@ -42,6 +46,12 @@ var BeaconFactory = function() {
       return this;
     },
     createBeacon: function() {
+      if (!this.beacon.hasOwnProperty('id')) {
+        throw new Error('number is required');
+      } else if (!this.beacon.hasOwnProperty('senderId')) {
+        throw new Error('senderId is required');
+      }
+
       return this.beacon;
     }
   }
@@ -92,7 +102,10 @@ var BeaconPostFactory = function() {
 
 var AssistanceResponseFactory = function() {
   return {
-    assistanceResponse: {},
+    assistanceResponse: {
+      numResponders: 'numResponders',
+      arrivalDate: new Date()
+    },
     withIds: function(id, senderId, beaconId) {
       this.assistanceResponse.id = id;
       this.assistanceResponse.senderId = senderId;
@@ -105,6 +118,14 @@ var AssistanceResponseFactory = function() {
       return this;
     },
     createAssistanceResponse: function() {
+      if (!this.assistanceResponse.hasOwnProperty('id')) {
+        throw new Error('number is required');
+      } else if (!this.assistanceResponse.hasOwnProperty('senderId')) {
+        throw new Error('senderId is required');
+      } else if (!this.assistanceResponse.hasOwnProperty('beaconId')) {
+        throw new Error('beaconId is required');
+      }
+
       return this.assistanceResponse;
     }
   }
