@@ -29,6 +29,14 @@ describe('having the My Beacons button clicked to view the list of existing beac
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/review');
   });
 
+  it('should only show one beacon', function() {
+    console.log('ABABA ', element.all(listBeaconsLocators.beaconSummaryDirective));
+    expect(element.all(listBeaconsLocators.beaconSummaryDirective).length);
+    ptor.findElements(element(listBeaconsLocators.beaconSummaryDirective)).then(function(elems) {
+      expect(elems.length).toBe(1);
+    });
+  });
+
   describe('clicking an existing beacon', function() {
     beforeEach(function() {
       element.all(listBeaconsLocators.beaconSummaryDirective).get(0).click();

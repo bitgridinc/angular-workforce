@@ -13,6 +13,12 @@ var beacons = [
                                   .withIds('2cf8faaa-5760-41c9-adbf-5a4482ac3469', '323f8a60-37c6-4d97-a2f8-331c2231e92b', 30)
                                   .withResponderCrew('4', new Date(2015, 1, 1, 1, 1, 1))
                                   .createAssistanceResponse())
+           .createBeacon(),
+  factories.newBeaconFactory()
+           .withIds(31, '323f8a60-37c6-4d97-a2f8-331c2231e92b')
+           .withSummaryText('Morristown Title', 'Morristown Description')
+           .withAddress('1565 N Thompson Ln')
+           .withNumberOfPeople('3-4')
            .createBeacon()
 ];
 
