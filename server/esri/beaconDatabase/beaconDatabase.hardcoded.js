@@ -3,10 +3,16 @@
 var _ = require('lodash'),
     factories = require('../../../shared/factories');
 
+/**
+ * 30 - from Murfreesboro with a Morristown response
+ * 31 - from Morristown with no responses
+ * 32 - from Morristown with a Morristown response
+ * 33 - from Murfreesboro with no responses
+ */
 var beacons = [
   factories.newBeaconFactory()
            .withIds(30, '7a95759f-3df8-4f16-bb43-24f4329fe3df')
-           .withSummaryText('Murfreesboro Title', 'Murfreesboro Description')
+           .withSummaryText('Title_30', 'Description_30')
            .withAddress('1563 N Thompson Ln')
            .withNumberOfPeople('4')
            .withResponse(factories.newAssistanceResponseFactory()
@@ -16,13 +22,13 @@ var beacons = [
            .createBeacon(),
   factories.newBeaconFactory()
            .withIds(31, '323f8a60-37c6-4d97-a2f8-331c2231e92b')
-           .withSummaryText('Morristown Title', 'Morristown Description')
+           .withSummaryText('Title_31', 'Description_31')
            .withAddress('1565 N Thompson Ln')
            .withNumberOfPeople('3-4')
            .createBeacon(),
   factories.newBeaconFactory()
            .withIds(32, '323f8a60-37c6-4d97-a2f8-331c2231e92b')
-           .withSummaryText('Morristown Title', 'Morristown Description')
+           .withSummaryText('Title_32', 'Description_32')
            .withAddress('1567 N Thompson Ln')
            .withNumberOfPeople('4-5')
            .withResponse(factories.newAssistanceResponseFactory()
@@ -32,7 +38,7 @@ var beacons = [
            .createBeacon(),
   factories.newBeaconFactory()
            .withIds(33, '7a95759f-3df8-4f16-bb43-24f4329fe3df')
-           .withSummaryText('Murfreesboro Title 2', 'Murfreesboro Description 2')
+           .withSummaryText('Title_33', 'Description_33')
            .withAddress('1569 N Thompson Ln')
            .withNumberOfPeople('1-2')
            .createBeacon()

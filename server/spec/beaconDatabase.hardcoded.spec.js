@@ -6,8 +6,8 @@ var db = require('../esri/beaconDatabase/beaconDatabase')
 function expectMurfreesboroBeacon(beacon) {
   expect(beacon.id).toEqual(30);
   expect(beacon.senderId).toEqual('7a95759f-3df8-4f16-bb43-24f4329fe3df');
-  expect(beacon.title).toEqual('Murfreesboro Title');
-  expect(beacon.description).toEqual('Murfreesboro Description');
+  expect(beacon.title).toEqual('Title_30');
+  expect(beacon.description).toEqual('Description_30');
   expect(beacon.streetAddress).toEqual('1563 N Thompson Ln');
   expect(beacon.numberOfPeople).toEqual('4');
   expect(beacon.lat).toBeDefined();
