@@ -13,22 +13,22 @@ describe('the service that wraps SocketIO', function() {
   describe('after initialize has been called', function() {
     beforeEach(function() {
       service.initialize({
-        allEntities: [],
-        currentEntity: {},
+        allOrganizations: [],
+        currentOrganization: {},
         beacons: []
       });
     });
 
     describe('after init message has been received', function() {
-      var currentEntity = {
+      var currentOrganization = {
         name: 'Murfreesboro Electric Department',
         id: '7a95759f-3df8-4f16-bb43-24f4329fe3df'
       };
 
       beforeEach(function() {
         service.onInit({
-          allEntities: [
-            currentEntity,
+          allOrganizations: [
+            currentOrganization,
             {
               name: 'Morristown Utility Systems',
               id: '323f8a60-37c6-4d97-a2f8-331c2231e92b'
@@ -38,10 +38,10 @@ describe('the service that wraps SocketIO', function() {
               id: '83a33674-be04-4c93-81a3-71a9ca0ce339'
             }
           ],
-          currentEntity: currentEntity,
+          currentOrganization: currentOrganization,
           beacons: [{
             id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
-            senderId: currentEntity.id,
+            senderId: currentOrganization.id,
             responses: [],
             acceptedAssistance: []
           }]
@@ -50,14 +50,14 @@ describe('the service that wraps SocketIO', function() {
 
       it ('should store beacons sent in the init message', function() {
         expect(service.dataFromServer.beacons.length).toBe(1);
-        expect(service.dataFromServer.beacons[0].senderId).toEqual(currentEntity.id);
+        expect(service.dataFromServer.beacons[0].senderId).toEqual(currentOrganization.id);
       });
       it ('should store new messages in the list of beacons', function () {
         // Act
         var id = '97b12600-51de-472a-8cff-08b67a4f0340';
         service.onNewBeacon({
           id: id,
-          senderId: currentEntity.id,
+          senderId: currentOrganization.id,
           acceptedAssistance: []
         });
 
@@ -69,7 +69,7 @@ describe('the service that wraps SocketIO', function() {
         // Act
         service.onNewBeacon({
           id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
-          senderId: currentEntity.id,
+          senderId: currentOrganization.id,
           acceptedAssistance: []
         });
 
@@ -80,7 +80,7 @@ describe('the service that wraps SocketIO', function() {
         // Act
         service.onAssistanceResponse({
           id: '5eb19570-5567-44f0-ab55-95189383fab0',
-          senderId: currentEntity.id,
+          senderId: currentOrganization.id,
           beaconId: 'NOPE9999-63df-48bc-941c-9cc5f750367b'
         });
 
@@ -91,7 +91,7 @@ describe('the service that wraps SocketIO', function() {
       describe('after a response message has been received', function() {
         var responseMessage = {
           id: '5eb19570-5567-44f0-ab55-95189383fab0',
-          senderId: currentEntity.id,
+          senderId: currentOrganization.id,
           beaconId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
         };
 

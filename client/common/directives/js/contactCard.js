@@ -7,14 +7,14 @@ require('./../_module_init.js')
         restrict: 'E',
         templateUrl: '/templates/directives/templates/contactCard.tpl.html',
         scope: {
-          entityId: '='
+          organizationId: '='
         },
         controller: [
                   '$rootScope', '$scope',
           function($rootScope,   $scope) {
-            $scope.$watch('entityId', function(newVal) {
+            $scope.$watch('organizationId', function(newVal) {
               if (angular.isDefined(newVal)) {
-                $scope.entity = $rootScope.findEntityById(newVal);
+                $scope.organization = $rootScope.findOrganizationById(newVal);
               }
             });
           }

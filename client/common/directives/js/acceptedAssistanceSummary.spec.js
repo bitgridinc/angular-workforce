@@ -18,7 +18,7 @@ describe('directive: summary of accepted assistance', function() {
 
     inject(function($rootScope, $compile) {
       scope = $rootScope.$new();
-      $rootScope.findEntityById = function() {
+      $rootScope.findOrganizationById = function() {
         return {
           name: 'name'
         };

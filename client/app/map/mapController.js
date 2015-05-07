@@ -16,7 +16,7 @@ require('./_module')
           var newlySelectedBeacon = $rootScope.findBeaconById(newlySelectedBeaconId);
           if (angular.isDefined(newlySelectedBeacon)) {
             var mustContainPoints = [
-              [ $rootScope.dataFromServer.currentEntity.center.lat, $rootScope.dataFromServer.currentEntity.center.lng ],
+              [ $rootScope.dataFromServer.currentOrganization.center.lat, $rootScope.dataFromServer.currentOrganization.center.lng ],
               [ newlySelectedBeacon.lat, newlySelectedBeacon.lng ]
             ];
             MapExtentService.ensureContainsPoints(mustContainPoints);
@@ -25,15 +25,15 @@ require('./_module')
 
         // Adds icon centered over the utility headquarters
         // TODO: Test coverage
-        /*$rootScope.$watch('dataFromServer.currentEntity', function(entity) {
-          console.log('dataFromServer.currentEntity changed: ', entity);
-          if (angular.isDefined(entity) && angular.isDefined(entity.center)) {
+        /*$rootScope.$watch('dataFromServer.currentOrganization', function(organization) {
+          console.log('dataFromServer.currentOrganization changed: ', organization);
+          if (angular.isDefined(organization) && angular.isDefined(organization.center)) {
             var homeIcon = L.icon({
               iconUrl: '/images/orange_utility_marker.png',
               iconSize: [32, 32]
             });
             leafletData.getMap('leaflet').then(function(map) {
-              L.marker([entity.center.lat, entity.center.lng], { icon: homeIcon }).addTo(map);
+              L.marker([organization.center.lat, organization.center.lng], { icon: homeIcon }).addTo(map);
             });
           }
         });*/

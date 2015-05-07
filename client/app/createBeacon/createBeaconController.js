@@ -8,11 +8,11 @@ require('./_module')
 
         // Note that a filter *might* be better as we grow as it would be reusable.
         $scope.possibleRecipients = [];
-        _.forEach($rootScope.dataFromServer.allEntities, function(entity) {
-          if (entity.id !== $rootScope.dataFromServer.currentEntity.id) {
+        _.forEach($rootScope.dataFromServer.allOrganizations, function(organization) {
+          if (organization.id !== $rootScope.dataFromServer.currentOrganization.id) {
             $scope.possibleRecipients.push({
               include: true,
-              entity: entity
+              organization: organization
             });
           }
         });
@@ -22,7 +22,7 @@ require('./_module')
             var recipientIds = _.chain($scope.possibleRecipients)
               .where({ include: true })
               .map(function(r) {
-                return r.entity.id
+                return r.organization.id
               })
               .value();
             if (recipientIds.length > 0) {

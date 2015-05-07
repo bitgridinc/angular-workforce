@@ -4,19 +4,19 @@ describe('the RequiresInput filter', function() {
   beforeEach(module('modules.providers'));
   beforeEach(module('modules.listBeacons'));
   beforeEach(inject(function($rootScope) {
-    var currentEntity = {
+    var currentOrganization = {
       name: 'Murfreesboro Electric Department',
       id: '7a95759f-3df8-4f16-bb43-24f4329fe3df'
     };
     $rootScope.dataFromServer = {
-      allEntities: [
-        currentEntity,
+      allOrganizations: [
+        currentOrganization,
         {
           name: 'Morristown Utility Systems',
           id: '323f8a60-37c6-4d97-a2f8-331c2231e92b'
         }
       ],
-      currentEntity: currentEntity
+      currentOrganization: currentOrganization
     };
   }));
 

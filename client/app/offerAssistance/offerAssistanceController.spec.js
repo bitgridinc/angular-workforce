@@ -18,7 +18,7 @@ describe('the offer assistance controller', function() {
       }
     };
     $rootScope.dataFromServer = {
-      currentEntity: {
+      currentOrganization: {
         id: '2'
       }
     };
@@ -68,7 +68,7 @@ describe('the offer assistance controller', function() {
             numResponders: newNumResponders,
             arrivalDate: newArrivalDate
           },
-          senderId : $rootScope.dataFromServer.currentEntity.id,
+          senderId : $rootScope.dataFromServer.currentOrganization.id,
           beaconId : $rootScope.selectionState.currentBeacon.id,
           recipientIds: undefined
         });

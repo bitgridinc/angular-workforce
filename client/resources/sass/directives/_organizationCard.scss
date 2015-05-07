@@ -1,0 +1,10 @@
+/* Organization Card */
+.bg-oc-container {
+  margin: 12px 30px;
+}
+.bg-oc-media {
+  @extend .media;
+  margin: 0px;
+  padding: 5px 10px;
+  background: white;
+}

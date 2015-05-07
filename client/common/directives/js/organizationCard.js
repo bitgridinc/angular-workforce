@@ -1,14 +1,15 @@
 "use strict";
 
 require('./../_module_init.js')
-  .directive('organizationLabel',
+  .directive('organizationCard',
     function() {
       return {
         restrict: 'E',
+        templateUrl: '/templates/directives/templates/organizationCard.tpl.html',
         scope: {
+          iconUrl: '@',
           organizationId: '='
         },
-        template: '{{organization.name}}',
         controller: [
                   '$rootScope', '$scope',
           function($rootScope,   $scope) {

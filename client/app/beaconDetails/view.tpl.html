@@ -16,9 +16,9 @@
   </colored-container>
   <li class="bg-list-group-item" ng-show="selectionState.currentBeacon.acceptedAssistance.length > 0">
     <div ng-repeat="acceptedAssistance in selectionState.currentBeacon.acceptedAssistance">
-      <entity-card icon-url="images/icon_ring1.png" entity-id="acceptedAssistance.senderId"></entity-card>
+      <organization-card icon-url="images/icon_ring1.png" organization-id="acceptedAssistance.senderId"></organization-card>
       <ul class="bg-list-group">
-        <contact-card class="list-group-item borderless" entity-id="acceptedAssistance.senderId"></contact-card>
+        <contact-card class="list-group-item borderless" organization-id="acceptedAssistance.senderId"></contact-card>
         <icon-container class="list-group-item borderless" icon-url="images/orange_linemen.png">
           {{acceptedAssistance.numResponders}} on their way
         </icon-container>
@@ -39,7 +39,7 @@
     </icon-container>
   </li>
   <!-- TODO: Test this when I can consistently mock the backend during my AATs. -->
-  <li class="bg-list-group-item" ng-if="selectionState.currentBeacon.senderId !== dataFromServer.currentEntity.id">
+  <li class="bg-list-group-item" ng-if="selectionState.currentBeacon.senderId !== dataFromServer.currentOrganization.id">
     <button class="bg-wide-btn btn btn-sm btn-default" type="button" ng-click="goToOfferAssistance()">
       Offer Assistance
     </button>

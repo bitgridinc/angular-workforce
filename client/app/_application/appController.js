@@ -7,14 +7,14 @@ require('./_module')
       function($rootScope,   SocketFactory,   SocketHandlerService,   _) {
 
         $rootScope.dataFromServer = {
-          allEntities: [],
-          currentEntity: {},
+          allOrganizations: [],
+          currentOrganization: {},
           beacons: []
         };
-        $rootScope.findEntityById = function(id) {
-          console.log('Finding organization by id: ', id, $rootScope.dataFromServer.allEntities);
-          return _.find($rootScope.dataFromServer.allEntities, function(entity) {
-            return entity.id === id;
+        $rootScope.findOrganizationById = function(id) {
+          console.log('Finding organization by id: ', id, $rootScope.dataFromServer.allOrganizations);
+          return _.find($rootScope.dataFromServer.allOrganizations, function(organization) {
+            return organization.id === id;
           });
         };
         $rootScope.findBeaconById = function(id) {

@@ -28,7 +28,7 @@ require('./_module')
             } else {
               GeocoderService.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
                 var beaconPost = FluentSharedLibrariesService.newBeaconPostFactory()
-                  .withSenderId($rootScope.dataFromServer.currentEntity.id)
+                  .withSenderId($rootScope.dataFromServer.currentOrganization.id)
                   .withSummaryText(scope.beaconData.title, scope.beaconData.description)
                   .withLocation(address.lat, address.lng)
                   .withAddress(address.streetAddress)

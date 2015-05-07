@@ -9,7 +9,7 @@ require('./js/centeredImage');
 require('./js/coloredContainer');
 require('./js/contactCard');
 require('./js/dateTimePicker');
-require('./js/entityCard');
 require('./js/iconContainer');
 require('./js/openReviewAssistanceButton');
+require('./js/organizationCard');
 require('./js/organizationLabel');

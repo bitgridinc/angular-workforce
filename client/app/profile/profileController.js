@@ -5,7 +5,7 @@ require('./_module')
     [         '$scope', '$rootScope',
       function($scope,   $rootScope) {
         //console.log('ProfileController instantiated:', $scope, $rootScope);
-        $scope.organization = $rootScope.dataFromServer.currentEntity;
+        $scope.organization = $rootScope.dataFromServer.currentOrganization;
         $scope.save = function () {
           $rootScope.userNavigationService.navigateTo('dashboard');
         };

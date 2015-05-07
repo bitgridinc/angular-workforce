@@ -12,7 +12,7 @@ describe("the map module (unit)", function() {
     $scope = $rootScope.$new();
 
     $rootScope.dataFromServer = {
-      currentEntity: {
+      currentOrganization: {
         center: {
           lat: 1,
           lng: 2,
