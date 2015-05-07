@@ -30,11 +30,7 @@ describe('having the My Beacons button clicked to view the list of existing beac
   });
 
   it('should only show one beacon', function() {
-    console.log('ABABA ', element.all(listBeaconsLocators.beaconSummaryDirective));
-    expect(element.all(listBeaconsLocators.beaconSummaryDirective).length);
-    ptor.findElements(element(listBeaconsLocators.beaconSummaryDirective)).then(function(elems) {
-      expect(elems.length).toBe(1);
-    });
+    expect(element.all(listBeaconsLocators.beaconSummaryDirective).count()).toBe(1);
   });
 
   describe('clicking an existing beacon', function() {
