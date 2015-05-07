@@ -47,14 +47,14 @@ describe('the beacon storage', function() {
         // Assert that the callback was called
         expect(callbackCalled).toBeTruthy();
       });
-      it('should have 2 hardcoded beacons', function() {
+      it('should have 3 hardcoded beacons', function() {
         // Arrange the callback
         var callback = function(beacons) {
-          // Assert that there is only 2 beacons
-          expect(beacons.length).toBe(2);
+          // Assert that there is only 3 beacons
+          expect(beacons.length).toBe(3);
         };
 
-        // Act by getting the array of beacons (there should be 1)
+        // Act by getting the array of beacons (there should be 3)
         db.getAllBeacons(callback);
       });
       it('should have a beacon from Murfreesboro', function() {
@@ -67,8 +67,7 @@ describe('the beacon storage', function() {
         // Act by getting the first beacon
         db.getAllBeacons(callback);
       });
-      it('should have a beacon from Morristown with no responses; this shouldn\'t show in the beacon list', function() {
-        // Arrange the callback
+      it('should have a beacon from Morristown with no responses; this SHOULDN\'T show in the beacon list', function() {
         // Arrange the callback
         var callback = function(beacons) {
           // Assert that it contains the beacon in question
@@ -77,6 +76,20 @@ describe('the beacon storage', function() {
           });
           // Our AATs will be written against this specific id as it shows up in the URL
           expect(beacon.id).toBe(31);
+        };
+
+        // Act by getting the first beacon
+        db.getAllBeacons(callback);
+      });
+      it('should have a beacon from Morristown with a response; this SHOULD show in the beacon list', function() {
+        // Arrange the callback
+        var callback = function(beacons) {
+          // Assert that it contains the beacon in question
+          var beacon = _.find(beacons, function(beacon) {
+            return beacon.senderId === '323f8a60-37c6-4d97-a2f8-331c2231e92b' && beacon.responses.length === 1;
+          });
+          // Our AATs will be written against this specific id as it shows up in the URL
+          expect(beacon.id).toBe(32);
         };
 
         // Act by getting the first beacon
