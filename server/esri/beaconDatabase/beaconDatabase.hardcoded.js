@@ -29,6 +29,12 @@ var beacons = [
                                   .withIds('eb6cd1ad-d115-49de-aac0-cfbb887d9ad0', '7a95759f-3df8-4f16-bb43-24f4329fe3df', 32)
                                   .withResponderCrew('2', new Date(2015, 1, 1, 1, 1, 1))
                                   .createAssistanceResponse())
+           .createBeacon(),
+  factories.newBeaconFactory()
+           .withIds(33, '7a95759f-3df8-4f16-bb43-24f4329fe3df')
+           .withSummaryText('Murfreesboro Title 2', 'Murfreesboro Description 2')
+           .withAddress('1569 N Thompson Ln')
+           .withNumberOfPeople('1-2')
            .createBeacon()
 ];
 

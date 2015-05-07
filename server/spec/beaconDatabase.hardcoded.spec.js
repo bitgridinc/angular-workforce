@@ -47,11 +47,11 @@ describe('the beacon storage', function() {
         // Assert that the callback was called
         expect(callbackCalled).toBeTruthy();
       });
-      it('should have 3 hardcoded beacons', function() {
+      it('should have 4 hardcoded beacons to test different states', function() {
         // Arrange the callback
         var callback = function(beacons) {
-          // Assert that there is only 3 beacons
-          expect(beacons.length).toBe(3);
+          // Assert that there is only 4 beacons
+          expect(beacons.length).toBe(4);
         };
 
         // Act by getting the array of beacons (there should be 3)
@@ -90,6 +90,20 @@ describe('the beacon storage', function() {
           });
           // Our AATs will be written against this specific id as it shows up in the URL
           expect(beacon.id).toBe(32);
+        };
+
+        // Act by getting the first beacon
+        db.getAllBeacons(callback);
+      });
+      it('should have a beacon from Murfreesboro with no responses; this SHOULD show in the beacon list', function() {
+        // Arrange the callback
+        var callback = function(beacons) {
+          // Assert that it contains the beacon in question
+          var beacon = _.find(beacons, function(beacon) {
+            return beacon.senderId === '7a95759f-3df8-4f16-bb43-24f4329fe3df' && beacon.responses.length === 0;
+          });
+          // Our AATs will be written against this specific id as it shows up in the URL
+          expect(beacon.id).toBe(33);
         };
 
         // Act by getting the first beacon
