@@ -1,10 +1,11 @@
 "use strict";
 
-var domain = require('./domain'),
-    beaconDatabase = require('./esri/beaconDatabase/beaconDatabase'),
-    userDatabase = require('./esri/userDatabase/userDatabase'),
-    io = require('./socketSetup').instance,
-    _ = require('lodash');
+var domain = require('./domain')
+  , beaconDatabase = require('./esri/beaconDatabase/beaconDatabase')
+  , userDatabase = require('./esri/userDatabase/userDatabase')
+  , messageDatabase = require('./inMemory/messages/messageDatabase')
+  , io = require('./socketSetup').instance
+  , _ = require('lodash');
 
 module.exports = {
   createBeacon: {
@@ -42,6 +43,8 @@ module.exports = {
         }
 
         var assistanceResponse = domain.offerAssistance(request.payload.senderId, beacon, request.payload.contents);
+
+        messageDatabase.saveMessage(assistanceResponse);
 
         io.sockets.emit('assistanceResponse', assistanceResponse);
 
