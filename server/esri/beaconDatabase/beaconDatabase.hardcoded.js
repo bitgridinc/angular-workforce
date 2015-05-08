@@ -6,7 +6,7 @@ var _ = require('lodash'),
 /**
  * 30 - from Murfreesboro with a Morristown response
  * 31 - from Morristown with no responses
- * 32 - from Morristown with a Morristown response
+ * 32 - from Morristown with a Murfreesboro response
  * 33 - from Murfreesboro with no responses
  */
 var beacons = [

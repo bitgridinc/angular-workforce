@@ -9,5 +9,8 @@ module.exports = {
     return _.filter(process.env.aat ? aatData : data, function(message) {
       return message.beaconId === beaconId;
     });
+  },
+  saveMessage: function(message) {
+    (process.env.aat ? aatData : data).push(message);
   }
 };
