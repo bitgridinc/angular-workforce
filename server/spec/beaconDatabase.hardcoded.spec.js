@@ -13,14 +13,8 @@ function expectMurfreesboroBeacon(beacon) {
   expect(beacon.lat).toBeDefined();
   expect(beacon.lng).toBeDefined();
 
-  // Assert it contains a single response from Morristown
-  expect(beacon.responses.length).toBe(1);
-  var response = beacon.responses[0];
-  expect(response.id).toBe('2cf8faaa-5760-41c9-adbf-5a4482ac3469');
-  expect(response.senderId).toBe('323f8a60-37c6-4d97-a2f8-331c2231e92b');
-  expect(response.beaconId).toBe(30);
-  expect(response.numResponders).toBe('4');
-  expect(response.arrivalDate.getFullYear()).toBe(2015);
+  // Assert it contains no responses because ArcGIS can't store messages on the beacons themselves
+  expect(beacon.responses.length).toBe(0);
 
   // Assert it contains no accepted offers of assistance
   expect(beacon.acceptedAssistance.length).toBe(0);
@@ -86,10 +80,10 @@ describe('the beacon storage', function() {
         var callback = function(beacons) {
           // Assert that it contains the beacon in question
           var beacon = _.find(beacons, function(beacon) {
-            return beacon.senderId === '323f8a60-37c6-4d97-a2f8-331c2231e92b' && beacon.responses.length === 1;
+            return beacon.senderId === '323f8a60-37c6-4d97-a2f8-331c2231e92b' && beacon.id === 32;
           });
           // Our AATs will be written against this specific id as it shows up in the URL
-          expect(beacon.id).toBe(32);
+          expect(beacon).toBeDefined();
         };
 
         // Act by getting the first beacon
@@ -100,10 +94,10 @@ describe('the beacon storage', function() {
         var callback = function(beacons) {
           // Assert that it contains the beacon in question
           var beacon = _.find(beacons, function(beacon) {
-            return beacon.senderId === '7a95759f-3df8-4f16-bb43-24f4329fe3df' && beacon.responses.length === 0;
+            return beacon.senderId === '7a95759f-3df8-4f16-bb43-24f4329fe3df' && beacon.id === 33;
           });
           // Our AATs will be written against this specific id as it shows up in the URL
-          expect(beacon.id).toBe(33);
+          expect(beacon).toBeDefined();
         };
 
         // Act by getting the first beacon
