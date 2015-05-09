@@ -1,8 +1,8 @@
 "use strict";
 
 describe("the map module (unit)", function() {
-  var $rootScope,
-      $scope;
+  var $rootScope
+    , $scope;
 
   beforeEach(module("app"));
   beforeEach(module("modules.providers"));

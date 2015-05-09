@@ -1,8 +1,8 @@
 "use strict";
 
 describe('the beacon list controller', function() {
-  var $scope,
-      $rootScope;
+  var $scope
+    , $rootScope;
 
   beforeEach(module('modules.providers'));
   beforeEach(module('modules.listBeacons'));

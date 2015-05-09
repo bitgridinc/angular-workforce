@@ -14,8 +14,8 @@ var io = require('../../../bower_components/socket.io-client/socket.io.js');
 
 require('./../_module_init.js')
   .factory('unwrappedSocket', ['$q', function($q){
-    var socket = io();
-    var deferred = $q.defer();
+    var socket = io()
+      , deferred = $q.defer();
     socket.connectPromise = deferred.promise;
 
     socket.on('connect', function(){

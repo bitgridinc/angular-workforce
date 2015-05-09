@@ -1,12 +1,12 @@
 "use strict";
 
-var ListBeaconsLocators = require('./locators.js');
-var BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js');
+var ListBeaconsLocators = require('./locators.js')
+  , BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js');
 
 describe('having the My Beacons button clicked to view the list of existing beacons', function() {
-  var ptor,
-      listBeaconsLocators,
-      beaconSummaryLocators;
+  var ptor
+    , listBeaconsLocators
+    , beaconSummaryLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();

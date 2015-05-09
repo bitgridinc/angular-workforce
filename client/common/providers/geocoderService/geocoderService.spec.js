@@ -1,8 +1,8 @@
 "use strict";
 
 describe('the geocoder service (address -> lat/lng)', function() {
-  var geocoderService,
-      $httpBackend;
+  var geocoderService
+    , $httpBackend;
 
   beforeEach(module('modules.providers'));
   beforeEach(inject(function(_$injector_, _GeocoderService_) {

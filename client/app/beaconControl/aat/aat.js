@@ -1,12 +1,12 @@
 "use strict";
 
-var BeaconControlLocators = require('./locators.js');
-var ListBeaconsLocators = require('../../listBeacons/aat/locators.js');
+var BeaconControlLocators = require('./locators.js')
+  , ListBeaconsLocators = require('../../listBeacons/aat/locators.js');
 
 describe('the main dashboard', function() {
-  var ptor,
-      beaconControlLocators,
-      listBeaconsLocators;
+  var ptor
+    , beaconControlLocators
+    , listBeaconsLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();

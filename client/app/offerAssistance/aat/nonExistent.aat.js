@@ -3,8 +3,8 @@
 var Locators = require('./locators.js');
 
 describe('trying to assist a non-existent beacon', function() {
-  var ptor,
-      locators;
+  var ptor
+    , locators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();

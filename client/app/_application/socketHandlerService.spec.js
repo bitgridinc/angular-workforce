@@ -1,7 +1,5 @@
 "use strict";
 
-// Remember, you can't use require here :C
-
 describe('the service that wraps SocketIO', function() {
   var service;
 

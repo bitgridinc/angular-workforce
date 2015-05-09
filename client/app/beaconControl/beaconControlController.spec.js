@@ -1,11 +1,11 @@
 "use strict";
 
 describe('the controller for the My Beacons button', function() {
-  var $scope,
-      $rootScope,
-      $state,
-      userNavigationService,
-      $controller;
+  var $scope
+    , $rootScope
+    , $state
+    , userNavigationService
+    , $controller;
 
   function initializeController() {
     $controller('BeaconControlController', {

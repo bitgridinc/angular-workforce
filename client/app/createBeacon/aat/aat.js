@@ -1,12 +1,12 @@
 "use strict";
 
-var CreateBeaconLocators = require('./locators.js');
-var ListBeaconsLocators = require('../../listBeacons/aat/locators.js');
+var CreateBeaconLocators = require('./locators.js')
+  , ListBeaconsLocators = require('../../listBeacons/aat/locators.js');
 
 describe('the page used to create a new beacon', function() {
-  var ptor,
-      createBeaconLocators,
-      listBeaconsLocators;
+  var ptor
+    , createBeaconLocators
+    , listBeaconsLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();

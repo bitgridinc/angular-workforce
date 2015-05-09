@@ -1,11 +1,11 @@
 "use strict";
 
 describe('directive: summary of accepted assistance', function() {
-  var scope,
-      element,
-      compiled,
-      html,
-      expected = {
+  var scope
+    , element
+    , compiled
+    , html
+    , expected = {
         senderId: '1',
         numResponders: 18,
         arrivalDate: new Date()

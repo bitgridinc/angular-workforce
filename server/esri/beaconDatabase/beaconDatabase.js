@@ -1,7 +1,7 @@
 "use strict";
 
-var hardcodedBeaconDatabase = require('./beaconDatabase.hardcoded.js'),
-    esriBeaconDatabase = require('./beaconDatabase.esri.js');
+var hardcodedBeaconDatabase = require('./beaconDatabase.hardcoded.js')
+  , esriBeaconDatabase = require('./beaconDatabase.esri.js');
 
 function runningForAATs() {
   // The presence of the aat env var indicates we're running for our AATs

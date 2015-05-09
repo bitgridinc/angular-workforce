@@ -1,7 +1,7 @@
 "use strict";
 
-var _ = require('lodash'),
-    factories = require('../../../shared/factories');
+var _ = require('lodash')
+  , factories = require('../../../shared/factories');
 
 /**
  * 30 - from Murfreesboro with a Morristown response

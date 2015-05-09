@@ -1,22 +1,13 @@
 "use strict";
 
 describe('the controller for the root module', function() {
-  var socketFactoryMock,
-      $rootScope,
-      service,
-      initCallback,
-      messageCallback;
+  var socketFactoryMock
+    , $rootScope
+    , service
+    , initCallback
+    , messageCallback;
 
   beforeEach(module('app'));
-  /*beforeEach(function() {
-    socketMock = {
-      on: jasmine.createSpy()
-    };
-
-    module(function($provide) {
-      $provide.value('SocketFactory', socketMock);
-    });
-  });*/
   beforeEach(inject(function(_$rootScope_, _SocketHandlerService_, _$controller_) {
     $rootScope = _$rootScope_;
     service = _SocketHandlerService_;
@@ -35,7 +26,6 @@ describe('the controller for the root module', function() {
     messageCallback = socketFactoryMock.on.calls.argsFor(1)[1];
   });
 
-  // TODO: This is a unit test while the below are integration tests
   it('should have initialized $rootScope with an object to store state from the socket', function() {
     expect($rootScope.dataFromServer.allOrganizations).toBeDefined();
     expect($rootScope.dataFromServer.currentOrganization).toBeDefined();

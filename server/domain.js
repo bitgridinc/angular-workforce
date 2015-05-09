@@ -1,8 +1,8 @@
 "use strict";
 
-var uuid = require('node-uuid'),
-    _ = require('lodash'),
-    factories = require('../shared/factories');
+var uuid = require('node-uuid')
+  , _ = require('lodash')
+  ,factories = require('../shared/factories');
 
 module.exports = {
   createBeacon: function(payload){

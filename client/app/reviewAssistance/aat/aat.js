@@ -4,8 +4,8 @@
 var ReviewAssistanceLocators = require('./locators.js');
 
 describe('the review assistance view', function() {
-  var ptor,
-      reviewAssistanceLocators;
+  var ptor
+    , reviewAssistanceLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();

@@ -1,9 +1,9 @@
 "use strict";
 
 describe('the offer assistance controller', function() {
-  var $rootScope,
-      $scope,
-      restService;
+  var $rootScope
+    , $scope
+    , restService;
 
   beforeEach(module('modules.offerAssistance'));
   beforeEach(inject(function (_$rootScope_, _$controller_, _UserNavigationService_, MessagePacketizerService, RestService) {

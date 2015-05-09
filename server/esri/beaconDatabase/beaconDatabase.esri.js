@@ -1,8 +1,8 @@
 "use strict";
 
-var _ = require('lodash'),
-    beaconFeatureConverter = require('./beaconFeatureConverter'),
-    featureServer = require('./featureServer');
+var _ = require('lodash')
+  , beaconFeatureConverter = require('./beaconFeatureConverter')
+  , featureServer = require('./featureServer');
 
 module.exports = {
   saveBeacon: function(beacon, successCallback) {

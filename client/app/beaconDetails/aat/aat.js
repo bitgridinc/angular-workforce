@@ -1,16 +1,16 @@
 "use strict";
 
-var BeaconControlLocators = require('../../beaconControl/aat/locators.js');
-var BeaconDetailsLocators = require('./locators.js');
-var BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js');
-var MapLocators = require('../../map/aat/locators.js');
+var BeaconControlLocators = require('../../beaconControl/aat/locators.js')
+  , BeaconDetailsLocators = require('./locators.js')
+  , BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js')
+  , MapLocators = require('../../map/aat/locators.js');
 
 describe('the view that displays the details of', function() {
-  var ptor,
-      beaconControlLocators,
-      beaconDetailsLocators,
-      beaconSummaryLocators,
-      mapLocators;
+  var ptor
+    , beaconControlLocators
+    , beaconDetailsLocators
+    , beaconSummaryLocators
+    , mapLocators;
 
 
   beforeEach(function() {

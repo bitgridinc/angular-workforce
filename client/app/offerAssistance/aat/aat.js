@@ -3,8 +3,8 @@
 var OfferAssistanceLocators = require('./locators.js');
 
 describe('the offer assistance view', function() {
-  var ptor,
-      offerAssistanceLocators;
+  var ptor
+    , offerAssistanceLocators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();

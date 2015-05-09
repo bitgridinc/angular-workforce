@@ -1,12 +1,12 @@
 "use strict";
 
 describe('the new beacon creation factory', function() {
-  var rootScope,
-      scope,
-      factory,
-      restService,
-      geocoderService,
-      fluentSharedLibraryService;
+  var rootScope
+    , scope
+    , factory
+    , restService
+    , geocoderService
+    , fluentSharedLibraryService;
 
   beforeEach(module('modules.providers'));
   beforeEach(module('modules.createBeacon'));

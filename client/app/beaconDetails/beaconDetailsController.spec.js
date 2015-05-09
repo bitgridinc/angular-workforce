@@ -1,9 +1,9 @@
 "use strict";
 
 describe('the beacon details controller', function() {
-  var $scope,
-      $rootScope,
-      userNavigationService;
+  var $scope
+    , $rootScope
+    , userNavigationService;
 
   beforeEach(module('modules.beaconDetails'));
   beforeEach(inject(function(_$rootScope_, _UserNavigationService_, _$controller_) {

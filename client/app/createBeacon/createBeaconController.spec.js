@@ -1,9 +1,9 @@
 "use strict";
 
 describe('the create beacon controller', function() {
-  var $scope,
-      $rootScope,
-      factory;
+  var $scope
+    , $rootScope
+    , factory;
 
   beforeEach(module('modules.createBeacon'));
   beforeEach(inject(function (_$rootScope_, _$controller_, _NewBeaconFactory_) {

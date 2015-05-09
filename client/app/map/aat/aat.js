@@ -3,8 +3,8 @@
 var Locators = require('./locators.js');
 
 describe('the map', function() {
-  var ptor,
-      locators;
+  var ptor
+    , locators;
 
   beforeEach(function() {
     ptor = protractor.getInstance();
