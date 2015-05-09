@@ -8,10 +8,10 @@ function verifyBeaconIds(beacon, id, senderId) {
   expect(beacon.senderId).toBe(senderId);
 }
 
-function verifyResponseExistenceAndSenderId(beacon, responseIndex, senderId) {
-  expect(beacon.responses.length).toBeGreaterThan(responseIndex);
-  if (beacon.responses.length > responseIndex) {
-    expect(beacon.responses[responseIndex].senderId).toBe(senderId);
+function verifyMessageExistenceAndSenderId(array, responseIndex, senderId) {
+  expect(array.length).toBeGreaterThan(responseIndex);
+  if (array.length > responseIndex) {
+    expect(array[responseIndex].senderId).toBe(senderId);
   }
 }
 
@@ -19,19 +19,23 @@ function verifyValidBeacons(beacons) {
   var murfreesboroId = '7a95759f-3df8-4f16-bb43-24f4329fe3df'
     , morristownId = '323f8a60-37c6-4d97-a2f8-331c2231e92b';
 
-  expect(beacons.length).toBe(4);
+  expect(beacons.length).toBe(5);
 
   var firstBeacon = beacons[0];
   verifyBeaconIds(firstBeacon, 30, murfreesboroId);
-  verifyResponseExistenceAndSenderId(firstBeacon, 0, morristownId);
+  verifyMessageExistenceAndSenderId(firstBeacon.responses, 0, morristownId);
 
   verifyBeaconIds(beacons[1], 31, morristownId);
 
   var thirdBeacon = beacons[2];
   verifyBeaconIds(thirdBeacon, 32, morristownId);
-  verifyResponseExistenceAndSenderId(thirdBeacon, 0, murfreesboroId);
+  verifyMessageExistenceAndSenderId(thirdBeacon.responses, 0, murfreesboroId);
 
   verifyBeaconIds(beacons[3], 33, murfreesboroId);
+
+  var fifthBeacon = beacons[4];
+  verifyBeaconIds(fifthBeacon, 34, murfreesboroId);
+  verifyMessageExistenceAndSenderId(fifthBeacon.acceptedAssistance, 0, morristownId);
 }
 
 describe('the socket controller', function() {

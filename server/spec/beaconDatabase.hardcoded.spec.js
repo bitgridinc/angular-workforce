@@ -41,14 +41,14 @@ describe('the beacon storage', function() {
         // Assert that the callback was called
         expect(callbackCalled).toBeTruthy();
       });
-      it('should have 4 hardcoded beacons to test different states', function() {
+      it('should have 5 hardcoded beacons to test different states', function() {
         // Arrange the callback
         var callback = function(beacons) {
-          // Assert that there is only 4 beacons
-          expect(beacons.length).toBe(4);
+          // Assert that there is only 5 beacons
+          expect(beacons.length).toBe(5);
         };
 
-        // Act by getting the array of beacons (there should be 3)
+        // Act by getting the array of beacons (there should be 5)
         db.getAllBeacons(callback);
       });
       it('should have a beacon from Murfreesboro', function() {

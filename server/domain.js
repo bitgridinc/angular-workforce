@@ -28,5 +28,10 @@ module.exports = {
     console.log('Accepting this offer:', response);
     beacon.acceptedAssistance.push(response);
     return response;
+  },
+  populateBeaconWithMessages: function(beacon, messages) {
+    messages.forEach(function(message) {
+      (message.accepted ? beacon.acceptedAssistance : beacon.responses).push(message);
+    });
   }
 };

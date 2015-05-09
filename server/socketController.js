@@ -1,18 +1,15 @@
 /* jslint node: true */
 'use strict';
 
-var io = require('./socketSetup').instance;
-var beaconDatabase = require('./esri/beaconDatabase/beaconDatabase');
-var organizationDatabase = require('./inMemory/organizations/organizationDatabase');
-var messageDatabase = require('./inMemory/messages/messageDatabase');
+var io = require('./socketSetup').instance
+  , beaconDatabase = require('./esri/beaconDatabase/beaconDatabase')
+  , organizationDatabase = require('./inMemory/organizations/organizationDatabase')
+  , messageDatabase = require('./inMemory/messages/messageDatabase')
+  , domain = require('./domain');
 
-// TODO: Move this elsewhere
 function populateBeaconsWithResponses(beacons) {
   beacons.forEach(function(beacon) {
-    var messages = messageDatabase.getMessagesByBeaconId(beacon.id);
-    messages.forEach(function(message) {
-      beacon.responses.push(message);
-    });
+    domain.populateBeaconWithMessages(beacon, messageDatabase.getMessagesByBeaconId(beacon.id));
   });
 
   return beacons;
