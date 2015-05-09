@@ -7,6 +7,11 @@ var domain = require('./domain')
   , io = require('./socketSetup').instance
   , _ = require('lodash');
 
+function replySuccess(reply) {
+  // This is needed to terminate the request on the client side
+  reply({status: 'ok'});
+}
+
 module.exports = {
   createBeacon: {
     handler: function (request, reply) {
@@ -23,8 +28,7 @@ module.exports = {
           // And send it back to the sender as well
           io.to(request.payload.senderId).emit('newBeacon', beacon);
 
-          // This is needed to terminate the request on the client side
-          reply({status: 'ok'});
+          replySuccess(reply);
         });
       });
     },
@@ -48,8 +52,7 @@ module.exports = {
 
         io.sockets.emit('assistanceResponse', assistanceResponse);
 
-        // This is needed to terminate the request on the client side
-        reply({status: 'ok'});
+        replySuccess(reply);
       });
     },
     app: {
@@ -71,8 +74,7 @@ module.exports = {
         console.log('Sending this:', acceptResponseMessage);
         io.sockets.emit('acceptedAssistance', acceptResponseMessage);
 
-        // This is needed to terminate the request on the client side
-        reply({status: 'ok'});
+        replySuccess(reply);
       });
     },
     app: {
