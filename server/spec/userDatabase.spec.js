@@ -11,10 +11,10 @@ describe('the user storage', function() {
 
     it('should return no users', function() {
       // Act by getting all users
-      var users = db.getAllUsers();
-
-      // Assert there are none
-      expect(users.length).toBe(0);
+      db.getAllUsers(function(users) {
+        // Assert there are none
+        expect(users.length).toBe(0);
+      });
     });
   });
 });

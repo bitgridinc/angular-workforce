@@ -6,8 +6,12 @@ var AGO = require('esri-portal-api');
 module.exports = {
   getAllUsers: function() {
     if (process.env.aat) {
-      return [];
-    }
+      return {
+        then: function(callback) {
+          callback([]);
+        }
+      }
+    };
 
     var ago = new AGO();
     return ago.portal.users(
