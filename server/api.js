@@ -64,8 +64,16 @@ module.exports = {
       console.log('acceptAssistance handler called with payload:', request.payload);
 
       beaconDatabase.getBeaconById(request.payload.beaconId, function(beacon) {
+
+        // TODO: Find best place to put this
+        var messages = messageDatabase.getMessagesByBeaconId(beacon.id);
+        domain.populateBeaconWithMessages(beacon, messages);
+
         var acceptedResponse = domain.acceptAssistance(request.payload.senderId, beacon, request.payload.contents);
         console.log('This response was accepted:', acceptedResponse);
+
+        // TODO: Find best place to put this
+        acceptedResponse.accepted = true;
 
         var acceptResponseMessage = {
           beaconId: beacon.id,

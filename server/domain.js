@@ -30,8 +30,10 @@ module.exports = {
     return response;
   },
   populateBeaconWithMessages: function(beacon, messages) {
-    messages.forEach(function(message) {
-      (message.accepted ? beacon.acceptedAssistance : beacon.responses).push(message);
-    });
+    if (beacon.responses.length === 0 && beacon.acceptedAssistance.length === 0) {
+      messages.forEach(function(message) {
+        (message.accepted ? beacon.acceptedAssistance : beacon.responses).push(message);
+      });
+    }
   }
 };
