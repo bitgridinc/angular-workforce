@@ -9,7 +9,7 @@ describe('the message database', function() {
     expect(db.getMessagesByBeaconId(-1).length).toBe(0);
   });
 
-  describe('during normal operation', function() {
+  describe('in Production', function() {
     beforeEach(function() {
       // Arrange the environment so that our aat env var is not present
       delete process.env.aat;
@@ -46,7 +46,7 @@ describe('the message database', function() {
     });
   });
 
-  describe('during AATs', function() {
+  describe('in Test', function() {
     beforeEach(function() {
       // Arrange the environment to use our hardcoded testing data
       process.env.aat = true;
