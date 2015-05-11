@@ -2,12 +2,12 @@
 
 var uuid = require('node-uuid')
   , _ = require('lodash')
-  ,factories = require('../shared/factories');
+  , factories = require('../shared/factories');
 
 module.exports = {
   createBeacon: function(payload){
     return factories.newBeaconFactory()
-                    .withIds(Math.floor(Math.random() * 10000), payload.senderId)
+                    .withIds(-1, payload.senderId) // id will be automatically assigned by db
                     .withSummaryText(payload.title, payload.description)
                     .withLocation(payload.lat, payload.lng)
                     .withAddress(payload.streetAddress)
