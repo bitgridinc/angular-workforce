@@ -1,11 +1,14 @@
 "use strict";
 
 describe('the service that wraps SocketIO', function() {
-  var service;
+  var service,
+      factories;
 
   beforeEach(module('app'));
-  beforeEach(inject(function(_SocketHandlerService_) {
+  beforeEach(module('modules.providers'));
+  beforeEach(inject(function(_SocketHandlerService_, _FluentSharedLibrariesService_) {
     service = _SocketHandlerService_;
+    factories = _FluentSharedLibrariesService_;
   }));
 
   describe('after initialize has been called', function() {
@@ -37,12 +40,11 @@ describe('the service that wraps SocketIO', function() {
             }
           ],
           currentOrganization: currentOrganization,
-          beacons: [{
-            id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
-            senderId: currentOrganization.id,
-            responses: [],
-            acceptedAssistance: []
-          }]
+          beacons: [
+            factories.newBeaconFactory()
+                     .withIds('e688af0b-63df-48bc-941c-9cc5f750367b', currentOrganization.id)
+                     .createBeacon()
+          ]
         });
       });
 
@@ -51,25 +53,27 @@ describe('the service that wraps SocketIO', function() {
         expect(service.dataFromServer.beacons[0].senderId).toEqual(currentOrganization.id);
       });
       it ('should store new messages in the list of beacons', function () {
-        // Act
+        // Arrange
         var id = '97b12600-51de-472a-8cff-08b67a4f0340';
-        service.onNewBeacon({
-          id: id,
-          senderId: currentOrganization.id,
-          acceptedAssistance: []
-        });
+        var beacon = factories.newBeaconFactory()
+                              .withIds(id, currentOrganization.id)
+                              .createBeacon()
+
+        // Act
+        service.onNewBeacon(beacon);
 
         // Assert
         expect(service.dataFromServer.beacons.length).toBe(2);
         expect(service.dataFromServer.beacons[1].id).toEqual(id);
       });
       it ('should not add incoming message to the list of beacons if the beacon is already present', function () {
+        // Arrange
+        var beacon = factories.newBeaconFactory()
+                              .withIds('e688af0b-63df-48bc-941c-9cc5f750367b', currentOrganization.id)
+                              .createBeacon();
+
         // Act
-        service.onNewBeacon({
-          id: 'e688af0b-63df-48bc-941c-9cc5f750367b',
-          senderId: currentOrganization.id,
-          acceptedAssistance: []
-        });
+        service.onNewBeacon(beacon);
 
         // Assert
         expect(service.dataFromServer.beacons.length).toBe(1);
