@@ -88,10 +88,11 @@ var BeaconPostFactory = function() {
       this.beaconPost.recipientIds.push(recipientId);
       return this;
     },
+    // TODO: Unit Test
     withRecipientIds: function(recipientIds) {
-      _.forEach.apply(this, recipientIds, function(recipientId) {
-        this.withRecipientId(recipientId);
-      });
+      _.forEach(recipientIds, function(recipientId) {
+          this.withRecipientId(recipientId);
+        }, this);
       return this;
     },
     createBeaconPost: function() {

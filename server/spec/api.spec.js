@@ -2,11 +2,87 @@
 
 var http = require('http')
   , request = require('request')
-  , apiRoutes = require('../../shared/apiRoutes')
   , factories = require('../../shared/factories')
-  , waitsForAndRuns = require('./support/waitsForAndRuns')
-  , constants = require('./support/constants')
-  , Client = require('./support/socketClient');
+  , socketSetup = require('../socketSetup')
+  , _ = require('lodash');
+
+function hapifyRequest(payload) {
+  return {
+    payload: payload
+  }
+}
+
+describe('the public API', function() {
+  describe('create beacon method', function() {
+    var handlers
+      , emitSpy
+      , newBeaconPost
+      , expectedRecipients;
+
+    beforeAll(function() {
+      // We don't want to send socket.io messages, so create a spy for the 'to' and 'emit' functions
+      emitSpy = jasmine.createSpy('emit');
+      socketSetup.instance = {
+        to : jasmine.createSpy('to').and.returnValue({
+          emit: emitSpy
+        })
+      };
+
+      // We must create the spies before we require in the api, as it is in the api's require statements that the
+      // code in which we are spying is used
+      handlers = require('../api');
+    });
+    beforeEach(function() {
+      // Arrange a request to the API to create a new beacon
+      newBeaconPost =
+        factories.newBeaconPostFactory()
+          .withSenderId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
+          .withSummaryText('title', 'description')
+          .withLocation(1, 2)
+          .withRecipientIds(['b6038693-725d-4651-9a75-78fc202b1308', '9bf2989a-e6c9-48bd-b0b8-f20194fda10f'])
+          .createBeaconPost();
+      expectedRecipients = newBeaconPost.recipientIds.slice();
+      expectedRecipients.push(newBeaconPost.senderId);
+
+      // Act by calling the handler directly
+      handlers.createBeacon.handler(hapifyRequest(newBeaconPost), function() {});
+    });
+    afterEach(function() {
+      socketSetup.instance.to.calls.reset();
+      emitSpy.calls.reset();
+    });
+
+    it('should send 3 messages, equal to the number of recipients (2) plus 1 for the sender', function() {
+      expect(expectedRecipients.length).toEqual(3);
+    });
+    it('should address unique recipients', function() {
+      expect(expectedRecipients.length).toEqual(_.uniq(expectedRecipients).length);
+    });
+    it('should address each recipient (+sender) over socket.io', function() {
+      // Arrange variables
+      var allArgs = _.map(socketSetup.instance.to.calls.allArgs(), function(call) {
+        return call[0];
+      });
+
+      // Assert each recipient is addressed over socket.io
+      expect(allArgs.length).toEqual(expectedRecipients.length);
+      expectedRecipients.forEach(function(expectedRecipient) {
+        expect(allArgs).toContain(expectedRecipient);
+      });
+    });
+    it('should pass a newBeacon message with a beacon parameter to each recipient (+sender) over socket.io', function() {
+      // Arrange variables
+      var allArgs = emitSpy.calls.allArgs();
+
+      // Assert each recipient is addressed over socket.io
+      expect(allArgs.length).toEqual(expectedRecipients.length);
+      allArgs.forEach(function(args) {
+        expect(args[0]).toEqual('newBeacon');
+        expect(args[1].senderId).toEqual(newBeaconPost.senderId);
+      });
+    });
+  });
+});
 
 // TODO: Test recipients
 /*describe('the create beacon API method', function() {
