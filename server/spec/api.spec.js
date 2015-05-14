@@ -3,8 +3,8 @@
 var http = require('http')
   , request = require('request')
   , factories = require('../../shared/factories')
-  , socketSetup = require('../socketSetup')
   , proxyquire = require('proxyquire')
+  , esriResponses = require('./api.spec.esriResponses')
   , _ = require('lodash');
 
 function hapifyRequest(payload) {
@@ -19,14 +19,17 @@ describe('the public API', function() {
       , postFormSpy;
 
     beforeAll(function() { // Spy on the beacon database
-      requestSpyObj = jasmine.createSpyObj('request', ['post']);
+      requestSpyObj = jasmine.createSpyObj('request', ['get', 'post']);
 
       // Apparently, I should never do this: https://www.npmjs.com/package/proxyquire#caveat
       requestSpyObj['@global'] = true;
 
       postFormSpy = jasmine.createSpy('form');
+      requestSpyObj.get.and.callFake(function(url, callback) {
+        callback(null, undefined, url.indexOf('query') > -1 ? esriResponses.queryGetResponse : esriResponses.layerGetRespone);
+      });
       requestSpyObj.post.and.callFake(function(ignored, callback) {
-        callback(null, undefined, '{"addResults":[{"objectId":1107,"globalId":null,"success":true}]}');
+        callback(null, undefined, esriResponses.postResponse);
         return {
           form: postFormSpy
         };
@@ -35,22 +38,28 @@ describe('the public API', function() {
 
     describe('create beacon method', function() {
       var handlers
+        , toSpy
         , emitSpy
         , newBeaconPost
         , expectedRecipients;
 
       beforeAll(function() {
         // We don't want to send socket.io messages, so create a spy for the 'to' and 'emit' functions
+        toSpy = jasmine.createSpy('to');
         emitSpy = jasmine.createSpy('emit');
-        socketSetup.instance = {
-          to : jasmine.createSpy('to').and.returnValue({
-            emit: emitSpy
-          })
-        };
 
         // We must create the spies before we require in the api, as it is in the api's require statements that the
         // code in which we are spying is used
-        handlers = proxyquire('../api', { 'request' : requestSpyObj});
+        handlers = proxyquire('../api', {
+          'request' : requestSpyObj,
+          './socketSetup': {
+            instance: {
+              to : toSpy.and.returnValue({
+                emit: emitSpy
+              })
+            }
+          }
+        });
       });
       beforeEach(function() {
         // Arrange a request to the API to create a new beacon
@@ -68,24 +77,18 @@ describe('the public API', function() {
         handlers.createBeacon.handler(hapifyRequest(newBeaconPost), function() {});
       });
       afterEach(function() {
-        socketSetup.instance.to.calls.reset();
+        toSpy.calls.reset();
         emitSpy.calls.reset();
       });
 
-      it('should send 3 messages, equal to the number of recipients (2) plus 1 for the sender', function() {
-        expect(expectedRecipients.length).toEqual(3);
-      });
-      it('should address unique recipients', function() {
-        expect(expectedRecipients.length).toEqual(_.uniq(expectedRecipients).length);
-      });
       it('should address each recipient (+sender) over socket.io', function() {
         // Arrange variables
-        var allArgs = _.map(socketSetup.instance.to.calls.allArgs(), function(call) {
+        var allArgs = _.map(toSpy.calls.allArgs(), function(call) {
           return call[0];
         });
 
         // Assert each recipient is addressed over socket.io
-        expect(allArgs.length).toEqual(expectedRecipients.length);
+        expect(_.uniq(allArgs).length).toEqual(3);
         expectedRecipients.forEach(function(expectedRecipient) {
           expect(allArgs).toContain(expectedRecipient);
         });
