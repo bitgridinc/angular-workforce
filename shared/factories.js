@@ -102,10 +102,7 @@ var BeaconPostFactory = function() {
 
 var AssistanceResponseFactory = function() {
   return {
-    assistanceResponse: {
-      numResponders: 'numResponders',
-      arrivalDate: new Date()
-    },
+    assistanceResponse: { },
     withIds: function(id, senderId, beaconId) {
       this.assistanceResponse.id = id;
       this.assistanceResponse.senderId = senderId;
@@ -118,14 +115,6 @@ var AssistanceResponseFactory = function() {
       return this;
     },
     createAssistanceResponse: function() {
-      if (!this.assistanceResponse.hasOwnProperty('id')) {
-        throw new Error('number is required');
-      } else if (!this.assistanceResponse.hasOwnProperty('senderId')) {
-        throw new Error('senderId is required');
-      } else if (!this.assistanceResponse.hasOwnProperty('beaconId')) {
-        throw new Error('beaconId is required');
-      }
-
       return this.assistanceResponse;
     }
   }
