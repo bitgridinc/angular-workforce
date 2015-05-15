@@ -81,27 +81,35 @@ describe('the public API', function() {
         emitSpy.calls.reset();
       });
 
-      it('should address each recipient (+sender) over socket.io', function() {
-        // Arrange variables
-        var allArgs = _.map(toSpy.calls.allArgs(), function(call) {
-          return call[0];
+      describe('the socket.io to function, used to address the recipient, ', function() {
+        var toArgs;
+        beforeEach(function() {
+          toArgs = _.map(toSpy.calls.allArgs(), function(call) {
+            return call[0];
+          });
+        }); // Set toArgs from toSpy
+        it('should have been called 3 times', function() {
+          expect(_.uniq(toArgs).length).toEqual(3);
         });
-
-        // Assert each recipient is addressed over socket.io
-        expect(_.uniq(allArgs).length).toEqual(3);
-        expectedRecipients.forEach(function(expectedRecipient) {
-          expect(allArgs).toContain(expectedRecipient);
+        it('should have been passed each beacon recipient and the sender', function() {
+          expectedRecipients.forEach(function(expectedRecipient) {
+            expect(toArgs).toContain(expectedRecipient);
+          });
         });
       });
-      it('should pass a newBeacon message with a beacon parameter to each recipient (+sender) over socket.io', function() {
-        // Arrange variables
-        var allArgs = emitSpy.calls.allArgs();
-
-        // Assert each recipient is addressed over socket.io
-        expect(allArgs.length).toEqual(expectedRecipients.length);
-        allArgs.forEach(function(args) {
-          expect(args[0]).toEqual('newBeacon');
-          expect(args[1].senderId).toEqual(newBeaconPost.senderId);
+      describe('the socket.io emit function, chained off the to function, ', function() {
+        var emitArgs;
+        beforeEach(function() {
+          emitArgs = emitSpy.calls.allArgs();
+        }); // Set emitArgs from emitSpy
+        it('should have been called 3 times', function() {
+          expect(emitArgs.length).toEqual(3);
+        });
+        it('should have always been passed the same newBeacon message', function() {
+          emitArgs.forEach(function(args) {
+            expect(args[0]).toEqual('newBeacon');
+            expect(args[1].senderId).toEqual(newBeaconPost.senderId);
+          });
         });
       });
       it('should have called request.post', function() {
