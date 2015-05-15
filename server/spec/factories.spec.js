@@ -26,9 +26,9 @@ describe('the fluent factories', function() {
       expect(beacon.responses.length).toBe(0);
       expect(beacon.acceptedAssistance.length).toBe(0);
     });
-    //it('should store properties passed in properly', function() {
+    it('should store properties passed in properly', function() {
       // Arrange properties to pass in
-      /*var properties = {
+      var properties = {
         id: 1,
         senderId: 'abc',
         title: 'gkjdasf',
@@ -58,8 +58,8 @@ describe('the fluent factories', function() {
       expect(beacon.streetAddress).toBe(properties.streetAddress);
       expect(beacon.numberOfPeople).toBe(properties.numberOfPeople);
       expect(beacon.responses.length).toBe(0);
-      expect(beacon.acceptedAssistance.length).toBe(0);*/
-    //});
+      expect(beacon.acceptedAssistance.length).toBe(0);
+    });
   });
   describe('the beacon POST factory', function() {
 
