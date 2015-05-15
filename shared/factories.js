@@ -88,7 +88,6 @@ var BeaconPostFactory = function() {
       this.beaconPost.recipientIds.push(recipientId);
       return this;
     },
-    // TODO: Unit Test
     withRecipientIds: function(recipientIds) {
       _.forEach(recipientIds, function(recipientId) {
           this.withRecipientId(recipientId);

@@ -62,7 +62,92 @@ describe('the fluent factories', function() {
     });
   });
   describe('the beacon POST factory', function() {
+    var beaconPostFactory;
+    beforeEach(function() {
+      beaconPostFactory = factories.newBeaconPostFactory();
+    });
+    it('should allow specifying a senderId', function() {
+      // Arrange
+      var senderId = 'from_an_org';
 
+      // Act by creating the beaconPost
+      var beaconPost = beaconPostFactory.withSenderId(senderId).createBeaconPost();
+
+      // Assert it was saved properly
+      expect(beaconPost.senderId).toBe(senderId);
+    });
+    it('should allow specifying a title and description', function() {
+      // Arrange
+      var title = 'titacular';
+      var description = 'desc';
+
+      // Act by creating the beaconPost
+      var beaconPost = beaconPostFactory.withSummaryText(title, description).createBeaconPost();
+
+      // Assert it was saved properly
+      expect(beaconPost.title).toBe(title);
+      expect(beaconPost.description).toBe(description);
+    });
+    it('should allow specifying a location in latitude/longitude', function() {
+      // Arrange
+      var latitude = 23;
+      var longitude = 54;
+
+      // Act by creating the beaconPost
+      var beaconPost = beaconPostFactory.withLocation(latitude, longitude).createBeaconPost();
+
+      // Assert it was saved properly
+      expect(beaconPost.lat).toBe(latitude);
+      expect(beaconPost.lng).toBe(longitude);
+    });
+    it('should allow specifying a street address', function() {
+      // Arrange
+      var streetAddress = '123 Street St';
+
+      // Act by creating the beaconPost
+      var beaconPost = beaconPostFactory.withAddress(streetAddress).createBeaconPost();
+
+      // Assert it was saved properly
+      expect(beaconPost.streetAddress).toBe(streetAddress);
+    });
+    it('should allow specifying a number of people requested', function() {
+      // Arrange
+      var numberOfPeople = '4-5';
+
+      // Act by creating the beaconPost
+      var beaconPost = beaconPostFactory.withNumberOfPeople(numberOfPeople).createBeaconPost();
+
+      // Assert it was saved properly
+      expect(beaconPost.numberOfPeople).toBe(numberOfPeople);
+    });
+    it('should allow specifying recipients one at a time', function() {
+      // Arrange
+      var recipientId = 'another_org';
+
+      // Act by creating the beaconPost
+      var beaconPost = beaconPostFactory.withRecipientId(recipientId).createBeaconPost();
+
+      // Assert it was saved properly
+      expect(beaconPost.recipientIds.length).toBe(1);
+      expect(beaconPost.recipientIds[0]).toBe(recipientId);
+    });
+    it('should allow specifying recipients in bulk', function() {
+      // Arrange
+      var recipientIds = [
+        'first_recipient',
+        'second_recipient',
+        'third_recipient'
+      ];
+
+      // Act by creating the beaconPost
+      var beaconPost = beaconPostFactory.withRecipientIds(recipientIds).createBeaconPost();
+
+      // Assert they were saved properly
+      expect(beaconPost.recipientIds.length).toBe(recipientIds.length);
+      expect(beaconPost.recipientIds[0]).toBe(recipientIds[0]);
+      expect(beaconPost.recipientIds[1]).toBe(recipientIds[1]);
+      expect(beaconPost.recipientIds[2]).toBe(recipientIds[2]);
+    });
   });
   describe('the assistance response factory', function() {
 
