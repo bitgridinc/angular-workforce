@@ -255,39 +255,11 @@ module.exports.queryGetResponse = JSON.stringify({
         description: "Murfreesboro Description",
         streetAddress: "1563 N Thompson Ln",
         numberOfPeople: "4",
-        ObjectId: 30
-      },
-      geometry: {
-        x: -0.0006691162030045934,
-        y: 0.0003974951797108748
-      }
-    },
-    {
-      attributes: {
-        senderId: "323f8a60-37c6-4d97-a2f8-331c2231e92b",
-        title: "Fix The BitGrid",
-        description: "At My House",
-        streetAddress: "2729 Merrilee Drive",
-        numberOfPeople: "1",
-        ObjectId: 31
-      },
-      geometry: {
-        x: -77.230676,
-        y: 38.8793003636364
-      }
-    },
-    {
-      attributes: {
-        senderId: "323f8a60-37c6-4d97-a2f8-331c2231e92b",
-        title: "Fix The BitGrid",
-        description: "At My House",
-        streetAddress: "2729 Merrilee Drive",
-        numberOfPeople: "1",
         ObjectId: 1107
       },
       geometry: {
-        x: -77.230676,
-        y: 38.8793003636364
+        x: 2,
+        y: 1
       }
     }
   ]

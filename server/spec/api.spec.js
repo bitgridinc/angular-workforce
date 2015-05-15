@@ -18,7 +18,7 @@ describe('the public API', function() {
     var requestSpyObj
       , postFormSpy;
 
-    beforeAll(function() { // Spy on the beacon database
+    beforeAll(function() {
       requestSpyObj = jasmine.createSpyObj('request', ['get', 'post']);
 
       // Apparently, I should never do this: https://www.npmjs.com/package/proxyquire#caveat
@@ -34,7 +34,7 @@ describe('the public API', function() {
           form: postFormSpy
         };
       });
-    });
+    }); // Spy on the beacon database
 
     describe('create beacon method', function() {
       var handlers
@@ -60,13 +60,14 @@ describe('the public API', function() {
             }
           }
         });
-      });
+      }); // Set up our spies
       beforeEach(function() {
         // Arrange a request to the API to create a new beacon
         newBeaconPost =
           factories.newBeaconPostFactory()
             .withSenderId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
-            .withSummaryText('title', 'description')
+            .withSummaryText('Murfreesboro Title', 'Murfreesboro Description')
+            .withNumberOfPeople('4')
             .withLocation(1, 2)
             .withRecipientIds(['b6038693-725d-4651-9a75-78fc202b1308', '9bf2989a-e6c9-48bd-b0b8-f20194fda10f'])
             .createBeaconPost();
@@ -75,13 +76,16 @@ describe('the public API', function() {
 
         // Act by calling the handler directly
         handlers.createBeacon.handler(hapifyRequest(newBeaconPost), function() {});
-      });
+      }); // Call createBeacon with a new beacon POST
       afterEach(function() {
         toSpy.calls.reset();
         emitSpy.calls.reset();
-      });
+        requestSpyObj.get.calls.reset();
+        requestSpyObj.post.calls.reset();
+        postFormSpy.calls.reset();
+      }); // Reset the spies
 
-      describe('the socket.io to function, used to address the recipient, ', function() {
+      describe('the socket.io to function, used to address the recipient,', function() {
         var toArgs;
         beforeEach(function() {
           toArgs = _.map(toSpy.calls.allArgs(), function(call) {
@@ -97,7 +101,7 @@ describe('the public API', function() {
           });
         });
       });
-      describe('the socket.io emit function, chained off the to function, ', function() {
+      describe('the socket.io emit function, chained off the to function,', function() {
         var emitArgs;
         beforeEach(function() {
           emitArgs = emitSpy.calls.allArgs();
@@ -108,88 +112,32 @@ describe('the public API', function() {
         it('should have always been passed the same newBeacon message', function() {
           emitArgs.forEach(function(args) {
             expect(args[0]).toEqual('newBeacon');
+
+            // Assert the basic beacon properties
+            expect(args[1].lng).toBe(newBeaconPost.lng);
+            expect(args[1].lat).toBe(newBeaconPost.lat);
             expect(args[1].senderId).toEqual(newBeaconPost.senderId);
+            expect(args[1].title).toEqual(newBeaconPost.title);
           });
         });
       });
-      it('should have called request.post', function() {
-        expect(requestSpyObj.post.calls.count()).toBeGreaterThan(0);
-      });
-      it('should have POSTed stuff as form parameters', function() {
-        expect(postFormSpy.calls.count()).toBeGreaterThan(0);
+      describe('the underlying request module, which is used to GET/POST to Esri\'s ArcGIS Online,', function() {
+        it('should have been POSTed to once to create the beacon', function() {
+          expect(requestSpyObj.post.calls.count()).toBe(1);
+          expect(postFormSpy.calls.count()).toBe(1);
+        });
+        describe('the POSTed features property', function() {
+          it('should have our beacon as the value', function() {
+            var feature = JSON.parse(postFormSpy.calls.allArgs()[0][0].features)[0];
+
+            // Assert the basic feature properties
+            expect(feature.geometry.x).toBe(newBeaconPost.lng);
+            expect(feature.geometry.y).toBe(newBeaconPost.lat);
+            expect(feature.attributes.senderId).toEqual(newBeaconPost.senderId);
+            expect(feature.attributes.title).toEqual(newBeaconPost.title);
+          });
+        });
       });
     });
   }
 });
-
-// TODO: Test recipients
-/*describe('the create beacon API method', function() {
-  it('should be able to send a new beacon back to the client', function(done) {
-    // Arrange
-    var messageCalled = false;
-    // TODO: Must be able to specify who you are
-    Client().on('newBeacon', function(data) {
-      messageCalled = true;
-      expect(data.id).toBeDefined();
-      expect(data.senderId).toBeDefined();
-      done();
-    });
-
-    // Act
-    request.post(
-      {
-        uri: constants.serverUrl + apiRoutes.createBeacon,
-        body: JSON.stringify(factories.newBeaconPostFactory()
-          .withSenderId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
-          .withSummaryText('title', 'description')
-          .withLocation(1, 2)
-          .withRecipientId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
-          .createBeaconPost()
-        )
-      }
-    );
-
-    // Assert
-    waitsForAndRuns(
-      function() { return messageCalled === true; },
-      function() { expect(messageCalled).toBe(true); },
-      1000);
-  });
-});
-
-describe('the offer assistance API method', function() {
-  it('should send the offer to all connected clients', function(done) {
-    // Arrange
-    var messageCalled = false;
-    Client().on('assistanceResponse', function(data) {
-      messageCalled = true;
-      expect(data.id).toBeDefined();
-      expect(data.numResponders).toBeDefined();
-      expect(data.arrivalDate).toBeDefined();
-      expect(data.senderId).toBeDefined();
-      expect(data.beaconId).toBeDefined();
-      done();
-    });
-
-    // Act
-    request.post(
-      {
-        uri: constants.serverUrl + apiRoutes.offerAssistance,
-        body: JSON.stringify({
-          contents: {
-            numResponders: 1,
-            arrivalDate: new Date()
-          },
-          senderId: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
-          beaconId: 117
-        })
-      }
-    );
-
-    // Assert
-    waitsForAndRuns(
-      function() { return messageCalled === true; },
-      function() { expect(messageCalled).toBe(true); },
-      1000);
-  });
-});*/
