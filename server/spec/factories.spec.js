@@ -84,7 +84,7 @@ describe('the fluent factories', function() {
       // Act by creating the beaconPost
       var beaconPost = beaconPostFactory.withSummaryText(title, description).createBeaconPost();
 
-      // Assert it was saved properly
+      // Assert they were saved properly
       expect(beaconPost.title).toBe(title);
       expect(beaconPost.description).toBe(description);
     });
@@ -96,7 +96,7 @@ describe('the fluent factories', function() {
       // Act by creating the beaconPost
       var beaconPost = beaconPostFactory.withLocation(latitude, longitude).createBeaconPost();
 
-      // Assert it was saved properly
+      // Assert they were saved properly
       expect(beaconPost.lat).toBe(latitude);
       expect(beaconPost.lng).toBe(longitude);
     });
@@ -127,7 +127,7 @@ describe('the fluent factories', function() {
       // Act by creating the beaconPost
       var beaconPost = beaconPostFactory.withRecipientId(recipientId).createBeaconPost();
 
-      // Assert it was saved properly
+      // Assert they were saved properly
       expect(beaconPost.recipientIds.length).toBe(1);
       expect(beaconPost.recipientIds[0]).toBe(recipientId);
     });
@@ -150,6 +150,41 @@ describe('the fluent factories', function() {
     });
   });
   describe('the assistance response factory', function() {
+    var assistanceResponseFactory;
+    beforeEach(function() {
+      assistanceResponseFactory = factories.newAssistanceResponseFactory();
+    });
+    it('should allow specifying the ids of it, its sender, and its associated beacon', function() {
+      // Arrange
+      var id = 'this_is_an_id';
+      var senderId = 'this_is_a_sender_id';
+      var beaconId = 'this_is_a_beacon_id';
 
+      // Act by creating the assistance response
+      var assistanceResponse =
+        assistanceResponseFactory
+          .withIds(id, senderId, beaconId)
+          .createAssistanceResponse();
+
+      // Assert it was saved properly
+      expect(assistanceResponse.id).toBe(id);
+      expect(assistanceResponse.senderId).toBe(senderId);
+      expect(assistanceResponse.beaconId).toBe(beaconId);
+    });
+    it('should allow specifying who\'s coming along to help', function() {
+      // Arrange
+      var numResponders = '4-6';
+      var arrivalDate = new Date();
+
+      // Act by creating the assistance response
+      var beaconPost =
+        assistanceResponseFactory
+          .withResponderCrew(numResponders, arrivalDate)
+          .createAssistanceResponse();
+
+      // Assert it was saved properly
+      expect(beaconPost.numResponders).toBe(numResponders);
+      expect(beaconPost.arrivalDate).toBe(arrivalDate);
+    });
   });
 });
