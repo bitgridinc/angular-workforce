@@ -17,6 +17,6 @@ describe('the socket controller', function() {
     waitsForAndRuns(
       function() { return initCalled === true; },
       function() { expect(initCalled).toBe(true); },
-      2000);
+      5000);
   });
 });
