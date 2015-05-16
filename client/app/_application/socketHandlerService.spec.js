@@ -79,23 +79,26 @@ describe('the service that wraps SocketIO', function() {
         expect(service.dataFromServer.beacons.length).toBe(1);
       });
       it ('should not throw an error if an assistance response is received for a beacon that is not present', function () {
+        // Arrange
+        var assistanceResponse =
+          factories.newAssistanceResponseFactory()
+                   .withIds('5eb19570-5567-44f0-ab55-95189383fab0',
+                            currentOrganization.id,
+                            'NOPE9999-63df-48bc-941c-9cc5f750367b');
+
         // Act
-        service.onAssistanceResponse({
-          id: '5eb19570-5567-44f0-ab55-95189383fab0',
-          senderId: currentOrganization.id,
-          beaconId: 'NOPE9999-63df-48bc-941c-9cc5f750367b'
-        });
+        service.onAssistanceResponse(assistanceResponse);
 
         // Assert
         expect(service.dataFromServer.beacons[0].responses.length).toBe(0);
       });
 
       describe('after a response message has been received', function() {
-        var responseMessage = {
-          id: '5eb19570-5567-44f0-ab55-95189383fab0',
-          senderId: currentOrganization.id,
-          beaconId: 'e688af0b-63df-48bc-941c-9cc5f750367b'
-        };
+        var responseMessage =
+          factories.newAssistanceResponseFactory()
+            .withIds('5eb19570-5567-44f0-ab55-95189383fab0',
+            currentOrganization.id,
+            'e688af0b-63df-48bc-941c-9cc5f750367b');
 
         beforeEach(function() {
           service.onAssistanceResponse(responseMessage);
