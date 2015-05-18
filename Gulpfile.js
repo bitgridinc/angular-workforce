@@ -120,10 +120,6 @@ function runJasmineServerTests() {
     }
   });
 }
-gulp.task('runJasmineOnce', function() {
-  // TODO: exec from within the server directory
-  runJasmineServerTests();
-});
 
 // browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
 gulp.task('server', ['build-and-watch'], function () {
@@ -155,15 +151,21 @@ gulp.task('server', ['build-and-watch'], function () {
 gulp.task('karmaTDD', ['build-and-watch'], function(done) {
   karmaServer.start({ configFile: configs.karma }, done);
 });
-gulp.task('karmaSingleRun', function(done) {
-  karmaServer.start({ configFile: configs.karma, singleRun: true }, done);
-});
-
 
 // Protractor not yet tied into build/development process
 gulp.task('webdriver_standalone', webdriver_standalone);
 gulp.task('webdriver_update', webdriver_update);
 
+///
+/// Codeship Entry Points
+///
+gulp.task('karmaSingleRun', function(done) {
+  karmaServer.start({ configFile: configs.karma, singleRun: true }, done);
+});
+gulp.task('runJasmineOnce', function() {
+  // TODO: exec from within the server directory
+  runJasmineServerTests();
+});
 gulp.task('aat', ['webdriver_update'], function(cb) {
   gulp.src(client.aatSrc).pipe(protractor({
     configFile: configs.protractor
@@ -174,7 +176,6 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
 });
 
 ///
-/// Entry Points
+/// Default Entry Point
 ///
 gulp.task('default', ['server', 'karmaTDD']);
-gulp.task('codeshipUnitAndIntegration', ['karmaSingleRun', 'runJasmineOnce']);
