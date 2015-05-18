@@ -57,7 +57,7 @@ describe('the service that wraps SocketIO', function() {
         var id = '97b12600-51de-472a-8cff-08b67a4f0340';
         var beacon = factories.newBeaconFactory()
                               .withIds(id, currentOrganization.id)
-                              .createBeacon()
+                              .createBeacon();
 
         // Act
         service.onNewBeacon(beacon);
@@ -84,7 +84,8 @@ describe('the service that wraps SocketIO', function() {
           factories.newAssistanceResponseFactory()
                    .withIds('5eb19570-5567-44f0-ab55-95189383fab0',
                             currentOrganization.id,
-                            'NOPE9999-63df-48bc-941c-9cc5f750367b');
+                            'NOPE9999-63df-48bc-941c-9cc5f750367b')
+                   .createAssistanceResponse();
 
         // Act
         service.onAssistanceResponse(assistanceResponse);
@@ -94,13 +95,15 @@ describe('the service that wraps SocketIO', function() {
       });
 
       describe('after a response message has been received', function() {
-        var responseMessage =
-          factories.newAssistanceResponseFactory()
-            .withIds('5eb19570-5567-44f0-ab55-95189383fab0',
-            currentOrganization.id,
-            'e688af0b-63df-48bc-941c-9cc5f750367b');
+        var responseMessage;
 
         beforeEach(function() {
+          responseMessage =
+            factories.newAssistanceResponseFactory()
+                     .withIds('5eb19570-5567-44f0-ab55-95189383fab0',
+                              currentOrganization.id,
+                              'e688af0b-63df-48bc-941c-9cc5f750367b')
+                     .createAssistanceResponse();
           service.onAssistanceResponse(responseMessage);
         });
 
