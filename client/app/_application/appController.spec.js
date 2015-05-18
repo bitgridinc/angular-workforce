@@ -73,7 +73,7 @@ describe('the controller for the root module', function() {
         messageCallback(request);
 
         // Assert
-        expect($rootScope.dataFromServer.beacons.length).toBe(1);
+        expect($rootScope.dataFromServer.beacons.length).toBe(2);
       });
     });
   });
