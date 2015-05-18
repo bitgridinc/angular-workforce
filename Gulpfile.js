@@ -120,6 +120,9 @@ function runJasmineServerTests() {
     }
   });
 }
+gulp.task('runJasmineOnce', function() {
+  runJasmineServerTests();
+});
 
 // browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
 gulp.task('server', ['build-and-watch'], function () {
@@ -173,4 +176,4 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
 /// Entry Points
 ///
 gulp.task('default', ['server', 'karmaTDD']);
-gulp.task('codeship', ['aat', 'karmaSingleRun']);
+gulp.task('codeship', ['aat', 'karmaSingleRun', 'runJasmineOnce']);
