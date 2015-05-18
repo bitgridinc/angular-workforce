@@ -42,6 +42,11 @@ var server = {
   bundleName: 'bundle.js'
 };
 
+function failHard() {
+  // We must fail hard when the AATs fail to avoid deploying broken code to production.
+  process.exit(1);
+}
+
 function bundle(bundler) {
   var browserified = transform(bundler);
   return gulp.src(client.entrySrc)
@@ -109,6 +114,9 @@ function runJasmineServerTests() {
     console.log('jasmine output: ', stdout, stderr);
     if (error !== null) {
       console.log('jasmine exec error: ' + error);
+      if (argv.aat) {
+        failHard();
+      }
     }
   });
 }
@@ -155,8 +163,6 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
     configFile: configs.protractor
   })).on('error', function(error) {
     notify("Error in AAT task: " + error);
-
-    // We must fail hard when the AATs fail to avoid deploying broken code to production.
-    process.exit(1);
+    failHard();
   }).on('end', cb);
 });
