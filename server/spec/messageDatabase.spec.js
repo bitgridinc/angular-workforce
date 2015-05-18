@@ -81,7 +81,7 @@ describe('the message database', function() {
         var message = messages[0];
         expect(message.id).toBe('eb6cd1ad-d115-49de-aac0-cfbb887d9ad0');
         expect(message.senderId).toBe('7a95759f-3df8-4f16-bb43-24f4329fe3df');
-        expect(message.numResponders).toBe('2');
+        expect(message.numResponders).toBe('3');
         expect(message.arrivalDate).toEqual(new Date(2015, 1, 1, 1, 1, 1));
       });
     });
