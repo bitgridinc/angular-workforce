@@ -12,7 +12,8 @@ var gulp = require('gulp')
   , watchify = require('watchify')
   , transform = require('vinyl-transform')
   , rename = require('gulp-rename')
-  , sass = require('gulp-ruby-sass')
+  , sass = require('gulp-sass')
+  , debug = require('gulp-debug')
   , notify = require('gulp-notify')
   , exec = require('child_process').exec
   , argv = require('yargs').argv;
@@ -76,7 +77,24 @@ gulp.task('hint', function () {
 });
 
 gulp.task('css', function() {
+  var sassConfig = {
+    includePaths: [
+      client.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+      client.bowerDir + '/fontawesome/scss'
+    ],
+    outFile: server.cssDir + '/app.css'
+  };
+  function onError() {
+    console.log('ERROR');
+    notify.onError(function(error) {
+      return 'Error in css task: ' + error.message;
+    });
+  }
   return gulp.src(client.allSassSrc)
+    .pipe(debug({title: 'sass:'}))
+    .pipe(sass(sassConfig).on('error', sass.logError))
+    .pipe(gulp.dest(server.cssDir));
+  /*return gulp.src(client.allSassSrc)
     .pipe(sass({
         style: 'compressed',
         loadPath: [
@@ -88,7 +106,7 @@ gulp.task('css', function() {
         return 'Error in css task: ' + error.message;
       }))
     )
-    .pipe(gulp.dest(server.cssDir));
+    .pipe(gulp.dest(server.cssDir));*/
 });
 
 gulp.task('icons', function() {
