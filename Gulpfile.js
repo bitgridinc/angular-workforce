@@ -121,6 +121,7 @@ function runJasmineServerTests() {
   });
 }
 gulp.task('runJasmineOnce', function() {
+  // TODO: exec from within the server directory
   runJasmineServerTests();
 });
 
@@ -176,4 +177,4 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
 /// Entry Points
 ///
 gulp.task('default', ['server', 'karmaTDD']);
-gulp.task('codeship', ['aat', 'karmaSingleRun', 'runJasmineOnce']);
+gulp.task('codeshipUnitAndIntegration', ['karmaSingleRun', 'runJasmineOnce']);
