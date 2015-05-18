@@ -29,8 +29,8 @@ describe('having the My Beacons button clicked to view the list of existing beac
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/review');
   });
 
-  it('should only show 3 beacons (1 filtered out)', function() {
-    expect(element.all(listBeaconsLocators.beaconSummaryDirective).count()).toBe(3);
+  it('should only show 4/5 beacons (1 filtered out)', function() {
+    expect(element.all(listBeaconsLocators.beaconSummaryDirective).count()).toBe(4);
   });
 
   describe('clicking an existing beacon', function() {
