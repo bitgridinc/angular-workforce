@@ -148,11 +148,13 @@ gulp.task('server', ['build-and-watch'], function () {
     });
 });
 
-gulp.task('tdd', ['build-and-watch'], function(done) {
+gulp.task('karmaTDD', ['build-and-watch'], function(done) {
   karmaServer.start({ configFile: configs.karma }, done);
 });
+gulp.task('karmaSingleRun', function(done) {
+  karmaServer.start({ configFile: configs.karma, singleRun: true }, done);
+});
 
-gulp.task('default', ['server', 'tdd']);
 
 // Protractor not yet tied into build/development process
 gulp.task('webdriver_standalone', webdriver_standalone);
@@ -166,3 +168,9 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
     failHard();
   }).on('end', cb);
 });
+
+///
+/// Entry Points
+///
+gulp.task('default', ['server', 'karmaTDD']);
+gulp.task('codeship', ['aat', 'karmaSingleRun']);
