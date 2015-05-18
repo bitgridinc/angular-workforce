@@ -7,7 +7,7 @@ module.exports = function (config) {
 
     files: [
       'server/public/js/bundle.js',
-      'node_modules/angular-mocks/*.js',
+      'node_modules/angular-mocks/angular-mocks.js',
       'client/**/**/*.spec.js'
     ],
 
