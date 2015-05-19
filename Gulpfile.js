@@ -16,7 +16,6 @@ var gulp = require('gulp')
   , debug = require('gulp-debug')
   , notify = require('gulp-notify')
   , jasmine = require('gulp-jasmine')
-  , exec = require('child_process').exec
   , argv = require('yargs').argv;
 
 // Note that absolute paths are REQUIRED while we use the cwd parameter with nodemon. I don't know why this is the case,
@@ -50,6 +49,8 @@ function failHard() {
   process.exit(1);
 }
 
+///
+/// Start Watchify/Browserify
 function bundle(bundler) {
   var browserified = transform(bundler);
   return gulp.src(client.entrySrc)
@@ -57,20 +58,19 @@ function bundle(bundler) {
     .pipe(rename(server.bundleName))
     .pipe(gulp.dest(server.bundleDir));
 }
-
 function runWatchify(filename) {
   var bundler = watchify(browserify(filename, watchify.args));
   bundler.on('update', function() { return bundle(runWatchify) });
   return bundler.bundle();
 }
-
 function runBrowserify(filename) {
   var b = browserify(filename);
   return b.bundle();
 }
-
 gulp.task('watchify', function() { return bundle(runWatchify); });
 gulp.task('browserify', function() { return bundle(runBrowserify); });
+/// End Watchify/Browserify
+///
 
 gulp.task('hint', function () {
   gulp.src([client.moduleSrc, client.commonSrc])
@@ -129,17 +129,15 @@ gulp.task('client-watch', function() {
 gulp.task('build', ['browserify', 'css', 'icons']);
 gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch']);
 
-function runJasmineServerTests() {
-  exec('jasmine', function(error, stdout, stderr) {
-    console.log('jasmine output: ', stdout, stderr);
-    if (error !== null) {
-      console.log('jasmine exec error: ' + error);
+gulp.task('runJasmineOnce', function() {
+  return gulp.src(server.allSpecSrc)
+    .pipe(jasmine().on('error', function() {
       if (argv.aat) {
+        console.log('Tests failed, exiting process...');
         failHard();
       }
-    }
-  });
-}
+    }));
+}); // Codeship Entry Point
 
 // browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
 gulp.task('server', ['build-and-watch'], function () {
@@ -161,41 +159,30 @@ gulp.task('server', ['build-and-watch'], function () {
   // Note: Use ', verbose: true' to debug
   nodemon(nodemonParams)
     .on('start', function() {
-      runJasmineServerTests();
+      gulp.run('runJasmineOnce');
     })
     .on('restart', function () {
-      runJasmineServerTests();
+      gulp.run('runJasmineOnce');
     });
 });
 
+///
+/// Start Karma
 gulp.task('karmaTDD', ['build-and-watch'], function(done) {
   karmaServer.start({ configFile: configs.karma }, done);
 });
-
-// Protractor not yet tied into build/development process
-gulp.task('webdriver_standalone', webdriver_standalone);
-gulp.task('webdriver_update', webdriver_update);
-
-///
-/// Codeship Entry Points
-///
 gulp.task('karmaSingleRun', function(done) {
   karmaServer.start({ configFile: configs.karma, singleRun: true }, done);
-});
-gulp.task('runJasmineOnce', function() {
-  // TODO: exec from within the server directory
-  //runJasmineServerTests();
-  //var jasmine = new Jasmine();
-  return gulp.src(server.allSpecSrc)
-    .pipe(jasmine().on('end', function() {
-      console.log('SUCCESS');
-      //done();
-      //process.exit(0);
-    }).on('error', function() {
-      console.log('ERROR');
-      failHard();
-    }));
-});
+}); // Codeship Entry Point
+/// End Karma
+///
+
+gulp.task('default', ['server', 'karmaTDD']);
+
+///
+/// Start Protractor/Webdriver
+gulp.task('webdriver_standalone', webdriver_standalone);
+gulp.task('webdriver_update', webdriver_update);
 gulp.task('aat', ['webdriver_update'], function(cb) {
   gulp.src(client.aatSrc).pipe(protractor({
     configFile: configs.protractor
@@ -203,9 +190,6 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
     notify("Error in AAT task: " + error);
     failHard();
   }).on('end', cb);
-});
-
+}); // Codeship Entry Point
+/// End Protractor/Webdriver
 ///
-/// Default Entry Point
-///
-gulp.task('default', ['server', 'karmaTDD']);
