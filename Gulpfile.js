@@ -190,7 +190,7 @@ gulp.task('runJasmineOnce', function() {
     .pipe(jasmine().on('end', function() {
       console.log('SUCCESS');
       //done();
-      process.exit(0);
+      //process.exit(0);
     }).on('error', function() {
       console.log('ERROR');
       failHard();
