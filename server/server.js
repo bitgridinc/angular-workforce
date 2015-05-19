@@ -11,12 +11,12 @@ catch(err) {
   console.log('chdir: ' + err);
 }
 
-var hapi = require('hapi');
+var Hapi = require('hapi');
 var apiRoutes = require('../shared/apiRoutes');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
 
-var PORT = 8080;
-var server = new hapi.Server('0.0.0.0', PORT);
+var server = new Hapi.Server();
+server.connection({ address: '0.0.0.0', port: 8080 });
 require('./socketSetup')(server);
 
 // Note that these must come after server is passed to socketSetup above.
@@ -96,5 +96,5 @@ server.route([
   { method: 'GET', path: '/{path?}', handler: {file: '../client/app/_application/applicationShell.html'} }
 ]);
 
+console.log('Running on ' + server.connections[0].info.uri);
 server.start();
-console.log('Running on http://0.0.0.0:' + PORT);
