@@ -15,6 +15,7 @@ var gulp = require('gulp')
   , sass = require('gulp-sass')
   , debug = require('gulp-debug')
   , notify = require('gulp-notify')
+  , jasmine = require('gulp-jasmine')
   , exec = require('child_process').exec
   , argv = require('yargs').argv;
 
@@ -39,6 +40,7 @@ var server = {
   cssDir: __dirname + '/server/public/css',
   bundleDir: __dirname + '/server/public/js',
   fontsDir: __dirname + '/server/public/fonts',
+  allSpecSrc: __dirname + '/server/spec/*[sS]pec.js',
   scriptName: 'server.js',
   bundleName: 'bundle.js'
 };
@@ -182,7 +184,17 @@ gulp.task('karmaSingleRun', function(done) {
 });
 gulp.task('runJasmineOnce', function() {
   // TODO: exec from within the server directory
-  runJasmineServerTests();
+  //runJasmineServerTests();
+  //var jasmine = new Jasmine();
+  return gulp.src(server.allSpecSrc)
+    .pipe(jasmine().on('end', function() {
+      console.log('SUCCESS');
+      //done();
+      process.exit(0);
+    }).on('error', function() {
+      console.log('ERROR');
+      failHard();
+    }));
 });
 gulp.task('aat', ['webdriver_update'], function(cb) {
   gulp.src(client.aatSrc).pipe(protractor({

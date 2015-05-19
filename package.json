@@ -33,6 +33,7 @@
     "browserify": "^8.1.0",
     "gulp": "^3.8.10",
     "gulp-debug": "^2.0.1",
+    "gulp-jasmine": "^2.0.1",
     "gulp-jshint": "^1.8.6",
     "gulp-nodemon": "^1.0.4",
     "gulp-notify": "^2.1.0",
