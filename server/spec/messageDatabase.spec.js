@@ -2,7 +2,8 @@
 
 var db = require('../inMemory/messages/messageDatabase')
   , dbBackend = require('../inMemory/messages/messageDatabase.hardcoded')
-  , factories = require('../../shared/factories');
+  , factories = require('../../shared/factories')
+  , environment = require('../../shared/environment.js');
 
 describe('the message database', function() {
   it('should have nothing for beacon -1', function() {
@@ -11,8 +12,7 @@ describe('the message database', function() {
 
   describe('in Production', function() {
     beforeEach(function() {
-      // Arrange the environment so that our aat env var is not present
-      delete process.env.aat;
+      environment.changeToProductionMode();
     });
 
     describe('the getMessagesByBeaconId method', function() {
@@ -48,8 +48,7 @@ describe('the message database', function() {
 
   describe('in Test', function() {
     beforeEach(function() {
-      // Arrange the environment to use our hardcoded testing data
-      process.env.aat = true;
+      environment.changeToTestMode();
     });
 
     describe('for beacon 30', function() {

@@ -1,12 +1,12 @@
 "use strict";
 
-var db = require('../esri/userDatabase/userDatabase');
+var db = require('../esri/userDatabase/userDatabase')
+  , environment = require('../../shared/environment.js');
 
 describe('the user storage', function() {
   describe('when the aat env var is present', function() {
     beforeEach(function() {
-      // Arrange the environment to use our hardcoded data instead of hitting ArcGIS Online
-      process.env.aat = true;
+      environment.changeToTestMode();
     });
 
     it('should return no users', function() {

@@ -1,12 +1,12 @@
 "use strict";
 
-var db = require('../inMemory/organizations/organizationDatabase');
+var db = require('../inMemory/organizations/organizationDatabase')
+  , environment = require('../../shared/environment.js');
 
 describe('the organization database', function() {
   describe('when the aat env var is not present', function() {
     beforeEach(function() {
-      // Arrange the environment so that our aat env var is not present
-      delete process.env.aat;
+      environment.changeToProductionMode();
     });
 
     it('should initialize with 4 organizations defined', function() {
@@ -24,8 +24,7 @@ describe('the organization database', function() {
 
   describe('when the aat env var is present', function() {
     beforeEach(function() {
-      // Arrange the environment to use our hardcoded data instead of hitting ArcGIS Online
-      process.env.aat = true;
+      environment.changeToTestMode();
     });
 
     // This is necessary as I have code to switch the current organization for demo and hand-testing reasons

@@ -1,6 +1,7 @@
 "use strict";
 
 var data = require('./organizationDatabase.hardcoded.js')
+  , environment = require('../../../shared/environment.js')
   , next = 0;
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
     return data.organizations;
   },
   getCurrentOrganization: function() {
-    if (process.env.aat) {
+    if (environment.runningInTestMode()) {
       return data.organizations[1];
     }
 

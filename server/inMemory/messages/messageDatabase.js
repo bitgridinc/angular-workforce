@@ -1,16 +1,17 @@
 "use strict";
 
-var aatData = require('./messageDatabase.hardcoded')
+var testData = require('./messageDatabase.hardcoded')
+  , environment = require('../../../shared/environment.js')
   , data = []
   , _ = require('lodash');
 
 module.exports = {
   getMessagesByBeaconId: function(beaconId) {
-    return _.filter(process.env.aat ? aatData : data, function(message) {
+    return _.filter(environment.runningInTestMode() ? testData : data, function(message) {
       return message.beaconId === beaconId;
     });
   },
   saveMessage: function(message) {
-    (process.env.aat ? aatData : data).push(message);
+    (environment.runningInTestMode() ? testData : data).push(message);
   }
 };

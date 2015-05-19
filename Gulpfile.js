@@ -48,6 +48,9 @@ function failHard() {
   // We must fail hard when the AATs fail to avoid deploying broken code to production.
   process.exit(1);
 }
+function isTest() {
+  return argv.test;
+}
 
 ///
 /// Start Watchify/Browserify
@@ -132,7 +135,7 @@ gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch'
 gulp.task('runJasmineOnce', function() {
   return gulp.src(server.allSpecSrc)
     .pipe(jasmine().on('error', function() {
-      if (argv.aat) {
+      if (isTest()) {
         console.log('Tests failed, exiting process...');
         failHard();
       }
@@ -148,9 +151,9 @@ gulp.task('server', ['build-and-watch'], function () {
   };
 
   // We need to pass the aat env var through if it's set, so that we can mock data for our AATs
-  if (argv.aat) {
+  if (isTest()) {
     nodemonParams.env = {
-      "aat": "true"
+      "mode": "test"
     }
   }
 

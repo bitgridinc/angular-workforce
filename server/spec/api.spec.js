@@ -14,7 +14,7 @@ function hapifyRequest(payload) {
 }
 
 describe('the public API', function() {
-  if (!process.env.aat) {
+  if (!process.env.mode === 'test') {
     var requestSpyObj
       , postFormSpy;
 

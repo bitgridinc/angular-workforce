@@ -1,17 +1,18 @@
 /* jslint node: true */
 "use strict";
 
-var AGO = require('esri-portal-api');
+var AGO = require('esri-portal-api')
+  , environment = require('../../../shared/environment.js');
 
 module.exports = {
   getAllUsers: function() {
-    if (process.env.aat) {
+    if (environment.runningInTestMode()) {
       return {
         then: function(callback) {
           callback([]);
         }
       }
-    };
+    }
 
     var ago = new AGO();
     return ago.portal.users(
