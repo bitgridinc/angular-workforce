@@ -3,12 +3,10 @@
 var Locators = require('./locators.js');
 
 describe('trying to assist a non-existent beacon', function() {
-  var ptor
-    , locators;
+  var locators;
 
   beforeEach(function() {
-    ptor = protractor.getInstance();
-    ptor.get('/#/dashboard/beacons/707/assist');
+    browser.get('/#/dashboard/beacons/707/assist');
   });
 
   beforeEach(function() {

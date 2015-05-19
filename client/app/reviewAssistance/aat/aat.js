@@ -4,12 +4,10 @@
 var ReviewAssistanceLocators = require('./locators.js');
 
 describe('the review assistance view', function() {
-  var ptor
-    , reviewAssistanceLocators;
+  var reviewAssistanceLocators;
 
   beforeEach(function() {
-    ptor = protractor.getInstance();
-    ptor.get('/#/dashboard/beacons/30/review/2cf8faaa-5760-41c9-adbf-5a4482ac3469');
+    browser.get('/#/dashboard/beacons/30/review/2cf8faaa-5760-41c9-adbf-5a4482ac3469');
     reviewAssistanceLocators = new ReviewAssistanceLocators();
   });
 

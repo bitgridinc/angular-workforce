@@ -3,12 +3,10 @@
 var OfferAssistanceLocators = require('./locators.js');
 
 describe('the offer assistance view', function() {
-  var ptor
-    , offerAssistanceLocators;
+  var offerAssistanceLocators;
 
   beforeEach(function() {
-    ptor = protractor.getInstance();
-    ptor.get('/#/dashboard/beacons/30/assist');
+    browser.get('/#/dashboard/beacons/30/assist');
   });
 
   beforeEach(function() {
@@ -21,7 +19,7 @@ describe('the offer assistance view', function() {
   });*/
 
   it('should navigate to the list of beacons when an offer is sent', function() {
-    ptor.findElement(offerAssistanceLocators.assistButton).click();
+    browser.findElement(offerAssistanceLocators.assistButton).click();
     expect(browser.getCurrentUrl()).not.toContain('/assist');
     expect(browser.getCurrentUrl()).not.toContain('/detail');
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
