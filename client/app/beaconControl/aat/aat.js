@@ -19,12 +19,12 @@ describe('the main dashboard', function() {
     // Act/Assert for the first click
     browser.findElement(beaconControlLocators.myBeaconsButton).click();
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
-    expect(ptor.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeTruthy();
+    expect(browser.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeTruthy();
 
     // Act/Assert for the second click
     browser.findElement(beaconControlLocators.myBeaconsButton).click();
     expect(browser.getCurrentUrl()).toContain('/#/dashboard');
     expect(browser.getCurrentUrl()).not.toContain('/#/dashboard/beacons');
-    expect(ptor.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeFalsy();
+    expect(browser.isElementPresent(listBeaconsLocators.createBeaconButton)).toBeFalsy();
   });
 });
