@@ -37,7 +37,7 @@ describe('the beacon list controller', function() {
     $scope.onSelectBeacon(beacon);
 
     // Assert
-    expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('^.detail', { id: beacon.id });
+    expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('^.detail2', { id: beacon.id });
   });
   it('should navigate to the beacon\'s offers of assistance when the mail icon on a beacon is clicked', function() {
     // Arrange
