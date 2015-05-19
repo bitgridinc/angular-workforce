@@ -44,10 +44,6 @@ var server = {
   bundleName: 'bundle.js'
 };
 
-function failHard() {
-  // We must fail hard when the AATs fail to avoid deploying broken code to production.
-  process.exit(1);
-}
 function isTest() {
   return argv.test;
 }
@@ -134,12 +130,13 @@ gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch'
 
 gulp.task('runJasmineOnce', function() {
   return gulp.src(server.allSpecSrc)
-    .pipe(jasmine().on('error', function() {
-      if (isTest()) {
-        console.log('Tests failed, exiting process...');
-        failHard();
-      }
-    }));
+             .pipe(jasmine() // Gulp stays alive after this task finishes for an unknown reason
+               .on('error', function() {
+                 if (isTest()) { process.exit(0) }
+               })
+               .on('end', function() {
+                 if (isTest()) { process.exit(1) }
+               }));
 }); // Codeship Entry Point
 
 // browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
@@ -191,7 +188,7 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
     configFile: configs.protractor
   })).on('error', function(error) {
     notify("Error in AAT task: " + error);
-    failHard();
+    process.exit(1);
   }).on('end', cb);
 }); // Codeship Entry Point
 /// End Protractor/Webdriver
