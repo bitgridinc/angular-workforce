@@ -57,7 +57,7 @@ describe('the message database', function() {
         messages = db.getMessagesByBeaconId(30);
       });
       it('should have one message', function() {
-        expect(messages.length).toBe(2);
+        expect(messages.length).toBe(1);
       });
       it('should be correctly formed for AAT testing purposes', function() {
         var message = messages[0];
