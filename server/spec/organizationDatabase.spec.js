@@ -1,7 +1,7 @@
 "use strict";
 
 var db = require('../inMemory/organizations/organizationDatabase')
-  , environment = require('../../shared/environment.js');
+  , environment = require('../environment.js');
 
 describe('the organization database', function() {
   describe('when the aat env var is not present', function() {

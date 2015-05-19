@@ -2,7 +2,7 @@
 "use strict";
 
 var AGO = require('esri-portal-api')
-  , environment = require('../../../shared/environment.js');
+  , environment = require('../../environment.js');
 
 module.exports = {
   getAllUsers: function() {

@@ -1,7 +1,7 @@
 "use strict";
 
 var data = require('./organizationDatabase.hardcoded.js')
-  , environment = require('../../../shared/environment.js')
+  , environment = require('../../environment.js')
   , next = 0;
 
 module.exports = {

@@ -1,7 +1,7 @@
 "use strict";
 
 var testData = require('./messageDatabase.hardcoded')
-  , environment = require('../../../shared/environment.js')
+  , environment = require('../../environment.js')
   , data = []
   , _ = require('lodash');
 

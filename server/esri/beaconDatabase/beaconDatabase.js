@@ -2,7 +2,7 @@
 
 var hardcodedBeaconDatabase = require('./beaconDatabase.hardcoded.js')
   , esriBeaconDatabase = require('./beaconDatabase.esri.js')
-  , environment = require('../../../shared/environment.js');
+  , environment = require('../../environment.js');
 
 module.exports = {
   saveBeacon: function(beacon, successCallback) {

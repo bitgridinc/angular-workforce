@@ -3,7 +3,7 @@
 var db = require('../inMemory/messages/messageDatabase')
   , dbBackend = require('../inMemory/messages/messageDatabase.hardcoded')
   , factories = require('../../shared/factories')
-  , environment = require('../../shared/environment.js');
+  , environment = require('../environment.js');
 
 describe('the message database', function() {
   it('should have nothing for beacon -1', function() {
