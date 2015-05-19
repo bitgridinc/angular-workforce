@@ -25,6 +25,8 @@
 
         // Jasmine
         "jasmine",
+        "beforeAll",
+        "afterAll",
         "beforeEach",
         "afterEach",
         "describe",
@@ -35,9 +37,7 @@
         // Protractor globals
         "browser",
         "element",
-        "by",
-        "protractor",
-        "element"
+        "by"
     ],
  
     // Development.
