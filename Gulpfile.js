@@ -44,10 +44,6 @@ var server = {
   bundleName: 'bundle.js'
 };
 
-function isTest() {
-  return argv.test;
-}
-
 ///
 /// Start Watchify/Browserify
 function bundle(bundler) {
@@ -130,13 +126,7 @@ gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch'
 
 gulp.task('runJasmineOnce', function() {
   return gulp.src(server.allSpecSrc)
-             .pipe(jasmine() // Gulp stays alive after this task finishes for an unknown reason
-               .on('error', function() {
-                 if (isTest()) { process.exit(0) }
-               })
-               .on('end', function() {
-                 if (isTest()) { process.exit(1) }
-               }));
+             .pipe(jasmine());
 }); // Codeship Entry Point
 
 // browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
@@ -148,7 +138,7 @@ gulp.task('server', ['build-and-watch'], function () {
   };
 
   // We need to pass the aat env var through if it's set, so that we can mock data for our AATs
-  if (isTest()) {
+  if (argv.test) {
     nodemonParams.env = {
       "mode": "test"
     }
