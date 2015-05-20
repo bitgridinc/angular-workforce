@@ -14,7 +14,7 @@ require('../profile/_module');
 
 module.exports =
   angular.module('app', [
-      'ui.bootstrap',
+      'ui.bootstrap', // We're using the datepicker
       'ui.router',
       'modules.directives',
       'modules.providers',
