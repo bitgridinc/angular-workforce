@@ -10,8 +10,7 @@ var gulp = require('gulp')
   , watch = require('gulp-watch')
   , browserify = require('browserify')
   , watchify = require('watchify')
-  , transform = require('vinyl-transform')
-  , rename = require('gulp-rename')
+  , source = require('vinyl-source-stream')
   , sass = require('gulp-sass')
   , debug = require('gulp-debug')
   , notify = require('gulp-notify')
@@ -46,24 +45,22 @@ var server = {
 
 ///
 /// Start Watchify/Browserify
-function bundle(bundler) {
-  var browserified = transform(bundler);
-  return gulp.src(client.entrySrc)
-    .pipe(browserified)
-    .pipe(rename(server.bundleName))
+function writeBundle(bundler) {
+  return bundler(client.entrySrc)
+    .pipe(source(server.bundleName))
     .pipe(gulp.dest(server.bundleDir));
 }
-function runWatchify(filename) {
+function watchifyBundle(filename) {
   var bundler = watchify(browserify(filename, watchify.args));
-  bundler.on('update', function() { return bundle(runWatchify) });
+  bundler.on('update', function() { return writeBundle(watchifyBundle) });
   return bundler.bundle();
 }
-function runBrowserify(filename) {
-  var b = browserify(filename);
-  return b.bundle();
+function browserifyBundle(filename) {
+  var bundler = browserify(filename);
+  return bundler.bundle();
 }
-gulp.task('watchify', function() { return bundle(runWatchify); });
-gulp.task('browserify', function() { return bundle(runBrowserify); });
+gulp.task('watchify', function() { return writeBundle(watchifyBundle); });
+gulp.task('browserify', function() { return writeBundle(browserifyBundle); });
 /// End Watchify/Browserify
 ///
 
