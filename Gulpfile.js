@@ -13,7 +13,6 @@ var gulp = require('gulp')
   , source = require('vinyl-source-stream')
   , sass = require('gulp-sass')
   , debug = require('gulp-debug')
-  , notify = require('gulp-notify')
   , jasmine = require('gulp-jasmine')
   , argv = require('yargs').argv;
 
@@ -156,7 +155,7 @@ gulp.task('aat', ['webdriver_update'], function(cb) {
   gulp.src(client.aatSrc).pipe(protractor({
     configFile: configs.protractor
   })).on('error', function(error) {
-    notify("Error in AAT task: " + error);
+    console.log('Error in AAT task: ', error);
     process.exit(1);
   }).on('end', cb);
 }); // Codeship Entry Point
