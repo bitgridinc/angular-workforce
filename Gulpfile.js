@@ -2,7 +2,6 @@
 
 var gulp = require('gulp')
   , nodemon = require('gulp-nodemon')
-  , jshint = require('gulp-jshint')
   , karmaServer = require('karma').server
   , webdriver_standalone = require('gulp-protractor').webdriver_standalone
   , webdriver_update = require('gulp-protractor').webdriver_update
@@ -42,14 +41,13 @@ var paths = {
   }
 };
 
+function getTask(taskName) {
+  return require('./gulp-tasks/' + taskName)(paths);
+}
+
 gulp.task('watchify', function() { return bundlers.watchify(paths); });
 gulp.task('browserify', function() { return bundlers.browserify(paths); });
-
-gulp.task('hint', function () {
-  gulp.src([paths.client.moduleSrc, paths.client.commonSrc])
-    .pipe(jshint(paths.configs.jshint))
-    .pipe(jshint.reporter('jshint-stylish'));
-});
+gulp.task('hint', getTask('hint'));
 
 gulp.task('css', function() {
   var sassConfig = {
