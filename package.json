@@ -21,7 +21,7 @@
   "dependencies": {
     "esri-portal-api": "0.0.1",
     "geoservices": "^1.1.0",
-    "hapi": "^8.4.0",
+    "hapi": "^8.5.1",
     "joi": "^6.4.1",
     "lodash": "^3.9.1",
     "node-uuid": "^1.4.3",
