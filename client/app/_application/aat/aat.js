@@ -6,6 +6,6 @@ describe('the application', function() {
     var dashboardUrl = browser.getCurrentUrl();
 
     browser.get('/');
-    expect(browser.getCurrentUrl()).not.toBe(dashboardUrl);
+    expect(browser.getCurrentUrl()).toBe(dashboardUrl);
   });
 });
