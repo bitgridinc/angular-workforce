@@ -78,29 +78,10 @@ gulp.task('css', function() {
     ],
     outFile: server.cssDir + '/app.css'
   };
-  function onError() {
-    console.log('ERROR');
-    notify.onError(function(error) {
-      return 'Error in css task: ' + error.message;
-    });
-  }
   return gulp.src(client.allSassSrc)
     .pipe(debug({title: 'sass:'}))
     .pipe(sass(sassConfig).on('error', sass.logError))
     .pipe(gulp.dest(server.cssDir));
-  /*return gulp.src(client.allSassSrc)
-    .pipe(sass({
-        style: 'compressed',
-        loadPath: [
-          client.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
-          client.bowerDir + '/fontawesome/scss'
-        ]
-      })
-      .on('error', notify.onError(function(error) {
-        return 'Error in css task: ' + error.message;
-      }))
-    )
-    .pipe(gulp.dest(server.cssDir));*/
 });
 
 gulp.task('icons', function() {
@@ -109,7 +90,8 @@ gulp.task('icons', function() {
 });
 
 gulp.task('client-watch', function() {
-  // gulp-watch is nicer than gulps built-in watch function because it can look for new files
+  // gulp-watch is nicer than gulps built-in watch function because it can look for new files, but it can't support the
+  // gulp.watch(client.allJsSrc, ['hint']); syntax.
   watch(client.allJsSrc, function() {
     gulp.start('hint');
   });
