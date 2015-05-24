@@ -7,4 +7,4 @@ var apiRoutes = {
   getAllUsers: '/users'
 };
 
-module.exports = apiRoutes;
+export = apiRoutes;
