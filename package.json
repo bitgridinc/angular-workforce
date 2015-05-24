@@ -47,7 +47,6 @@
     "gulp-nodemon": "^2.0.3",
     "gulp-notify": "^2.2.0",
     "gulp-protractor": "1.0.0",
-    "gulp-ruby-sass": "^1.0.5",
     "gulp-sass": "^2.0.1",
     "gulp-watch": "^4.2.4",
     "jasmine": "^2.3.1",
