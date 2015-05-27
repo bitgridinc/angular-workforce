@@ -50,6 +50,8 @@ module.exports = function(socketIo) {
 
           messageDatabase.saveMessage(assistanceResponse);
 
+          // Right now this is being lazy and sending this message to ALL connected clients. It will be ignored by those
+          // clients that don't contain the beacon, but this we should improve this in the future.
           socketIo.sockets.emit('assistanceResponse', assistanceResponse);
 
           replySuccess(reply);
@@ -80,6 +82,9 @@ module.exports = function(socketIo) {
             responseId: acceptedMessageId
           };
           console.log('Sending this:', acceptResponseMessage);
+
+          // Right now this is being lazy and sending this message to ALL connected clients. It will be ignored by those
+          // clients that don't contain the beacon, but this we should improve this in the future.
           socketIo.sockets.emit('acceptedAssistance', acceptResponseMessage);
 
           replySuccess(reply);
