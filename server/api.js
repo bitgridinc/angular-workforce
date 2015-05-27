@@ -17,7 +17,7 @@ module.exports = function(socketIo) {
       handler: function(request, reply) {
         console.log('createBeacon handler called with payload:', request.payload);
 
-        beaconDatabase.saveBeacon(domain.createBeacon(request.payload), function(result) {
+        beaconDatabase.saveBeacon(domain.createDomainBeacon(request.payload), function(result) {
           beaconDatabase.getBeaconById(result.objectId, function(beacon) {
             // Send the new beacon to all recipients
             _.forEach(request.payload.recipientIds, function(recipientId) {
@@ -46,7 +46,7 @@ module.exports = function(socketIo) {
             reply({status: 'error'});
           }
 
-          var assistanceResponse = domain.offerAssistance(request.payload.senderId, beacon, request.payload.contents);
+          var assistanceResponse = domain.createDomainMessage(request.payload.senderId, beacon, request.payload.contents);
 
           messageDatabase.saveMessage(assistanceResponse);
 

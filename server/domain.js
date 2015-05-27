@@ -5,7 +5,7 @@ var uuid = require('node-uuid')
   , factories = require('../shared/factories');
 
 module.exports = {
-  createBeacon: function(payload){
+  createDomainBeacon: function(payload){
     return factories.newBeaconFactory()
                     .withIds(-1, payload.senderId) // id will be automatically assigned by db
                     .withSummaryText(payload.title, payload.description)
@@ -14,7 +14,7 @@ module.exports = {
                     .withNumberOfPeople(payload.numberOfPeople)
                     .createBeacon();
   },
-  offerAssistance: function(senderId, beacon, offerContents){
+  createDomainMessage: function(senderId, beacon, offerContents){
     return factories.newAssistanceResponseFactory()
                     .withIds(uuid.v4(), senderId, beacon.id)
                     .withResponderCrew(offerContents.numResponders, offerContents.arrivalDate)
