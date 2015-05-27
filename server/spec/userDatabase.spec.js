@@ -9,7 +9,7 @@ describe('the user storage', function() {
       environment.changeToTestMode();
     });
 
-    it('should return no users', function() {
+    it('should return no users because a REST call to Esri will break our AATs', function() {
       // Act by getting all users
       db.getAllUsers(function(users) {
         // Assert there are none
