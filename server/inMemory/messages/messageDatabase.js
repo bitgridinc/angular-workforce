@@ -5,13 +5,20 @@ var testData = require('./messageDatabase.hardcoded')
   , data = []
   , _ = require('lodash');
 
+function db() {
+  return environment.runningInTestMode() ? testData : data;
+}
+
 module.exports = {
   getMessagesByBeaconId: function(beaconId) {
-    return _.filter(environment.runningInTestMode() ? testData : data, function(message) {
+    return _.filter(db(), function(message) {
       return message.beaconId === beaconId;
     });
   },
   saveMessage: function(message) {
-    (environment.runningInTestMode() ? testData : data).push(message);
+    db().push(message);
+  },
+  acceptMessage: function(messageId) {
+    db().accepted = true;
   }
 };

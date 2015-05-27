@@ -20,15 +20,6 @@ module.exports = {
                     .withResponderCrew(offerContents.numResponders, offerContents.arrivalDate)
                     .createAssistanceResponse();
   },
-  acceptAssistance: function(senderId, beacon, acceptedOfferId){
-    // TODO: Test this specifically
-    var response = _.remove(beacon.responses, function(response) {
-      return response.id === acceptedOfferId;
-    })[0];
-    console.log('Accepting this offer:', response);
-    beacon.acceptedAssistance.push(response);
-    return response;
-  },
   populateBeaconWithMessages: function(beacon, messages) {
     if (beacon.responses.length === 0 && beacon.acceptedAssistance.length === 0) {
       messages.forEach(function(message) {

@@ -62,22 +62,22 @@ module.exports = function(socketIo) {
     acceptAssistance: {
       handler: function(request, reply) {
         console.log('acceptAssistance handler called with payload:', request.payload);
+        var acceptedMessageId = request.payload.contents;
 
         beaconDatabase.getBeaconById(request.payload.beaconId, function(beacon) {
 
           // TODO: Find best place to put this
           var messages = messageDatabase.getMessagesByBeaconId(beacon.id);
-          domain.populateBeaconWithMessages(beacon, messages);
+          if (!_.find(messages, function(message) { return message.id === acceptedMessageId; })) {
+            throw new Error('Message not found with id: ' + acceptedMessageId);
+          }
 
-          var acceptedResponse = domain.acceptAssistance(request.payload.senderId, beacon, request.payload.contents);
-          console.log('This response was accepted:', acceptedResponse);
-
-          // TODO: Find best place to put this
-          acceptedResponse.accepted = true;
+          messageDatabase.acceptMessage(acceptedMessageId);
+          console.log('This response was accepted:', acceptedMessageId);
 
           var acceptResponseMessage = {
             beaconId: beacon.id,
-            responseId: acceptedResponse.id
+            responseId: acceptedMessageId
           };
           console.log('Sending this:', acceptResponseMessage);
           socketIo.sockets.emit('acceptedAssistance', acceptResponseMessage);
