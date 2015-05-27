@@ -11,17 +11,18 @@ catch(err) {
   console.log('chdir: ' + err);
 }
 
-var Hapi = require('hapi');
 var apiRoutes = require('../shared/apiRoutes');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
 
+// Set up the server
+var Hapi = require('hapi');
 var server = new Hapi.Server();
 server.connection({ address: '0.0.0.0', port: 8080 });
-require('./socketSetup')(server);
 
-// Note that these must come after server is passed to socketSetup above.
-var api = require('./api');
-require('./socketController');
+// Set up socket.io and dependant modules
+var socketIo = require('socket.io').listen(server.listener);
+require('./socketController')(socketIo);
+var api = require('./api')(socketIo);
 
 // TODO: Break out into a routes file
 server.route([
