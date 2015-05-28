@@ -55,19 +55,17 @@ describe('the public API', function() {
       // We don't want to send socket.io messages, so create a spy for the 'to' and 'emit' functions
       toSpy = jasmine.createSpy('to');
       emitSpy = jasmine.createSpy('emit');
+      var socketIoSpy = {
+        to : toSpy.and.returnValue({
+          emit: emitSpy
+        })
+      };
 
       // We must create the spies before we require in the api, as it is in the api's require statements that the
       // code in which we are spying is used
       handlers = proxyquire('../api', {
-        'request' : requestSpyObj,
-        './socketSetup': {
-          instance: {
-            to : toSpy.and.returnValue({
-              emit: emitSpy
-            })
-          }
-        }
-      });
+        'request' : requestSpyObj
+      })(socketIoSpy);
     }); // Set up our spies
     beforeEach(function() {
       // Arrange a request to the API to create a new beacon
