@@ -1,29 +1,29 @@
 "use strict";
 
-var hardcodedBeaconDatabase = require('./beaconDatabase.hardcoded.js')
-  , esriBeaconDatabase = require('./beaconDatabase.esri.js')
+var testBeaconDatabase = require('./beaconDatabase.test.js')
+  , prodBeaconDatabase = require('./beaconDatabase.prod.js')
   , environment = require('../../environment.js');
 
 module.exports = {
   saveBeacon: function(beacon, successCallback) {
     if (environment.runningInTestMode()) {
-      hardcodedBeaconDatabase.saveBeacon(beacon, successCallback);
+      testBeaconDatabase.saveBeacon(beacon, successCallback);
     } else {
-      esriBeaconDatabase.saveBeacon(beacon, successCallback);
+      prodBeaconDatabase.saveBeacon(beacon, successCallback);
     }
   },
   getAllBeacons: function(successCallback) {
     if (environment.runningInTestMode()) {
-      hardcodedBeaconDatabase.getAllBeacons(successCallback);
+      testBeaconDatabase.getAllBeacons(successCallback);
     } else {
-      esriBeaconDatabase.getAllBeacons(successCallback);
+      prodBeaconDatabase.getAllBeacons(successCallback);
     }
   },
   getBeaconById: function(id, successCallback) {
     if (environment.runningInTestMode()) {
-      hardcodedBeaconDatabase.getBeaconById(id, successCallback);
+      testBeaconDatabase.getBeaconById(id, successCallback);
     } else {
-      esriBeaconDatabase.getBeaconById(id, successCallback);
+      prodBeaconDatabase.getBeaconById(id, successCallback);
     }
   }
 };

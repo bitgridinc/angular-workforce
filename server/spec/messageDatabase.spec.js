@@ -1,7 +1,7 @@
 "use strict";
 
 var db = require('../inMemory/messages/messageDatabase')
-  , dbBackend = require('../inMemory/messages/messageDatabase.hardcoded')
+  , dbBackend = require('../inMemory/messages/messageDatabase.test.js')
   , factories = require('../../shared/factories')
   , environment = require('../environment.js');
 
