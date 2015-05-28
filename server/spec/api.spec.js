@@ -14,7 +14,8 @@ function hapifyRequest(payload) {
 }
 
 describe('the public API', function() {
-  if (!process.env.mode === 'test') {
+  // I think this was to prevent saving beacons to Esri during tests, but this should be resolved. Verify and remove:
+  //if (process.env.mode === 'test') {
     var requestSpyObj
       , postFormSpy;
 
@@ -121,12 +122,17 @@ describe('the public API', function() {
           });
         });
       });
+      // TODO: 'Esri's geoservices module, used to GET/POSt to Esri's ArcGIS Online, '
       describe('the underlying request module, which is used to GET/POST to Esri\'s ArcGIS Online,', function() {
+        // TODO: describe('the FeatureService.prototype.add method')
+        // TODO:   it('should have been called once'
         it('should have been POSTed to once to create the beacon', function() {
           expect(requestSpyObj.post.calls.count()).toBe(1);
           expect(postFormSpy.calls.count()).toBe(1);
         });
+        // TODO:   describe('the feature passed to the geoservices API'
         describe('the POSTed features property', function() {
+          // TODO:   it('should contain the same properties as was POSTed to our server'
           it('should have our beacon as the value', function() {
             var feature = JSON.parse(postFormSpy.calls.allArgs()[0][0].features)[0];
 
@@ -139,5 +145,5 @@ describe('the public API', function() {
         });
       });
     });
-  }
+  //}
 });
