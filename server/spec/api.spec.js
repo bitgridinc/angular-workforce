@@ -36,20 +36,18 @@ describe('in production,', function() {
 
     describe('create beacon method', function() {
       var handlers
-        , toSpy
+        , sioServerSpy
         , emitSpy
         , newBeaconPost
         , expectedRecipients;
 
       beforeEach(function() {
         // We don't want to send socket.io messages, so create a spy for the 'to' and 'emit' functions
-        toSpy = jasmine.createSpy('to');
         emitSpy = jasmine.createSpy('emit');
-        var socketIoSpy = {
-          to : toSpy.and.returnValue({
-            emit: emitSpy
-          })
-        };
+        sioServerSpy = jasmine.createSpyObj('socketIoSpy', ['to']);
+        sioServerSpy.to.and.returnValue({
+          emit: emitSpy
+        });
 
         // Proxyquire recommends I don't do this, but it's required for an integration test. I'm proxying a require many
         // levels down, and proxyquire only goes one level deep by default (it's normally used for unit testing). See:
@@ -60,7 +58,7 @@ describe('in production,', function() {
         // code in which we are spying is used
         handlers = proxyquire('../api', {
           'geoservices': geoservicesSpy.moduleFunction
-        })(socketIoSpy);
+        })(sioServerSpy);
       }); // Set up our spies
       beforeEach(function() {
         // Arrange a request to the API to create a new beacon
@@ -82,7 +80,7 @@ describe('in production,', function() {
       describe('the socket.io to function, used to address the recipient,', function() {
         var toArgs;
         beforeEach(function() {
-          toArgs = _.map(toSpy.calls.allArgs(), function(call) {
+          toArgs = _.map(sioServerSpy.to.calls.allArgs(), function(call) {
             return call[0];
           });
         }); // Set toArgs from toSpy
