@@ -4,6 +4,7 @@ var http = require('http')
   , request = require('request')
   , proxyquire = require('proxyquire')
   , specData = require('./socketController.integration.specData.js')
+  , spyHelpers = require('./support/spyHelpers')
   , environment = require('../environment')
   , _ = require('lodash');
 
@@ -18,25 +19,11 @@ describe('in production,', function() {
   }); // Reset back to whatever the mode was before the test was run
 
   describe('the socketController', function() {
-    var geoservicesModuleFunction
-      , geoservicesSpyObj;
+    var geoservicesSpy;
     beforeEach(function() {
-      geoservicesSpyObj = jasmine.createSpyObj('geoservices', ['featureservice']);
-      geoservicesSpyObj.featureservice.and.callFake(function(options, callback) {
-        callback();
+      geoservicesSpy = spyHelpers.createGeoservicesSpy({
+        query: specData.esriGetFeaturesResponse
       });
-
-      // Create a spy for the geoservices.featureservice.prototype.query function, used to get beacons
-      var querySpy = jasmine.createSpy('query');
-      querySpy.and.callFake(function(params, callback) {
-        callback(undefined, specData.esriGetFeaturesResponse);
-      });
-      geoservicesSpyObj.featureservice.prototype.query = querySpy;
-
-      // When the geoservices module is newed up, return our spy object
-      geoservicesModuleFunction = function() {
-        return geoservicesSpyObj;
-      };
     }); // Stub the geoservices API with 2 beacons
 
     var socketIoSpy
@@ -67,13 +54,13 @@ describe('in production,', function() {
       // Proxyquire recommends I don't do this, but it's required for an integration test. I'm proxying requires many
       // levels down, and proxyquire only goes one level deep by default (it's normally used for unit testing). See:
       // https://www.npmjs.com/package/proxyquire#caveat
-      geoservicesModuleFunction['@global'] = true;
+      geoservicesSpy.moduleFunction['@global'] = true;
       specData.messages['@global'] = true;
 
       // We must create the spies before we require in the api, as it is in the api's require statements that the
       // code in which we are spying is used
       sut = proxyquire('../socketController', {
-        'geoservices': geoservicesModuleFunction,
+        'geoservices': geoservicesSpy.moduleFunction,
         './messageDatabase.prod.js': specData.messages
       })(socketIoSpy);
     }); // Proxyquire the SUT, passing in our stubbed geoservices module and 2 test messages, one for each beacon
