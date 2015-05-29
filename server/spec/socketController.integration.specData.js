@@ -1,4 +1,19 @@
-module.exports = {
+"use strict";
+
+var factories = require('../../shared/factories');
+
+module.exports.messages = [
+  factories.newAssistanceResponseFactory()
+    .withIds('2cf8faaa-5760-41c9-adbf-5a4482ac3469', '323f8a60-37c6-4d97-a2f8-331c2231e92b', 1107)
+    .withResponderCrew('4', new Date(2015, 1, 1, 1, 1, 1))
+    .createAssistanceResponse(),
+  factories.newAssistanceResponseFactory()
+    .withIds('4568faaa-5760-41c9-adbf-5a4482ac3469', '789f8a60-37c6-4d97-a2f8-331c2231e92b', 1108)
+    .withResponderCrew('6', new Date(2015, 1, 1, 1, 1, 1))
+    .createAssistanceResponse()
+];
+
+module.exports.esriGetFeaturesResponse = {
   objectIdFieldName: "ObjectId",
   globalIdFieldName: "",
   geometryType: "esriGeometryPoint",
