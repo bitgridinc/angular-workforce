@@ -2,9 +2,10 @@
 
 var db = require('../inMemory/messages/messageDatabase')
   , factories = require('../../shared/factories')
+  , proxyquire = require('proxyquire')
   , environment = require('../environment.js');
 
-describe('the message database', function() {
+describe('in production,', function() {
   var mode;
   beforeEach(function() {
     mode = environment.getCurrentMode();
@@ -14,36 +15,60 @@ describe('the message database', function() {
     environment.changeToMode(mode);
   }); // Reset back to whatever the mode was before the test was run
 
-  it('should have nothing for beacon -1', function() {
-    expect(db.getMessagesByBeaconId(-1).length).toBe(0);
-  });
-  describe('the getMessagesByBeaconId method', function() {
-    it('should return no messages for beacon 30', function() {
-      expect(db.getMessagesByBeaconId(30).length).toBe(0);
+  describe('the messageDatabase', function() {
+    var db
+      , messageId = '2cf8faaa-5760-41c9-adbf-5a4482ac3469'
+      , beaconId = 123
+      , testData = [
+        factories.newAssistanceResponseFactory()
+          .withIds(messageId, '323f8a60-37c6-4d97-a2f8-331c2231e92b', beaconId)
+          .withResponderCrew('4', new Date(2015, 1, 1, 1, 1, 1))
+          .createAssistanceResponse()
+      ];
+    beforeEach(function() {
+      // We must create the spies before we require in the api, as it is in the api's require statements that the
+      // code in which we are spying is used
+      db = proxyquire('../inMemory/messages/messageDatabase', {
+        './messageDatabase.prod.js': testData
+      });
+    }); // Set up the messageDatabase with some test data
+
+    describe('acceptMessage function', function() {
+      it('should set accepted to true on the test beacon', function() {
+        // Act
+        db.acceptMessage(messageId);
+
+        // Assert
+        expect(testData[0].accepted).toBeTruthy();
+      });
     });
-    it('should return no messages for beacon 32', function() {
-      expect(db.getMessagesByBeaconId(32).length).toBe(0);
+    describe('saveMessage function', function() {
+      it('should push the message onto the test data array', function() {
+        // Arrange
+        var message = factories.newAssistanceResponseFactory().createAssistanceResponse();
+
+        // Act
+        db.saveMessage(message);
+
+        // Assert
+        expect(testData[1]).toBe(message);
+      });
     });
-  });
-  describe('the saveMessage method', function() {
-    it('should make the message available for retrieval', function() {
-      // Use a beaconId that ArcGIS is designed never to return (they start at 1)
-      var beaconId = -1;
+    describe('getMessagesByBeaconId function', function() {
+      it('should return the messages for the beacon', function() {
+        // Act
+        var messages = db.getMessagesByBeaconId(beaconId);
 
-      // Assert the precondition that database doesn't have the message already (just to be safe)
-      expect(db.getMessagesByBeaconId(beaconId).length).toBe(0);
+        // Assert
+        expect(messages[0]).toBe(testData[0]);
+      });
+      it('should return an empty array for a non-existent beaconId', function() {
+        // Act
+        var messages = db.getMessagesByBeaconId(beaconId + 1);
 
-      // Arrange a message to add
-      var message = factories.newAssistanceResponseFactory()
-                             .withIds('eb6cd1ad-d115-49de-aac0-cfbb887d9ad0', '7a95759f-3df8-4f16-bb43-24f4329fe3df', beaconId)
-                             .withResponderCrew('1337', new Date(2015, 1, 1, 1, 1, 1))
-                             .createAssistanceResponse();
-
-      // Act by adding it to the database
-      db.saveMessage(message);
-
-      // Assert it's there now
-      expect(db.getMessagesByBeaconId(beaconId).length).toBe(1);
+        // Assert
+        expect(messages.length).toBe(0);
+      });
     });
   });
 });

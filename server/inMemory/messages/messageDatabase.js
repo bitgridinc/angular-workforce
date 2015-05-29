@@ -9,6 +9,12 @@ function db() {
   return environment.runningInTestMode() ? testData : prodData;
 }
 
+function findMessageById(messageId) {
+  return _.find(db(), function(message) {
+    return message.id === messageId;
+  });
+}
+
 module.exports = {
   getMessagesByBeaconId: function(beaconId) {
     return _.filter(db(), function(message) {
@@ -19,7 +25,6 @@ module.exports = {
     db().push(message);
   },
   acceptMessage: function(messageId) {
-    // TODO: UNFINISHED
-    db().accepted = true;
+    findMessageById(messageId).accepted = true;
   }
 };
