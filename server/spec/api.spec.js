@@ -15,27 +15,43 @@ function hapifyRequest(payload) {
 }
 
 describe('the public API', function() {
-  var requestSpyObj
-    , postFormSpy
+  var geoservicesModuleFunction
+    , geoservicesSpyObj
     , mode;
 
   beforeAll(function() {
-    requestSpyObj = jasmine.createSpyObj('request', ['get', 'post']);
-
-    // Apparently, I should never do this: https://www.npmjs.com/package/proxyquire#caveat
-    requestSpyObj['@global'] = true;
-
-    postFormSpy = jasmine.createSpy('form');
-    requestSpyObj.get.and.callFake(function(url, callback) {
-      callback(null, undefined, url.indexOf('query') > -1 ? esriResponses.queryGetResponse : esriResponses.layerGetRespone);
+    geoservicesSpyObj = jasmine.createSpyObj('geoservices', ['featureservice']);
+    geoservicesSpyObj.featureservice.and.callFake(function(options, callback) {
+      console.log('GHY: We got to the fake', options, callback);
+      callback();
     });
-    requestSpyObj.post.and.callFake(function(ignored, callback) {
-      callback(null, undefined, esriResponses.postResponse);
-      return {
-        form: postFormSpy
-      };
+
+    // Create a spy for the geoservices.featureservice.prototype.add function, used to create beacons
+    var addSpy = jasmine.createSpy('add');
+    addSpy.and.callFake(function(params, callback) {
+      console.log('addSpy called, calling callback', params);
+      callback(undefined, esriResponses.postResponse);
     });
-  }); // Spy on the beacon database
+    geoservicesSpyObj.featureservice.prototype.add = addSpy;
+
+    // Create a spy for the geoservices.featureservice.prototype.query function, used to get beacons
+    var querySpy = jasmine.createSpy('query');
+    querySpy.and.callFake(function(params, callback) {
+      console.log('querySpy called, calling callback', params);
+      callback(undefined, esriResponses.queryGetResponse);
+    });
+    geoservicesSpyObj.featureservice.prototype.query = querySpy;
+
+    // When the geoservices module is newed up, return our spy object
+    geoservicesModuleFunction = function() {
+      return geoservicesSpyObj;
+    };
+
+    // Proxyquire recommends I don't do this, but it's required for an integration test. I'm proxying a require many
+    // levels down, and proxyquire only goes one level deep by default (it's normally used for unit testing). See:
+    // https://www.npmjs.com/package/proxyquire#caveat
+    geoservicesModuleFunction['@global'] = true;
+  }); // Spy on the geoservices module, which we use in featureServer.js to communicate with Esri
   beforeEach(function() {
     mode = environment.getCurrentMode();
     environment.changeToProductionMode();
@@ -64,7 +80,7 @@ describe('the public API', function() {
       // We must create the spies before we require in the api, as it is in the api's require statements that the
       // code in which we are spying is used
       handlers = proxyquire('../api', {
-        'request' : requestSpyObj
+        'geoservices': geoservicesModuleFunction
       })(socketIoSpy);
     }); // Set up our spies
     beforeEach(function() {
@@ -86,9 +102,9 @@ describe('the public API', function() {
     afterEach(function() {
       toSpy.calls.reset();
       emitSpy.calls.reset();
-      requestSpyObj.get.calls.reset();
-      requestSpyObj.post.calls.reset();
-      postFormSpy.calls.reset();
+      geoservicesSpyObj.featureservice.calls.reset();
+      geoservicesSpyObj.featureservice.prototype.add.calls.reset();
+      geoservicesSpyObj.featureservice.prototype.query.calls.reset();
     }); // Reset the spies
 
     describe('the socket.io to function, used to address the recipient,', function() {
@@ -127,25 +143,22 @@ describe('the public API', function() {
         });
       });
     });
-    // TODO: 'Esri's geoservices module, used to GET/POSt to Esri's ArcGIS Online, '
-    describe('the underlying request module, which is used to GET/POST to Esri\'s ArcGIS Online,', function() {
-      // TODO: describe('the FeatureService.prototype.add method')
-      // TODO:   it('should have been called once'
-      it('should have been POSTed to once to create the beacon', function() {
-        expect(requestSpyObj.post.calls.count()).toBe(1);
-        expect(postFormSpy.calls.count()).toBe(1);
-      });
-      // TODO:   describe('the feature passed to the geoservices API'
-      describe('the POSTed features property', function() {
-        // TODO:   it('should contain the same properties as was POSTed to our server'
-        it('should have our beacon as the value', function() {
-          var feature = JSON.parse(postFormSpy.calls.allArgs()[0][0].features)[0];
+    describe('Esri\'s geoservices module, used to GET/POSt to Esri\'s ArcGIS Online,', function() {
+      describe('the FeatureService.prototype.add method', function() {
+        it('should have been called once', function() {
+          expect(geoservicesSpyObj.featureservice.prototype.add.calls.count()).toBe(1);
+        });
+        describe('the passed in feature', function() {
+          it('should contain the same properties as was POSTed to our server', function() {
+            var feature = geoservicesSpyObj.featureservice.prototype.add.calls.allArgs()[0][0].features[0];
 
-          // Assert the basic feature properties
-          expect(feature.geometry.x).toBe(newBeaconPost.lng);
-          expect(feature.geometry.y).toBe(newBeaconPost.lat);
-          expect(feature.attributes.senderId).toEqual(newBeaconPost.senderId);
-          expect(feature.attributes.title).toEqual(newBeaconPost.title);
+            // Assert the basic feature properties
+            expect(feature.geometry.x).toBe(newBeaconPost.lng);
+            expect(feature.geometry.y).toBe(newBeaconPost.lat);
+            expect(feature.attributes.senderId).toEqual(newBeaconPost.senderId);
+            expect(feature.attributes.title).toEqual(newBeaconPost.title);
+            expect(feature.attributes.numberOfPeople).toEqual(newBeaconPost.numberOfPeople);
+          });
         });
       });
     });
