@@ -17,9 +17,9 @@ var server = new Hapi.Server();
 server.connection({ address: '0.0.0.0', port: 8080 });
 
 // Set up socket.io and dependant modules
-var socketIo = require('socket.io').listen(server.listener);
-require('./socketController')(socketIo);
-var api = require('./api')(socketIo);
+var sioServer = require('socket.io').listen(server.listener);
+require('./socketController')(sioServer);
+var api = require('./api')(sioServer);
 
 // Wire up the server routes
 server.route(require('./serverRoutes')(api));

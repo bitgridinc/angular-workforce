@@ -11,7 +11,7 @@ function replySuccess(reply) {
   reply({status: 'ok'});
 }
 
-module.exports = function(socketIo) {
+module.exports = function(sioServer) {
   return {
     createBeacon: {
       handler: function(request, reply) {
@@ -22,11 +22,11 @@ module.exports = function(socketIo) {
             // Send the new beacon to all recipients
             _.forEach(request.payload.recipientIds, function(recipientId) {
               console.log('Sending new beacon to recipient: ', recipientId);
-              socketIo.to(recipientId).emit('newBeacon', beacon);
+              sioServer.to(recipientId).emit('newBeacon', beacon);
             });
 
             // And send it back to the sender as well
-            socketIo.to(request.payload.senderId).emit('newBeacon', beacon);
+            sioServer.to(request.payload.senderId).emit('newBeacon', beacon);
 
             replySuccess(reply);
           });
@@ -52,7 +52,7 @@ module.exports = function(socketIo) {
 
           // Right now this is being lazy and sending this message to ALL connected clients. It will be ignored by those
           // clients that don't contain the beacon, but this we should improve this in the future.
-          socketIo.sockets.emit('assistanceResponse', assistanceResponse);
+          sioServer.sockets.emit('assistanceResponse', assistanceResponse);
 
           replySuccess(reply);
         });
@@ -85,7 +85,7 @@ module.exports = function(socketIo) {
 
           // Right now this is being lazy and sending this message to ALL connected clients. It will be ignored by those
           // clients that don't contain the beacon, but this we should improve this in the future.
-          socketIo.sockets.emit('acceptedAssistance', acceptResponseMessage);
+          sioServer.sockets.emit('acceptedAssistance', acceptResponseMessage);
 
           replySuccess(reply);
         });

@@ -14,14 +14,13 @@ function populateBeaconsWithResponses(beacons) {
   return beacons;
 }
 
-module.exports = function(socketIo) {
-  socketIo.sockets.on('connection', function(client){
+module.exports = function(sioServer) {
+  sioServer.sockets.on('connection', function(sioSocket){
     var clientOrganization = organizationDatabase.getCurrentOrganization();
-    client.join(clientOrganization.id);
+    sioSocket.join(clientOrganization.id);
 
     beaconDatabase.getAllBeacons(function(beacons) {
-      // While I could just do client.emit(..., this is useful way to remembering how to address a specific client.
-      socketIo.to(clientOrganization.id).emit('init', {
+      sioSocket.emit('init', {
         allOrganizations: organizationDatabase.getAllOrganizations(),
         currentOrganization: clientOrganization,
         beacons: populateBeaconsWithResponses(beacons)
