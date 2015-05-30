@@ -4,7 +4,7 @@ var http = require('http')
   , request = require('request')
   , factories = require('../../shared/factories')
   , proxyquire = require('proxyquire')
-  , esriResponses = require('./api.integration.specData.js')
+  , specData = require('./api.integration.specData.js')
   , spyHelpers = require('./support/spyHelpers')
   , environment = require('../environment')
   , _ = require('lodash');
@@ -29,8 +29,8 @@ describe('in production,', function() {
     var geoservicesSpy;
     beforeEach(function() {
       geoservicesSpy = spyHelpers.createGeoservicesSpy({
-        add: esriResponses.postResponse,
-        query: esriResponses.queryGetResponse
+        add: specData.postResponse,
+        query: specData.queryGetResponse
       });
     }); // Spy on the geoservices module, which we use in featureServer.js to communicate with Esri
 
