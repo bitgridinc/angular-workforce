@@ -25,7 +25,7 @@ describe('in production,', function() {
     environment.changeToMode(mode);
   }); // Reset back to whatever the mode was before the test was run
 
-  describe('the public API', function() {
+  describe('stubbing the geoservices module', function() {
     var geoservicesSpy;
     beforeEach(function() {
       geoservicesSpy = spyHelpers.createGeoservicesSpy({
@@ -34,32 +34,63 @@ describe('in production,', function() {
       });
     }); // Spy on the geoservices module, which we use in featureServer.js to communicate with Esri
 
-    describe('create beacon method', function() {
-      var handlers
-        , sioServerSpy
-        , emitSpy
-        , newBeaconPost
+    var esriPortalModuleFunction;
+    beforeEach(function() {
+      var portalSpyObj = jasmine.createSpyObj('portal', ['users']);
+      portalSpyObj.users.and.returnValue({
+        then: function(callback) {
+          return callback(specData.getAllUsersResponse);
+        }
+      });
+      var esriPortalApiSpy = {
+        portal: portalSpyObj
+      };
+      esriPortalModuleFunction = function() {
+        return esriPortalApiSpy;
+      };
+    }); // Spy on the esri-portal-api module, which we use in userDatabase.js to communicate with Esri's portal API
+
+    var handlers
+      , sioServerSpy
+      , emitSpy;
+    beforeEach(function() {
+      // We don't want to send socket.io messages, so create a spy for the 'to' and 'emit' functions
+      emitSpy = jasmine.createSpy('emit');
+      sioServerSpy = jasmine.createSpyObj('socketIoSpy', ['to']);
+      sioServerSpy.to.and.returnValue({
+        emit: emitSpy
+      });
+
+      // Proxyquire recommends I don't do this, but it's required for an integration test. I'm proxying a require many
+      // levels down, and proxyquire only goes one level deep by default (it's normally used for unit testing). See:
+      // https://www.npmjs.com/package/proxyquire#caveat
+      geoservicesSpy.moduleFunction['@global'] = true;
+      esriPortalModuleFunction['@global'] = true;
+
+      // We must create the spies before we require in the api, as it is in the api's require statements that the
+      // code in which we are spying is used
+      handlers = proxyquire('../api', {
+        'geoservices': geoservicesSpy.moduleFunction,
+        'esri-portal-api': esriPortalModuleFunction
+      })(sioServerSpy);
+    }); // Set up our spies
+
+    describe('the getAllUsers API', function() {
+      it('should pass Esri users to the Hapi reply function', function() {
+        // Arrange
+        var replySpy = jasmine.createSpy('reply');
+
+        // Act
+        handlers.getAllUsers.handler(hapifyRequest(undefined), replySpy);
+
+        // Assert
+        expect(replySpy.calls.allArgs()[0][0].users.length).toBe(specData.getAllUsersResponse.users.length);
+      });
+    });
+
+    describe('the createBeacon API', function() {
+      var newBeaconPost
         , expectedRecipients;
-
-      beforeEach(function() {
-        // We don't want to send socket.io messages, so create a spy for the 'to' and 'emit' functions
-        emitSpy = jasmine.createSpy('emit');
-        sioServerSpy = jasmine.createSpyObj('socketIoSpy', ['to']);
-        sioServerSpy.to.and.returnValue({
-          emit: emitSpy
-        });
-
-        // Proxyquire recommends I don't do this, but it's required for an integration test. I'm proxying a require many
-        // levels down, and proxyquire only goes one level deep by default (it's normally used for unit testing). See:
-        // https://www.npmjs.com/package/proxyquire#caveat
-        geoservicesSpy.moduleFunction['@global'] = true;
-
-        // We must create the spies before we require in the api, as it is in the api's require statements that the
-        // code in which we are spying is used
-        handlers = proxyquire('../api', {
-          'geoservices': geoservicesSpy.moduleFunction
-        })(sioServerSpy);
-      }); // Set up our spies
       beforeEach(function() {
         // Arrange a request to the API to create a new beacon
         newBeaconPost =
