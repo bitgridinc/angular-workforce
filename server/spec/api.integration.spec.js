@@ -56,6 +56,7 @@ describe('in production,', function() {
       // We don't want to send socket.io messages, so create a spy for the 'to' and 'emit' functions
       emitSpy = jasmine.createSpy('emit');
       sioServerSpy = jasmine.createSpyObj('socketIoSpy', ['to']);
+      sioServerSpy.sockets = jasmine.createSpyObj('sockets', ['emit']);
       sioServerSpy.to.and.returnValue({
         emit: emitSpy
       });
@@ -68,14 +69,99 @@ describe('in production,', function() {
       // https://www.npmjs.com/package/proxyquire#caveat
       geoservicesSpy.moduleFunction['@global'] = true;
       esriPortalModuleFunction['@global'] = true;
+      specData.messageDatabase['@global'] = true;
 
       // We must create the spies before we require in the api, as it is in the api's require statements that the
       // code in which we are spying is used
       handlers = proxyquire('../api', {
         'geoservices': geoservicesSpy.moduleFunction,
-        'esri-portal-api': esriPortalModuleFunction
+        'esri-portal-api': esriPortalModuleFunction,
+        './messageDatabase.prod.js': specData.messageDatabase
       })(sioServerSpy);
     }); // Instantiate our api, the SUT, with the spies set up above
+
+    describe('the offerAssistance API', function() {
+      var postPayload;
+      beforeEach(function() {
+        postPayload = {
+          contents: {
+            numResponders: 1,
+            arrivalDate: new Date()
+          },
+          senderId: '83a33674-be04-4c93-81a3-71a9ca0ce339',
+          beaconId: 1107,
+          recipientIds: undefined
+        };
+        handlers.offerAssistance.handler(hapifyRequest(postPayload), function() {});
+      }); // POST to offerAssistance
+
+      function verifyMessageAgainstPost(message) {
+        expect(message.senderId).toBe(postPayload.senderId);
+        expect(message.beaconId).toBe(postPayload.beaconId);
+        expect(message.numResponders).toBe(postPayload.contents.numResponders);
+      }
+
+      describe('the messageDatabase', function() {
+        it('should have a new message added', function() {
+          expect(specData.messageDatabase.length).toBe(2);
+        });
+        describe('the new message', function() {
+          it('should contain the properties that were POSTed', function() {
+            // Arrange
+            var newMessage = specData.messageDatabase[1];
+
+            // Assert
+            verifyMessageAgainstPost(newMessage);
+          });
+        });
+      });
+      describe('every connected socket.io client', function() {
+        it('should only be called once', function() {
+          expect(sioServerSpy.sockets.emit.calls.count()).toBe(1);
+        });
+        it('should be passed the offer of assistance', function() {
+          // Arrange
+          var args = sioServerSpy.sockets.emit.calls.allArgs()[0];
+
+          // Assert
+          expect(args[0]).toBe('assistanceResponse');
+          verifyMessageAgainstPost(args[1]);
+        });
+      });
+    });
+
+    describe('the acceptAssistance API', function() {
+      var postPayload;
+      beforeEach(function() {
+        postPayload = {
+          contents: '2cf8faaa-5760-41c9-adbf-5a4482ac3469',
+          senderId: '83a33674-be04-4c93-81a3-71a9ca0ce339',
+          beaconId: 1107,
+          recipientIds: undefined
+        };
+        handlers.acceptAssistance.handler(hapifyRequest(postPayload), function() {});
+      }); // POST to acceptAssistance
+
+      describe('the message in the messageDatabase', function() {
+        it('should now be accepted', function() {
+          expect(specData.messageDatabase[0].accepted).toBeTruthy();
+        });
+      });
+      describe('every connected socket.io client', function() {
+        it('should only be called once', function() {
+          expect(sioServerSpy.sockets.emit.calls.count()).toBe(1);
+        });
+        it('should be passed a packet indicating the message was accepted', function() {
+          // Arrange
+          var args = sioServerSpy.sockets.emit.calls.allArgs()[0];
+
+          // Assert
+          expect(args[0]).toBe('acceptedAssistance');
+          expect(args[1].beaconId).toBe(postPayload.beaconId);
+          expect(args[1].responseId).toBe(postPayload.contents);
+        });
+      });
+    });
 
     describe('the getAllUsers API', function() {
       it('should pass Esri users to the Hapi reply function', function() {
