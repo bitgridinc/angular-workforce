@@ -25,7 +25,7 @@ describe('in production,', function() {
     environment.changeToMode(mode);
   }); // Reset back to whatever the mode was before the test was run
 
-  describe('stubbing the geoservices module', function() {
+  describe('spying on dependencies (geoservices, esri-portal-api, socket.io)', function() {
     var geoservicesSpy;
     beforeEach(function() {
       geoservicesSpy = spyHelpers.createGeoservicesSpy({
@@ -50,8 +50,7 @@ describe('in production,', function() {
       };
     }); // Spy on the esri-portal-api module, which we use in userDatabase.js to communicate with Esri's portal API
 
-    var handlers
-      , sioServerSpy
+    var sioServerSpy
       , emitSpy;
     beforeEach(function() {
       // We don't want to send socket.io messages, so create a spy for the 'to' and 'emit' functions
@@ -60,7 +59,10 @@ describe('in production,', function() {
       sioServerSpy.to.and.returnValue({
         emit: emitSpy
       });
+    }); // Spy on the socket.io module, which we use to push data to connected clients
 
+    var handlers;
+    beforeEach(function() {
       // Proxyquire recommends I don't do this, but it's required for an integration test. I'm proxying a require many
       // levels down, and proxyquire only goes one level deep by default (it's normally used for unit testing). See:
       // https://www.npmjs.com/package/proxyquire#caveat
@@ -73,7 +75,7 @@ describe('in production,', function() {
         'geoservices': geoservicesSpy.moduleFunction,
         'esri-portal-api': esriPortalModuleFunction
       })(sioServerSpy);
-    }); // Set up our spies
+    }); // Instantiate our api, the SUT, with the spies set up above
 
     describe('the getAllUsers API', function() {
       it('should pass Esri users to the Hapi reply function', function() {
