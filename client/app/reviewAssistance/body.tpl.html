@@ -4,8 +4,8 @@
 </li>
 <li class="list-group-item">
   <p id="offerSummaryText" class="small">
-    <organization-label organization-id="currentItem.senderId"></organization-label>
-    offered to assist with {{currentItem.numResponders}} people at {{currentItem.arrivalDate}}.
+    <organization-label organization-id="currentResponse.senderId"></organization-label>
+    offered to assist with {{currentResponse.numResponders}} people at {{currentResponse.arrivalDate}}.
   </p>
 </li>
 <div ng-if="currentBeacon.senderId === dataFromServer.currentOrganization.id">
