@@ -1,15 +1,10 @@
 "use strict";
 
-var Locators = require('./locators.js');
+var locators = new (require('./locators.js'))();
 
 describe('the map', function() {
-  var locators;
-
   beforeEach(function() {
     browser.get('/#/dashboard');
-  });
-  beforeEach(function() {
-    locators = new Locators();
   });
 
   it('should have loaded tiles visible', function() {

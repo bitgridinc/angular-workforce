@@ -1,16 +1,10 @@
 "use strict";
 
-var OfferAssistanceLocators = require('./locators.js');
+var offerAssistanceLocators = new (require('./locators.js'))();
 
 describe('the offer assistance view', function() {
-  var offerAssistanceLocators;
-
   beforeEach(function() {
     browser.get('/#/dashboard/beacons/30/assist');
-  });
-
-  beforeEach(function() {
-    offerAssistanceLocators = new OfferAssistanceLocators();
   });
 
   // TODO: I'd like some way to ensure that there is a defined beacon in scope

@@ -1,17 +1,9 @@
 "use strict";
 
-var CreateBeaconLocators = require('./locators.js')
-  , ListBeaconsLocators = require('../../listBeacons/aat/locators.js');
+var createBeaconLocators = new (require('./locators.js'))()
+  , listBeaconsLocators = new (require('../../listBeacons/aat/locators.js'))();
 
 describe('the page used to create a new beacon', function() {
-  var createBeaconLocators
-    , listBeaconsLocators;
-
-  beforeEach(function() {
-    createBeaconLocators = new CreateBeaconLocators();
-    listBeaconsLocators = new ListBeaconsLocators();
-  });
-
   it('should allow for the creation of a new beacon', function() {
     // Arrange - count existing beacons and select the button to create a new one
     browser.get('/#/dashboard/beacons');

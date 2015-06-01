@@ -1,16 +1,10 @@
 "use strict";
 
-var Locators = require('./locators.js');
+var locators = new (require('./locators.js'))();
 
 describe('trying to assist a non-existent beacon', function() {
-  var locators;
-
   beforeEach(function() {
     browser.get('/#/dashboard/beacons/707/assist');
-  });
-
-  beforeEach(function() {
-    locators = new Locators();
   });
 
   it('should display an error page', function() {

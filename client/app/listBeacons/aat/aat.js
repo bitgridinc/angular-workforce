@@ -1,18 +1,11 @@
 "use strict";
 
-var ListBeaconsLocators = require('./locators.js')
-  , DirectiveLocators = require('../../../common/directives/aat/locators.js');
+var listBeaconsLocators = new (require('./locators.js'))()
+  , directiveLocators = new (require('../../../common/directives/aat/locators.js'))();
 
 describe('having the My Beacons button clicked to view the list of existing beacons', function() {
-  var listBeaconsLocators
-    , directiveLocators;
-
   beforeEach(function() {
     browser.get('/#/dashboard/beacons');
-  });
-  beforeEach(function() {
-    listBeaconsLocators = new ListBeaconsLocators();
-    directiveLocators = new DirectiveLocators();
   });
 
   it('should display a button to create a new beacon', function() {

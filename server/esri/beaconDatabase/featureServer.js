@@ -1,8 +1,7 @@
 "use strict";
 
 var _ = require('lodash')
-  , Geoservices = require('geoservices')
-  , client = new Geoservices();
+  , client = new (require('geoservices'))();
 
 module.exports = {
   makeRequest: function(request) {

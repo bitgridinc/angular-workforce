@@ -1,12 +1,9 @@
 "use strict";
 
-var Locators = require('./locators.js');
+var locators = new (require('./locators.js'))();
 
 describe('the header', function() {
-  var locators;
-
   beforeEach(function() {
-    locators = new Locators();
     browser.get('/#/dashboard');
   });
 

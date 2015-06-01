@@ -1,8 +1,7 @@
 /* jslint node: true */
 "use strict";
 
-var AGO = require('esri-portal-api')
-  , ago = new AGO()
+var ago = new (require('esri-portal-api'))()
   , environment = require('../../environment.js');
 
 module.exports = {

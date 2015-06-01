@@ -1,24 +1,10 @@
 "use strict";
 
-var BeaconControlLocators = require('../../beaconControl/aat/locators.js')
-  , BeaconDetailsLocators = require('./locators.js')
-  , DirectiveLocators = require('../../../common/directives/aat/locators.js')
-  , MapLocators = require('../../map/aat/locators.js');
+var beaconControlLocators = new (require('../../beaconControl/aat/locators.js'))()
+  , beaconDetailsLocators = new (require('./locators.js'))()
+  , directiveLocators = new (require('../../../common/directives/aat/locators.js'))();
 
 describe('the view that displays the details of', function() {
-  var beaconControlLocators
-    , beaconDetailsLocators
-    , directiveLocators
-    , mapLocators;
-
-
-  beforeEach(function() {
-    beaconControlLocators = new BeaconControlLocators();
-    beaconDetailsLocators = new BeaconDetailsLocators();
-    directiveLocators = new DirectiveLocators();
-    mapLocators = new MapLocators();
-  });
-
   describe('the Murfreesboro Electric Department beacon', function() {
     beforeEach(function() {
       browser.get('/#/dashboard/beacons/30');
