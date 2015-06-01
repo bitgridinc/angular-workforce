@@ -2,20 +2,20 @@
 
 var BeaconControlLocators = require('../../beaconControl/aat/locators.js')
   , BeaconDetailsLocators = require('./locators.js')
-  , BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js')
+  , DirectiveLocators = require('../../../common/directives/aat/locators.js')
   , MapLocators = require('../../map/aat/locators.js');
 
 describe('the view that displays the details of', function() {
   var beaconControlLocators
     , beaconDetailsLocators
-    , beaconSummaryLocators
+    , directiveLocators
     , mapLocators;
 
 
   beforeEach(function() {
     beaconControlLocators = new BeaconControlLocators();
     beaconDetailsLocators = new BeaconDetailsLocators();
-    beaconSummaryLocators = new BeaconSummaryLocators();
+    directiveLocators = new DirectiveLocators();
     mapLocators = new MapLocators();
   });
 
@@ -47,7 +47,7 @@ describe('the view that displays the details of', function() {
     });
 
     it('should display a button that allows the user to review offers of assistance', function() {
-      browser.findElement(beaconSummaryLocators.reviewOffersButton).click();
+      browser.findElement(directiveLocators.reviewOffersButton).click();
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/review');
     });
 

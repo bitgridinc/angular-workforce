@@ -1,7 +1,7 @@
 "use strict";
 
-var beaconSummaryLocators = function() {
+var directiveLocators = function() {
   this.reviewOffersButton = by.id('openReviewAssistanceBtn');
 };
 
-module.exports = beaconSummaryLocators;
+module.exports = directiveLocators;

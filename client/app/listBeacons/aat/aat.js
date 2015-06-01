@@ -1,18 +1,18 @@
 "use strict";
 
 var ListBeaconsLocators = require('./locators.js')
-  , BeaconSummaryLocators = require('../../../common/directives/aat/beaconSummary.locators.js');
+  , DirectiveLocators = require('../../../common/directives/aat/locators.js');
 
 describe('having the My Beacons button clicked to view the list of existing beacons', function() {
   var listBeaconsLocators
-    , beaconSummaryLocators;
+    , directiveLocators;
 
   beforeEach(function() {
     browser.get('/#/dashboard/beacons');
   });
   beforeEach(function() {
     listBeaconsLocators = new ListBeaconsLocators();
-    beaconSummaryLocators = new BeaconSummaryLocators();
+    directiveLocators = new DirectiveLocators();
   });
 
   it('should display a button to create a new beacon', function() {
@@ -23,7 +23,7 @@ describe('having the My Beacons button clicked to view the list of existing beac
   });
 
   it('should allow the user to review offers of assistance without having to view the beacon details first', function() {
-    element.all(beaconSummaryLocators.reviewOffersButton).get(0).click();
+    element.all(directiveLocators.reviewOffersButton).get(0).click();
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/review');
   });
 
