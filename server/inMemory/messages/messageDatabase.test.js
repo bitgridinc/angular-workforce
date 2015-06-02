@@ -12,6 +12,10 @@ var messages = [
     .withResponderCrew('2', new Date(2015, 1, 1, 1, 1, 1))
     .createAssistanceResponse(),
   factories.newAssistanceResponseFactory()
+    .withIds('8fddf254-2fb3-4f1e-826b-2db90cdfc9b0', '0be19f21-40ca-47b1-9a07-9c9657fe27b5', 32)
+    .withResponderCrew('4 and a truck', new Date(2015, 1, 1, 1, 1, 1))
+    .createAssistanceResponse(),
+  factories.newAssistanceResponseFactory()
     .withIds('c8ce9a09-ea5c-457b-9f30-528ba19594aa', '323f8a60-37c6-4d97-a2f8-331c2231e92b', 34)
     .withResponderCrew('3', new Date(2015, 1, 1, 1, 1, 1))
     .createAssistanceResponse()
@@ -22,6 +26,7 @@ var messages = [
 // prefer having messages in two separate arrays (responses and acceptedAssistance) on the beacon in the domain.
 messages[0].accepted = false;
 messages[1].accepted = false;
-messages[2].accepted = true;
+messages[2].accepted = false;
+messages[3].accepted = true;
 
 module.exports = messages;
