@@ -1,14 +1,15 @@
 HTML ID Prefixes
 ----------------
-bg-
-   bc- (beaconControl module)
-   bd- (beaconDetails module)
-   cb- (createBeacon module)
-   db- (dashboard module)
-   hd- (header module)
-   lb- (listBeacons module)
-   ma- (map module)
-   oa- (offerAssistance module)
-   pf- (profile module)
-   ra- (reviewAssistance module)
-   dir- (directives module)
+| Prefix  | Module           |
+| ------- | ---------------- |
+| bg-bc-  | beaconControl    |
+| bg-bd-  | beaconDetails    |
+| bg-cb-  | createBeacon     |
+| bg-db-  | dashboard        |
+| bg-hd-  | header           |
+| bg-lb-  | listBeacons      |
+| bg-ma-  | map              |
+| bg-oa-  | offerAssistance  |
+| bg-pf-  | profile          |
+| bg-ra-  | reviewAssistance |
+| bg-dir- | directives       |
