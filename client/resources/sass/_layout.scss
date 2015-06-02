@@ -55,6 +55,12 @@
   border-bottom-right-radius: 0px;
 }
 
+.dashboard-beacons-right-header-contents {
+  margin: 0 auto;
+  // This has the effect of centering the header contents
+  display: table;
+}
+
 .bg-bc-beacons-btn {
   @extend .btn;
   @extend .bg-shadow;
