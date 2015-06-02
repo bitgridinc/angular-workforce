@@ -6,17 +6,17 @@ var watchify = require('watchify');
 var browserify = require('browserify');
 
 function writeBundle(bundler, paths) {
-  return bundler(paths.client.entrySrc)
+  return bundler(paths)
     .pipe(source(paths.server.bundleName))
     .pipe(gulp.dest(paths.server.bundleDir));
 }
-function watchifyBundle(filename) {
-  var bundler = watchify(browserify(filename, watchify.args));
-  bundler.on('update', function() { return writeBundle(watchifyBundle) });
+function watchifyBundle(paths) {
+  var bundler = watchify(browserify(paths.client.entrySrc, watchify.args));
+  bundler.on('update', function() { return writeBundle(watchifyBundle, paths) });
   return bundler.bundle();
 }
-function browserifyBundle(filename) {
-  var bundler = browserify(filename);
+function browserifyBundle(paths) {
+  var bundler = browserify(paths.client.entrySrc);
   return bundler.bundle();
 }
 
