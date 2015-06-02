@@ -1,7 +1,8 @@
 // go to url and ensure text appears
 "use strict";
 
-var reviewAssistanceLocators = new (require('./locators.js'))();
+var reviewAssistanceLocators = new (require('./locators.js'))()
+  , listBeaconsLocators = new (require('../../listBeacons/aat/locators.js'))();
 
 function expectOfferInformationDisplayedToBeTruthy(organizationName) {
   var organizationCard = element(reviewAssistanceLocators.organizationCard);
@@ -45,9 +46,24 @@ describe('the review assistance view', function() {
       expectAcceptButtonIsPresent().toBeTruthy();
     });
 
-    describe('when viewing the second offer', function() {
+    describe('when paginating to the second offer', function() {
       beforeEach(function() {
-        
+        browser.findElement(reviewAssistanceLocators.pageRight).click();
+      });
+
+      it('should display the name of the organization that offered assistance', function() {
+        expectOfferInformationDisplayedToBeTruthy('Memphis Light, Gas and Water');
+      });
+
+      describe('when accepting the offer', function() {
+        beforeEach(function() {
+          browser.findElement(reviewAssistanceLocators.acceptButton).click();
+        });
+
+        it('the user should see the beacon list where beacon 32 is no longer there', function() {
+          expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+          expect(element.all(listBeaconsLocators.beaconSummaryDirective).count()).toBe(3);
+        });
       });
     });
   });
