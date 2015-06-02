@@ -22,7 +22,7 @@ var paths = {
     moduleSrc: __dirname + '/client/app/**/*.js',
     commonSrc: __dirname + '/client/common/**/**/*.js',
     entrySrc: __dirname + '/client/app/_application/_module.js',
-    aatSrc: [__dirname + '/client/app/beaconControl/aat/*aat.js'],//, __dirname + '/client/common/**/aat/*aat.js'],
+    aatSrc: [__dirname + '/client/app/**/aat/*aat.js', __dirname + '/client/common/**/aat/*aat.js'],
     bowerDir: __dirname + '/client/bower_components',
     allSassSrc: [__dirname + '/client/resources/sass/*.scss', __dirname + '/client/resources/sass/directives/*.scss']
   },
