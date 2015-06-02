@@ -3,11 +3,11 @@
   <contact-card organization-id="senderOrganization.id"></contact-card>
 </li>
 <li class="list-group-item">
-  <p id="offerSummaryText" class="small">
+  <p id="bg-ra-offer-summary" class="small">
     <organization-label organization-id="currentResponse.senderId"></organization-label>
     offered to assist with {{currentResponse.numResponders}} people at {{currentResponse.arrivalDate}}.
   </p>
 </li>
 <div ng-if="currentBeacon.senderId === dataFromServer.currentOrganization.id">
-  <button id="acceptAssistanceBtn" class="bg-wide-btn btn btn-sm btn-success" type="button" ng-click="acceptAssistance()">Accept Assistance</button>
+  <button id="bg-ra-accept-button" class="bg-wide-btn btn btn-sm btn-success" type="button" ng-click="acceptAssistance()">Accept Assistance</button>
 </div>

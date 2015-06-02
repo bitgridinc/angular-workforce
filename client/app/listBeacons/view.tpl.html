@@ -4,7 +4,7 @@
                      ng-repeat="beacon in dataFromServer.beacons | requiresInput ">
     <div class="media bg-vertically-centered">
       <!-- TODO: Remove duplication with beaconDetails -->
-      <div id="beacon-summary" class="media-body bg-full-width">
+      <div id="bg-lb-beacon-summary" class="media-body bg-full-width">
         <organization-label class="media-header" organization-id="beacon.senderId"></organization-label>
         <div class="small">
           {{beacon.title}}, {{beacon.description}}

@@ -1,8 +1,8 @@
 "use strict";
 
 var reviewAssistanceLocators = function() {
-  this.organizationLabel = by.id('offerSummaryText');
-  this.acceptButton = by.id('acceptAssistanceBtn');
+  this.organizationLabel = by.id('bg-ra-offer-summary');
+  this.acceptButton = by.id('bg-ra-accept-button');
 };
 
 module.exports = reviewAssistanceLocators;

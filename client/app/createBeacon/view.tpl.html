@@ -5,7 +5,7 @@
         <img src="images/arrow_left_gray.png" ng-click="goBackToList()">
       </div>
       <div class="media-body bg-full-width">
-        <input id="title"
+        <input id="bg-cb-title-input"
                class="bg-form-control"
                type="text"
                name="title"
@@ -13,7 +13,7 @@
                ng-model="beaconData.title"
                placeholder="Job Title"
                required />
-        <textarea id="description"
+        <textarea id="bg-cb-description-input"
                   class="bg-form-control"
                   msd-elastic
                   rows="3"
@@ -26,13 +26,13 @@
     </colored-container>
     <li class="list-group-item">
       <icon-container icon-url="images/wizard_location.png">
-        <input id="streetAddress"
+        <input id="bg-cb-street-address-input"
                class="bg-form-control"
                type="text"
                name="streetAddress"
                ng-model="beaconData.streetAddress"
                placeholder="Street Address" />
-        <input id="zip"
+        <input id="bg-cb-zip-input"
                class="bg-form-control"
                type="text"
                name="zip"
@@ -42,13 +42,13 @@
     </li>
     <li class="list-group-item">
       <icon-container icon-url="images/wizard_calendar.png">
-        <date-time-picker dtp-model="beaconData.startDate" dtp-date-id="startDate" dtp-time-id="startTime" dtp-date-placeholder="Start Date"></date-time-picker>
-        <date-time-picker dtp-model="beaconData.endDate" dtp-date-id="endDate" dtp-time-id="endTime" dtp-date-placeholder="End Date"></date-time-picker>
+        <date-time-picker dtp-model="beaconData.startDate" dtp-date-id="bg-cb-start-date" dtp-time-id="bg-cb-start-time" dtp-date-placeholder="Start Date"></date-time-picker>
+        <date-time-picker dtp-model="beaconData.endDate" dtp-date-id="bg-cb-end-date" dtp-time-id="bg-cb-end-time" dtp-date-placeholder="End Date"></date-time-picker>
       </icon-container>
     </li>
     <li class="list-group-item">
       <icon-container icon-url="images/wizard_linemen.png">
-        <input id="numberOfPeople"
+        <input id="bg-cb-num-people-input"
                class="bg-form-control"
                type="text"
                name="numberOfPeople"

@@ -55,7 +55,7 @@
   border-bottom-right-radius: 0px;
 }
 
-.bg-db-beacons-btn {
+.bg-bc-beacons-btn {
   @extend .btn;
   @extend .bg-shadow;
   width: $beacons-btn-width;
@@ -65,7 +65,7 @@
   background-color: white;
 }
 
-.bg-db-beacons-btn-selected {
+.bg-bc-beacons-btn-selected {
   width: $beacons-btn-width + $beacons-btn-margin;
   @include border-right-radius(0px);
   z-index: 10;

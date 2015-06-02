@@ -1,14 +1,14 @@
 <div class="bg-beacons-control-container" ng-controller="BeaconControlController">
-  <button id="dashboard-beacons-btn"
-          class="bg-db-beacons-btn center-block"
-          ng-class="{ 'bg-db-beacons-btn-selected': isToggled }"
+  <button id="bg-bc-beacons-btn"
+          class="bg-bc-beacons-btn center-block"
+          ng-class="{ 'bg-bc-beacons-btn-selected': isToggled }"
           type="button"
           ng-click="toggleMyBeaconsButton()">
-    <img id="dashboard-beacons-self-icon"
+    <img id="bg-bc-beacons-icon"
          class="pull-left"
          src="images/icon_self.png"
          alt="My Beacons">
-    <img id="dashboard-beacons-right-arrow"
+    <img id="bg-bc-arrow-icon"
          class="pull-right bg-vertically-centered"
          src="images/arrow_right.png"
          ng-show="isToggled">
