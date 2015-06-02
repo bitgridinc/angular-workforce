@@ -18,26 +18,27 @@ require('./_module')
             });
           },
           postNewBeacon : function (recipientIds) {
-            // TODO: Consider returning ALL errors at once
-            if (!angular.isDefined(scope.beaconData.title)) {
-              alert('Title is required.');
-            } else if (!angular.isDefined(scope.beaconData.description)) {
-              alert('Description is required.');
-            } else if (!angular.isDefined(scope.beaconData.numberOfPeople)) {
-              alert('Number of People is required.');
-            } else {
-              GeocoderService.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
-                var beaconPost = FluentSharedLibrariesService.newBeaconPostFactory()
-                  .withSenderId($rootScope.dataFromServer.currentOrganization.id)
-                  .withSummaryText(scope.beaconData.title, scope.beaconData.description)
-                  .withLocation(address.lat, address.lng)
-                  .withAddress(address.streetAddress)
-                  .withNumberOfPeople(scope.beaconData.numberOfPeople)
-                  .withRecipientIds(recipientIds)
-                  .createBeaconPost();
-                RestService.createBeacon(beaconPost);
-              });
+            for (var prop in scope.beaconData) {
+              var val = scope.beaconData[prop];
+              if (!angular.isDefined(val) || val === '') {
+                console.log('The following property is undefined or empty: ', prop);
+                alert(prop + ' is required.');
+                return;
+              }
             }
+
+            console.log('required properties exist', scope.beaconData);
+            GeocoderService.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
+              var beaconPost = FluentSharedLibrariesService.newBeaconPostFactory()
+                .withSenderId($rootScope.dataFromServer.currentOrganization.id)
+                .withSummaryText(scope.beaconData.title, scope.beaconData.description)
+                .withLocation(address.lat, address.lng)
+                .withAddress(address.streetAddress)
+                .withNumberOfPeople(scope.beaconData.numberOfPeople)
+                .withRecipientIds(recipientIds)
+                .createBeaconPost();
+              RestService.createBeacon(beaconPost);
+            });
           }
         };
       }
