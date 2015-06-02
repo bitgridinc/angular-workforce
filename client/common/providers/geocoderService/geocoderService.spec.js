@@ -17,7 +17,7 @@ describe('the geocoder service (address -> lat/lng)', function() {
 
   describe('the geocode address method', function() {
     it('should return the latitude and longitude parsed from a Nominatim response', function() {
-      var expectedGetUrl = 'http://nominatim.openstreetmap.org/search?q=2729+Merrilee+Dr+Fairfax&addressdetails=1&format=json';
+      var expectedGetUrl = 'http://nominatim.openstreetmap.org/search?q=2729+Merrilee+Dr+22031&addressdetails=1&format=json';
       $httpBackend.expectGET(expectedGetUrl);
       $httpBackend.when('GET', expectedGetUrl)
         .respond([
@@ -49,7 +49,7 @@ describe('the geocoder service (address -> lat/lng)', function() {
           }
         ]);
 
-      geocoderService.geocodeAddress('2729 Merrilee Dr', 'Fairfax', function(address) {
+      geocoderService.geocodeAddress('2729 Merrilee Dr', '22031', function(address) {
         console.log('Geocoder returned: ', address);
         expect(address).toEqual({
           lat: 38.8793003636364,

@@ -5,7 +5,7 @@ var createBeaconLocators = function() {
   this.titleInput = by.id('title');
   this.descriptionInput = by.id('description');
   this.streetAddressInput = by.id('streetAddress');
-  this.cityInput = by.id('city');
+  this.zipInput = by.id('zip');
   this.numberOfPeopleInput = by.id('numberOfPeople');
 };
 

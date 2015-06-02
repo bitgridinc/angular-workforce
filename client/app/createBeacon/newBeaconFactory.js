@@ -12,7 +12,7 @@ require('./_module')
                 title: undefined,
                 description: undefined,
                 streetAddress: undefined,
-                city: undefined,
+                zip: undefined,
                 numberOfPeople: undefined
               }
             });
@@ -28,7 +28,7 @@ require('./_module')
             }
 
             console.log('required properties exist', scope.beaconData);
-            GeocoderService.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.city, function(address) {
+            GeocoderService.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.zip, function(address) {
               var beaconPost = FluentSharedLibrariesService.newBeaconPostFactory()
                 .withSenderId($rootScope.dataFromServer.currentOrganization.id)
                 .withSummaryText(scope.beaconData.title, scope.beaconData.description)

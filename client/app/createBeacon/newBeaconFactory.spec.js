@@ -30,14 +30,14 @@ describe('the new beacon creation factory', function() {
     var newTitle = 'New Title',
         newDescription = 'New Description',
         newStreetAddress = '2729 Merrilee Dr',
-        newCity = 'Fairfax',
+        newZip = '22031',
         newNumberOfPeople = 4;
 
     beforeEach(function () {
       scope.beaconData.title = newTitle;
       scope.beaconData.description = newDescription;
       scope.beaconData.streetAddress = newStreetAddress;
-      scope.beaconData.city = newCity;
+      scope.beaconData.zip = newZip;
       scope.beaconData.numberOfPeople = newNumberOfPeople;
     });
 
@@ -58,7 +58,7 @@ describe('the new beacon creation factory', function() {
         spyOn(restService, 'createBeacon');
       });
 
-      it('should lookup the street address and city with the geocoder and then pass the new beacon POST to the socket', function() {
+      it('should lookup the street address and zip with the geocoder and then pass the new beacon POST to the socket', function() {
         // Arrange
         rootScope.dataFromServer = {
           currentOrganization: {
@@ -75,7 +75,7 @@ describe('the new beacon creation factory', function() {
         factory.postNewBeacon();
 
         // Assert
-        expect(geocoderService.geocodeAddress).toHaveBeenCalledWith(newStreetAddress, newCity, jasmine.any(Function));
+        expect(geocoderService.geocodeAddress).toHaveBeenCalledWith(newStreetAddress, newZip, jasmine.any(Function));
         geocoderService.geocodeAddress.calls.argsFor(0)[2](geocoderResponse);
         expect(restService.createBeacon).toHaveBeenCalledWith(expectedPost);
       });

@@ -15,7 +15,7 @@ function populateAllInputs() {
   browser.findElement(createBeaconLocators.titleInput).sendKeys('t');
   browser.findElement(createBeaconLocators.descriptionInput).sendKeys('d');
   browser.findElement(createBeaconLocators.streetAddressInput).sendKeys('s');
-  browser.findElement(createBeaconLocators.cityInput).sendKeys('c');
+  browser.findElement(createBeaconLocators.zipInput).sendKeys('z');
   browser.findElement(createBeaconLocators.numberOfPeopleInput).sendKeys('n');
 }
 
@@ -50,7 +50,7 @@ describe('the create beacon view', function() {
   expectAlertWithOneEmptyInput('title', createBeaconLocators.titleInput);
   expectAlertWithOneEmptyInput('description', createBeaconLocators.descriptionInput);
   expectAlertWithOneEmptyInput('street address', createBeaconLocators.streetAddressInput);
-  expectAlertWithOneEmptyInput('city', createBeaconLocators.cityInput);
+  expectAlertWithOneEmptyInput('zip', createBeaconLocators.zipInput);
   expectAlertWithOneEmptyInput('number of people', createBeaconLocators.numberOfPeopleInput);
   it('should allow for the creation of a new beacon', function() {
     // Arrange - count existing beacons and select the button to create a new one
@@ -62,7 +62,7 @@ describe('the create beacon view', function() {
     browser.findElement(createBeaconLocators.titleInput).sendKeys('Fix The BitGrid');
     browser.findElement(createBeaconLocators.descriptionInput).sendKeys('At My House');
     browser.findElement(createBeaconLocators.streetAddressInput).sendKeys('2729 Merrilee Drive');
-    browser.findElement(createBeaconLocators.cityInput).sendKeys('Fairfax');
+    browser.findElement(createBeaconLocators.zipInput).sendKeys('22031');
     browser.findElement(createBeaconLocators.numberOfPeopleInput).sendKeys('1')
       .then(function() {
         browser.findElement(createBeaconLocators.submitButton).click();

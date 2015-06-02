@@ -4,10 +4,10 @@ require('./../_module_init.js')
   .service('GeocoderService',
     function($http) {
       return {
-        geocodeAddress: function(street, city, onResponseCallback) {
+        geocodeAddress: function(street, zip, onResponseCallback) {
           street = street.replace(/ /g, '+');
-          city = city.replace(' ', '+');
-          var queryUrl = 'http://nominatim.openstreetmap.org/search?q=' + street + '+' + city +'&addressdetails=1&format=json';
+          zip = zip.replace(' ', '+');
+          var queryUrl = 'http://nominatim.openstreetmap.org/search?q=' + street + '+' + zip +'&addressdetails=1&format=json';
           console.log('Calling Nominatim for a geocode request: ', queryUrl);
           return $http.get(queryUrl)
             .success(function(data) {
