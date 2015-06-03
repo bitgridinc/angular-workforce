@@ -46,7 +46,7 @@ describe('the review assistance view', function() {
       expectAcceptButtonIsPresent().toBeTruthy();
     });
 
-    describe('when paginating to the second offer', function() {
+    describe('when paginating through the paginator to the second offer', function() {
       beforeEach(function() {
         browser.findElement(reviewAssistanceLocators.pageRight).click();
       });
@@ -54,16 +54,13 @@ describe('the review assistance view', function() {
       it('should display the name of the organization that offered assistance', function() {
         expectOfferInformationDisplayedToBeTruthy('Memphis Light, Gas and Water');
       });
+      it('accepting the offer should send the user to the beacon list where beacon 32 is no longer there', function() {
+        // Act
+        browser.findElement(reviewAssistanceLocators.acceptButton).click();
 
-      describe('when accepting the offer', function() {
-        beforeEach(function() {
-          browser.findElement(reviewAssistanceLocators.acceptButton).click();
-        });
-
-        it('the user should see the beacon list where beacon 32 is no longer there', function() {
-          expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
-          expect(element.all(listBeaconsLocators.beaconSummaryDirective).count()).toBe(3);
-        });
+        // Assert
+        expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+        expect(element.all(listBeaconsLocators.beaconSummaryDirective).count()).toBe(3);
       });
     });
   });
