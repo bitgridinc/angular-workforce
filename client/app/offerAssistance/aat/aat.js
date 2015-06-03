@@ -30,20 +30,15 @@ describe('the offer assistance view', function() {
     });
   });
 
-  describe('when offering assistance to beacon 34', function() {
-    beforeEach(function() {
-      assistBeacon(34);
-    });
+  it('submitting an offer to beacon 34 should navigate the user back to the beacon list where a third review offers button appears', function() {
+    // Arrange
+    assistBeacon(34);
 
-    describe('submitting the offer', function() {
-      beforeEach(function() {
-        clickButtonToOfferAssistance();
-      });
+    // Act
+    clickButtonToOfferAssistance();
 
-      it('should navigate the user back to the beacon list where a third review offers button appears', function() {
-        expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
-        expect(element.all(directiveLocators.reviewOffersButton).count()).toBe(3);
-      });
-    });
+    // Assert
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+    expect(element.all(directiveLocators.reviewOffersButton).count()).toBe(3);
   });
 });
