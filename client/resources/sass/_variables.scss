@@ -1,3 +1,7 @@
+// Bootstrap defaults to ../fonts/bootstrap/, but we simply place all fonts in the fonts directory. It was either change
+// this, or change our gulp icons task to place the glyphicons files into server/public/fonts/bootstrap directory.
+$icon-font-path: "../fonts/";
+
 $header-height: 20px;
 $beacons-btn-width: 79px;
 $beacons-btn-height: $beacons-btn-width + 12px;
