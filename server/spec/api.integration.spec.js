@@ -232,23 +232,18 @@ describe('in production,', function() {
           });
         });
       });
-      describe('Esri\'s geoservices module, used to GET/POSt to Esri\'s ArcGIS Online,', function() {
-        describe('the FeatureService.prototype.add method', function() {
-          it('should have been called once', function() {
-            expect(geoservicesSpy.moduleSpy.featureservice.prototype.add.calls.count()).toBe(1);
-          });
-          describe('the passed in feature', function() {
-            it('should contain the same properties as was POSTed to our server', function() {
-              var feature = geoservicesSpy.moduleSpy.featureservice.prototype.add.calls.allArgs()[0][0].features[0];
+      describe('Esri\'s geoservices.featureService.prototype.add function, used to POST to Esri\'s ArcGIS Online,', function() {
+        it('should have been called once with the same properties as was POSTed to the server', function() {
+          // Assert it was called once
+          expect(geoservicesSpy.moduleSpy.featureservice.prototype.add.calls.count()).toBe(1);
 
-              // Assert the basic feature properties
-              expect(feature.geometry.x).toBe(newBeaconPost.lng);
-              expect(feature.geometry.y).toBe(newBeaconPost.lat);
-              expect(feature.attributes.senderId).toEqual(newBeaconPost.senderId);
-              expect(feature.attributes.title).toEqual(newBeaconPost.title);
-              expect(feature.attributes.numberOfPeople).toEqual(newBeaconPost.numberOfPeople);
-            });
-          });
+          // Assert the basic feature properties
+          var feature = geoservicesSpy.moduleSpy.featureservice.prototype.add.calls.allArgs()[0][0].features[0];
+          expect(feature.geometry.x).toBe(newBeaconPost.lng);
+          expect(feature.geometry.y).toBe(newBeaconPost.lat);
+          expect(feature.attributes.senderId).toEqual(newBeaconPost.senderId);
+          expect(feature.attributes.title).toEqual(newBeaconPost.title);
+          expect(feature.attributes.numberOfPeople).toEqual(newBeaconPost.numberOfPeople);
         });
       });
     });
