@@ -61,7 +61,7 @@ describe('the create beacon view', function() {
     // Act - create a new beacon
     browser.findElement(createBeaconLocators.titleInput).sendKeys('Fix The BitGrid');
     browser.findElement(createBeaconLocators.descriptionInput).sendKeys('At My House');
-    browser.findElement(createBeaconLocators.streetAddressInput).sendKeys('2729 Merrilee Drive');
+    browser.findElement(createBeaconLocators.streetAddressInput).sendKeys('2729 Merrilee Drive APT 213');
     browser.findElement(createBeaconLocators.zipInput).sendKeys('22031');
     browser.findElement(createBeaconLocators.numberOfPeopleInput).sendKeys('1')
       .then(function() {
