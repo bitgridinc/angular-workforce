@@ -12,6 +12,7 @@ require('./../_module_init.js')
           return $http.get(queryUrl)
             .success(function(data) {
               console.log('Nominatim returned: ', data);
+              // TODO: Handle when Nominatim returns []
               var geocodedAddress = {
                 lat: Number(data[0].lat),
                 lng: Number(data[0].lon),
