@@ -19,46 +19,34 @@ function expectRightArrowfIconIsDisplayed() {
 }
 
 describe('the beacon control', function() {
-  describe('when not expanded', function() {
-    beforeEach(function() {
-      browser.get('/#/dashboard');
-    });
-    it('is visible without an arrow icon (visual)', function() {
-      expectSelfIconIsDisplayed().toBeTruthy();
-      expectRightArrowfIconIsDisplayed().toBeFalsy();
-    });
-    it('does not display the contents of the control (e.g., beacon list)', function() {
-      expectLeftControlDivNotPresentToBeFalsy();
-    });
-    describe('when clicked', function() {
-      beforeEach(function() { clickMyBeaconsButton(); });
-      it('displays the contents of the control', function() {
-        expectLeftControlDivIsDisplayedToBeTruthy();
-      });
-      it('navigates to the correct url', function() {
-        expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
-      });
-    });
+  it('starting with it collapsed, clicking it should expand the control', function() {
+    // Arrange
+    browser.get('/#/dashboard');
+
+    // Act
+    clickMyBeaconsButton();
+
+    // Assert the url changed
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+
+    // Assert the control is expanded
+    expectSelfIconIsDisplayed().toBeTruthy();
+    expectRightArrowfIconIsDisplayed().toBeTruthy();
+    expectLeftControlDivIsDisplayedToBeTruthy();
   });
-  describe('when expanded', function() {
-    beforeEach(function() {
-      browser.get('/#/dashboard/beacons');
-    });
-    it('is visible with an arrow icon (visual)', function() {
-      expectSelfIconIsDisplayed().toBeTruthy();
-      expectRightArrowfIconIsDisplayed().toBeTruthy();
-    });
-    it('displays the contents of the control (e.g., beacon list)', function() {
-      expectLeftControlDivIsDisplayedToBeTruthy();
-    });
-    describe('when clicked', function() {
-      beforeEach(function() { clickMyBeaconsButton(); });
-      it('no longer displays the contents of the control', function() {
-        expectLeftControlDivNotPresentToBeFalsy();
-      });
-      it('navigates to the correct url', function() {
-        expect(browser.getCurrentUrl()).toMatch('/#/dashboard$');
-      });
-    });
+  it('starting with it expanded, clicking it should collapse the control', function() {
+    // Arrange
+    browser.get('/#/dashboard/beacons');
+
+    // Act
+    clickMyBeaconsButton();
+
+    // Assert the url changed
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard$');
+
+    // Assert the control is collapsed
+    expectSelfIconIsDisplayed().toBeTruthy();
+    expectRightArrowfIconIsDisplayed().toBeFalsy();
+    expectLeftControlDivNotPresentToBeFalsy();
   });
 });
