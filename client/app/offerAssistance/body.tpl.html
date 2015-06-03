@@ -11,7 +11,12 @@
     <p class="input-group" ng-controller="CalendarController">
       <input type="text" class="form-control" datepicker-popup="shortDate" ng-model="assistanceOffer.arrivalDate" date-disabled="disabled(date, mode)" is-open="calendarOpened" ng-required="true" />
       <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="openCalendar($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        <button id="bg-oa-toggle-calendar"
+                type="button"
+                class="btn btn-default"
+                ng-click="openCalendar($event)">
+          <i class="glyphicon glyphicon-calendar"></i>
+        </button>
       </span>
     </p>
   </div>

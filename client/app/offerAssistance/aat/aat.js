@@ -13,7 +13,13 @@ function clickButtonToOfferAssistance() {
 describe('the offer assistance view', function() {
   describe('when offering assistance to beacon 30', function() {
     beforeEach(function() {
+      // Arrange
       assistBeacon(30);
+    });
+
+    it('should allow for selecting a date through the calendar', function() {
+      // Act
+      browser.findElement(offerAssistanceLocators.toggleCalendarButton).click();
     });
 
     // TODO: I'd like some way to ensure that there is a defined beacon in scope
