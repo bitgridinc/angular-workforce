@@ -20,26 +20,19 @@ function populateAllInputs() {
 }
 
 function expectAlertWithOneEmptyInput(emptyPropertyName, emptyElement) {
-  describe('when filling in all but ' + emptyPropertyName, function() {
-    beforeEach(function() {
-      populateAllInputs();
+  it('should raise an alert when filling in all properties except ' + emptyPropertyName, function() {
+    // Arrange
+    populateAllInputs();
+    browser.findElement(emptyElement).clear();
 
-      // Then clear one of them
-      browser.findElement(emptyElement).clear();
-    });
-    describe('clicking Submit Beacon', function() {
-      beforeEach(function() {
-        clickSubmitBeaconButton();
-      });
-      describe('clicking the resulting error alert', function() {
-        beforeEach(function() {
-          acceptAlertDialog();
-        });
-        it('should bring the user back to the beacon list', function() {
-          expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
-        });
-      });
-    });
+    // Act
+    clickSubmitBeaconButton();
+
+    // Act/Assert because acting asserts the alert is there
+    acceptAlertDialog();
+
+    // Assert
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
   });
 }
 
@@ -47,11 +40,14 @@ describe('the create beacon view', function() {
   beforeEach(function() {
     browser.get('/#/dashboard/beacons/create')
   });
+
+  // These makes sure that an alert is raised if any required properties are missing.
   expectAlertWithOneEmptyInput('title', createBeaconLocators.titleInput);
   expectAlertWithOneEmptyInput('description', createBeaconLocators.descriptionInput);
   expectAlertWithOneEmptyInput('street address', createBeaconLocators.streetAddressInput);
   expectAlertWithOneEmptyInput('zip', createBeaconLocators.zipInput);
   expectAlertWithOneEmptyInput('number of people', createBeaconLocators.numberOfPeopleInput);
+
   it('should allow for the creation of a new beacon', function() {
     // Arrange - count existing beacons and select the button to create a new one
     browser.get('/#/dashboard/beacons');
