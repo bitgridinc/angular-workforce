@@ -8,7 +8,6 @@ describe('the view that displays the details of', function() {
   describe('the Murfreesboro Electric Department beacon', function() {
     beforeEach(function() {
       browser.get('/#/dashboard/beacons/30');
-      browser.driver.sleep(1000);
     });
 
     it('should display detailed information about the beacon', function() {
