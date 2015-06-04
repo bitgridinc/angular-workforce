@@ -37,7 +37,10 @@ require('./_module')
                 .withNumberOfPeople(scope.beaconData.numberOfPeople)
                 .withRecipientIds(recipientIds)
                 .createBeaconPost();
-              RestService.createBeacon(beaconPost);
+              RestService.createBeacon(beaconPost).then(function(result) {
+                console.log('GOT RESULT: ', result);
+                alert("The server returned: " + result.statusText);
+              });
             });
           }
         };

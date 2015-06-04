@@ -55,7 +55,9 @@ describe('the new beacon creation factory', function() {
       });
       beforeEach(function() {
         spyOn(geocoderService, 'geocodeAddress');
-        spyOn(restService, 'createBeacon');
+        spyOn(restService, 'createBeacon').and.returnValue({
+          then: function() {}
+        });
       });
 
       it('should lookup the street address and zip with the geocoder and then pass the new beacon POST to the socket', function() {

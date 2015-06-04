@@ -6,9 +6,16 @@ var createBeaconLocators = new (require('./locators.js'))()
 function clickSubmitBeaconButton() {
   browser.findElement(createBeaconLocators.submitButton).click();
 }
-function acceptAlertDialog() {
-  var alertDialog = browser.switchTo().alert();
-  alertDialog.accept();
+function getAlertDialog(callback) {
+  browser.wait(function() {
+    return browser.switchTo().alert().then(
+      function(alert) {
+        callback(alert);
+        return true;
+      },
+      function() { return false; }
+    );
+  }, 25000);
 }
 
 function populateAllInputs() {
@@ -29,10 +36,12 @@ function expectAlertWithOneEmptyInput(emptyPropertyName, emptyElement) {
     clickSubmitBeaconButton();
 
     // Act/Assert because acting asserts the alert is there
-    acceptAlertDialog();
+    getAlertDialog(function(alert) {
+      alert.accept();
 
-    // Assert
-    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+      // Assert
+      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+    });
   });
 }
 
@@ -65,6 +74,9 @@ describe('the create beacon view', function() {
       });
 
     // Assert - ensure we're back at the list of beacons and the new one is there
-    expect(browser.getCurrentUrl()).not.toContain('/create');
+    expect(browser.getCurrentUrl()).toMatch(/\/dashboard\/beacons$/);
+    getAlertDialog(function(alert) {
+      alert.accept();
+    });
   });
 });

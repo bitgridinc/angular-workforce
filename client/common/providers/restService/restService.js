@@ -4,20 +4,20 @@ var apiRoutes = require('../../../../shared/apiRoutes');
 
 require('./../_module_init.js')
   .service('RestService',
-    [         '_', '$http',
-      function(_,   $http) {
+    [         '$http',
+      function($http) {
         return {
           createBeacon: function(newBeaconData) {
             console.log('Sending data to create a new beacon:', newBeaconData);
-            $http.post(apiRoutes.createBeacon, newBeaconData);
+            return $http.post(apiRoutes.createBeacon, newBeaconData);
           },
           offerAssistance: function(newOfferData) {
             console.log('Sending data to create a new offer:', newOfferData);
-            $http.post(apiRoutes.offerAssistance, newOfferData);
+            return $http.post(apiRoutes.offerAssistance, newOfferData);
           },
           acceptAssistance: function(acceptedOfferData) {
             console.log('Sending data to accept an offer:', acceptedOfferData);
-            $http.post(apiRoutes.acceptAssistance, acceptedOfferData);
+            return $http.post(apiRoutes.acceptAssistance, acceptedOfferData);
           },
           getAllUsers: function() {
             console.log('Getting all users of our organization: ');
