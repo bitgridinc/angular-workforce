@@ -62,7 +62,7 @@ describe('the create beacon view', function() {
     // Arrange - count existing beacons and select the button to create a new one
     browser.get('/#/dashboard/beacons');
     browser.findElement(listBeaconsLocators.createBeaconButton).click();
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/create');
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/create$');
 
     // Act - create a new beacon
     browser.findElement(locators.titleInput).sendKeys('Fix The BitGrid');
@@ -75,7 +75,7 @@ describe('the create beacon view', function() {
       });
 
     // Assert - ensure we're back at the list of beacons and the new one is there
-    expect(browser.getCurrentUrl()).toMatch(/\/dashboard\/beacons$/);
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
     getAlertDialog(function(alert) {
       alert.accept();
     });

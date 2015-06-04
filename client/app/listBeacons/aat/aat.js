@@ -10,14 +10,14 @@ describe('having the My Beacons button clicked to view the list of existing beac
 
   it('should display a button to create a new beacon', function() {
     browser.findElement(locators.createBeaconButton).click();
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/create');
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/create$');
     // Note that we don't have logic for clicking the Create Beacon button twice, so it shouldn't be clickable.
     expect(browser.isElementPresent(locators.createBeaconButton)).toBeFalsy();
   });
 
   it('should allow the user to review offers of assistance without having to view the beacon details first', function() {
     element.all(directiveLocators.reviewOffersButton).get(0).click();
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/review');
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/30/review/2cf8faaa-5760-41c9-adbf-5a4482ac3469$');
   });
 
   it('should only show 4/5 beacons (1 filtered out)', function() {
@@ -30,7 +30,7 @@ describe('having the My Beacons button clicked to view the list of existing beac
     });
 
     it('should expand the beacon to view its details', function() {
-      expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/');
+      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/30$');
       expect(browser.isElementPresent(locators.createBeaconButton)).toBeFalsy();
     });
   });

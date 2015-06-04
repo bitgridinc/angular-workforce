@@ -12,7 +12,7 @@ describe('the offer assistance view', function() {
 
     it('should display the details of the beacon being assisted', function() {
       // Assert that the binding was populated properly
-      expect(element(locators.headerParagraph).getText()).toMatch(/^Murfreesboro Electric Department has/);
+      expect(element(locators.headerParagraph).getText()).toMatch('^Murfreesboro Electric Department has');
     });
     it('should allow for selecting a date through the calendar', function() {
       // Act by opening the calendar and selecting the date as today

@@ -59,7 +59,7 @@ describe('the review assistance view', function() {
         browser.findElement(locators.acceptButton).click();
 
         // Assert
-        expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+        expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/32/review/eb6cd1ad-d115-49de-aac0-cfbb887d9ad0$');
         expect(element.all(listBeaconsLocators.beaconSummaryDirective).count()).toBe(3);
       });
     });

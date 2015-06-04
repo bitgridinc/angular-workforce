@@ -7,6 +7,6 @@ describe('the profile page', function() {
 
   it('should have a button for saving changes and navigating back to the dashboard', function() {
     browser.findElement(by.buttonText('Save')).click();
-    expect(browser.getCurrentUrl()).toContain('/#/dashboard');
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard$');
   });
 });
