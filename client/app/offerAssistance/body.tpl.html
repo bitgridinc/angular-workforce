@@ -32,7 +32,9 @@
       </span>
     </p>
   </div>
-  <li class="bg-list-group-item">
+  <li id="bg-oa-users-container"
+      class="bg-list-group-item"
+      ng-if="users.length > 0">
     <icon-container icon-url="images/wizard_dark_linemen.png">
       <table class="table">
         <tr ng-repeat="user in users">

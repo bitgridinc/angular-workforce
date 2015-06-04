@@ -8,6 +8,7 @@ var offerAssistanceLocators = function() {
   this.dateInput = by.id('bg-oa-date-input');
   this.toggleCalendarButton = by.id('bg-oa-toggle-calendar');
   this.calendarTodayButton = by.buttonText('Today');
+  this.usersContainer = by.id('bg-oa-users-container');
 };
 
 module.exports = offerAssistanceLocators;

@@ -23,6 +23,12 @@ describe('the offer assistance view', function() {
       expect(element(offerAssistanceLocators.calendarTodayButton).isDisplayed()).toBeFalsy();
       expect(element(offerAssistanceLocators.dateInput).getAttribute('value')).toMatch(/\d\d?\/\d\d?\/\d\d$/);
     });
+    // This is always the case for our AATs, but it's helpful to ensure that an empty container is hidden as right now
+    // our AGO accessToken is hardcoded so our users don't show up on the jitsu.
+    it('should not display the users container when there are no users to display', function() {
+      // Assert
+      expect(browser.isElementPresent(offerAssistanceLocators.usersContainer)).toBeFalsy();
+    });
     it('submitting an offer to beacon 34 should navigate the user back to the beacon list where a third review offers button appears', function() {
       // Act
       browser.findElement(offerAssistanceLocators.assistButton).click();
