@@ -1,10 +1,10 @@
 "use strict";
 
-var createBeaconLocators = new (require('./locators.js'))()
+var locators = new (require('./locators.js'))()
   , listBeaconsLocators = new (require('../../listBeacons/aat/locators.js'))();
 
 function clickSubmitBeaconButton() {
-  browser.findElement(createBeaconLocators.submitButton).click();
+  browser.findElement(locators.submitButton).click();
 }
 function getAlertDialog(callback) {
   // TODO: Replace with http://angular.github.io/protractor/#/api?view=ExpectedConditions
@@ -20,11 +20,11 @@ function getAlertDialog(callback) {
 }
 
 function populateAllInputs() {
-  browser.findElement(createBeaconLocators.titleInput).sendKeys('t');
-  browser.findElement(createBeaconLocators.descriptionInput).sendKeys('d');
-  browser.findElement(createBeaconLocators.streetAddressInput).sendKeys('s');
-  browser.findElement(createBeaconLocators.zipInput).sendKeys('z');
-  browser.findElement(createBeaconLocators.numberOfPeopleInput).sendKeys('n');
+  browser.findElement(locators.titleInput).sendKeys('t');
+  browser.findElement(locators.descriptionInput).sendKeys('d');
+  browser.findElement(locators.streetAddressInput).sendKeys('s');
+  browser.findElement(locators.zipInput).sendKeys('z');
+  browser.findElement(locators.numberOfPeopleInput).sendKeys('n');
 }
 
 function expectAlertWithOneEmptyInput(emptyPropertyName, emptyElement) {
@@ -52,11 +52,11 @@ describe('the create beacon view', function() {
   });
 
   // These makes sure that an alert is raised if any required properties are missing.
-  expectAlertWithOneEmptyInput('title', createBeaconLocators.titleInput);
-  expectAlertWithOneEmptyInput('description', createBeaconLocators.descriptionInput);
-  expectAlertWithOneEmptyInput('street address', createBeaconLocators.streetAddressInput);
-  expectAlertWithOneEmptyInput('zip', createBeaconLocators.zipInput);
-  expectAlertWithOneEmptyInput('number of people', createBeaconLocators.numberOfPeopleInput);
+  expectAlertWithOneEmptyInput('title', locators.titleInput);
+  expectAlertWithOneEmptyInput('description', locators.descriptionInput);
+  expectAlertWithOneEmptyInput('street address', locators.streetAddressInput);
+  expectAlertWithOneEmptyInput('zip', locators.zipInput);
+  expectAlertWithOneEmptyInput('number of people', locators.numberOfPeopleInput);
 
   it('should allow for the creation of a new beacon', function() {
     // Arrange - count existing beacons and select the button to create a new one
@@ -65,13 +65,13 @@ describe('the create beacon view', function() {
     expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/create');
 
     // Act - create a new beacon
-    browser.findElement(createBeaconLocators.titleInput).sendKeys('Fix The BitGrid');
-    browser.findElement(createBeaconLocators.descriptionInput).sendKeys('At My House');
-    browser.findElement(createBeaconLocators.streetAddressInput).sendKeys('2729 Merrilee Drive APT 213');
-    browser.findElement(createBeaconLocators.zipInput).sendKeys('22031');
-    browser.findElement(createBeaconLocators.numberOfPeopleInput).sendKeys('1')
+    browser.findElement(locators.titleInput).sendKeys('Fix The BitGrid');
+    browser.findElement(locators.descriptionInput).sendKeys('At My House');
+    browser.findElement(locators.streetAddressInput).sendKeys('2729 Merrilee Drive APT 213');
+    browser.findElement(locators.zipInput).sendKeys('22031');
+    browser.findElement(locators.numberOfPeopleInput).sendKeys('1')
       .then(function() {
-        browser.findElement(createBeaconLocators.submitButton).click();
+        browser.findElement(locators.submitButton).click();
       });
 
     // Assert - ensure we're back at the list of beacons and the new one is there

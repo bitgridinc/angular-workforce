@@ -1,6 +1,6 @@
 "use strict";
 
-var offerAssistanceLocators = new (require('./locators.js'))()
+var locators = new (require('./locators.js'))()
   , directiveLocators = new (require('../../../common/directives/aat/locators.js'))();
 
 describe('the offer assistance view', function() {
@@ -12,26 +12,26 @@ describe('the offer assistance view', function() {
 
     it('should display the details of the beacon being assisted', function() {
       // Assert that the binding was populated properly
-      expect(element(offerAssistanceLocators.headerParagraph).getText()).toMatch(/^Murfreesboro Electric Department has/);
+      expect(element(locators.headerParagraph).getText()).toMatch(/^Murfreesboro Electric Department has/);
     });
     it('should allow for selecting a date through the calendar', function() {
       // Act by opening the calendar and selecting the date as today
-      browser.findElement(offerAssistanceLocators.toggleCalendarButton).click();
-      browser.findElement(offerAssistanceLocators.calendarTodayButton).click();
+      browser.findElement(locators.toggleCalendarButton).click();
+      browser.findElement(locators.calendarTodayButton).click();
 
       // Assert
-      expect(element(offerAssistanceLocators.calendarTodayButton).isDisplayed()).toBeFalsy();
-      expect(element(offerAssistanceLocators.dateInput).getAttribute('value')).toMatch(/\d\d?\/\d\d?\/\d\d$/);
+      expect(element(locators.calendarTodayButton).isDisplayed()).toBeFalsy();
+      expect(element(locators.dateInput).getAttribute('value')).toMatch(/\d\d?\/\d\d?\/\d\d$/);
     });
     // This is always the case for our AATs, but it's helpful to ensure that an empty container is hidden as right now
     // our AGO accessToken is hardcoded so our users don't show up on the jitsu.
     it('should not display the users container when there are no users to display', function() {
       // Assert
-      expect(browser.isElementPresent(offerAssistanceLocators.usersContainer)).toBeFalsy();
+      expect(browser.isElementPresent(locators.usersContainer)).toBeFalsy();
     });
     it('submitting an offer to beacon 34 should navigate the user back to the beacon list where a third review offers button appears', function() {
       // Act
-      browser.findElement(offerAssistanceLocators.assistButton).click();
+      browser.findElement(locators.assistButton).click();
 
       // Assert
       expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');

@@ -1,7 +1,7 @@
 "use strict";
 
-var beaconControlLocators = new (require('../../beaconControl/aat/locators.js'))()
-  , beaconDetailsLocators = new (require('./locators.js'))()
+var locators = new (require('./locators.js'))()
+  , beaconControlLocators = new (require('../../beaconControl/aat/locators.js'))()
   , directiveLocators = new (require('../../../common/directives/aat/locators.js'))();
 
 describe('the view that displays the details of', function() {
@@ -12,16 +12,16 @@ describe('the view that displays the details of', function() {
     });
 
     it('should display detailed information about the beacon', function() {
-      var summaryHeaderElement = element(beaconDetailsLocators.summaryHeader);
+      var summaryHeaderElement = element(locators.summaryHeader);
       expect(summaryHeaderElement.getText()).toContain('Murfreesboro Electric Department');
       expect(summaryHeaderElement.getText()).toContain('Title_30');
       expect(summaryHeaderElement.getText()).toContain('Description_30');
-      expect(element(beaconDetailsLocators.streetAddress).getText()).toContain('1563 N Thompson Ln');
+      expect(element(locators.streetAddress).getText()).toContain('1563 N Thompson Ln');
     });
 
     it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
-      expect(browser.isElementPresent(beaconDetailsLocators.goBack)).toBeFalsy();
-      browser.findElement(beaconDetailsLocators.summaryHeader).click();
+      expect(browser.isElementPresent(locators.goBack)).toBeFalsy();
+      browser.findElement(locators.summaryHeader).click();
       expect(browser.getCurrentUrl()).not.toContain('/30');
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons');
     });
@@ -38,7 +38,7 @@ describe('the view that displays the details of', function() {
     });
 
     it('should display a button that allows the user to offer assistance to Murfreesboro', function() {
-      browser.findElement(beaconDetailsLocators.offerAssistance).click();
+      browser.findElement(locators.offerAssistance).click();
       expect(browser.getCurrentUrl()).toContain('/#/dashboard/beacons/30/assist');
     });
   });

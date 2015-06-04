@@ -1,21 +1,21 @@
 "use strict";
 
-var beaconControlLocators = new (require('./locators.js'))();
+var locators = new (require('./locators.js'))();
 
 function clickMyBeaconsButton() {
-  browser.findElement(beaconControlLocators.myBeaconsButton).click();
+  browser.findElement(locators.myBeaconsButton).click();
 }
 function expectLeftControlDivIsDisplayedToBeTruthy() {
-  expect(element(beaconControlLocators.leftControlDiv).isDisplayed()).toBeTruthy();
+  expect(element(locators.leftControlDiv).isDisplayed()).toBeTruthy();
 }
 function expectLeftControlDivNotPresentToBeFalsy() {
-  expect(browser.isElementPresent(beaconControlLocators.leftControlDiv)).toBeFalsy();
+  expect(browser.isElementPresent(locators.leftControlDiv)).toBeFalsy();
 }
 function expectSelfIconIsDisplayed() {
-  return expect(element(beaconControlLocators.selfIcon).isDisplayed());
+  return expect(element(locators.selfIcon).isDisplayed());
 }
 function expectRightArrowfIconIsDisplayed() {
-  return expect(element(beaconControlLocators.rightArrowIcon).isDisplayed());
+  return expect(element(locators.rightArrowIcon).isDisplayed());
 }
 
 describe('the beacon control', function() {

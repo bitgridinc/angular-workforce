@@ -1,23 +1,23 @@
 // go to url and ensure text appears
 "use strict";
 
-var reviewAssistanceLocators = new (require('./locators.js'))()
+var locators = new (require('./locators.js'))()
   , listBeaconsLocators = new (require('../../listBeacons/aat/locators.js'))();
 
 function expectOfferInformationDisplayedToBeTruthy(organizationName) {
-  var organizationCard = element(reviewAssistanceLocators.organizationCard);
+  var organizationCard = element(locators.organizationCard);
   expect(organizationCard.getText()).toContain(organizationName);
 
-  var contactCard = element(reviewAssistanceLocators.contactCard);
+  var contactCard = element(locators.contactCard);
   expect(contactCard.getText()).toMatch(/\d{4}$/); // because seeing 4 digits at the end is a good phone number approximation
 
-  var organizationLabelElement = element(reviewAssistanceLocators.organizationLabel);
+  var organizationLabelElement = element(locators.organizationLabel);
   expect(organizationLabelElement.getText()).toContain(organizationName);
   expect(organizationLabelElement.getText()).toMatch(/with .+ people/);
   expect(organizationLabelElement.getText()).toMatch(/20\d\d/);
 }
 function expectAcceptButtonIsPresent() {
-  return expect(browser.isElementPresent(reviewAssistanceLocators.acceptButton));
+  return expect(browser.isElementPresent(locators.acceptButton));
 }
 
 describe('the review assistance view', function() {
@@ -48,7 +48,7 @@ describe('the review assistance view', function() {
 
     describe('when paginating through the paginator to the second offer', function() {
       beforeEach(function() {
-        browser.findElement(reviewAssistanceLocators.pageRight).click();
+        browser.findElement(locators.pageRight).click();
       });
 
       it('should display the name of the organization that offered assistance', function() {
@@ -56,7 +56,7 @@ describe('the review assistance view', function() {
       });
       it('accepting the offer should send the user to the beacon list where beacon 32 is no longer there', function() {
         // Act
-        browser.findElement(reviewAssistanceLocators.acceptButton).click();
+        browser.findElement(locators.acceptButton).click();
 
         // Assert
         expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
