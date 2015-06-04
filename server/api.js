@@ -17,20 +17,33 @@ module.exports = function(sioServer) {
       handler: function(request, reply) {
         console.log('createBeacon handler called with payload:', request.payload);
 
-        beaconDatabase.saveBeacon(domain.createDomainBeacon(request.payload), function(result) {
-          beaconDatabase.getBeaconById(result.objectId, function(beacon) {
-            // Send the new beacon to all recipients
-            _.forEach(request.payload.recipientIds, function(recipientId) {
-              console.log('Sending new beacon to recipient: ', recipientId);
-              sioServer.to(recipientId).emit('newBeacon', beacon);
-            });
-
-            // And send it back to the sender as well
-            sioServer.to(request.payload.senderId).emit('newBeacon', beacon);
-
-            replySuccess(reply);
-          });
+        var requiredProperties = ['recipientIds', 'senderId', 'title', 'description', 'numberOfPeople', 'lat', 'lng'];
+        var errors = _.filter(requiredProperties, function(requiredProperty) {
+          /* jshint -W116 */
+          return request.payload[requiredProperty] == null || // Type coercion covers both null and undefined
+          /* jshint +W116 */
+                 request.payload[requiredProperty] === '';
         });
+
+        if (errors.length > 0) {
+          console.log('The payload had the following errors:', request.payload, errors);
+          reply({status: 'error'});
+        } else {
+          beaconDatabase.saveBeacon(domain.createDomainBeacon(request.payload), function(result) {
+            beaconDatabase.getBeaconById(result.objectId, function(beacon) {
+              // Send the new beacon to all recipients
+              _.forEach(request.payload.recipientIds, function(recipientId) {
+                console.log('Sending new beacon to recipient: ', recipientId);
+                sioServer.to(recipientId).emit('newBeacon', beacon);
+              });
+
+              // And send it back to the sender as well
+              sioServer.to(request.payload.senderId).emit('newBeacon', beacon);
+
+              replySuccess(reply);
+            });
+          });
+        }
       },
       app: {
         name: 'beacon'
