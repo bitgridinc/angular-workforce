@@ -7,6 +7,7 @@ function clickSubmitBeaconButton() {
   browser.findElement(createBeaconLocators.submitButton).click();
 }
 function getAlertDialog(callback) {
+  // TODO: Replace with http://angular.github.io/protractor/#/api?view=ExpectedConditions
   browser.wait(function() {
     return browser.switchTo().alert().then(
       function(alert) {
