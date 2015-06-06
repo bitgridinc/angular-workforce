@@ -17,6 +17,15 @@ function expectSelfIconIsDisplayed() {
 function expectRightArrowfIconIsDisplayed() {
   return expect(element(locators.rightArrowIcon).isDisplayed());
 }
+function assertControlIsCollapsed() {
+  // Assert the url changed
+  expect(browser.getCurrentUrl()).toMatch('/#/dashboard$');
+
+  // Assert the control is collapsed
+  expectSelfIconIsDisplayed().toBeTruthy();
+  expectRightArrowfIconIsDisplayed().toBeFalsy();
+  expectLeftControlDivNotPresentToBeFalsy();
+}
 
 describe('the beacon control', function() {
   it('starting with it collapsed, clicking it should expand the control', function() {
@@ -41,12 +50,17 @@ describe('the beacon control', function() {
     // Act
     clickMyBeaconsButton();
 
-    // Assert the url changed
-    expect(browser.getCurrentUrl()).toMatch('/#/dashboard$');
+    // Assert
+    assertControlIsCollapsed();
+  });
+  it('starting at a nested state, clicking it should still collapse the control', function() {
+    // Arrange
+    browser.get('/#/dashboard/beacons/30');
 
-    // Assert the control is collapsed
-    expectSelfIconIsDisplayed().toBeTruthy();
-    expectRightArrowfIconIsDisplayed().toBeFalsy();
-    expectLeftControlDivNotPresentToBeFalsy();
+    // Act
+    clickMyBeaconsButton();
+
+    // Assert
+    assertControlIsCollapsed();
   });
 });

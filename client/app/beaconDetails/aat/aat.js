@@ -1,42 +1,73 @@
 "use strict";
 
 var locators = new (require('./locators.js'))()
-  , beaconControlLocators = new (require('../../beaconControl/aat/locators.js'))()
   , directiveLocators = new (require('../../../common/directives/aat/locators.js'))();
 
-describe('the view that displays the details of', function() {
-  describe('the Murfreesboro Electric Department beacon', function() {
+/// The goal of this test suite is to test both the existence and, when applicable, the non-existence of each of the
+/// following:
+/// 1. title, description, utility, address, people
+/// 2. button to offer assistance + navigation
+/// 3. button to review offers of assistance + navigation
+/// 4. accepted offer from another utility with person, # of people, and date
+describe('the beacon details view', function() {
+  describe('on beacon 32', function() {
     beforeEach(function() {
-      browser.get('/#/dashboard/beacons/30');
+      browser.get('/#/dashboard/beacons/32');
     });
 
-    it('should display detailed information about the beacon', function() {
-      var summaryHeaderElement = element(locators.summaryHeader);
-      expect(summaryHeaderElement.getText()).toContain('Murfreesboro Electric Department');
-      expect(summaryHeaderElement.getText()).toContain('Title_30');
-      expect(summaryHeaderElement.getText()).toContain('Description_30');
-      expect(element(locators.streetAddress).getText()).toContain('1563 N Thompson Ln');
+    it('should display information about the beacon', function() {
+      // Assert
+      var summaryHeaderText = element(locators.summaryHeader).getText();
+      expect(summaryHeaderText).toContain('Morristown Utility Systems');
+      expect(summaryHeaderText).toContain('Title_32');
+      expect(summaryHeaderText).toContain('Description_32');
+      expect(element(locators.streetAddress).getText()).toContain('1567 N Thompson Ln');
+      expect(element(locators.numberOfPeople).getText()).toContain('4-5');
     });
-
     it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
-      expect(browser.isElementPresent(locators.goBack)).toBeFalsy();
+      // Act
       browser.findElement(locators.summaryHeader).click();
+
+      // Assert
       expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
     });
-
-    it('should close the entire left control when the My Beacons button (in the upper left) is clicked', function() {
-      browser.findElement(beaconControlLocators.myBeaconsButton).click();
-      expect(browser.getCurrentUrl()).toMatch('/#/dashboard$');
-    });
-
-    it('should display a button that allows the user to review offers of assistance', function() {
+    it('clicking the button to review offers of assistance should navigate properly', function() {
+      // Act
       browser.findElement(directiveLocators.reviewOffersButton).click();
-      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/30/review/2cf8faaa-5760-41c9-adbf-5a4482ac3469$');
+
+      // Assert
+      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/32/review/eb6cd1ad-d115-49de-aac0-cfbb887d9ad0$');
+    });
+    it('should not display a button to offer assistance because the beacon was created by the user', function() {
+      // Assert
+      expect(browser.isElementPresent(locators.offerAssistance)).toBeFalsy();
+    });
+    it('should not display any accepted offer information because none were accepted', function() {
+      expect(element.all(locators.acceptedAssistanceRepeater).count()).toBe(0);
+    });
+  });
+
+  describe('on beacon 34', function() {
+    beforeEach(function() {
+      browser.get('/#/dashboard/beacons/34');
     });
 
-    it('should display a button that allows the user to offer assistance to Murfreesboro', function() {
+    it('clicking the button to offer assistance should navigate properly', function() {
+      // Act
       browser.findElement(locators.offerAssistance).click();
-      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/30/assist$');
+
+      // Assert
+      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/34/assist$');
+    });
+    it('should not display a button to review offers of assistance because there are none', function() {
+      // Assert
+      expect(browser.isElementPresent(directiveLocators.reviewOffersButton)).toBeFalsy();
+    });
+    it('should display the accepted offer information', function() {
+      var acceptedAssistanceText = element(locators.acceptedAssistanceRepeater.row(0)).getText();
+      expect(acceptedAssistanceText).toMatch('3 on their way\n');
+      expect(acceptedAssistanceText).toMatch('Morristown Utility Systems\n');
+      expect(acceptedAssistanceText).toMatch('1:01 AM$');
     });
   });
 });
