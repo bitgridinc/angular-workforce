@@ -61,8 +61,8 @@
         <div class="panel panel-default bg-input-margin">
           <div class="panel-heading">Recipients</div>
 
-          <table class="table" ng-repeat="recipient in possibleRecipients">
-            <tr>
+          <table class="table">
+            <tr ng-repeat="recipient in possibleRecipients">
               <!-- What-eva! I do what I want!! -->
               <td style="width: 13px;"><input type="checkbox" ng-model="recipient.include"></td>
               <td align="left">{{recipient.organization.name}}</td>
