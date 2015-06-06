@@ -18,6 +18,11 @@ function getAlertDialog(callback) {
     );
   }, 25000);
 }
+function acceptAlertDialog() {
+  getAlertDialog(function(alert) {
+    alert.accept();
+  });
+}
 
 function populateAllInputs() {
   browser.findElement(locators.titleInput).sendKeys('t');
@@ -58,6 +63,21 @@ describe('the create beacon view', function() {
   expectAlertWithOneEmptyInput('zip', locators.zipInput);
   expectAlertWithOneEmptyInput('number of people', locators.numberOfPeopleInput);
 
+  it('should alert when no recipients are selected', function() {
+    // Arrange
+    element.all(locators.recipientIncludeCheckbox).then(function(elements) {
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].click();
+      }
+    });
+
+    // Act
+    clickSubmitBeaconButton();
+
+    // Assert
+    acceptAlertDialog(); // Will fail if there is no alert
+  });
+
   it('should allow for the creation of a new beacon', function() {
     // Arrange - count existing beacons and select the button to create a new one
     browser.get('/#/dashboard/beacons');
@@ -76,8 +96,6 @@ describe('the create beacon view', function() {
 
     // Assert - ensure we're back at the list of beacons and the new one is there
     expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
-    getAlertDialog(function(alert) {
-      alert.accept();
-    });
+    acceptAlertDialog();
   });
 });
