@@ -111,7 +111,7 @@ module.exports = function(sioServer) {
       handler: function(request, reply) {
         console.log('getAllUsers handler called with payload: ', request.payload);
         userDatabase.getAllUsers().then(function(json) {
-          console.log('getAllUsers handler returning: ', json);
+          console.log('getAllUsers handler returning');
           reply(json);
         });
       },
