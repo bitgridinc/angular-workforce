@@ -34,7 +34,8 @@ require('./_module')
               return beacon.id === request.beaconId;
             });
             if (angular.isUndefined(existingBeacon)) {
-              // TODO: Ideally, the server will never send these responses.
+              // TODO: This shouldn't be necessary when the server is selective with who it sends these messages to.
+              // Currently, these messages are emitted to ALL connected clients.
               console.log('Beacon doesn\'t exist, cannot add response: ', request.beaconId);
               return;
             }
@@ -57,7 +58,8 @@ require('./_module')
               return beacon.id === request.beaconId;
             });
             if (angular.isUndefined(existingBeacon)) {
-              // TODO: Ideally, the server will never send these responses.
+              // TODO: This shouldn't be necessary when the server is selective with who it sends these messages to.
+              // Currently, these messages are emitted to ALL connected clients.
               console.log('Beacon doesn\'t exist, cannot add response: ', request.beaconId);
               return;
             }

@@ -78,6 +78,8 @@ describe('the service that wraps SocketIO', function() {
         // Assert
         expect(service.dataFromServer.beacons.length).toBe(1);
       });
+      // This is because our server is cutting a corner by sending these messages to ALL connected clients. Once we
+      // improve the server, this case will properly become an error case.
       it ('should not throw an error if an assistance response is received for a beacon that is not present', function () {
         // Arrange
         var assistanceResponse =
