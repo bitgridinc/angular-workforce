@@ -1,7 +1,6 @@
 "use strict";
 
 require('./_module')
-  // TODO: Mock backend so I can AAT this.
   .controller('ReviewAssistanceBodyController',
     [         '_', '$scope', '$rootScope', 'MessagePacketizerService', 'RestService',
       function(_,   $scope,   $rootScope,   MessagePacketizerService,   RestService) {
