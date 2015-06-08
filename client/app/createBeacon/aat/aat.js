@@ -8,6 +8,7 @@ function clickSubmitBeaconButton() {
 }
 function getAlertDialog(callback) {
   // TODO: Replace with http://angular.github.io/protractor/#/api?view=ExpectedConditions
+  // TODO: Also look at client/app/map/aat/aat.js
   browser.wait(function() {
     return browser.switchTo().alert().then(
       function(alert) {
