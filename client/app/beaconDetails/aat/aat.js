@@ -10,6 +10,16 @@ var locators = new (require('./locators.js'))()
 /// 3. button to review offers of assistance + navigation
 /// 4. accepted offer from another utility with person, # of people, and date
 describe('the beacon details view', function() {
+  // Put this in every AAT suite
+  afterEach(function() {
+    // Will write out all warnings and errors at the end of each test
+    browser.manage().logs().get('browser').then(function(browserLogs) {
+      browserLogs.forEach(function(log) {
+        console.log(log.message);
+      });
+    });
+  });
+
   describe('on beacon 32', function() {
     beforeEach(function() {
       browser.get('/#/dashboard/beacons/32');

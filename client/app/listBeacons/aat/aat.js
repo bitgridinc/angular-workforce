@@ -4,6 +4,16 @@ var locators = new (require('./locators.js'))()
   , directiveLocators = new (require('../../../common/directives/aat/locators.js'))();
 
 describe('having the My Beacons button clicked to view the list of existing beacons', function() {
+  // Put this in every AAT suite
+  afterEach(function() {
+    // Will write out all warnings and errors at the end of each test
+    browser.manage().logs().get('browser').then(function(browserLogs) {
+      browserLogs.forEach(function(log) {
+        console.log(log.message);
+      });
+    });
+  });
+
   beforeEach(function() {
     browser.get('/#/dashboard/beacons');
   });

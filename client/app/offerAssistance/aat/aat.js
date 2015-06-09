@@ -4,6 +4,16 @@ var locators = new (require('./locators.js'))()
   , directiveLocators = new (require('../../../common/directives/aat/locators.js'))();
 
 describe('the offer assistance view', function() {
+  // Put this in every AAT suite
+  afterEach(function() {
+    // Will write out all warnings and errors at the end of each test
+    browser.manage().logs().get('browser').then(function(browserLogs) {
+      browserLogs.forEach(function(log) {
+        console.log(log.message);
+      });
+    });
+  });
+
   describe('when offering assistance to beacon 34', function() {
     beforeEach(function() {
       // Arrange

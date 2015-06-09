@@ -28,6 +28,16 @@ function assertControlIsCollapsed() {
 }
 
 describe('the beacon control', function() {
+  // Put this in every AAT suite
+  afterEach(function() {
+    // Will write out all warnings and errors at the end of each test
+    browser.manage().logs().get('browser').then(function(browserLogs) {
+      browserLogs.forEach(function(log) {
+        console.log(log.message);
+      });
+    });
+  });
+
   it('starting with it collapsed, clicking it should expand the control', function() {
     // Arrange
     browser.get('/#/dashboard');

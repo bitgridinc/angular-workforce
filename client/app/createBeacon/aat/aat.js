@@ -49,6 +49,16 @@ function expectAlertWithOneEmptyInput(emptyPropertyName, emptyElement) {
 }
 
 describe('the create beacon view', function() {
+  // Put this in every AAT suite
+  afterEach(function() {
+    // Will write out all warnings and errors at the end of each test
+    browser.manage().logs().get('browser').then(function(browserLogs) {
+      browserLogs.forEach(function(log) {
+        console.log(log.message);
+      });
+    });
+  });
+
   beforeEach(function() {
     browser.get('/#/dashboard/beacons/create')
   });

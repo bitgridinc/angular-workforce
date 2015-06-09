@@ -21,6 +21,16 @@ function expectAcceptButtonIsPresent() {
 }
 
 describe('the review assistance view', function() {
+  // Put this in every AAT suite
+  afterEach(function() {
+    // Will write out all warnings and errors at the end of each test
+    browser.manage().logs().get('browser').then(function(browserLogs) {
+      browserLogs.forEach(function(log) {
+        console.log(log.message);
+      });
+    });
+  });
+
   describe('when reviewing offers for beacon 30, which was sent by another utility,', function() {
     beforeEach(function() {
       browser.get('/#/dashboard/beacons/30/review/2cf8faaa-5760-41c9-adbf-5a4482ac3469');
