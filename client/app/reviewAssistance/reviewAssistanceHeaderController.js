@@ -14,16 +14,22 @@ require('./_module')
           $scope.totalItems = items.length;
 
           $scope.changePage = function(newPageIndex) {
-            $rootScope.userNavigationService.navigateTo('dashboard.beacons.detail.review.response', { responseId: items[newPageIndex-1].id })
+            console.log('KUJ: changePage called');
+            if ($rootScope.userNavigationService.doesUserNavigationStateInclude('dashboard.beacons.detail.review.response')) {
+              console.log('KUJ: we\'re on the review.response state');
+              $rootScope.userNavigationService.navigateTo('dashboard.beacons.detail.review.response', { responseId: items[newPageIndex-1].id })
+            }
           };
 
           $scope.changePage(1);
         }
 
         // TODO: The if statement must be tested
-        $rootScope.$watchCollection('selectionState.currentBeacon.responses', function(newValue) {
+        // We store this on the $rootScope so it can be disabled when the user selects to accept a response
+        $rootScope.responsesWatch = $rootScope.$watchCollection('selectionState.currentBeacon.responses', function(newValue) {
           console.log('selectionState.currentBeacon.responses changed', newValue);
-          if (angular.isDefined(newValue) && newValue.length > 0) {
+          if (angular.isDefined(newValue) && newValue.length > 0 && $rootScope.userNavigationService.doesUserNavigationStateInclude('dashboard.beacons.detail.review.response')) {
+            console.log('KUJ: initializing scope');
             initializeScope($scope, newValue);
           }
         });

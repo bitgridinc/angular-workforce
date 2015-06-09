@@ -17,6 +17,10 @@ require('./_module')
           console.log("Offering this many people to help: ", $scope.currentResponse.numResponders);
           var message = MessagePacketizerService.packetize($scope.currentResponse.id, $scope.selectionState.currentBeacon.id);
           RestService.acceptAssistance(message);
+
+          // Clear the watch we set in reviewAssistanceHeaderController
+          $rootScope.responsesWatch();
+
           $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');
         };
       }
