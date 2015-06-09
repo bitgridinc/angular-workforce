@@ -134,16 +134,4 @@ require('./../_module_init.js')
         };
       }
     ]
-  )
-  .service('state',
-  [         '$state',
-    function($state) {
-      console.log('HERE HERE');
-      return {
-        navigateTo: function(to, /**Object=*/params) {
-          console.log('WHOA: Transitioning to state: ', to, params);
-        }
-      };
-    }
-  ]
-);
+  );
