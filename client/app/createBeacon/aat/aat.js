@@ -80,11 +80,6 @@ describe('the create beacon view', function() {
   });
 
   it('should allow for the creation of a new beacon', function() {
-    // Arrange - count existing beacons and select the button to create a new one
-    browser.get('/#/dashboard/beacons');
-    browser.findElement(listBeaconsLocators.createBeaconButton).click();
-    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/create$');
-
     // Act - create a new beacon
     browser.findElement(locators.titleInput).sendKeys('Fix The BitGrid');
     browser.findElement(locators.descriptionInput).sendKeys('At My House');
