@@ -17,11 +17,12 @@ function getAlertDialog(callback) {
       },
       function() { return false; }
     );
-  }, 25000);
+  }, 5000);
 }
-function acceptAlertDialog() {
+function acceptAlertDialog(expectedUrl) {
   getAlertDialog(function(alert) {
     alert.accept();
+    expect(browser.getCurrentUrl()).toMatch(expectedUrl);
   });
 }
 
@@ -43,12 +44,7 @@ function expectAlertWithOneEmptyInput(emptyPropertyName, emptyElement) {
     clickSubmitBeaconButton();
 
     // Act/Assert because acting asserts the alert is there
-    getAlertDialog(function(alert) {
-      alert.accept();
-
-      // Assert
-      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
-    });
+    acceptAlertDialog('/#/dashboard/beacons$');
   });
 }
 
@@ -76,22 +72,21 @@ describe('the create beacon view', function() {
     clickSubmitBeaconButton();
 
     // Assert
-    acceptAlertDialog(); // Will fail if there is no alert
+    acceptAlertDialog('/#/dashboard/beacons/create$'); // Will fail if there is no alert
   });
 
   it('should allow for the creation of a new beacon', function() {
-    // Act - create a new beacon
+    // Act
     browser.findElement(locators.titleInput).sendKeys('Fix The BitGrid');
     browser.findElement(locators.descriptionInput).sendKeys('At My House');
-    browser.findElement(locators.streetAddressInput).sendKeys('2729 Merrilee Drive APT 213');
+    browser.findElement(locators.streetAddressInput).sendKeys('2729 Merrilee Drive');
     browser.findElement(locators.zipInput).sendKeys('22031');
     browser.findElement(locators.numberOfPeopleInput).sendKeys('1')
       .then(function() {
         browser.findElement(locators.submitButton).click();
       });
 
-    // Assert - ensure we're back at the list of beacons and the new one is there
-    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
-    acceptAlertDialog();
+    // Assert
+    acceptAlertDialog('/#/dashboard/beacons$');
   });
 });
