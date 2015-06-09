@@ -16,6 +16,7 @@ function populateBeaconsWithResponses(beacons) {
 
 module.exports = function(sioServer) {
   sioServer.sockets.on('connection', function(sioSocket){
+    console.log('Client connected');
     var clientOrganization = organizationDatabase.getCurrentOrganization();
     sioSocket.join(clientOrganization.id);
 
