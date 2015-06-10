@@ -4,4 +4,4 @@ module.exports =
   angular.module('modules.profile', []);
 
 require('./_stateConfig');
-require('./profileController');
+require('./_controller');

@@ -5,4 +5,4 @@ module.exports =
 
 require('./_stateConfig');
 require('./reviewAssistanceBodyController');
-require('./reviewAssistanceController');
+require('./_controller');

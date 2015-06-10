@@ -6,4 +6,4 @@ module.exports =
     ]
   );
 
-require('./headerController');
+require('./_controller');

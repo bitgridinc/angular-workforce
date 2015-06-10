@@ -8,4 +8,4 @@ module.exports =
   );
 
 require('./_stateConfig');
-require('./beaconDetailsController');
+require('./_controller');

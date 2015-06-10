@@ -26,6 +26,6 @@ module.exports =
 
 require('./_run');
 require('./_stateConfig');
-require('./appController');
+require('./_controller');
 require('./redirectUrlParserService');
 require('./socketHandlerService');

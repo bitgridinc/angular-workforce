@@ -12,5 +12,5 @@ module.exports =
 
 require('./_stateConfig');
 require('./coloredContainerHeightController');
-require('./createBeaconController');
+require('./_controller');
 require('./newBeaconFactory');
