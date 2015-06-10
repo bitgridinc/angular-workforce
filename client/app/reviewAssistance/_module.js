@@ -4,5 +4,5 @@ module.exports =
   angular.module('modules.reviewAssistance', []);
 
 require('./_stateConfig');
-require('./reviewAssistanceBodyController');
+require('./bodyController');
 require('./_controller');

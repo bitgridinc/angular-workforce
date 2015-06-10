@@ -23,7 +23,7 @@ require('./_module')
             views: {
               'page': {
                 templateUrl: 'templates/reviewAssistance/body.tpl.html',
-                controller: 'ReviewAssistanceBodyController'
+                controller: 'BodyController'
               }
             }
           });

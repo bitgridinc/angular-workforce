@@ -1,7 +1,7 @@
 "use strict";
 
 require('./_module')
-  .controller('ReviewAssistanceBodyController',
+  .controller('BodyController',
     [         '_', '$scope', '$rootScope', 'MessagePacketizerService', 'RestService',
       function(_,   $scope,   $rootScope,   MessagePacketizerService,   RestService) {
         console.log('Entering ReviewAssistanceBodyController');
