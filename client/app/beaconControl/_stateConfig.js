@@ -12,7 +12,7 @@ require('./_module')
             name: 'dashboard.beacons',
             parent: 'dashboard',
             url: '/beacons',
-            templateUrl: 'templates/beaconControl/view2.tpl.html'
+            templateUrl: 'templates/beaconControl/expandableControl.tpl.html'
           });
       }
     ]
