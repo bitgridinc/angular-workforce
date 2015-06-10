@@ -19,7 +19,7 @@ require('./_module')
           RestService.acceptAssistance(message);
 
           // Clear the watch we set in reviewAssistanceHeaderController
-          $rootScope.responsesWatch();
+          $scope.responsesWatch();
 
           $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');
         };
