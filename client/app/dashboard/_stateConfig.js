@@ -8,7 +8,7 @@ require('./_module')
           .state('dashboard', {
             name: 'dashboard',
             url: '/dashboard',
-            templateUrl: 'templates/dashboard/view.tpl.html'
+            templateUrl: 'templates/dashboard/_view.tpl.html'
           });
       }
     ]

@@ -11,7 +11,7 @@ require('./_module')
             url: '/review',
             views: {
               'right@dashboard.beacons': {
-                templateUrl: 'templates/reviewAssistance/view.tpl.html',
+                templateUrl: 'templates/reviewAssistance/_view.tpl.html',
                 controller: 'ReviewAssistanceController'
               }
             }

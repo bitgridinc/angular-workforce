@@ -11,7 +11,7 @@ require('./_module')
             url: '/create',
             views: {
               'left': {
-                templateUrl: 'templates/createBeacon/view.tpl.html',
+                templateUrl: 'templates/createBeacon/_view.tpl.html',
                 controller: 'CreateBeaconController'
               }
             }

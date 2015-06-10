@@ -8,7 +8,7 @@ require('./_module')
           .state('profile', {
             name: 'profile',
             url: '/profile',
-            templateUrl: 'templates/profile/view.tpl.html',
+            templateUrl: 'templates/profile/_view.tpl.html',
             controller: 'ProfileController'
           });
       }
