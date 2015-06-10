@@ -12,12 +12,9 @@ require('./_module')
             views: {
               // TODO: Why do I have to specify the absolute path only within offerAssistance and reviewAssistance,
               // TODO: which both happen to be grandchildren of dashboard.beacons and are targetting 'right'.
-              'right-body@dashboard.beacons': {
-                templateUrl: 'templates/offerAssistance/body.tpl.html',
+              'right@dashboard.beacons': {
+                templateUrl: 'templates/offerAssistance/view.tpl.html',
                 controller: 'OfferAssistanceController'
-              },
-              'right-header@dashboard.beacons': {
-                templateUrl: 'templates/offerAssistance/header.tpl.html'
               }
             }
           });

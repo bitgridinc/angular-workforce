@@ -1,10 +1,10 @@
 "use strict";
 
 require('./_module')
-  .controller('ReviewAssistanceHeaderController',
+  .controller('ReviewAssistanceController',
     [         '$scope', '$rootScope',
       function($scope,   $rootScope) {
-        console.log('Entering ReviewAssistanceHeaderController');
+        console.log('Entering ReviewAssistanceController');
 
         function initializeScope($scope, items) {
           if (!angular.isArray(items) || items.length <= 0) {

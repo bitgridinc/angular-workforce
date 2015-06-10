@@ -41,6 +41,7 @@ td {
 .bg-ui-control-base {
   @extend .bg-shadow;
   position: absolute;
+  background-color: white;
   border: 0px;
   margin: 0px;
 }

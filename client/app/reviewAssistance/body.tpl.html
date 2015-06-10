@@ -1,18 +1,20 @@
-<li class="list-group-item">
-  <organization-card id="bg-ra-organization-card"
-                     icon-url="images/icon_ring1.png"
-                     organization-id="senderOrganization.id">
-  </organization-card>
-  <contact-card id="bg-ra-contact-card"
-                organization-id="senderOrganization.id">
-  </contact-card>
-</li>
-<li class="list-group-item">
-  <p id="bg-ra-offer-summary" class="small">
-    <organization-label organization-id="currentResponse.senderId"></organization-label>
-    offered to assist with {{currentResponse.numResponders}} people at {{currentResponse.arrivalDate}}.
-  </p>
-</li>
-<div ng-if="currentBeacon.senderId === dataFromServer.currentOrganization.id">
-  <button id="bg-ra-accept-button" class="bg-wide-btn btn btn-sm btn-success" type="button" ng-click="acceptAssistance()">Accept Assistance</button>
+<div class="dashboard-beacons-right-body">
+  <li class="list-group-item">
+    <organization-card id="bg-ra-organization-card"
+                       icon-url="images/icon_ring1.png"
+                       organization-id="senderOrganization.id">
+    </organization-card>
+    <contact-card id="bg-ra-contact-card"
+                  organization-id="senderOrganization.id">
+    </contact-card>
+  </li>
+  <li class="list-group-item">
+    <p id="bg-ra-offer-summary" class="small">
+      <organization-label organization-id="currentResponse.senderId"></organization-label>
+      offered to assist with {{currentResponse.numResponders}} people at {{currentResponse.arrivalDate}}.
+    </p>
+  </li>
+  <div ng-if="currentBeacon.senderId === dataFromServer.currentOrganization.id">
+    <button id="bg-ra-accept-button" class="bg-wide-btn btn btn-sm btn-success" type="button" ng-click="acceptAssistance()">Accept Assistance</button>
+  </div>
 </div>
