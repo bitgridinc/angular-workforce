@@ -5,10 +5,12 @@
   <h5 class="dashboard-beacons-right-header-contents">Assistance Form</h5>
 </div>
 <form method="post" name="offerAssistanceForm" ng-show="selectionState.currentBeacon">
-  <p id="bg-oa-header-paragraph">
-    <organization-label organization-id="selectionState.currentBeacon.senderId"></organization-label> has requested your help.
-  </p>
-  <div class="form-group">
+  <li class="list-group-item">
+    <p id="bg-oa-header-paragraph">
+      <organization-label organization-id="selectionState.currentBeacon.senderId"></organization-label> has requested your help.
+    </p>
+  </li>
+  <li class="list-group-item">
     <label class="small">How many people can you send?</label>
     <input id="bg-oa-num-responders-input"
            class="form-control"
@@ -16,7 +18,7 @@
            name="numResponders"
            id="numResponders" required
            ng-model="assistanceOffer.numResponders" />
-  </div>
+  </li>
   <li class="list-group-item">
     <icon-container icon-url="images/wizard_calendar.png">
       <date-time-picker dtp-model="assistanceOffer.arrivalDate"
