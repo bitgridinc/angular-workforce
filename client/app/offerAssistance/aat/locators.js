@@ -5,9 +5,8 @@ var offerAssistanceLocators = function() {
   this.declineButton = by.buttonText('Stuff \'Em');
   this.headerParagraph = by.id('bg-oa-header-paragraph');
   this.numRespondersInput = by.id('bg-oa-num-responders-input');
-  this.dateInput = by.id('bg-oa-date-input');
-  this.toggleCalendarButton = by.id('bg-oa-toggle-calendar');
-  this.calendarTodayButton = by.buttonText('Today');
+  this.arrivalDateInput = by.id('bg-oa-arrival-date');
+  this.arrivalTimeInput = by.id('bg-oa-arrival-time');
   this.usersContainer = by.id('bg-oa-users-container');
 };
 

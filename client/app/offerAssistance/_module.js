@@ -7,6 +7,5 @@ module.exports =
     ]
   );
 
-require('./_stateConfig');
-require('./calendarController');
 require('./_controller');
+require('./_stateConfig');

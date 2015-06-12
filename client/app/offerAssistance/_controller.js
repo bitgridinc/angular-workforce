@@ -13,8 +13,7 @@ require('./_module')
 
         $scope.selectionState = $rootScope.selectionState;
         $scope.assistanceOffer = {
-          numResponders: 2,
-          arrivalDate: new Date()
+          numResponders: 2
         };
 
         $scope.respond = function(assist) {

@@ -81,40 +81,6 @@ describe('the new beacon creation factory', function() {
         geocoderService.geocodeAddress.calls.argsFor(0)[2](geocoderResponse);
         expect(restService.createBeacon).toHaveBeenCalledWith(expectedPost);
       });
-
-      it('should fail if the title is undefined because a beacon without a title doesn\'t display correctly', function() {
-        // Arrange
-        scope.beaconData.title = undefined;
-
-        // Act
-        factory.postNewBeacon();
-
-        // Assert
-        expect(geocoderService.geocodeAddress).not.toHaveBeenCalled();
-        expect(restService.createBeacon).not.toHaveBeenCalled();
-      });
-      it('should fail if the description is undefined because a beacon without a description doesn\'t display correctly', function() {
-        // Arrange
-        scope.beaconData.description = undefined;
-
-        // Act
-        factory.postNewBeacon();
-
-        // Assert
-        expect(geocoderService.geocodeAddress).not.toHaveBeenCalled();
-        expect(restService.createBeacon).not.toHaveBeenCalled();
-      });
-      it('should fail if the number of people is undefined because the UI doesn\'t support not defining this', function() {
-        // Arrange
-        scope.beaconData.numberOfPeople = undefined;
-
-        // Act
-        factory.postNewBeacon();
-
-        // Assert
-        expect(geocoderService.geocodeAddress).not.toHaveBeenCalled();
-        expect(restService.createBeacon).not.toHaveBeenCalled();
-      });
     });
   });
 });

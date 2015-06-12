@@ -41,7 +41,6 @@ describe('the offer assistance controller', function() {
   it ('should configure scope with the default values for an assistance offer', function () {
     expect($scope.assistanceOffer).toBeDefined();
     expect($scope.assistanceOffer.numResponders).toBeDefined();
-    expect($scope.assistanceOffer.arrivalDate).toBeDefined();
   });
 
   describe ('after the scope values are changed', function () {

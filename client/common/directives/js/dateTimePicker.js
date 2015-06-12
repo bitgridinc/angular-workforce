@@ -11,12 +11,6 @@ require('./../_module_init.js')
           dtpDateId: '@',
           dtpTimeId: '@',
           dtpDatePlaceholder: '@'
-        },
-        link: function(scope, element, attrs) {
-          console.log('Hello', scope);
-          if (angular.isUndefined(scope.dtpModel) || scope.dtpModel < new Date().getTime()) {
-            scope.dtpModel = new Date();
-          }
         }
       }
     }

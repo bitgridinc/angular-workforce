@@ -24,22 +24,23 @@ describe('the offer assistance view', function() {
       // Assert that the binding was populated properly
       expect(element(locators.headerParagraph).getText()).toMatch('^Murfreesboro Electric Department has');
     });
-    it('should allow for selecting a date through the calendar', function() {
-      // Act by opening the calendar and selecting the date as today
-      browser.findElement(locators.toggleCalendarButton).click();
-      browser.findElement(locators.calendarTodayButton).click();
-
-      // Assert
-      expect(element(locators.calendarTodayButton).isDisplayed()).toBeFalsy();
-      expect(element(locators.dateInput).getAttribute('value')).toMatch(/\d\d?\/\d\d?\/\d\d$/);
-    });
     // This is always the case for our AATs, but it's helpful to ensure that an empty container is hidden as right now
     // our AGO accessToken is hardcoded so our users don't show up on the jitsu.
     it('should not display the users container when there are no users to display', function() {
       // Assert
       expect(browser.isElementPresent(locators.usersContainer)).toBeFalsy();
     });
+    it('should not allow clicking the Assist button before a date is selected', function() {
+      expect(element(locators.assistButton).isEnabled()).toBe(false);
+    });
     it('submitting an offer to beacon 34 should navigate the user back to the beacon list where a third review offers button appears', function() {
+      // Arrange
+      browser.findElement(locators.arrivalDateInput).sendKeys('2099-09-16')
+        .then(function() {
+          // Click elsewhere to autoclose the calendar
+          browser.findElement(locators.headerParagraph).click();
+        });
+
       // Act
       browser.findElement(locators.assistButton).click();
 

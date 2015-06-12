@@ -14,13 +14,13 @@ require('../profile/_module');
 
 module.exports =
   angular.module('app', [
-      'ui.bootstrap', // We're using the datepicker
+      'ui.bootstrap', // We're using the pagination control
       'ui.router',
       'modules.directives',
       'modules.providers',
       'modules.dashboard',
       'modules.profile',
-      'mgcrea.ngStrap'
+      'mgcrea.ngStrap' // Used by dateTimePicker directive
     ]
   );
 

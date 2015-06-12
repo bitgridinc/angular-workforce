@@ -32,6 +32,8 @@ function populateAllInputs() {
   browser.findElement(locators.descriptionInput).sendKeys('d');
   browser.findElement(locators.streetAddressInput).sendKeys('s');
   browser.findElement(locators.zipInput).sendKeys('z');
+  browser.findElement(locators.startDateInput).sendKeys('2099-09-16');
+  browser.findElement(locators.endDateInput).sendKeys('2099-09-17');
   browser.findElement(locators.numberOfPeopleInput).sendKeys('n');
 }
 
@@ -68,6 +70,8 @@ describe('the create beacon view', function() {
   assertInputIsRequired('description', locators.descriptionInput);
   assertInputIsRequired('street address', locators.streetAddressInput);
   assertInputIsRequired('zip', locators.zipInput);
+  assertInputIsRequired('start date', locators.startDateInput);
+  assertInputIsRequired('end date', locators.endDateInput);
   assertInputIsRequired('number of people', locators.numberOfPeopleInput);
 
   it('should alert when no recipients are selected', function() {
@@ -92,6 +96,8 @@ describe('the create beacon view', function() {
     browser.findElement(locators.descriptionInput).sendKeys('At My House');
     browser.findElement(locators.streetAddressInput).sendKeys('2729 Merrilee Drive');
     browser.findElement(locators.zipInput).sendKeys('22031');
+    browser.findElement(locators.startDateInput).sendKeys('2099-09-16');
+    browser.findElement(locators.endDateInput).sendKeys('2099-09-17');
     browser.findElement(locators.numberOfPeopleInput).sendKeys('1')
       .then(function() {
         browser.findElement(locators.submitButton).click();
