@@ -1,22 +1,20 @@
-<div ng-controller="ListBeaconsController">
-  <colored-container class="disable-text-selection"
-                     ng-click="onSelectBeacon(beacon)"
-                     ng-repeat="beacon in dataFromServer.beacons | requiresInput ">
-    <div class="media bg-vertically-centered">
-      <!-- TODO: Remove duplication with beaconDetails -->
-      <div id="bg-lb-beacon-summary" class="media-body bg-full-width">
-        <organization-label class="media-header" organization-id="beacon.senderId"></organization-label>
-        <div class="small">
-          {{beacon.title}}, {{beacon.description}}
-        </div>
-      </div>
-      <open-review-assistance-button class="media-right media-middle" beacon="beacon"></open-review-assistance-button>
-      <div class="media-right media-middle">
-        <img src="images/arrow_right.png" alt="View Beacon Details">
+<colored-container class="disable-text-selection"
+                   ng-click="onSelectBeacon(beacon)"
+                   ng-repeat="beacon in dataFromServer.beacons | requiresInput ">
+  <div class="media bg-vertically-centered">
+    <!-- TODO: Remove duplication with beaconDetails -->
+    <div id="bg-lb-beacon-summary" class="media-body bg-full-width">
+      <organization-label class="media-header" organization-id="beacon.senderId"></organization-label>
+      <div class="small">
+        {{beacon.title}}, {{beacon.description}}
       </div>
     </div>
-  </colored-container>
-  <button type="button" class="bg-wide-btn bg-transparent-btn panel-footer" ng-click="onCreateBeaconClick()">
-    Create Beacon
-  </button>
-</div>
+    <open-review-assistance-button class="media-right media-middle" beacon="beacon"></open-review-assistance-button>
+    <div class="media-right media-middle">
+      <img src="images/arrow_right.png" alt="View Beacon Details">
+    </div>
+  </div>
+</colored-container>
+<button type="button" class="bg-wide-btn bg-transparent-btn panel-footer" ng-click="onCreateBeaconClick()">
+  Create Beacon
+</button>
