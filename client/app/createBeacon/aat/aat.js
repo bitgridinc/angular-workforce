@@ -1,11 +1,11 @@
 "use strict";
 
-var locators = new (require('./locators.js'))()
-  , listBeaconsLocators = new (require('../../listBeacons/aat/locators.js'))();
+var locators = new (require('./locators.js'))();
 
 function clickSubmitBeaconButton() {
   browser.findElement(locators.submitButton).click();
 }
+
 function getAlertDialog(callback) {
   // TODO: Replace with http://angular.github.io/protractor/#/api?view=ExpectedConditions
   // TODO: Also look at client/app/map/aat/aat.js
@@ -19,6 +19,7 @@ function getAlertDialog(callback) {
     );
   }, 5000);
 }
+
 function acceptAlertDialog(expectedUrl) {
   getAlertDialog(function(alert) {
     alert.accept();
@@ -34,17 +35,16 @@ function populateAllInputs() {
   browser.findElement(locators.numberOfPeopleInput).sendKeys('n');
 }
 
-function expectAlertWithOneEmptyInput(emptyPropertyName, emptyElement) {
-  it('should raise an alert when filling in all properties except ' + emptyPropertyName, function() {
+function assertInputIsRequired(emptyPropertyName, emptyElement) {
+  it('should disable the Submit Beacon button when filling in all properties except ' + emptyPropertyName, function() {
     // Arrange
     populateAllInputs();
-    browser.findElement(emptyElement).clear();
 
     // Act
-    clickSubmitBeaconButton();
+    browser.findElement(emptyElement).clear();
 
-    // Act/Assert because acting asserts the alert is there
-    acceptAlertDialog('/#/dashboard/beacons$');
+    // Assert
+    expect(element(locators.submitButton).isEnabled()).toBe(false);
   });
 }
 
@@ -64,14 +64,15 @@ describe('the create beacon view', function() {
   });
 
   // These makes sure that an alert is raised if any required properties are missing.
-  expectAlertWithOneEmptyInput('title', locators.titleInput);
-  expectAlertWithOneEmptyInput('description', locators.descriptionInput);
-  expectAlertWithOneEmptyInput('street address', locators.streetAddressInput);
-  expectAlertWithOneEmptyInput('zip', locators.zipInput);
-  expectAlertWithOneEmptyInput('number of people', locators.numberOfPeopleInput);
+  assertInputIsRequired('title', locators.titleInput);
+  assertInputIsRequired('description', locators.descriptionInput);
+  assertInputIsRequired('street address', locators.streetAddressInput);
+  assertInputIsRequired('zip', locators.zipInput);
+  assertInputIsRequired('number of people', locators.numberOfPeopleInput);
 
   it('should alert when no recipients are selected', function() {
     // Arrange
+    populateAllInputs();
     element.all(locators.recipientIncludeCheckbox).then(function(elements) {
       for (var i = 0; i < elements.length; i++) {
         elements[i].click();

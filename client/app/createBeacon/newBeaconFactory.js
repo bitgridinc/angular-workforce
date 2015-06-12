@@ -18,16 +18,6 @@ require('./_module')
             });
           },
           postNewBeacon : function (recipientIds) {
-            for (var prop in scope.beaconData) {
-              var val = scope.beaconData[prop];
-              if (!angular.isDefined(val) || val === '') {
-                console.log('The following property is undefined or empty: ', prop);
-                alert(prop + ' is required.');
-                return;
-              }
-            }
-
-            console.log('required properties exist', scope.beaconData);
             GeocoderService.geocodeAddress(scope.beaconData.streetAddress, scope.beaconData.zip, function(address) {
               var beaconPost = FluentSharedLibrariesService.newBeaconPostFactory()
                 .withSenderId($rootScope.dataFromServer.currentOrganization.id)
