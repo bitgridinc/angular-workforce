@@ -2,13 +2,16 @@
 
 var apiRoutes = require('../shared/apiRoutes');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
+var authApi = require('./api/auth/api');
+var userApi = require('./api/user/api');
 
 module.exports = function(api) {
   return [
+    { method: 'POST', path: apiRoutes.login, config: authApi.login },
     { method: 'POST', path: apiRoutes.createBeacon, config: api.createBeacon },
     { method: 'POST', path: apiRoutes.offerAssistance, config: api.offerAssistance },
     { method: 'POST', path: apiRoutes.acceptAssistance, config: api.acceptAssistance },
-    { method: 'GET', path: apiRoutes.getAllUsers, config: api.getAllUsers },
+    { method: 'GET', path: apiRoutes.getAllUsers, config: userApi.getAllUsers },
 
     // Expose the public folder
     { method: 'GET', path: '/js/bundle.js', handler: { file: './public/js/bundle.js' } },
@@ -43,6 +46,10 @@ module.exports = function(api) {
     },
     { method: 'GET', path: '/templates/listBeacons/{file}',
       handler: { directory: { path: '../client/app/listBeacons' } },
+      config: { validate: { params: { file: templateValidator } } }
+    },
+    { method: 'GET', path: '/templates/login/{file}',
+      handler: { directory: { path: '../client/app/login' } },
       config: { validate: { params: { file: templateValidator } } }
     },
     { method: 'GET', path: '/templates/map/{file}',

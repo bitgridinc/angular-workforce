@@ -13,8 +13,9 @@ var io = require('../../../bower_components/socket.io-client/socket.io.js');
 // it also adds some functionality, such as onConnect, which uses the connectPromise, and offOn, which first un-registers, then re-registers callbacks
 
 require('./../_module_init.js')
-  .factory('unwrappedSocket', ['$q', function($q){
-    var socket = io()
+  .factory('unwrappedSocket', ['$q', '$rootScope', function($q, $rootScope){
+    var options = { query: 'token=' + $rootScope.token }
+      , socket = io('/', options)
       , deferred = $q.defer();
     socket.connectPromise = deferred.promise;
 

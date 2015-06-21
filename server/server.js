@@ -17,8 +17,9 @@ var server = new Hapi.Server();
 server.connection({ address: '0.0.0.0', port: 8080 });
 
 // Set up socket.io and dependant modules
+// TODO: Refactor? I don't like how I instantiate api out here
 var sioServer = require('socket.io').listen(server.listener);
-require('./socketController')(sioServer);
+require('./api/socket.io/socketController')(sioServer);
 var api = require('./api')(sioServer);
 
 // Wire up the server routes

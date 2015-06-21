@@ -6,14 +6,14 @@ describe('the RequiresInput filter', function() {
   beforeEach(inject(function($rootScope) {
     var currentOrganization = {
       name: 'Murfreesboro Electric Department',
-      id: '7a95759f-3df8-4f16-bb43-24f4329fe3df'
+      id: 'yk7EooUDkOKQA9zj'
     };
     $rootScope.dataFromServer = {
       allOrganizations: [
         currentOrganization,
         {
           name: 'Morristown Utility Systems',
-          id: '323f8a60-37c6-4d97-a2f8-331c2231e92b'
+          id: 'a9ZaRCDMCo0WWZO7'
         }
       ],
       currentOrganization: currentOrganization
@@ -24,17 +24,17 @@ describe('the RequiresInput filter', function() {
     // Arrange
     var beacons = [
       { // Should be filtered out
-        senderId: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
+        senderId: 'yk7EooUDkOKQA9zj',
         responses: [],
         acceptedAssistance: []
       },
       { // Should remain because it has a response
-        senderId: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
+        senderId: 'yk7EooUDkOKQA9zj',
         responses: [{}],
         acceptedAssistance: []
       },
       { // Should be filtered out because it has an accepted response
-        senderId: '7a95759f-3df8-4f16-bb43-24f4329fe3df',
+        senderId: 'yk7EooUDkOKQA9zj',
         responses: [{}],
         acceptedAssistance: [{}]
       }

@@ -2,7 +2,8 @@
 "use strict";
 
 var locators = new (require('./locators.js'))()
-  , listBeaconsLocators = new (require('../../listBeacons/aat/locators.js'))();
+  , listBeaconsLocators = new (require('../../listBeacons/aat/locators.js'))()
+  , aatWrappers = require('../../../common/protractor/wrappers');
 
 function expectOfferInformationDisplayedToBeTruthy(organizationName) {
   var organizationCard = element(locators.organizationCard);
@@ -20,22 +21,9 @@ function expectAcceptButtonIsPresent() {
   return expect(browser.isElementPresent(locators.acceptButton));
 }
 
-describe('the review assistance view', function() {
-  // Put this in every AAT suite
-  afterEach(function() {
-    // Will write out all warnings and errors at the end of each test
-    browser.manage().logs().get('browser').then(function(browserLogs) {
-      browserLogs.forEach(function(log) {
-        console.log(log.message);
-      });
-    });
-  });
-
-  describe('when reviewing offers for beacon 30, which was sent by another utility,', function() {
-    beforeEach(function() {
-      browser.get('/#/dashboard/beacons/30/review/2cf8faaa-5760-41c9-adbf-5a4482ac3469');
-    });
-
+aatWrappers.authenticationRequiredWrapper('the review assistance view', function(testRunner, suiteRunner) {
+  suiteRunner('/#/dashboard/beacons/30/review/2cf8faaa-5760-41c9-adbf-5a4482ac3469',
+              'when reviewing offers for beacon 30, which was sent by another utility,', function() {
     it('should display the name of the organization that offered assistance', function() {
       expectOfferInformationDisplayedToBeTruthy('Morristown Utility Systems');
     });
@@ -44,11 +32,8 @@ describe('the review assistance view', function() {
     });
   });
 
-  describe('when reviewing offers for beacon 32, which was sent by the user\'s utility,', function() {
-    beforeEach(function() {
-      browser.get('/#/dashboard/beacons/32/review/eb6cd1ad-d115-49de-aac0-cfbb887d9ad0');
-    });
-
+  suiteRunner('/#/dashboard/beacons/32/review/eb6cd1ad-d115-49de-aac0-cfbb887d9ad0',
+              'when reviewing offers for beacon 32, which was sent by the user\'s utility,', function() {
     it('should display the name of the organization that offered assistance', function() {
       expectOfferInformationDisplayedToBeTruthy('Murfreesboro Electric Department');
     });

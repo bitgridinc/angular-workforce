@@ -27,7 +27,7 @@ describe('in production,', function() {
       // Arrange a request to the API to create a new beacon
       newBeaconPost =
         factories.newBeaconPostFactory()
-          .withSenderId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
+          .withSenderId('yk7EooUDkOKQA9zj')
           .withSummaryText('Murfreesboro Title', 'Murfreesboro Description')
           .withNumberOfPeople('4')
           .withLocation(1, 2)

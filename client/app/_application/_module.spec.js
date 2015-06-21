@@ -29,9 +29,6 @@ describe('the root module', function() {
     it ('should include our dashboard module', function() {
       expect(dependencyListHasModule('modules.dashboard')).toEqual(true);
     });
-    it ('should include our profile module', function() {
-      expect(dependencyListHasModule('modules.profile')).toEqual(true);
-    });
     it('should include the Angular bootstrap module', function() {
       expect(dependencyListHasModule('ui.bootstrap')).toEqual(true);
     });

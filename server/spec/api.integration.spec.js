@@ -5,6 +5,7 @@ var http = require('http')
   , factories = require('../../shared/factories')
   , proxyquire = require('proxyquire')
   , specData = require('./api.integration.specData.js')
+  , promiseHelpers = require('./support/promiseHelpers')
   , spyHelpers = require('./support/spyHelpers')
   , environment = require('../environment')
   , _ = require('lodash');
@@ -37,11 +38,7 @@ describe('in production,', function() {
     var esriPortalModuleFunction;
     beforeEach(function() {
       var portalSpyObj = jasmine.createSpyObj('portal', ['users']);
-      portalSpyObj.users.and.returnValue({
-        then: function(callback) {
-          return callback(specData.getAllUsersResponse);
-        }
-      });
+      portalSpyObj.users.and.returnValue(promiseHelpers.createFake(specData.getAllUsersResponse));
       var esriPortalApiSpy = {
         portal: portalSpyObj
       };
@@ -88,7 +85,7 @@ describe('in production,', function() {
             numResponders: 1,
             arrivalDate: new Date()
           },
-          senderId: '83a33674-be04-4c93-81a3-71a9ca0ce339',
+          senderId: 'xDhHwQjbGYzMADZo',
           beaconId: 1107,
           recipientIds: undefined
         };
@@ -135,7 +132,7 @@ describe('in production,', function() {
       beforeEach(function() {
         postPayload = {
           contents: '2cf8faaa-5760-41c9-adbf-5a4482ac3469',
-          senderId: '83a33674-be04-4c93-81a3-71a9ca0ce339',
+          senderId: 'xDhHwQjbGYzMADZo',
           beaconId: 1107,
           recipientIds: undefined
         };
@@ -163,19 +160,6 @@ describe('in production,', function() {
       });
     });
 
-    describe('the getAllUsers API', function() {
-      it('should pass Esri users to the Hapi reply function', function() {
-        // Arrange
-        var replySpy = jasmine.createSpy('reply');
-
-        // Act
-        handlers.getAllUsers.handler(hapifyRequest(undefined), replySpy);
-
-        // Assert
-        expect(replySpy.calls.allArgs()[0][0].users.length).toBe(specData.getAllUsersResponse.users.length);
-      });
-    });
-
     describe('the createBeacon API', function() {
       var newBeaconPost
         , expectedRecipients;
@@ -183,7 +167,7 @@ describe('in production,', function() {
         // Arrange a request to the API to create a new beacon
         newBeaconPost =
           factories.newBeaconPostFactory()
-            .withSenderId('7a95759f-3df8-4f16-bb43-24f4329fe3df')
+            .withSenderId('yk7EooUDkOKQA9zj')
             .withSummaryText('Murfreesboro Title', 'Murfreesboro Description')
             .withNumberOfPeople('4')
             .withLocation(1, 2)

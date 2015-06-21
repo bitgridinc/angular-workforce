@@ -2,7 +2,8 @@
 
 module.exports =
   angular.module('modules.header', [
-      'ui.router'
+      'ui.router',
+      'angular-jwt'
     ]
   );
 

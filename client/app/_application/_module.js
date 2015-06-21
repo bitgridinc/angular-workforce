@@ -10,7 +10,7 @@ require('../../common/directives/_module_init');
 require('../../common/providers/_module_init');
 
 require('../dashboard/_module');
-require('../profile/_module');
+require('../login/_module');
 
 module.exports =
   angular.module('app', [
@@ -19,7 +19,7 @@ module.exports =
       'modules.directives',
       'modules.providers',
       'modules.dashboard',
-      'modules.profile',
+      'modules.login',
       'mgcrea.ngStrap' // Used by dateTimePicker directive
     ]
   );
@@ -27,5 +27,3 @@ module.exports =
 require('./_run');
 require('./_stateConfig');
 require('./_controller');
-require('./redirectUrlParserService');
-require('./socketHandlerService');

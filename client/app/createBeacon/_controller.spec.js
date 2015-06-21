@@ -15,14 +15,14 @@ describe('the create beacon controller', function() {
     // This is the basic state required by the SUT (system under test)
     var currentOrganization = {
       name: 'Murfreesboro Electric Department',
-      id: '7a95759f-3df8-4f16-bb43-24f4329fe3df'
+      id: 'yk7EooUDkOKQA9zj'
     };
     $rootScope.dataFromServer = {
       allOrganizations: [
         currentOrganization,
         {
           name: 'Morristown Utility Systems',
-          id: '323f8a60-37c6-4d97-a2f8-331c2231e92b'
+          id: 'a9ZaRCDMCo0WWZO7'
         }
       ],
       currentOrganization: currentOrganization,
@@ -34,6 +34,8 @@ describe('the create beacon controller', function() {
       $rootScope: $rootScope,
       NewBeaconFactory: _NewBeaconFactory_
     });
+
+    $rootScope.$apply();
   }));
 
   it('should populate the list of available recipients', function() {

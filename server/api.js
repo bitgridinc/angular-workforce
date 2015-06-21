@@ -1,9 +1,10 @@
 "use strict";
 
 var domain = require('./domain')
-  , beaconDatabase = require('./esri/beaconDatabase/beaconDatabase')
-  , userDatabase = require('./esri/userDatabase/userDatabase')
-  , messageDatabase = require('./inMemory/messages/messageDatabase')
+  , beaconDatabase = require('./dal/beacons/beaconDatabase')
+  , userDatabase = require('./dal/users/userDatabase')
+  , messageDatabase = require('./dal/messages/messageDatabase')
+  , jwt = require('jsonwebtoken')
   , _ = require('lodash');
 
 function replySuccess(reply) {
@@ -105,18 +106,6 @@ module.exports = function(sioServer) {
       },
       app: {
         name: 'beacon'
-      }
-    },
-    getAllUsers: {
-      handler: function(request, reply) {
-        console.log('getAllUsers handler called with payload: ', request.payload);
-        userDatabase.getAllUsers().then(function(json) {
-          console.log('getAllUsers handler returning');
-          reply(json);
-        });
-      },
-      app: {
-        name: 'users'
       }
     }
   }

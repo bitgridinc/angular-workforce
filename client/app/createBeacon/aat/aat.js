@@ -1,6 +1,7 @@
 "use strict";
 
-var locators = new (require('./locators.js'))();
+var locators = new (require('./locators.js'))()
+  , aatWrappers = require('../../../common/protractor/wrappers');
 
 function clickSubmitBeaconButton() {
   browser.findElement(locators.submitButton).click();
@@ -50,60 +51,49 @@ function assertInputIsRequired(emptyPropertyName, emptyElement) {
   });
 }
 
-describe('the create beacon view', function() {
-  // Put this in every AAT suite
-  afterEach(function() {
-    // Will write out all warnings and errors at the end of each test
-    browser.manage().logs().get('browser').then(function(browserLogs) {
-      browserLogs.forEach(function(log) {
-        console.log(log.message);
-      });
-    });
-  });
+aatWrappers.authenticationRequiredWrapper('the create beacon view', function(testRunner, suiteRunner) {
+  // TODO: This describe is useless
+  suiteRunner('/#/dashboard/beacons/create', '', function() {
+    // These makes sure that an alert is raised if any required properties are missing.
+    assertInputIsRequired('title', locators.titleInput);
+    assertInputIsRequired('description', locators.descriptionInput);
+    assertInputIsRequired('street address', locators.streetAddressInput);
+    assertInputIsRequired('zip', locators.zipInput);
+    assertInputIsRequired('start date', locators.startDateInput);
+    assertInputIsRequired('end date', locators.endDateInput);
+    assertInputIsRequired('number of people', locators.numberOfPeopleInput);
 
-  beforeEach(function() {
-    browser.get('/#/dashboard/beacons/create')
-  });
-
-  // These makes sure that an alert is raised if any required properties are missing.
-  assertInputIsRequired('title', locators.titleInput);
-  assertInputIsRequired('description', locators.descriptionInput);
-  assertInputIsRequired('street address', locators.streetAddressInput);
-  assertInputIsRequired('zip', locators.zipInput);
-  assertInputIsRequired('start date', locators.startDateInput);
-  assertInputIsRequired('end date', locators.endDateInput);
-  assertInputIsRequired('number of people', locators.numberOfPeopleInput);
-
-  it('should alert when no recipients are selected', function() {
-    // Arrange
-    populateAllInputs();
-    element.all(locators.recipientIncludeCheckbox).then(function(elements) {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].click();
-      }
-    });
-
-    // Act
-    clickSubmitBeaconButton();
-
-    // Assert
-    acceptAlertDialog('/#/dashboard/beacons/create$'); // Will fail if there is no alert
-  });
-
-  it('should allow for the creation of a new beacon', function() {
-    // Act
-    browser.findElement(locators.titleInput).sendKeys('Fix The BitGrid');
-    browser.findElement(locators.descriptionInput).sendKeys('At My House');
-    browser.findElement(locators.streetAddressInput).sendKeys('2729 Merrilee Drive');
-    browser.findElement(locators.zipInput).sendKeys('22031');
-    browser.findElement(locators.startDateInput).sendKeys('2099-09-16');
-    browser.findElement(locators.endDateInput).sendKeys('2099-09-17');
-    browser.findElement(locators.numberOfPeopleInput).sendKeys('1')
-      .then(function() {
-        browser.findElement(locators.submitButton).click();
+    it('should alert when no recipients are selected', function() {
+      // Arrange
+      populateAllInputs();
+      element.all(locators.recipientIncludeCheckbox).then(function(elements) {
+        for (var i = 0; i < elements.length; i++) {
+          elements[i].click();
+        }
       });
 
-    // Assert
-    acceptAlertDialog('/#/dashboard/beacons$');
+      // Act
+      clickSubmitBeaconButton();
+
+      // Assert
+      acceptAlertDialog('/#/dashboard/beacons/create$'); // Will fail if there is no alert
+    });
+
+    it('should allow for the creation of a new beacon', function() {
+      // Act
+      browser.findElement(locators.titleInput).sendKeys('Fix The BitGrid');
+      browser.findElement(locators.descriptionInput).sendKeys('At My House');
+      browser.findElement(locators.streetAddressInput).sendKeys('2729 Merrilee Drive');
+      browser.findElement(locators.zipInput).sendKeys('22031');
+      browser.findElement(locators.startDateInput).sendKeys('2099-09-16');
+      browser.findElement(locators.endDateInput).sendKeys('2099-09-17');
+      browser.findElement(locators.numberOfPeopleInput).sendKeys('1')
+        .then(function() {
+          browser.findElement(locators.submitButton).click();
+        });
+
+      // Assert
+      acceptAlertDialog('/#/dashboard/beacons$');
+    });
   });
 });

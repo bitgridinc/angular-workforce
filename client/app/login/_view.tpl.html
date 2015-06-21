@@ -1,0 +1,36 @@
+<!-- TODO: Remove inline styles -->
+<div class="jumbotron center-block" style="width: 350px;">
+  <div class="center-block" style="width: 60%">
+    <h2 class="text-center">Login</h2>
+    <form method="post" name="loginForm">
+      <div class="form-group">
+        <label for="bg-lg-username">Username</label>
+        <input id="bg-lg-username"
+               class="form-control"
+               type="text"
+               placeholder="Username"
+               ng-model="credentials.username"
+               ng-keyup="$event.keyCode === 13 && loginForm.$valid && onSubmit();"
+               required />
+      </div>
+      <div class="form-group">
+        <label for="bg-lg-password">Password</label>
+        <input id="bg-lg-password"
+               class="form-control"
+               type="password"
+               placeholder="Password"
+               ng-model="credentials.password"
+               ng-keyup="$event.keyCode === 13 && loginForm.$valid && onSubmit();"
+               required />
+      </div>
+      <button id="bg-lg-submit"
+              class="btn btn-sm btn-success"
+              type="button"
+              ng-click="onSubmit()"
+              ng-disabled="loginForm.$invalid">
+        Submit
+      </button>
+      <label ng-show="error" style="color: red;">{{error.message}}</label>
+    </form>
+  </div>
+</div>

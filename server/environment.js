@@ -2,6 +2,7 @@
 
 module.exports = {
   getCurrentMode: function() {
+    // TODO: Be more consistent and strict in my usage of mode/environment. Why can production mode be 'prod' or undefined?
     return process.env.mode;
   },
   runningInTestMode: function() {

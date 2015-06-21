@@ -1,0 +1,57 @@
+"use strict";
+
+var domain = require('./domain')
+  , aatTestUser = require('./../../../shared/testConstants').aatTestUser
+  , environment = require('../../environment.js')
+  , organizationBackingData = require('../../dal/organizations/organizationDatabase.backingData')
+  , ago = new (require('esri-portal-api'))()
+  , jwt = require('jsonwebtoken')
+  , _ = require('lodash');
+
+function createSuccessResponse(userData, accessToken) {
+  return {
+    token: jwt.sign(domain.createJwt(userData.fullName, userData.orgId, accessToken), 'secret')
+  }
+}
+
+function createErrorResponse() {
+  return {
+    error: {
+      message: 'Invalid username or password.'
+    }
+  }
+}
+
+module.exports = {
+  login: {
+    handler: function(request, reply) {
+      console.log('WHOA', request.payload.username, aatTestUser.username, environment.getCurrentMode());
+      if (environment.runningInTestMode()) {
+        console.log('WHOA2', request.payload.username, aatTestUser.username);
+        if (request.payload.username === aatTestUser.username &&
+            request.payload.password === aatTestUser.password) {
+          reply(createSuccessResponse({
+            orgId: organizationBackingData.organizations[1].id,
+            fullName: aatTestUser.fullName
+          }, 'testtoken'));
+        } else {
+          reply(createErrorResponse());
+        }
+      } else {
+        ago.getToken(request.payload.username, request.payload.password, {}).then(function(getTokenResult) {
+          var accessToken = getTokenResult.token;
+          if (accessToken) {
+            ago.portal.self(accessToken).then(function(portalSelfResult) {
+              reply(createSuccessResponse(portalSelfResult.user, accessToken));
+            });
+          } else {
+            reply(createErrorResponse());
+          }
+        });
+      }
+    },
+    app: {
+      name: 'login'
+    }
+  }
+};

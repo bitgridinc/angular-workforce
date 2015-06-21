@@ -10,6 +10,5 @@ HTML ID Prefixes
 | bg-lb-  | listBeacons      |
 | bg-ma-  | map              |
 | bg-oa-  | offerAssistance  |
-| bg-pf-  | profile          |
 | bg-ra-  | reviewAssistance |
 | bg-dir- | directives       |

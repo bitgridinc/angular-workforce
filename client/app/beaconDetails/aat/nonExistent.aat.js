@@ -1,31 +1,20 @@
 "use strict";
 
-var locators = new (require('./locators.js'))();
+var locators = new (require('./locators.js'))()
+  , aatWrappers = require('../../../common/protractor/wrappers');
 
-describe('trying to view the details of a non-existent beacon', function() {
-  // Put this in every AAT suite
-  afterEach(function() {
-    // Will write out all warnings and errors at the end of each test
-    browser.manage().logs().get('browser').then(function(browserLogs) {
-      browserLogs.forEach(function(log) {
-        console.log(log.message);
-      });
+aatWrappers.authenticationRequiredWrapper('the beacon details view', function(testRunner, suiteRunner) {
+  suiteRunner('/#/dashboard/beacons/707', 'on a non-existent beacon', function() {
+    it('should display an error page', function() {
+      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/707$');
+      expect(browser.isElementPresent(locators.goBack)).toBeTruthy();
+      expect(browser.isElementPresent(locators.summaryHeader)).toBeFalsy();
+      expect(browser.isElementPresent(locators.offerAssistance)).toBeFalsy();
     });
-  });
 
-  beforeEach(function() {
-    browser.get('/#/dashboard/beacons/707');
-  });
-
-  it('should display an error page', function() {
-    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/707$');
-    expect(browser.isElementPresent(locators.goBack)).toBeTruthy();
-    expect(browser.isElementPresent(locators.summaryHeader)).toBeFalsy();
-    expect(browser.isElementPresent(locators.offerAssistance)).toBeFalsy();
-  });
-
-  it('should provide a Go Back button to go back to the list of beacons', function() {
-    browser.findElement(locators.goBack).click();
-    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+    it('should provide a Go Back button to go back to the list of beacons', function() {
+      browser.findElement(locators.goBack).click();
+      expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+    });
   });
 });

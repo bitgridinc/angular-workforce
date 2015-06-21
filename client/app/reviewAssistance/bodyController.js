@@ -6,11 +6,16 @@ require('./_module')
       function(_,   $scope,   $rootScope,   MessagePacketizerService,   RestService) {
         console.log('Entering ReviewAssistanceBodyController');
 
-        $scope.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
-        $scope.currentResponse = _.find($scope.currentBeacon.responses, function(response) {
-          return response.id === $rootScope.$stateParams.responseId;
+        $rootScope.$watchCollection('dataFromServer.beacons', function(newValue) {
+          console.log('dataFromServer.beacons changed', newValue);
+          if (angular.isDefined(newValue) && newValue.length > 0) {
+            $scope.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
+            $scope.currentResponse = $scope.currentBeacon && _.find($scope.currentBeacon.responses, function(response) {
+              return response.id === $rootScope.$stateParams.responseId;
+            });
+            $scope.senderOrganization = $scope.currentResponse && $rootScope.findOrganizationById($scope.currentResponse.senderId);
+          }
         });
-        $scope.senderOrganization = $rootScope.findOrganizationById($scope.currentResponse.senderId);
 
         $scope.acceptAssistance = function() {
           // TODO: This is garbage :P

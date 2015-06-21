@@ -7,6 +7,10 @@ require('./../_module_init.js')
     [         '$http',
       function($http) {
         return {
+          login: function(credentials) {
+            console.log('Logging in...');
+            return $http.post(apiRoutes.login, credentials);
+          },
           createBeacon: function(newBeaconData) {
             console.log('Sending data to create a new beacon:', newBeaconData);
             return $http.post(apiRoutes.createBeacon, newBeaconData);

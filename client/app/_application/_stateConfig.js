@@ -4,13 +4,7 @@ require('./_module')
   .config(
     [         '$urlRouterProvider',
       function($urlRouterProvider) {
-        $urlRouterProvider.otherwise('/dashboard');
-
-        $urlRouterProvider.rule(function($injector, $location) {
-          $injector.invoke(['$rootScope', 'RedirectUrlParserService', function($rootScope, RedirectUrlParserService) {
-            $rootScope.user = RedirectUrlParserService.parse($location.path());
-          }]);
-        });
+        $urlRouterProvider.otherwise('/login/dashboard');
 
         // Normally, the '#' is used to implement routing in the url of a single-page application as changes in the
         // comment don't trigger a page load. HTML5 mode allows for this same routing but native in the browser. There are

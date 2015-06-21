@@ -1,7 +1,8 @@
 "use strict";
 
 var locators = new (require('./locators.js'))()
-  , directiveLocators = new (require('../../../common/directives/aat/locators.js'))();
+  , directiveLocators = new (require('../../../common/directives/aat/locators.js'))()
+  , aatWrappers = require('../../../common/protractor/wrappers');
 
 /// The goal of this test suite is to test both the existence and, when applicable, the non-existence of each of the
 /// following:
@@ -9,22 +10,8 @@ var locators = new (require('./locators.js'))()
 /// 2. button to offer assistance + navigation
 /// 3. button to review offers of assistance + navigation
 /// 4. accepted offer from another utility with person, # of people, and date
-describe('the beacon details view', function() {
-  // Put this in every AAT suite
-  afterEach(function() {
-    // Will write out all warnings and errors at the end of each test
-    browser.manage().logs().get('browser').then(function(browserLogs) {
-      browserLogs.forEach(function(log) {
-        console.log(log.message);
-      });
-    });
-  });
-
-  describe('on beacon 32', function() {
-    beforeEach(function() {
-      browser.get('/#/dashboard/beacons/32');
-    });
-
+aatWrappers.authenticationRequiredWrapper('the beacon details view', function(testRunner, suiteRunner) {
+  suiteRunner('/#/dashboard/beacons/32', 'on beacon 32', function() {
     it('should display information about the beacon', function() {
       // Assert
       var summaryHeaderText = element(locators.summaryHeader).getText();
@@ -57,11 +44,7 @@ describe('the beacon details view', function() {
     });
   });
 
-  describe('on beacon 34', function() {
-    beforeEach(function() {
-      browser.get('/#/dashboard/beacons/34');
-    });
-
+  suiteRunner('/#/dashboard/beacons/34', 'on beacon 34', function() {
     it('clicking the button to offer assistance should navigate properly', function() {
       // Act
       browser.findElement(locators.offerAssistance).click();

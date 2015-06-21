@@ -25,7 +25,7 @@ describe('the module managing the dashboard (integration)', function() {
     });
 
     it ('should only depend on the following two modules - haha, gotta TDD!', function() {
-      expect(moduleDependencies.length).toEqual(3);
+      expect(moduleDependencies.length).toEqual(4);
     });
     it('should include our Leaflet module', function() {
       expect(dependencyListHasModule('modules.beaconControl')).toEqual(true);
@@ -35,6 +35,9 @@ describe('the module managing the dashboard (integration)', function() {
     });
     it('should include our Leaflet module', function() {
       expect(dependencyListHasModule('modules.map')).toEqual(true);
+    });
+    it('should include our Leaflet module', function() {
+      expect(dependencyListHasModule('angular-jwt')).toEqual(true);
     });
 
     it('should not include our directives module because the app module does', function() {

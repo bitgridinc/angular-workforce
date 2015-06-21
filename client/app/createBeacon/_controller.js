@@ -7,14 +7,18 @@ require('./_module')
         NewBeaconFactory.initScope($scope);
 
         // Note that a filter *might* be better as we grow as it would be reusable.
+        // TODO: Test adding allOrganizations after the watch is set
         $scope.possibleRecipients = [];
-        _.forEach($rootScope.dataFromServer.allOrganizations, function(organization) {
-          if (organization.id !== $rootScope.dataFromServer.currentOrganization.id) {
-            $scope.possibleRecipients.push({
-              include: true,
-              organization: organization
-            });
-          }
+        $rootScope.$watchCollection('dataFromServer.allOrganizations', function(newOrganizations) {
+          $scope.possibleRecipients.length = 0;
+          _.forEach(newOrganizations, function(organization) {
+            if (organization.id !== $rootScope.dataFromServer.currentOrganization.id) {
+              $scope.possibleRecipients.push({
+                include: true,
+                organization: organization
+              });
+            }
+          });
         });
 
         $scope.completeNewBeacon = function(commit) {

@@ -31,7 +31,7 @@ var paths = {
     cssDir: __dirname + '/server/public/css',
     bundleDir: __dirname + '/server/public/js',
     fontsDir: __dirname + '/server/public/fonts',
-    allSpecSrc: __dirname + '/server/spec/*[sS]pec.js',
+    allSpecSrc: __dirname + '/server/**/**/*[sS]pec.js',
     scriptName: 'server.js',
     bundleName: 'bundle.js'
   }

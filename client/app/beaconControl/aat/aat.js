@@ -1,6 +1,7 @@
 "use strict";
 
-var locators = new (require('./locators.js'))();
+var locators = new (require('./locators.js'))()
+  , aatWrappers = require('../../../common/protractor/wrappers');
 
 function clickMyBeaconsButton() {
   browser.findElement(locators.myBeaconsButton).click();
@@ -27,21 +28,8 @@ function assertControlIsCollapsed() {
   expectLeftControlDivNotPresentToBeFalsy();
 }
 
-describe('the beacon control', function() {
-  // Put this in every AAT suite
-  afterEach(function() {
-    // Will write out all warnings and errors at the end of each test
-    browser.manage().logs().get('browser').then(function(browserLogs) {
-      browserLogs.forEach(function(log) {
-        console.log(log.message);
-      });
-    });
-  });
-
-  it('starting with it collapsed, clicking it should expand the control', function() {
-    // Arrange
-    browser.get('/#/dashboard');
-
+aatWrappers.authenticationRequiredWrapper('beaconControl', function(testRunner) {
+  testRunner('/#/dashboard', 'starting with it collapsed, clicking it should expand the control', function() {
     // Act
     clickMyBeaconsButton();
 
@@ -53,20 +41,14 @@ describe('the beacon control', function() {
     expectRightArrowfIconIsDisplayed().toBeTruthy();
     expectLeftControlDivIsDisplayedToBeTruthy();
   });
-  it('starting with it expanded, clicking it should collapse the control', function() {
-    // Arrange
-    browser.get('/#/dashboard/beacons');
-
+  testRunner('/#/dashboard/beacons', 'starting with it expanded, clicking it should collapse the control', function() {
     // Act
     clickMyBeaconsButton();
 
     // Assert
     assertControlIsCollapsed();
   });
-  it('starting at a nested state, clicking it should still collapse the control', function() {
-    // Arrange
-    browser.get('/#/dashboard/beacons/30');
-
+  testRunner('/#/dashboard/beacons/30', 'starting at a nested state, clicking it should still collapse the control', function() {
     // Act
     clickMyBeaconsButton();
 
