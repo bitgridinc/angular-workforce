@@ -2,7 +2,7 @@
 
 var uuid = require('node-uuid')
   , _ = require('lodash')
-  , factories = require('../shared/factories');
+  , factories = require('../../../shared/factories');
 
 module.exports = {
   createDomainBeacon: function(payload){

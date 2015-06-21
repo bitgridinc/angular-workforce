@@ -20,7 +20,7 @@ server.connection({ address: '0.0.0.0', port: 8080 });
 // TODO: Refactor? I don't like how I instantiate api out here
 var sioServer = require('socket.io').listen(server.listener);
 require('./api/socket.io/socketController')(sioServer);
-var api = require('./api')(sioServer);
+var api = require('./api/beacon/api')(sioServer);
 
 // Wire up the server routes
 server.route(require('./serverRoutes')(api));

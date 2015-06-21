@@ -1,6 +1,6 @@
 "use strict";
 
-var factories = require('../../shared/factories');
+var factories = require('../../../../shared/factories');
 
 module.exports.messageDatabase = [
   factories.newAssistanceResponseFactory()

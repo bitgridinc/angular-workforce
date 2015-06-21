@@ -2,12 +2,12 @@
 
 var http = require('http')
   , request = require('request')
-  , factories = require('../../shared/factories')
+  , factories = require('../../../../shared/factories')
   , proxyquire = require('proxyquire')
   , specData = require('./api.integration.specData.js')
-  , promiseHelpers = require('./support/promiseHelpers')
-  , spyHelpers = require('./support/spyHelpers')
-  , environment = require('../environment')
+  , promiseHelpers = require('./../../../spec/support/promiseHelpers')
+  , spyHelpers = require('./../../../spec/support/spyHelpers')
+  , environment = require('../../../environment')
   , _ = require('lodash');
 
 function hapifyRequest(payload) {

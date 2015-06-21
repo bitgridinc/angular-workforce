@@ -4,7 +4,7 @@
 var beaconDatabase = require('../../dal/beacons/beaconDatabase')
   , organizationDatabase = require('../../dal/organizations/organizationDatabase')
   , messageDatabase = require('../../dal/messages/messageDatabase')
-  , domain = require('../../domain')
+  , domain = require('../beacon/domain')
   , socketioJwt = require('socketio-jwt')
   , jwt = require('jsonwebtoken');
 

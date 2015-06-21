@@ -1,8 +1,8 @@
 "use strict";
 
 var sut = require('../api')({})
-  , factories = require('../../shared/factories')
-  , environment = require('../environment')
+  , factories = require('../../../../shared/factories')
+  , environment = require('../../../environment')
   , _ = require('lodash');
 
 function hapifyRequest(payload) {

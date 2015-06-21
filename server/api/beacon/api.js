@@ -1,9 +1,8 @@
 "use strict";
 
 var domain = require('./domain')
-  , beaconDatabase = require('./dal/beacons/beaconDatabase')
-  , userDatabase = require('./dal/users/userDatabase')
-  , messageDatabase = require('./dal/messages/messageDatabase')
+  , beaconDatabase = require('./../../dal/beacons/beaconDatabase')
+  , messageDatabase = require('./../../dal/messages/messageDatabase')
   , jwt = require('jsonwebtoken')
   , _ = require('lodash');
 
