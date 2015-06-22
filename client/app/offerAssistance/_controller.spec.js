@@ -1,86 +1,18 @@
 "use strict";
 
 describe('the offer assistance controller', function() {
-  var $rootScope
-    , $scope
-    , restService;
+  var $scope;
 
   beforeEach(module('modules.offerAssistance'));
-  beforeEach(inject(function (_$rootScope_, _$controller_, _UserNavigationService_, MessagePacketizerService, RestService) {
-    $rootScope = _$rootScope_;
+  beforeEach(inject(function (_$rootScope_, _$controller_) {
     $scope = _$rootScope_.$new();
-    restService = RestService;
-
-    $rootScope.userNavigationService = _UserNavigationService_;
-    $rootScope.selectionState = {
-      currentBeacon: {
-        id: '1'
-      }
-    };
-    $rootScope.dataFromServer = {
-      currentOrganization: {
-        id: '2'
-      }
-    };
 
     _$controller_('OfferAssistanceController', {
-      $scope: $scope,
-      $rootScope: $rootScope,
-      MessagePacketizerService: MessagePacketizerService,
-      RestService: restService
-    })
+      $scope: $scope
+    });
   }));
 
   it ('should configure scope with the default values for an assistance offer', function () {
-    expect($scope.assistanceOffer).toBeDefined();
-    expect($scope.assistanceOffer.numResponders).toBeDefined();
-  });
-
-  describe ('after the scope values are changed', function () {
-    var newNumResponders = 5,
-        newArrivalDate = new Date();
-
-    beforeEach(function () {
-      $scope.assistanceOffer.numResponders = newNumResponders;
-      $scope.assistanceOffer.arrivalDate = newArrivalDate;
-    });
-    beforeEach(function () {
-      spyOn(restService, 'offerAssistance');
-      spyOn($rootScope.userNavigationService, 'navigateTo');
-    });
-
-    describe ('sending the assistance offer', function () {
-      beforeEach(function () {
-        $scope.respond(true);
-      });
-
-      it ('should pass the packetized message data to the socket', function () {
-        expect(restService.offerAssistance).toHaveBeenCalledWith({
-          contents: {
-            numResponders: newNumResponders,
-            arrivalDate: newArrivalDate
-          },
-          senderId : $rootScope.dataFromServer.currentOrganization.id,
-          beaconId : $rootScope.selectionState.currentBeacon.id,
-          recipientIds: undefined
-        });
-      });
-      it ('should change our page state', function () {
-        expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalled();
-      });
-    });
-
-    describe ('cancelling the assistance offer', function () {
-      beforeEach(function () {
-        $scope.respond(false);
-      });
-
-      it ('should not make a socket call', function () {
-        expect(restService.offerAssistance).not.toHaveBeenCalled();
-      });
-      it ('should change our page state', function () {
-        expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalled();
-      });
-    });
+    expect($scope.assistanceOffer.numResponders).toBe(2);
   });
 });

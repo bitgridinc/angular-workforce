@@ -44,7 +44,7 @@
     </icon-container>
   </li>
   <!-- TODO: Make a directive for the double-wide buttons. -->
-  <table class="bg-dw-button-table">
+  <table class="bg-dw-button-table" ng-controller="ButtonController">
     <td class="bg-no-padding">
       <button class="bg-full-width btn btn-sm btn-success" type="button" ng-click="respond(true)" ng-disabled="offerAssistanceForm.$invalid">Assist</button>
     </td>

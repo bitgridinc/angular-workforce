@@ -9,4 +9,5 @@ module.exports =
 
 require('./_controller');
 require('./_stateConfig');
+require('./buttonController');
 require('./populateRecipientsController');
