@@ -11,9 +11,9 @@ aatWrappers.authenticationRequiredWrapper('the offer assistance view', function(
       // Assert that the binding was populated properly
       expect(element(locators.headerParagraph).getText()).toMatch('^Murfreesboro Electric Department has');
     });
-    it('should not display the users container when there are no users to display', function() {
+    it('should display the users container', function() {
       // Assert
-      expect(browser.isElementPresent(locators.usersContainer)).toBeFalsy();
+      expect(browser.isElementPresent(locators.usersContainer)).toBeTruthy();
     });
     it('should not allow clicking the Assist button before a date is selected', function() {
       // Assert
