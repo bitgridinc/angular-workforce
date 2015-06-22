@@ -23,16 +23,6 @@ describe('the offer assistance controller', function() {
       }
     };
 
-    spyOn(restService, 'getAllUsers').and.returnValue({
-      then: function(callback) {
-        callback({
-          data: {
-            users: [{}]
-          }
-        });
-      }
-    });
-
     _$controller_('OfferAssistanceController', {
       $scope: $scope,
       $rootScope: $rootScope,
@@ -41,12 +31,6 @@ describe('the offer assistance controller', function() {
     })
   }));
 
-  it ('should call to get all users', function() {
-    expect(restService.getAllUsers).toHaveBeenCalled();
-  });
-  it ('should set $scope.users with those returned by getAllUsers', function() {
-    expect($scope.users.length).toBeGreaterThan(0);
-  });
   it ('should configure scope with the default values for an assistance offer', function () {
     expect($scope.assistanceOffer).toBeDefined();
     expect($scope.assistanceOffer.numResponders).toBeDefined();

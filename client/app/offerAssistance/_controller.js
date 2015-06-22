@@ -1,15 +1,15 @@
 "use strict";
 
+function populateRecipients() {
+
+}
+
 require('./_module')
   .controller('OfferAssistanceController',
     [         '$scope', '$rootScope', 'MessagePacketizerService', 'RestService',
       function($scope,   $rootScope,   MessagePacketizerService,   RestService) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
-
-        RestService.getAllUsers().then(function(users) {
-          $scope.users = users.data.users;
-        });
 
         $scope.selectionState = $rootScope.selectionState;
         $scope.assistanceOffer = {
