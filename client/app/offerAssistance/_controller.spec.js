@@ -23,7 +23,15 @@ describe('the offer assistance controller', function() {
       }
     };
 
-    spyOn(restService, 'getAllUsers').and.callThrough();
+    spyOn(restService, 'getAllUsers').and.returnValue({
+      then: function(callback) {
+        callback({
+          data: {
+            users: [{}]
+          }
+        });
+      }
+    });
 
     _$controller_('OfferAssistanceController', {
       $scope: $scope,
