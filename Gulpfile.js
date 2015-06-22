@@ -78,11 +78,16 @@ gulp.task('server', ['build-and-watch'], function () {
   // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
   // Note: Use ', verbose: true' to debug
   nodemon(nodemonParams)
-    .on('start', function() {
+    /*.on('start', function(args) { // TODO: I still want node-jasmine to run when we first start up...
+      console.log('NODEMON START', args);
       gulp.start('runJasmineOnce');
-    })
-    .on('restart', function () {
-      gulp.start('runJasmineOnce');
+    })*/
+    .on('restart', function (changedFiles) {
+      // TODO: Make this general
+      // TODO: When can multiple be passed?
+      if (String(changedFiles[0]).indexOf('/public/') < 0) {
+        gulp.start('runJasmineOnce');
+      }
     });
 });
 
