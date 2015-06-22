@@ -12,7 +12,10 @@ function writeBundle(bundler, paths) {
 }
 function watchifyBundle(paths) {
   var bundler = watchify(browserify(paths.client.entrySrc, watchify.args));
-  bundler.on('update', function() { return writeBundle(watchifyBundle, paths) });
+  bundler.on('update', function() {
+    console.log('Watchify creating bundle');
+    return writeBundle(watchifyBundle, paths)
+  });
   return bundler.bundle();
 }
 function browserifyBundle(paths) {
