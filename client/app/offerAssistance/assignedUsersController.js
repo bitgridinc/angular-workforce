@@ -1,11 +1,11 @@
 "use strict";
 
 require('./_module')
-  .controller('PopulateRecipientsController',
+  .controller('AssignedUsersController',
     [         '$scope', 'RestService',
       function($scope,   RestService) {
         // For debugging purposes
-        $scope.name = 'PopulateRecipientsController';
+        $scope.name = 'AssignedUsersController';
 
         RestService.getAllUsers().then(function(users) {
           $scope.users = users.data.users;

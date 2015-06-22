@@ -9,5 +9,5 @@ module.exports =
 
 require('./_controller');
 require('./_stateConfig');
+require('./assignedUsersController');
 require('./buttonController');
-require('./populateRecipientsController');

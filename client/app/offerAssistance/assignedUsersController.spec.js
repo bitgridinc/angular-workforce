@@ -26,7 +26,7 @@ describe('the populateRecipientsController', function() {
     });
 
     // Act
-    $controller('PopulateRecipientsController', {
+    $controller('AssignedUsersController', {
       $scope: $scope,
       RestService: restService
     });
