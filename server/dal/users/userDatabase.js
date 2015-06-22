@@ -2,7 +2,7 @@
 "use strict";
 
 var testMode = require('../../environment.js').runningInTestMode()
-  , ago = testMode ? require('./esriPortalApi.test') : new (require('esri-portal-api'))();
+  , ago = testMode ? require('./esriPortalApi.test.js') : new (require('esri-portal-api'))();
 
 module.exports = {
   getAllUsers: function(accessToken) {
