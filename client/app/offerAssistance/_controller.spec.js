@@ -35,9 +35,10 @@ describe('the offer assistance controller', function() {
 
   it ('should call to get all users', function() {
     expect(restService.getAllUsers).toHaveBeenCalled();
-    // TODO: verify that $scope.users gets set
   });
-
+  it ('should set $scope.users with those returned by getAllUsers', function() {
+    expect($scope.users.length).toBeGreaterThan(0);
+  });
   it ('should configure scope with the default values for an assistance offer', function () {
     expect($scope.assistanceOffer).toBeDefined();
     expect($scope.assistanceOffer.numResponders).toBeDefined();
