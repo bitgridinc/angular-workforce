@@ -1,6 +1,6 @@
 "use strict";
 
-describe('the populateRecipientsController', function() {
+describe('the assignedUsersController', function() {
   var $scope
     , $controller
     , restService;
