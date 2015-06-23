@@ -1,9 +1,11 @@
 "use strict";
 
+require('../../common/generated/constants.js');
+
 module.exports =
   angular.module('modules.login', [
       'ui.router',
-      'modules.providers.constants'
+      'modules.generated'
     ]
   );
 
