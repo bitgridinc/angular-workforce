@@ -10,6 +10,6 @@ module.exports = function(paths, constants) {
         constants: constants,
         stream: true
       })
-      .pipe(gulp.dest(paths.client.generatedConstantsDir));
+      .pipe(gulp.dest(paths.client.generatedDir));
   }
 };

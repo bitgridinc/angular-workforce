@@ -25,7 +25,7 @@ var paths = {
     aatSrc: [__dirname + '/client/app/**/aat/*aat.js', __dirname + '/client/common/**/aat/*aat.js'],
     bowerDir: __dirname + '/client/bower_components',
     allSassSrc: [__dirname + '/client/resources/sass/*.scss', __dirname + '/client/resources/sass/directives/*.scss'],
-    generatedConstantsDir: __dirname + '/client/common/generated'
+    generatedDir: __dirname + '/client/common/generated'
   },
   server: {
     parentDir: __dirname + '/server',
