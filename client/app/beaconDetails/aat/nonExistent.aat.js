@@ -3,7 +3,7 @@
 var locators = new (require('./locators.js'))()
   , aatWrappers = require('../../../common/protractor/wrappers');
 
-aatWrappers.authenticationRequiredWrapper('the beacon details view', function(testRunner, suiteRunner) {
+aatWrappers.browserGetWrapper('the beacon details view', function(testRunner, suiteRunner) {
   suiteRunner('/#/dashboard/beacons/707', 'on a non-existent beacon', function() {
     it('should display an error page', function() {
       expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/707$');

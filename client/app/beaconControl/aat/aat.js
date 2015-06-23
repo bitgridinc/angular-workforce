@@ -28,7 +28,7 @@ function assertControlIsCollapsed() {
   expectLeftControlDivNotPresentToBeFalsy();
 }
 
-aatWrappers.authenticationRequiredWrapper('beaconControl', function(testRunner) {
+aatWrappers.browserGetWrapper('beaconControl', function(testRunner) {
   testRunner('/#/dashboard', 'starting with it collapsed, clicking it should expand the control', function() {
     // Act
     clickMyBeaconsButton();

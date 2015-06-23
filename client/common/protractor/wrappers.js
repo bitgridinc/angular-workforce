@@ -16,9 +16,9 @@ module.exports = {
       inner();
     });
   },
-  // There can only be one browser.get per test, and the login must come after the redirect. This function removes the
-  // boilerplate nature of logging in for every AAT around the authentication-required functionality.
-  authenticationRequiredWrapper: function(suiteName, tests) {
+  // There should only be one browser.get per test. This function removes the boilerplate nature of calling browser.get
+  // for every AAT.
+  browserGetWrapper: function(suiteName, tests) {
     this.recordErrorsWrapper(function() {
       describe('(arw-' + suiteName + ')', function() {
         tests(function(url, testName, testInner) {

@@ -21,7 +21,7 @@ function expectAcceptButtonIsPresent() {
   return expect(browser.isElementPresent(locators.acceptButton));
 }
 
-aatWrappers.authenticationRequiredWrapper('the review assistance view', function(testRunner, suiteRunner) {
+aatWrappers.browserGetWrapper('the review assistance view', function(testRunner, suiteRunner) {
   suiteRunner('/#/dashboard/beacons/30/review/2cf8faaa-5760-41c9-adbf-5a4482ac3469',
               'when reviewing offers for beacon 30, which was sent by another utility,', function() {
     it('should display the name of the organization that offered assistance', function() {

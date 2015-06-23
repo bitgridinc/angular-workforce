@@ -51,7 +51,7 @@ function assertInputIsRequired(emptyPropertyName, emptyElement) {
   });
 }
 
-aatWrappers.authenticationRequiredWrapper('the create beacon view', function(testRunner, suiteRunner) {
+aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, suiteRunner) {
   // TODO: This describe is useless
   suiteRunner('/#/dashboard/beacons/create', '', function() {
     // These makes sure that an alert is raised if any required properties are missing.

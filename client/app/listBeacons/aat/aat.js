@@ -4,7 +4,7 @@ var locators = new (require('./locators.js'))()
   , directiveLocators = new (require('../../../common/directives/aat/locators.js'))()
   , aatWrappers = require('../../../common/protractor/wrappers');
 
-aatWrappers.authenticationRequiredWrapper('the beacon list', function(testRunner, suiteRunner) {
+aatWrappers.browserGetWrapper('the beacon list', function(testRunner, suiteRunner) {
   suiteRunner('/#/dashboard/beacons',
               'having the My Beacons button clicked to view the list of existing beacons', function() {
     it('should allow the user to review offers of assistance without having to view the beacon details first', function() {

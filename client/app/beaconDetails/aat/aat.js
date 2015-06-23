@@ -10,7 +10,7 @@ var locators = new (require('./locators.js'))()
 /// 2. button to offer assistance + navigation
 /// 3. button to review offers of assistance + navigation
 /// 4. accepted offer from another utility with person, # of people, and date
-aatWrappers.authenticationRequiredWrapper('the beacon details view', function(testRunner, suiteRunner) {
+aatWrappers.browserGetWrapper('the beacon details view', function(testRunner, suiteRunner) {
   suiteRunner('/#/dashboard/beacons/32', 'on beacon 32', function() {
     it('should display information about the beacon', function() {
       // Assert

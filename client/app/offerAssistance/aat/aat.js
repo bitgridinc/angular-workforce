@@ -4,7 +4,7 @@ var locators = new (require('./locators.js'))()
   , directiveLocators = new (require('../../../common/directives/aat/locators.js'))()
   , aatWrappers = require('../../../common/protractor/wrappers');
 
-aatWrappers.authenticationRequiredWrapper('the offer assistance view', function(testRunner, suiteRunner) {
+aatWrappers.browserGetWrapper('the offer assistance view', function(testRunner, suiteRunner) {
   suiteRunner('/#/dashboard/beacons/34/assist',
               'when offering assistance to beacon 34', function() {
     it('should display the details of the beacon being assisted', function() {
