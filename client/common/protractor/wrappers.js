@@ -1,13 +1,5 @@
 "use strict";
 
-var login = require('../../app/login/aat/login.js')
-  , aatTestUser = require('../../../shared/testConstants').aatTestUser;
-
-function loginToUrl(url) {
-  browser.get(url);
-  login(aatTestUser.username, aatTestUser.password);
-}
-
 module.exports = {
   // This belongs around every AAT suite
   recordErrorsWrapper: function(inner) {
@@ -32,7 +24,7 @@ module.exports = {
         tests(function(url, testName, testInner) {
           it(testName, function() {
             // Arrange
-            loginToUrl(url);
+            browser.get(url);
 
             testInner();
           });
@@ -40,7 +32,7 @@ module.exports = {
           describe(suiteName, function() {
             beforeEach(function() {
               // Arrange
-              loginToUrl(url);
+              browser.get(url);
             });
 
             suiteInner();
