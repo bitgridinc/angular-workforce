@@ -6,4 +6,5 @@ node_modules/karma-phantomjs-launcher/node_modules/phantomjs/.jshintrc
 node_modules/karma-story-reporter/coverage
 levelDb
 .sass-cache
+client/common/generated
 
