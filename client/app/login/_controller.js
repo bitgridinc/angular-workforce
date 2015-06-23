@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('LoginController',
-    [         '$scope',  '$rootScope', '$location', 'RestService', 'testMode',
-      function($scope,    $rootScope,   $location,   RestService,   testMode) {
+    [         '$scope',  '$rootScope', '$location', 'RestService', 'mode',
+      function($scope,    $rootScope,   $location,   RestService,   mode) {
         $scope.credentials = {};
 
         $scope.onSubmit = function() {
@@ -19,7 +19,7 @@ require('./_module')
           });
         };
 
-        if (testMode) {
+        if (mode === 'test') {
           $scope.credentials.username = 'testuser';
           $scope.credentials.password = 'testpass';
           $scope.onSubmit();
