@@ -24,7 +24,8 @@ var paths = {
     entrySrc: __dirname + '/client/app/_application/_module.js',
     aatSrc: [__dirname + '/client/app/**/aat/*aat.js', __dirname + '/client/common/**/aat/*aat.js'],
     bowerDir: __dirname + '/client/bower_components',
-    allSassSrc: [__dirname + '/client/resources/sass/*.scss', __dirname + '/client/resources/sass/directives/*.scss']
+    allSassSrc: [__dirname + '/client/resources/sass/*.scss', __dirname + '/client/resources/sass/directives/*.scss'],
+    generatedConstantsDir: __dirname + '/client/common/generated'
   },
   server: {
     parentDir: __dirname + '/server',
@@ -37,10 +38,15 @@ var paths = {
   }
 };
 
-function getTask(taskName) {
-  return require('./gulp-tasks/' + taskName)(paths);
+function mode() {
+  return argv.test ? "test" : "prod";
 }
 
+function getTask(taskName, params) {
+  return require('./gulp-tasks/' + taskName)(paths, params);
+}
+
+gulp.task('constants', getTask('constants', { mode: mode() }));
 gulp.task('watchify', function() { return bundlers.watchify(paths); });
 gulp.task('browserify', function() { return bundlers.browserify(paths); });
 gulp.task('hint', getTask('hint'));
@@ -58,8 +64,9 @@ gulp.task('client-watch', function() {
   });
 });
 
-gulp.task('build', ['browserify', 'css', 'icons']);
-gulp.task('build-and-watch', ['watchify', 'hint', 'css', 'icons', 'client-watch']);
+// TODO: Pipeline the build. Run all generating tasks first, then start browserify/watchify, then nodemon, to prevent multiple runs and restarts.
+gulp.task('build', ['constants', 'browserify', 'css', 'icons']);
+gulp.task('build-and-watch', ['constants', 'watchify', 'hint', 'css', 'icons', 'client-watch']);
 
 gulp.task('runJasmineOnce', getTask('runJasmineOnce')); // Codeship Entry Point
 
@@ -70,7 +77,7 @@ gulp.task('server', ['build-and-watch'], function () {
     ext: 'js',
     cwd: paths.server.parentDir,
     env: {
-      mode: argv.test ? "test" : "prod"
+      mode: mode()
     }
   };
 

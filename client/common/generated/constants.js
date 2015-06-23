@@ -1,4 +1,5 @@
-"use strict";
+angular.module("modules.generated", [])
 
-module.exports = angular.module('modules.generated', [])
-  .constant('mode', 'test');
+.constant("mode", "prod")
+
+;

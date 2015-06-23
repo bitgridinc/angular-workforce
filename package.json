@@ -46,6 +46,7 @@
     "gulp-debug": "^2.0.1",
     "gulp-jasmine": "^2.0.1",
     "gulp-jshint": "^1.10.0",
+    "gulp-ng-constant": "^0.3.0",
     "gulp-nodemon": "^2.0.3",
     "gulp-notify": "^2.2.0",
     "gulp-protractor": "1.0.0",
