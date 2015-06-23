@@ -2,7 +2,8 @@
 
 module.exports =
   angular.module('modules.login', [
-      'ui.router'
+      'ui.router',
+      'modules.providers.constants'
     ]
   );
 
