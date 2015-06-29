@@ -1,6 +1,5 @@
 "use strict";
 
-require('../../bower_components/angular/angular');
 require('../../bower_components/angular-bootstrap/ui-bootstrap-tpls');
 require('../../bower_components/angular-strap/dist/angular-strap.min');
 require('../../bower_components/angular-strap/dist/angular-strap.tpl.min');

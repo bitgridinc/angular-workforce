@@ -6,6 +6,7 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
+      'client/bower_components/angular/angular.js', // TODO: Shouldn't need to do this
       'server/public/js/bundle.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'client/**/**/*.spec.js'

@@ -1,7 +1,5 @@
 "use strict";
 
-require('../../bower_components/angular/angular');
-
 module.exports = angular.module('modules.providers', []);
 
 require('./fluentSharedLibrariesService/fluentSharedLibrariesService.js');
