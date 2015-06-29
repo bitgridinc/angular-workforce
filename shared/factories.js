@@ -1,6 +1,4 @@
 "use strict";
-///<reference path='lodash.d.ts' />
-var _ = require('lodash');
 var factories = {
     newBeaconFactory: function () {
         return {
@@ -88,9 +86,11 @@ var factories = {
                 return this;
             },
             withRecipientIds: function (recipientIds) {
-                _.forEach(recipientIds, function (recipientId) {
-                    this.withRecipientId(recipientId);
-                }, this);
+                if (Array.isArray(recipientIds)) {
+                    for (var i = 0; i < recipientIds.length; i++) {
+                        this.withRecipientId.apply(this, recipientIds[i]);
+                    }
+                }
                 return this;
             },
             createBeaconPost: function () {
