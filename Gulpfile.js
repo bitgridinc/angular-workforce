@@ -118,3 +118,10 @@ gulp.task('webdriver_update', webdriver_update);
 gulp.task('aat', ['webdriver_update'], getTask('aat')); // Codeship Entry Point
 /// End Protractor/Webdriver
 ///
+
+// Purely for testing purposes
+gulp.task('watchBundle', function() {
+  watch('./server/public/js/bundle.js', function() {
+    console.log('bundle changed');
+  });
+});
