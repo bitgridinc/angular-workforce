@@ -4,7 +4,7 @@ module.exports = angular.module('modules.providers', []);
 
 require('./fluentSharedLibrariesService/fluentSharedLibrariesService.js');
 require('./geocoderService/geocoderService.js');
-require('./lodashService/lodashService.js');
+require('./lodashConstant/lodashConstant.js');
 require('./messagePacketizerService/messagePacketizerService.js');
 require('./restService/restService.js');
 require('./socketFactory/socketFactory.js');

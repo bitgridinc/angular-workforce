@@ -17,3 +17,5 @@ require('./bower_components/angular-jwt/dist/angular-jwt');
 // TODO: Why do I still need to explicitly reference angular-esri-map in applicationShell.html?
 require('./bower_components/angular-esri-map/dist/angular-esri-map');
 
+// providers
+require('./bower_components/lodash/dist/lodash');

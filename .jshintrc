@@ -37,7 +37,10 @@
         // Protractor globals
         "browser",
         "element",
-        "by"
+        "by",
+
+        // Lodash
+        "_"
     ],
  
     // Development.
