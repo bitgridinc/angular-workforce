@@ -1,7 +1,5 @@
 "use strict";
 
-require('../../bower_components/angular-jwt/dist/angular-jwt');
-
 require('../beaconControl/_module');
 require('../header/_module');
 require('../map/_module');
