@@ -1,7 +1,5 @@
 "use strict";
 
-var io = require('../../../bower_components/socket.io-client/socket.io.js');
-
 // socket.on('connect') only fires once when the connect event occurs, but socket.connectPromise will fire both:
 // 1) asynchronously when the connect event occurs, and
 // 2) synchronously for each callback registered thereafter.
@@ -13,9 +11,10 @@ var io = require('../../../bower_components/socket.io-client/socket.io.js');
 // it also adds some functionality, such as onConnect, which uses the connectPromise, and offOn, which first un-registers, then re-registers callbacks
 
 require('./../_module_init.js')
-  .factory('unwrappedSocket', ['$q', '$rootScope', function($q, $rootScope){
+  .factory('unwrappedSocket', ['$q', '$rootScope', '$window', function($q, $rootScope, $window){
+    console.log('WINDOW: ', $window);
     var options = { query: 'token=' + $rootScope.token }
-      , socket = io('/', options)
+      , socket = $window.io('/', options)
       , deferred = $q.defer();
     socket.connectPromise = deferred.promise;
 

@@ -18,4 +18,5 @@ require('./bower_components/angular-jwt/dist/angular-jwt');
 require('./bower_components/angular-esri-map/dist/angular-esri-map');
 
 // providers
-require('./bower_components/lodash/dist/lodash');
+window._ = require('./bower_components/lodash/dist/lodash');
+window.io = require('./bower_components/socket.io-client/socket.io');
