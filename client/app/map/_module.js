@@ -6,5 +6,5 @@ module.exports =
     ]
   );
 
-require('./_controller');
+require('./mapController');
 require('./mapExtentService');
