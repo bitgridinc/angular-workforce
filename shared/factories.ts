@@ -89,7 +89,7 @@ var factories = {
       withRecipientIds: function(recipientIds) {
         if (Array.isArray(recipientIds)) {
           for (var i = 0; i < recipientIds.length; i++) {
-            this.withRecipientId.apply(this, recipientIds[i]);
+            this.withRecipientId(recipientIds[i]);
           }
         }
         return this;
