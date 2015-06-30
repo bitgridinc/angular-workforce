@@ -72,7 +72,7 @@ gulp.task('build-and-watch', ['constants', 'browserify', 'css', 'icons', 'client
 gulp.task('runJasmineOnce', getTask('runJasmineOnce')); // Codeship Entry Point
 
 // browserify changes bundle.js multiple times, so server should wait until it's done to avoid multiple server restarts
-gulp.task('server', ['build-and-watch'], function () {
+gulp.task('server', ['build-and-watch', 'runJasmineOnce'], function () {
   var nodemonParams = {
     script: paths.server.scriptName,
     ext: 'js',
@@ -86,10 +86,6 @@ gulp.task('server', ['build-and-watch'], function () {
   // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
   // Note: Use ', verbose: true' to debug
   nodemon(nodemonParams)
-    /*.on('start', function(args) { // TODO: I still want node-jasmine to run when we first start up...
-      console.log('NODEMON START', args);
-      gulp.start('runJasmineOnce');
-    })*/
     .on('restart', function (changedFiles) {
       // TODO: Make this general
       // TODO: When can multiple be passed?
