@@ -7,6 +7,7 @@ var gulp = require('gulp')
   , webdriver_update = require('gulp-protractor').webdriver_update
   , watch = require('gulp-watch')
   , bundlers = require('./gulp-tasks/bundlers')
+  , runSequence = require('run-sequence')
   , argv = require('yargs').argv;
 
 // Note that absolute paths are REQUIRED while we use the cwd parameter with nodemon. I don't know why this is the case,
@@ -57,7 +58,7 @@ gulp.task('client-watch', function() {
   // gulp-watch is nicer than gulps built-in watch function because it can look for new files, but it can't support the
   // gulp.watch(client.allJsSrc, ['hint']); syntax.
   watch(paths.client.allJsSrc, function() {
-    gulp.start('hint');
+    runSequence('browserify', 'karmaSingleRun', 'hint');
   });
   watch(paths.client.allSassSrc, function() {
     gulp.start('css');
@@ -66,7 +67,7 @@ gulp.task('client-watch', function() {
 
 // TODO: Pipeline the build. Run all generating tasks first, then start browserify/watchify, then nodemon, to prevent multiple runs and restarts.
 gulp.task('build', ['constants', 'browserify', 'css', 'icons']);
-gulp.task('build-and-watch', ['constants', 'watchify', 'hint', 'css', 'icons', 'client-watch']);
+gulp.task('build-and-watch', ['constants', 'browserify', 'css', 'icons', 'client-watch']);
 
 gulp.task('runJasmineOnce', getTask('runJasmineOnce')); // Codeship Entry Point
 
@@ -100,7 +101,7 @@ gulp.task('server', ['build-and-watch'], function () {
 
 ///
 /// Start Karma
-gulp.task('karmaTDD', ['build-and-watch'], function(done) {
+gulp.task('karmaTDD', ['build-and-watch'], function(done) { // This is buggy. It runs too soon in the bundling process.
   karmaServer.start({ configFile: paths.configs.karma }, done);
 });
 gulp.task('karmaSingleRun', function(done) {
@@ -109,7 +110,7 @@ gulp.task('karmaSingleRun', function(done) {
 /// End Karma
 ///
 
-gulp.task('default', ['server', 'karmaTDD']);
+gulp.task('default', ['server', 'karmaSingleRun']);
 
 ///
 /// Start Protractor/Webdriver
