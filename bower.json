@@ -12,6 +12,8 @@
     "angular-strap": "~2.2.0",
     "bootstrap-additions": "~0.2.3",
     "angular-bootstrap": "~0.13.0",
-    "angular-jwt": "~0.0.9"
+    "angular-jwt": "~0.0.9",
+    "angular-leaflet-directive": "~0.8.5",
+    "esri-leaflet": "~1.0.0-rc.8"
   }
 }

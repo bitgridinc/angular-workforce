@@ -3,20 +3,16 @@
   <head>
     <base href="/">
     <title>BitGrid</title>
+
+    <link rel="stylesheet" href="bower/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="bower/ngDialog/css/ngDialog.css">
     <link rel="stylesheet" href="bower/ngDialog/css/ngDialog-theme-default.css">
     <link rel="stylesheet" href="bower/bootstrap-additions/dist/bootstrap-additions.min.css">
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.13/esri/css/esri.css">
     <link rel="stylesheet" href="css/app.css">
 
     <script type="text/javascript" src="js/dependencies.js"></script>
+    <script type="text/javascript" src="bower/esri-leaflet/dist/esri-leaflet-src.js"></script>
     <script type="text/javascript" src="js/bundle.js"></script>
-
-    <!-- TODO: Why doesn't this work when loaded through Bower? -->
-    <script src="bower/angular-esri-map/dist/angular-esri-map.js"></script>
-    <!-- This is meant for development only; run the app through the Web Optimizer to create a custom build of the Esri API. -->
-    <!-- TODO: Link CI to Web Optimizer. -->
-    <script type="text/javascript" src="http://js.arcgis.com/3.13compact"></script>
   </head>
 
   <body ng-controller="AppController">

@@ -1,0 +1,12 @@
+<!-- LeafletController adds variables related to our specific usage around the leaflet tag, such as where the map centers. -->
+<div ng-controller="MapController">
+  <!--<esri-map id="map"
+            register-as="map"
+            webmap-id="ba19ffba4e424932bebf7e1a0f24a809"
+            basemap="topo"
+            center="dataFromServer.currentOrganization.center"
+            zoom="dataFromServer.currentOrganization.center.zoom">
+  </esri-map>-->
+  <!--  center="default.center" markers="dataFromServer.beacons" class="bg-map-container" -->
+  <leaflet id="leaflet" default="defaults" center="defaults.center" class="bg-map-container"></leaflet>
+</div>

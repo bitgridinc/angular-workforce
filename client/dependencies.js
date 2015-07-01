@@ -14,8 +14,9 @@ require('./bower_components/angular-elastic/elastic');
 require('./bower_components/angular-jwt/dist/angular-jwt');
 
 // map
-// TODO: Why do I still need to explicitly reference angular-esri-map in applicationShell.html?
-require('./bower_components/angular-esri-map/dist/angular-esri-map');
+require('./bower_components/leaflet/dist/leaflet-src');
+require('./bower_components/angular-leaflet-directive/dist/angular-leaflet-directive');
+// require('./bower_components/esri-leaflet/dist/esri-leaflet-src'); TODO: Why does it error?
 
 // providers
 window._ = require('./bower_components/lodash/dist/lodash');

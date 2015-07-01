@@ -1,6 +1,6 @@
 /* Here lie the classes required for the layout of the UI components. */
 
-#map {
+.bg-map-container {
   @extend .bg-full-width;
   position: absolute;
   top: $header-height;

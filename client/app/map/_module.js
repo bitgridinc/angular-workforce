@@ -2,7 +2,7 @@
 
 module.exports =
   angular.module('modules.map', [
-      'esri.map'
+      'leaflet-directive'
     ]
   );
 

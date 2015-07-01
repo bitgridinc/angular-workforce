@@ -2,14 +2,33 @@
 
 require('./_module')
   .controller('MapController',
-    [         '$scope', '$rootScope', 'MapExtentService',
-      function($scope,   $rootScope,   MapExtentService) {
+    [         '$scope', '$rootScope', 'MapExtentService', 'leafletData',
+      function($scope,   $rootScope,   MapExtentService,   leafletData) {
         console.log('Entering MapController: ', $rootScope);
-        //$scope.dataFromServer = $rootScope.dataFromServer;
+        angular.extend($scope, {
+          defaults: {
+            // Note: This MUST be "" as any other values negatively affect the performance of loading tiles. Don't know why.
+            tileLayer: "",
+            zoomControl: false,
+            attributionControl: false,
+            center: {
+              lat: 35.885,
+              lng: -85.96,
+              zoom: 7
+            }
+          },
+          dataFromServer: $rootScope.dataFromServer
+        });
 
-        /*leafletData.getMap('leaflet').then(function(map) {
-          L.esri.basemapLayer('Streets').addTo(map);
-        });*/
+        leafletData.getMap('leaflet').then(function(map) {
+          // see: https://github.com/Leaflet/Leaflet/issues/766
+          L.Icon.Default.imagePath = 'bower/leaflet/dist/images';
+
+          L.esri.basemapLayer('Topographic').addTo(map);
+          L.esri.featureLayer('http://services5.arcgis.com/yk7EooUDkOKQA9zj/ArcGIS/rest/services/beacons/FeatureServer/0').addTo(map);
+          L.esri.featureLayer('http://services5.arcgis.com/yk7EooUDkOKQA9zj/arcgis/rest/services/tn_utilities/FeatureServer/0').addTo(map);
+          L.esri.dynamicMapLayer('http://maps1.arcgisonline.com/ArcGIS/rest/services/NGA_US_National_Grid/MapServer').addTo(map);
+        });
 
         // TODO: Test (perhaps break away first)
         $rootScope.$watch('$stateParams.id', function(newlySelectedBeaconId) {
