@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  createJwt: function(esriFullName, esriOrgId, esriAccessToken) {
+  createSuccessResponse: function(esriFullName, esriOrgId, esriAccessToken) {
     var token = {
       fullName: esriFullName,
       organization: esriOrgId,

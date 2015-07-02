@@ -10,7 +10,7 @@ var domain = require('./domain')
 
 function createSuccessResponse(userData, accessToken) {
   return {
-    token: jwt.sign(domain.createJwt(userData.fullName, userData.orgId, accessToken), 'secret')
+    token: jwt.sign(domain.createSuccessResponse(userData.fullName, userData.orgId, accessToken), 'secret')
   }
 }
 
@@ -25,9 +25,7 @@ function createErrorResponse() {
 module.exports = {
   login: {
     handler: function(request, reply) {
-      console.log('WHOA', request.payload.username, aatTestUser.username, environment.getCurrentMode());
       if (environment.runningInTestMode()) {
-        console.log('WHOA2', request.payload.username, aatTestUser.username);
         if (request.payload.username === aatTestUser.username &&
             request.payload.password === aatTestUser.password) {
           reply(createSuccessResponse({
