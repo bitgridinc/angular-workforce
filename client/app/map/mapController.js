@@ -34,6 +34,7 @@ require('./_module')
           // header. I do now know why this server does not respond to this request when using CORS. I'm able to GET
           // with my browser or Postman. Leaving this be in the interest of time.
           L.esri.dynamicMapLayer('http://maps1.arcgisonline.com/ArcGIS/rest/services/NGA_US_National_Grid/MapServer', {
+            opacity: 0.5,
             useCors: false
           }).addTo(map);
         });
