@@ -29,7 +29,13 @@ require('./_module')
           L.esri.basemapLayer('Topographic').addTo(map);
           L.esri.featureLayer('http://services5.arcgis.com/yk7EooUDkOKQA9zj/ArcGIS/rest/services/beacons/FeatureServer/0').addTo(map);
           L.esri.featureLayer('http://services5.arcgis.com/yk7EooUDkOKQA9zj/arcgis/rest/services/tn_utilities/FeatureServer/0').addTo(map);
-          L.esri.dynamicMapLayer('http://maps1.arcgisonline.com/ArcGIS/rest/services/NGA_US_National_Grid/MapServer').addTo(map);
+
+          // The useCors here requires an explanation. Without it, this request will return no Access-Control-Allow-Origin
+          // header. I do now know why this server does not respond to this request when using CORS. I'm able to GET
+          // with my browser or Postman. Leaving this be in the interest of time.
+          L.esri.dynamicMapLayer('http://maps1.arcgisonline.com/ArcGIS/rest/services/NGA_US_National_Grid/MapServer', {
+            useCors: false
+          }).addTo(map);
         });
 
         // TODO: Test (perhaps break away first)
