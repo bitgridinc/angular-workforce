@@ -44,8 +44,11 @@ require('./_module')
           }).addTo(map);
 
           // The useCors here requires an explanation. Without it, this request will return no Access-Control-Allow-Origin
-          // header. I do now know why this server does not respond to this request when using CORS. I'm able to GET
-          // with my browser or Postman. Leaving this be in the interest of time.
+          // header. I'm able to GET with my browser or Postman. I do now know why this server does not respond to this
+          // request when using CORS, but have a hunch it has to do with how this service is running ArcGIS 10. See the
+          // following comment by the creator of esri-leaflet on issue 381 for the hint:
+          // "useCors: false // this is probably only needed if the service is on a sever before 10.1"
+          // https://github.com/Esri/esri-leaflet/issues/381
           L.esri.dynamicMapLayer('http://maps1.arcgisonline.com/ArcGIS/rest/services/NGA_US_National_Grid/MapServer', {
             opacity: 0.5,
             useCors: false
