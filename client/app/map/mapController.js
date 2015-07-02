@@ -20,6 +20,8 @@ require('./_module')
           dataFromServer: $rootScope.dataFromServer
         });
 
+        console.log('Browser support: ', L && L.esri && L.esri.Support);
+
         leafletData.getMap('leaflet').then(function(map) {
           // see: https://github.com/Leaflet/Leaflet/issues/766
           L.Icon.Default.imagePath = 'bower/leaflet/dist/images';
