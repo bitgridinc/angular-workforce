@@ -40,7 +40,7 @@ module.exports = {
           var accessToken = getTokenResult.token;
           if (accessToken) {
             ago.portal.self(accessToken).then(function(portalSelfResult) {
-              reply(createSuccessResponse(portalSelfResult.user, accessToken));
+              reply(createSuccessResponseJwt(portalSelfResult.user, accessToken));
             });
           } else {
             reply(createErrorResponse());

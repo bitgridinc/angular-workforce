@@ -2,8 +2,8 @@
 
 var apiRoutes = require('../shared/apiRoutes');
 var templateValidator = require('joi').string().regex(/\.tpl\.html$/, 'template');
-var authApi = require('./api/auth/api');
-var userApi = require('./api/user/api');
+var authApi = require('./modules/auth/api');
+var userApi = require('./modules/user/api');
 
 module.exports = function(api) {
   return [
