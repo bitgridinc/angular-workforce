@@ -8,7 +8,7 @@ var domain = require('./domain')
   , jwt = require('jsonwebtoken')
   , _ = require('lodash');
 
-function createSuccessResponse(userData, accessToken) {
+function createSuccessResponseJwt(userData, accessToken) {
   return {
     token: jwt.sign(domain.createSuccessResponse(userData.fullName, userData.orgId, accessToken), 'secret')
   }
@@ -28,7 +28,7 @@ module.exports = {
       if (environment.runningInTestMode()) {
         if (request.payload.username === aatTestUser.username &&
             request.payload.password === aatTestUser.password) {
-          reply(createSuccessResponse({
+          reply(createSuccessResponseJwt({
             orgId: organizationBackingData.organizations[1].id,
             fullName: aatTestUser.fullName
           }, 'testtoken'));
