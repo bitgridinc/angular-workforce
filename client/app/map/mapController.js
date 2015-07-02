@@ -22,13 +22,26 @@ require('./_module')
 
         console.log('Browser support: ', L && L.esri && L.esri.Support);
 
+        // Create the utility HQ icon once
+        var utilityHqIcon = L.icon({
+          iconUrl: '/images/orange_utility_marker.png',
+          iconSize: [32, 32]
+        });
+
         leafletData.getMap('leaflet').then(function(map) {
           // see: https://github.com/Leaflet/Leaflet/issues/766
           L.Icon.Default.imagePath = 'bower/leaflet/dist/images';
 
           L.esri.basemapLayer('Topographic').addTo(map);
           L.esri.featureLayer('http://services5.arcgis.com/yk7EooUDkOKQA9zj/ArcGIS/rest/services/beacons/FeatureServer/0').addTo(map);
-          L.esri.featureLayer('http://services5.arcgis.com/yk7EooUDkOKQA9zj/arcgis/rest/services/tn_utilities/FeatureServer/0').addTo(map);
+          L.esri.featureLayer('http://services5.arcgis.com/yk7EooUDkOKQA9zj/arcgis/rest/services/tn_utilities/FeatureServer/0', {
+            // Adds icon centered over the utility headquarters
+            pointToLayer: function(geojson, latlng) {
+              return L.marker(latlng, {
+                icon: utilityHqIcon
+              });
+            }
+          }).addTo(map);
 
           // The useCors here requires an explanation. Without it, this request will return no Access-Control-Allow-Origin
           // header. I do now know why this server does not respond to this request when using CORS. I'm able to GET
@@ -50,21 +63,6 @@ require('./_module')
             MapExtentService.ensureContainsPoints(mustContainPoints);
           }
         });
-
-        // Adds icon centered over the utility headquarters
-        // TODO: Test coverage
-        /*$rootScope.$watch('dataFromServer.currentOrganization', function(organization) {
-          console.log('dataFromServer.currentOrganization changed: ', organization);
-          if (angular.isDefined(organization) && angular.isDefined(organization.center)) {
-            var homeIcon = L.icon({
-              iconUrl: '/images/orange_utility_marker.png',
-              iconSize: [32, 32]
-            });
-            leafletData.getMap('leaflet').then(function(map) {
-              L.marker([organization.center.lat, organization.center.lng], { icon: homeIcon }).addTo(map);
-            });
-          }
-        });*/
       }
     ]
   );
