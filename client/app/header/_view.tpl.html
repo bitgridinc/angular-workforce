@@ -5,5 +5,8 @@
       <span ng-if="decodedToken.fullName"><b>{{decodedToken.fullName}}</b> of</span>
       <b>{{dataFromServer.currentOrganization.name}}</b>
     </td>
+    <td class="text-right" style="width: 80px;">
+      <a ng-click="logout()">Logout</a>
+    </td>
   </tr>
 </table>
