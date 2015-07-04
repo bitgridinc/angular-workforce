@@ -1,18 +1,13 @@
 "use strict";
 
 var environment = require('../../../environment')
+  , hapifyPost = require('../../../spec/support/hapiHelpers').hapifyPost
   , aatTestUser = require('../../../../shared/testConstants').aatTestUser
   , localTestUser = require('./esriCommon').testUser
   , generateTokenFake = require('./generateTokenFake')
   , portalSelfFake = require('./portalSelfFake')
   , proxyquire = require('proxyquire')
   , _ = require('lodash');
-
-function hapifyRequest(payload) {
-  return {
-    payload: payload
-  }
-}
 
 function createEsriPortalSpy() {
   var portalSpyObj = jasmine.createSpyObj('portal', ['self']);
@@ -86,14 +81,14 @@ describe('in production,', function() {
 
         it('should generate a valid jsonwebtoken when the Esri credentials are valid', function() {
           // Act
-          handlers.login.handler(hapifyRequest(validCredentials), function() { });
+          handlers.login.handler(hapifyPost(validCredentials), function() { });
 
           // Assert
           expect(jwtSpyObj.sign).toHaveBeenCalledWith(createExpectedDomainToken(), 'secret');
         });
         it('should return the generated jsonwebtoken to the client if auth was successful', function() {
           // Act
-          handlers.login.handler(hapifyRequest(validCredentials), function(serverResponse) {
+          handlers.login.handler(hapifyPost(validCredentials), function(serverResponse) {
             // Assert
             expect(serverResponse).toEqual({
               token: generateEncodedJwtFromDomainToken(createExpectedDomainToken())
@@ -106,7 +101,7 @@ describe('in production,', function() {
         var invalidCredentials = createCredentials(aatTestUser.username, aatTestUser.password);
 
         // Act
-        handlers.login.handler(hapifyRequest(invalidCredentials), function(serverResponse) {
+        handlers.login.handler(hapifyPost(invalidCredentials), function(serverResponse) {
           // Assert
           expect(serverResponse).toEqual({
             error: {

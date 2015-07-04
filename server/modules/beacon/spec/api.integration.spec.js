@@ -5,16 +5,11 @@ var http = require('http')
   , factories = require('../../../../shared/factories')
   , proxyquire = require('proxyquire')
   , specData = require('./api.integration.specData.js')
-  , promiseHelpers = require('./../../../spec/support/promiseHelpers')
-  , spyHelpers = require('./../../../spec/support/spyHelpers')
+  , promiseHelpers = require('../../../spec/support/promiseHelpers')
+  , hapifyPost = require('../../../spec/support/hapiHelpers').hapifyPost
+  , spyHelpers = require('../../../spec/support/spyHelpers')
   , environment = require('../../../environment')
   , _ = require('lodash');
-
-function hapifyRequest(payload) {
-  return {
-    payload: payload
-  }
-}
 
 describe('in production,', function() {
   var mode;
@@ -89,7 +84,7 @@ describe('in production,', function() {
           beaconId: 1107,
           recipientIds: undefined
         };
-        handlers.offerAssistance.handler(hapifyRequest(postPayload), function() {});
+        handlers.offerAssistance.handler(hapifyPost(postPayload), function() {});
       }); // POST to offerAssistance
 
       function verifyMessageAgainstPost(message) {
@@ -136,7 +131,7 @@ describe('in production,', function() {
           beaconId: 1107,
           recipientIds: undefined
         };
-        handlers.acceptAssistance.handler(hapifyRequest(postPayload), function() {});
+        handlers.acceptAssistance.handler(hapifyPost(postPayload), function() {});
       }); // POST to acceptAssistance
 
       describe('the message in the messageDatabase', function() {
@@ -177,7 +172,7 @@ describe('in production,', function() {
         expectedRecipients.push(newBeaconPost.senderId);
 
         // Act by calling the handler directly
-        handlers.createBeacon.handler(hapifyRequest(newBeaconPost), function() {});
+        handlers.createBeacon.handler(hapifyPost(newBeaconPost), function() {});
       }); // Call createBeacon with a new beacon POST
 
       describe('the socket.io to function, used to address the recipient,', function() {
