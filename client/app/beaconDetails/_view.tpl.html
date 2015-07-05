@@ -30,7 +30,8 @@
   </li>
   <li class="bg-list-group-item">
     <icon-container icon-url="images/wizard_dark_location.png">
-      {{selectionState.currentBeacon.streetAddress}}
+      {{selectionState.currentBeacon.streetAddress}}<br>
+      <span>{{usngService.LLtoUSNG(selectionState.currentBeacon.lat, selectionState.currentBeacon.lng)}}</span>
     </icon-container>
   </li>
   <li class="bg-list-group-item">

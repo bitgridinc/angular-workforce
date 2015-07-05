@@ -7,6 +7,9 @@ require('./bower_components/angular-strap/dist/angular-strap.min');
 require('./bower_components/angular-strap/dist/angular-strap.tpl.min');
 require('./bower_components/angular-ui-router/release/angular-ui-router');
 
+// beaconDetails
+window.mgrs = require('./bower_components/mgrs/dist/mgrs.js');
+
 // createBeacon
 require('./bower_components/angular-elastic/elastic');
 

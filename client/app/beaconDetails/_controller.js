@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('BeaconDetailsController',
-    [         '$rootScope', '$scope',
-      function($rootScope,   $scope) {
+    [         '$rootScope', '$scope', 'UsngService',
+      function($rootScope,   $scope,   UsngService) {
         $rootScope.selectionState = $scope.selectionState = {
           currentBeacon: undefined
         };
@@ -12,6 +12,9 @@ require('./_module')
           console.log('The number of beacons changed', newVal, oldVal);
           $rootScope.selectionState.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
         });
+
+        // TODO: Test this with an AAT once I fix the missing lat/lng issue
+        $scope.usngService = UsngService;
 
         $scope.goToBeaconList = function() {
           $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');

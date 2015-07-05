@@ -1,0 +1,14 @@
+{
+  "name": "v0.0.1.tar",
+  "_cacheHeaders": {
+    "ETag": "\"cb82fd11533027f85b9d1c50aeed61862dc3fb35\"",
+    "Content-Length": "11166",
+    "Content-Type": "application/x-gzip",
+    "Content-Disposition": "attachment; filename=mgrs-0.0.1.tar.gz"
+  },
+  "_release": "e-tag:cb82fd115",
+  "_source": "https://github.com/proj4js/mgrs/archive/v0.0.1.tar.gz",
+  "_target": "*",
+  "_originalSource": "https://github.com/proj4js/mgrs/archive/v0.0.1.tar.gz",
+  "_direct": true
+}
