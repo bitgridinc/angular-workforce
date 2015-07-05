@@ -20,7 +20,6 @@
   "homepage": "https://github.com/bitgridinc/app",
   "dependencies": {
     "boom": "^2.7.2",
-    "coordinator": "git://github.com/beatgammit/node-coordinator.git",
     "cryptiles": "^2.0.4",
     "esri-portal-api": "0.0.1",
     "geoservices": "^1.1.0",
