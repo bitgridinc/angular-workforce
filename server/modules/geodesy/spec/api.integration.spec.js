@@ -4,7 +4,7 @@ var environment = require('../../../environment')
   , hapifyPost = require('../../../spec/support/hapiHelpers').hapifyPost
   , handlers = require('../api');
 
-describe('in production,', function() {
+describe('the geodesy API (prod)', function() {
   var mode;
   beforeEach(function() {
     mode = environment.getCurrentMode();
@@ -14,14 +14,20 @@ describe('in production,', function() {
     environment.changeToMode(mode);
   }); // Reset back to whatever the mode was before the test was run
 
-  it('should call reply', function() {
+  it('should properly convert 38.598, -77.036 to 18SUH2269774133', function() {
     // Arrange
+    var postPayload = {
+      lat: 38.598,
+      lng: -77.036
+    };
     var reply = jasmine.createSpy();
 
     // Act
-    handlers.login.handler(hapifyPost({}), reply);
+    handlers.latLngToUsng.handler(hapifyPost(postPayload), reply);
 
     // Assert
-    expect(reply).toHaveBeenCalled();
+    expect(reply).toHaveBeenCalledWith({
+      usng: '18SUH2269774133'
+    });
   });
 });
