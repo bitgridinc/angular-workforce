@@ -14,7 +14,7 @@ require('./../_module_init.js')
           LLtoUSNG: function(lat, lng) {
             // Ensure lat/lng are within contiguous US to more quickly recognize errors in short-term development
             throwIfOutsideRange(lat, 25, 49);
-            throwIfOutsideRange(lng, 66, 125);
+            throwIfOutsideRange(lng, -125, -66);
             return $window.mgrs.forward([lng, lat]);
           }
         };
