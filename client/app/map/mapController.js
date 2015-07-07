@@ -5,6 +5,9 @@ require('./_module')
     [         '$scope', '$rootScope', 'MapExtentService', 'leafletData',
       function($scope,   $rootScope,   MapExtentService,   leafletData) {
         console.log('Entering MapController: ', $rootScope);
+
+        var cleanup;
+
         angular.extend($scope, {
           defaults: {
             // Note: This MUST be "" as any other values negatively affect the performance of loading tiles. Don't know why.
@@ -56,7 +59,7 @@ require('./_module')
         });
 
         // TODO: Test (perhaps break away first)
-        $rootScope.$watch('$stateParams.id', function(newlySelectedBeaconId) {
+        cleanup = $rootScope.$watch('$stateParams.id', function(newlySelectedBeaconId) {
           var newlySelectedBeacon = $rootScope.findBeaconById(newlySelectedBeaconId);
           if (angular.isDefined(newlySelectedBeacon)) {
             var mustContainPoints = [
@@ -65,6 +68,10 @@ require('./_module')
             ];
             MapExtentService.ensureContainsPoints(mustContainPoints);
           }
+        });
+
+        $scope.$on('$destroy', function() {
+          cleanup();
         });
       }
     ]

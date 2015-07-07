@@ -4,12 +4,14 @@ require('./_module')
   .controller('BeaconDetailsController',
     [         '$rootScope', '$scope',
       function($rootScope,   $scope) {
+        var cleanup;
+
         // TODO: Why with nested scope do I need this?
         $rootScope.selectionState = $scope.selectionState = {
           currentBeacon: undefined
         };
 
-        $rootScope.$watch('dataFromServer.beacons.length', function(newVal, oldVal) {
+        cleanup = $rootScope.$watch('dataFromServer.beacons.length', function(newVal, oldVal) {
           console.log('The number of beacons changed', newVal, oldVal);
           $rootScope.selectionState.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
         });
@@ -19,6 +21,10 @@ require('./_module')
             'dashboard.beacons.detail.review.response',
             { responseId: $rootScope.selectionState.currentBeacon.responses[0].id });
         };
+
+        $scope.$on('$destroy', function() {
+          cleanup();
+        });
       }
     ]
   );
