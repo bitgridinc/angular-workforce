@@ -14,5 +14,9 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     isVerbose: true,
     includeStackTrace: true
+  },
+
+  onPrepare: function() {
+    browser.manage().window().setSize(1600, 1000);
   }
 };
