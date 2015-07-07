@@ -1,5 +1,5 @@
 <ul class="bg-list-group" ng-if="selectionState.currentBeacon">
-  <colored-container class="disable-text-selection" ng-click="goToBeaconList(selectionState.currentBeacon)">
+  <colored-container class="disable-text-selection" navigate-to="dashboard.beacons.list">
     <div class="media bg-vertically-centered">
       <div class="media-left media-middle">
         <img src="images/arrow_left.png" alt="Collapse Beacon Details">
@@ -41,14 +41,14 @@
   </li>
   <!-- TODO: Test this when I can consistently mock the backend during my AATs. -->
   <li class="bg-list-group-item" ng-if="selectionState.currentBeacon.senderId !== dataFromServer.currentOrganization.id">
-    <button class="bg-wide-btn btn btn-sm btn-default" type="button" ng-click="goToOfferAssistance()">
+    <button class="bg-wide-btn btn btn-sm btn-default" type="button" navigate-to="dashboard.beacons.detail.assist">
       Offer Assistance
     </button>
   </li>
 </ul>
 <div ng-if="!selectionState.currentBeacon">
   We were unable to locate the beacon you requested.
-  <button class="btn btn-sm btn-default" type="button" ng-click="goToBeaconList()">
+  <button class="btn btn-sm btn-default" type="button" navigate-to="dashboard.beacons.list">
     Go Back
   </button>
 </div>

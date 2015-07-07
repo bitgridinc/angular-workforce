@@ -9,6 +9,7 @@ require('./js/contactCard');
 require('./js/dateTimePicker');
 require('./js/iconContainer');
 require('./js/LLtoUSNG');
+require('./js/navigateTo');
 require('./js/openReviewAssistanceButton');
 require('./js/organizationCard');
 require('./js/organizationLabel');

@@ -4,6 +4,7 @@ require('./_module')
   .controller('BeaconDetailsController',
     [         '$rootScope', '$scope',
       function($rootScope,   $scope) {
+        // TODO: Why with nested scope do I need this?
         $rootScope.selectionState = $scope.selectionState = {
           currentBeacon: undefined
         };
@@ -13,12 +14,6 @@ require('./_module')
           $rootScope.selectionState.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
         });
 
-        $scope.goToBeaconList = function() {
-          $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');
-        };
-        $scope.goToOfferAssistance = function() {
-          $rootScope.userNavigationService.navigateTo('dashboard.beacons.detail.assist');
-        };
         $scope.goToReviewAssistance = function() {
           $rootScope.userNavigationService.navigateTo(
             'dashboard.beacons.detail.review.response',

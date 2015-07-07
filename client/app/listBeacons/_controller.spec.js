@@ -22,13 +22,6 @@ describe('the beacon list controller', function() {
     spyOn($rootScope.userNavigationService, 'navigateTo');
   }));
 
-  it('should navigate to the create form when the Create Beacon button is clicked', function() {
-    // Act
-    $scope.onCreateBeaconClick();
-
-    // Assert
-    expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('^.create');
-  });
   it('should navigate to the beacon\'s details page when it is clicked', function() {
     // Arrange
     var beacon = { id: 1 };

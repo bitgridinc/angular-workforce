@@ -4,10 +4,6 @@ require('./_module')
   .controller('ListBeaconsController',
     [         '$scope',  '$rootScope',
       function($scope,    $rootScope) {
-        $scope.onCreateBeaconClick = function() {
-          $rootScope.userNavigationService.navigateTo('^.create');
-        };
-
         $scope.onSelectBeacon = function(beacon) {
           $rootScope.userNavigationService.navigateTo('^.detail', { id: beacon.id });
         };
