@@ -25,7 +25,7 @@
         </textarea>
       </div>
     </colored-container>
-    <li class="list-group-item">
+    <li class="list-group-item" ng-controller="MouseLocationController">
       <icon-container icon-url="images/wizard_location.png">
         <input id="bg-cb-street-address-input"
                class="bg-form-control"
@@ -40,6 +40,13 @@
                name="zip"
                ng-model="beaconData.zip"
                placeholder="Zip"
+               required />
+        <input id="bg-cb-usng-input"
+               class="bg-form-control"
+               type="text"
+               name="USNG"
+               ng-model="beaconData.USNG"
+               placeholder="USNG: {{mouseLocation.usng}}"
                required />
       </icon-container>
     </li>
