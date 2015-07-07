@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('BeaconDetailsController',
-    [         '$rootScope', '$scope', 'UsngService',
-      function($rootScope,   $scope,   UsngService) {
+    [         '$rootScope', '$scope',
+      function($rootScope,   $scope) {
         $rootScope.selectionState = $scope.selectionState = {
           currentBeacon: undefined
         };
