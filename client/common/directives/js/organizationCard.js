@@ -13,10 +13,14 @@ require('./../_module_init.js')
         controller: [
                   '$rootScope', '$scope',
           function($rootScope,   $scope) {
-            $scope.$watch('organizationId', function(newVal) {
+            var cleanup;
+            cleanup = $scope.$watch('organizationId', function(newVal) {
               if (angular.isDefined(newVal)) {
                 $scope.organization = $rootScope.findOrganizationById(newVal);
               }
+            });
+            $scope.$on('$destroy', function() {
+              cleanup();
             });
           }
         ]

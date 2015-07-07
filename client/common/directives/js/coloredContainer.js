@@ -12,11 +12,17 @@ require('./../_module_init.js')
         },
         link: function(scope, element, attrs) {
           if (angular.isDefined(scope.height)) {
-            scope.$watch('height', function() {
+            var cleanup;
+
+            cleanup = scope.$watch('height', function() {
               element.css('height', scope.height + 'px');
             });
 
             element.css('height', scope.height + 'px');
+
+            scope.$on('$destroy', function() {
+              cleanup();
+            });
           }
         }
       }
