@@ -11,5 +11,6 @@ module.exports =
 require('./_stateConfig');
 require('./coloredContainerHeightController');
 require('./_controller');
+require('./mapClickMarkerController');
 require('./mouseLocationController');
 require('./newBeaconFactory');

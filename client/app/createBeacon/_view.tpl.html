@@ -1,4 +1,5 @@
-<div>
+<!-- TODO: Minimize surface area of each controller. For instance, MapClickMarkerController can be anywhere. -->
+<div ng-controller="MapClickMarkerController">
   <form method="post" name="createBeaconForm" ng-controller="ColoredContainerHeightController">
     <colored-container height="coloredContainerHeight" class="media">
       <div class="media-left media-middle">
@@ -44,8 +45,8 @@
         <input id="bg-cb-usng-input"
                class="bg-form-control"
                type="text"
-               name="USNG"
-               ng-model="beaconData.USNG"
+               name="usng"
+               ng-model="beaconData.usng"
                placeholder="USNG: {{mouseLocation.usng}}"
                required />
       </icon-container>
