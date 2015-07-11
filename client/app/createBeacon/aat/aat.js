@@ -1,7 +1,9 @@
 "use strict";
 
 var locators = new (require('./locators.js'))()
-  , aatWrappers = require('../../../common/protractor/wrappers');
+  , dashboardLocators = new (require('../../dashboard/aat/locators.js'))()
+  , aatWrappers = require('../../../common/protractor/wrappers')
+  , EC = protractor.ExpectedConditions;
 
 function clickSubmitBeaconButton() {
   browser.findElement(locators.submitButton).click();
@@ -79,7 +81,10 @@ aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, sui
       acceptAlertDialog('/#/dashboard/beacons/create$'); // Will fail if there is no alert
     });
 
-    it('should allow for the creation of a new beacon', function() {
+    it('should pop a success toastr when a beacon is successfully created', function() {
+      // Arrange
+      var toastrTitleElement = element(dashboardLocators.toastrTitle);
+
       // Act
       browser.findElement(locators.titleInput).sendKeys('Fix The BitGrid');
       browser.findElement(locators.descriptionInput).sendKeys('At My House');
@@ -93,7 +98,9 @@ aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, sui
         });
 
       // Assert
-      acceptAlertDialog('/#/dashboard/beacons$');
+      browser.wait(EC.textToBePresentInElement(toastrTitleElement, 'Success!'), 5000);
     });
+
+    // TODO: AAT for the Cancel button (should it remove the unit test?)
   });
 });

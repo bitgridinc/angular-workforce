@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('CreateBeaconController',
-    [         '$rootScope', '$scope', 'NewBeaconFactory', '_',
-      function($rootScope,   $scope,   NewBeaconFactory,   _) {
+    [         '$rootScope', '$scope', 'NewBeaconFactory', '_', 'toaster',
+      function($rootScope,   $scope,   NewBeaconFactory,   _,   toaster) {
         NewBeaconFactory.initScope($scope);
 
         // Note that a filter *might* be better as we grow as it would be reusable.
@@ -21,28 +21,29 @@ require('./_module')
           });
         });
 
-        $scope.completeNewBeacon = function(commit) {
-          if (commit) {
-            var recipientIds = _.chain($scope.possibleRecipients)
-              .where({ include: true })
-              .map(function(r) {
-                return r.organization.id
-              })
-              .value();
-            if (recipientIds.length > 0) {
-              NewBeaconFactory.postNewBeacon(recipientIds);
-            } else {
-              alert('Please select at least one recipient.');
-              throw new Error('No recipients selected when creating a new beacon.');
-            }
+        $scope.completeNewBeacon = function() {
+          var recipientIds = _.chain($scope.possibleRecipients)
+            .where({ include: true })
+            .map(function(r) {
+              return r.organization.id
+            })
+            .value();
+          if (recipientIds.length <= 0) {
+            alert('Please select at least one recipient.');
+            throw new Error('No recipients selected when creating a new beacon.');
           }
 
-          $scope.goBackToList();
+          NewBeaconFactory.postNewBeacon(recipientIds).then(function(result) {
+            // TODO: Handle error and test
+            // I'm just putting this here to remember how it's done. I expect to move this around.
+            toaster.pop({ // pass a high timeout to keep the toaster longer
+              type: 'success',
+              title: 'Success!',
+              body: 'Your aid beacon is in effect'
+            });
+            $rootScope.userNavigationService.navigateTo('^.list');
+          });
         };
-
-        $scope.goBackToList = function() {
-          $rootScope.userNavigationService.navigateTo('^.list');
-        }
       }
     ]
   );

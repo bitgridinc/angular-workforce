@@ -3,7 +3,7 @@
   <form method="post" name="createBeaconForm" ng-controller="ColoredContainerHeightController">
     <colored-container height="coloredContainerHeight" class="media">
       <div class="media-left media-middle">
-        <img src="images/arrow_left_gray.png" ng-click="goBackToList()">
+        <img src="images/arrow_left_gray.png" navigate-to="^.list">
       </div>
       <div class="media-body bg-full-width">
         <input id="bg-cb-title-input"
@@ -84,10 +84,10 @@
     </li>
     <table class="bg-dw-button-table">
       <td class="bg-no-padding">
-        <button class="bg-full-width btn btn-sm btn-success" type="button" ng-click="completeNewBeacon(true)" ng-disabled="createBeaconForm.$invalid">Submit Beacon</button>
+        <button class="bg-full-width btn btn-sm btn-success" type="button" ng-click="completeNewBeacon()" ng-disabled="createBeaconForm.$invalid">Submit Beacon</button>
       </td>
       <td class="bg-no-padding">
-        <button class="bg-full-width btn btn-sm btn-default" type="button" ng-click="completeNewBeacon(false)">Cancel</button>
+        <button class="bg-full-width btn btn-sm btn-default" type="button" navigate-to="^.list">Cancel</button>
       </td>
     </table>
   </form>
