@@ -4,7 +4,9 @@ module.exports =
   angular.module('modules.createBeacon', [
       'ui.router',
       'modules.providers',
-      'monospaced.elastic'
+      'monospaced.elastic',
+      'toaster',
+      'ngAnimate' // for toaster
     ]
   );
 

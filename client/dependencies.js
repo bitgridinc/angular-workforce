@@ -21,6 +21,10 @@ require('./bower_components/leaflet/dist/leaflet-src');
 require('./bower_components/angular-leaflet-directive/dist/angular-leaflet-directive');
 // require('./bower_components/esri-leaflet/dist/esri-leaflet-src'); TODO: Why does it error?
 
+// toaster
+require('./bower_components/angularjs-toaster/toaster');
+require('./bower_components/angular-animate/angular-animate');
+
 // providers
 window._ = require('./bower_components/lodash/dist/lodash');
 window.io = require('./bower_components/socket.io-client/socket.io');

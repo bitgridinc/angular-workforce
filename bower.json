@@ -15,6 +15,7 @@
     "angular-jwt": "~0.0.9",
     "angular-leaflet-directive": "~0.8.5",
     "esri-leaflet": "~1.0.0-rc.8",
-    "mgrs": "https://github.com/proj4js/mgrs/archive/v0.0.1.tar.gz"
+    "mgrs": "https://github.com/proj4js/mgrs/archive/v0.0.1.tar.gz",
+    "angularjs-toaster": "~0.4.15"
   }
 }
