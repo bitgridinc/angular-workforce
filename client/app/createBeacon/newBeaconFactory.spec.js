@@ -5,17 +5,15 @@ describe('the new beacon creation factory', function() {
     , scope
     , factory
     , restService
-    , geocoderService
     , fluentSharedLibraryService;
 
   beforeEach(module('modules.providers'));
   beforeEach(module('modules.createBeacon'));
-  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, RestService, _GeocoderService_, _FluentSharedLibrariesService_) {
+  beforeEach(inject(function ($rootScope, _NewBeaconFactory_, RestService, _FluentSharedLibrariesService_) {
     rootScope = $rootScope;
     scope = $rootScope.$new();
     factory = _NewBeaconFactory_;
     restService = RestService;
-    geocoderService = _GeocoderService_;
     fluentSharedLibraryService = _FluentSharedLibrariesService_;
   }));
   beforeEach(function () {
@@ -48,37 +46,29 @@ describe('the new beacon creation factory', function() {
         expectedPost = fluentSharedLibraryService.newBeaconPostFactory()
           .withSenderId('1')
           .withSummaryText(newTitle, newDescription)
-          .withLocation(1, 2)
+          .withLocation(37, -76)
           .withAddress(newStreetAddress)
           .withNumberOfPeople(newNumberOfPeople)
           .createBeaconPost();
       });
       beforeEach(function() {
-        spyOn(geocoderService, 'geocodeAddress');
         spyOn(restService, 'createBeacon').and.returnValue({
           then: function() {}
         });
       });
 
-      it('should lookup the street address and zip with the geocoder and then pass the new beacon POST to the socket', function() {
+      it('should create a new beacon POST message and POST it to the socket', function() {
         // Arrange
         rootScope.dataFromServer = {
           currentOrganization: {
             id: '1'
           }
         };
-        var geocoderResponse = {
-          lat: expectedPost.lat,
-          lng: expectedPost.lng,
-          streetAddress: expectedPost.streetAddress
-        };
 
         // Act
         factory.postNewBeacon();
 
         // Assert
-        expect(geocoderService.geocodeAddress).toHaveBeenCalledWith(newStreetAddress, newZip, jasmine.any(Function));
-        geocoderService.geocodeAddress.calls.argsFor(0)[2](geocoderResponse);
         expect(restService.createBeacon).toHaveBeenCalledWith(expectedPost);
       });
     });
