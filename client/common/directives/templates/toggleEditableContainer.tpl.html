@@ -1,7 +1,7 @@
 <div class="media">
   <!-- TODO: AAT coverage -->
   <div ng-if="!editable">
-    <a ng-click="toggleEditable()">Edit</a>
+    {{editText}} <a ng-click="toggleEditable()">Edit</a>
   </div>
   <div ng-if="editable">
     <!-- TODO: Move style to sass -->

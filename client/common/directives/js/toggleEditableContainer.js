@@ -8,6 +8,7 @@ require('./../_module_init.js')
         templateUrl: '/templates/directives/templates/toggleEditableContainer.tpl.html',
         transclude: true,
         scope: {
+          editText: '@'
         },
         controller: function($scope) {
           $scope.editable = false;
