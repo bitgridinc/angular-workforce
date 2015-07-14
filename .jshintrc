@@ -35,6 +35,7 @@
         "spyOn",
 
         // Protractor globals
+        "protractor",
         "browser",
         "element",
         "by",
