@@ -13,3 +13,4 @@ require('./js/navigateTo');
 require('./js/openReviewAssistanceButton');
 require('./js/organizationCard');
 require('./js/organizationLabel');
+require('./js/toggleEditableContainer');
