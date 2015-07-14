@@ -34,4 +34,27 @@ describe('the assignedUsersController', function() {
     // Assert
     expect($scope.users).toBe(users);
   });
+  it('should update numResponders when users are selected', function() {
+    // Arrange
+    $scope.assistanceOffer = {};
+    $scope.users = [{
+      // This one I'm leaving empty because this happens
+    }, {
+      include: false
+    }, {
+      include: true
+    }, {
+      include: true
+    }];
+    $controller('AssignedUsersController', {
+      $scope: $scope,
+      RestService: restService
+    });
+
+    // Act
+    $scope.onUserSelected();
+
+    // Assert
+    expect($scope.assistanceOffer.numResponders).toBe(2);
+  });
 });

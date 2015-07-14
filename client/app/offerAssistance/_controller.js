@@ -2,14 +2,12 @@
 
 require('./_module')
   .controller('OfferAssistanceController',
-    [         '$scope', '$rootScope',
-      function($scope,   $rootScope) {
+    [         '$scope',
+      function($scope) {
         // For debugging purposes
         $scope.name = 'OfferAssistanceController';
 
-        $scope.assistanceOffer = {
-          numResponders: 2
-        };
+        $scope.assistanceOffer = {};
       }
     ]
   );

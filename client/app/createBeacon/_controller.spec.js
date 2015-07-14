@@ -3,6 +3,7 @@
 describe('the create beacon controller', function() {
   var $scope
     , $rootScope
+    , newBeaconFactory
     , factory;
 
   beforeEach(module('modules.createBeacon'));
@@ -11,6 +12,7 @@ describe('the create beacon controller', function() {
 
     $scope = _$rootScope_.$new();
     $rootScope = _$rootScope_;
+    newBeaconFactory = _NewBeaconFactory_
 
     // This is the basic state required by the SUT (system under test)
     var currentOrganization = {
@@ -45,5 +47,22 @@ describe('the create beacon controller', function() {
   it('should error when no recipients are selected', function() {
     $scope.possibleRecipients[0].include = false;
     expect(function() { return $scope.completeNewBeacon(true); }).toThrowError();
+  });
+  it('should navigate to the beacon list after the new beacon is POSTed', function() {
+    // Arrange
+    $rootScope.userNavigationService = {
+      navigateTo: jasmine.createSpy('navigateTo')
+    };
+    spyOn(newBeaconFactory, 'postNewBeacon').and.returnValue({
+      then: function(callback) {
+        callback();
+      }
+    });
+
+    // Act
+    $scope.completeNewBeacon(true);
+
+    // Assert
+    expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('^.list');
   });
 });

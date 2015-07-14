@@ -12,7 +12,7 @@ describe('the offer assistance controller', function() {
     });
   }));
 
-  it ('should configure scope with the default values for an assistance offer', function () {
-    expect($scope.assistanceOffer.numResponders).toBe(2);
+  it ('should configure scope with the assistance offer object', function () {
+    expect($scope.assistanceOffer).toBeDefined();
   });
 });

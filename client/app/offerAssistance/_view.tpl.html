@@ -11,15 +11,6 @@
     </p>
   </li>
   <li class="list-group-item">
-    <label class="small">How many people can you send?</label>
-    <input id="bg-oa-num-responders-input"
-           class="form-control"
-           type="number"
-           name="numResponders"
-           required
-           ng-model="assistanceOffer.numResponders" />
-  </li>
-  <li class="list-group-item">
     <icon-container icon-url="images/wizard_calendar.png">
       <label for="bg-oa-arrival-date">When can they get there?</label>
       <date-time-picker dtp-model="assistanceOffer.arrivalDate"
@@ -37,7 +28,7 @@
     <icon-container icon-url="images/wizard_dark_linemen.png">
       <table class="table">
         <tr ng-repeat="user in users">
-          <td style="width: 13px;"><input type="checkbox" ng-model="user.include"></td>
+          <td style="width: 13px;"><input type="checkbox" ng-model="user.include" ng-click="onUserSelected()"></td>
           <td align="left">{{user.fullName}}</td>
         </tr>
       </table>
