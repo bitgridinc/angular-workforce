@@ -5,9 +5,11 @@
   </div>
   <div ng-if="editable">
     <!-- TODO: Move style to sass -->
-    <div style="display: table-cell; padding-right: 4px;" ng-transclude></div>
-    <div style="vertical-align: middle; width: 20px; display: table-cell;">
-      <button ng-click="toggleEditable()">x</button>
+    <div style="display: table-cell; padding-right: 4px; width: 100%;" ng-transclude></div>
+    <div style="vertical-align: middle; width: 15px; display: table-cell;">
+      <!-- TODO: Reconcile with centered-image, as the '=' breaks it -->
+      <!--<centered-image icon-url="images/icon_cancel.png" width="11" ng-click="toggleEditable()"></centered-image>-->
+      <img class="center-block" src="images/icon_cancel.png" ng-click="toggleEditable()">
     </div>
   </div>
 </div>
