@@ -33,10 +33,10 @@ function acceptAlertDialog(expectedUrl) {
 function populateAllInputs() {
   browser.findElement(locators.titleInput).sendKeys('t');
   browser.findElement(locators.descriptionInput).sendKeys('d');
-  browser.findElement(locators.streetAddressInput).sendKeys('s');
-  browser.findElement(locators.zipInput).sendKeys('z');
+  //browser.findElement(locators.streetAddressInput).sendKeys('s');
+  //browser.findElement(locators.zipInput).sendKeys('z');
   //browser.findElement(locators.meetingDateInput).sendKeys('2099-09-16');
-  browser.findElement(locators.numberOfPeopleInput).sendKeys('n');
+  //browser.findElement(locators.numberOfPeopleInput).sendKeys('n');
 }
 
 function assertInputIsRequired(emptyPropertyName, emptyElement) {
@@ -58,10 +58,10 @@ aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, sui
     // These makes sure that an alert is raised if any required properties are missing.
     assertInputIsRequired('title', locators.titleInput);
     assertInputIsRequired('description', locators.descriptionInput);
-    assertInputIsRequired('street address', locators.streetAddressInput);
-    assertInputIsRequired('zip', locators.zipInput);
+    //assertInputIsRequired('street address', locators.streetAddressInput);
+    //assertInputIsRequired('zip', locators.zipInput);
     //assertInputIsRequired('start date', locators.meetingDateInput);
-    assertInputIsRequired('number of people', locators.numberOfPeopleInput);
+    //assertInputIsRequired('number of people', locators.numberOfPeopleInput);
 
     it('should alert when no recipients are selected', function() {
       // Arrange
@@ -85,11 +85,11 @@ aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, sui
 
       // Act
       browser.findElement(locators.titleInput).sendKeys('Fix The BitGrid');
-      browser.findElement(locators.descriptionInput).sendKeys('At My House');
-      browser.findElement(locators.streetAddressInput).sendKeys('2729 Merrilee Drive');
-      browser.findElement(locators.zipInput).sendKeys('22031');
+      browser.findElement(locators.descriptionInput).sendKeys('At My House')
+      //browser.findElement(locators.streetAddressInput).sendKeys('2729 Merrilee Drive');
+      //browser.findElement(locators.zipInput).sendKeys('22031');
       //browser.findElement(locators.meetingDateInput).sendKeys('2099-09-16');
-      browser.findElement(locators.numberOfPeopleInput).sendKeys('1')
+      //browser.findElement(locators.numberOfPeopleInput).sendKeys('1')
         .then(function() {
           browser.findElement(locators.submitButton).click();
         });
