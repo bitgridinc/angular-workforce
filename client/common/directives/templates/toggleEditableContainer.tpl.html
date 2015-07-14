@@ -1,7 +1,13 @@
 <div class="media">
-  <!-- TODO: Move style to sass -->
-  <div style="display: table-cell; padding-right: 4px;" ng-transclude></div>
-  <div style="vertical-align: middle; width: 20px; display: table-cell;">
-    <button>x</button>
+  <!-- TODO: AAT coverage -->
+  <div ng-if="!editable">
+    <a ng-click="toggleEditable()">Edit</a>
+  </div>
+  <div ng-if="editable">
+    <!-- TODO: Move style to sass -->
+    <div style="display: table-cell; padding-right: 4px;" ng-transclude></div>
+    <div style="vertical-align: middle; width: 20px; display: table-cell;">
+      <button ng-click="toggleEditable()">x</button>
+    </div>
   </div>
 </div>

@@ -9,6 +9,12 @@ require('./../_module_init.js')
         transclude: true,
         scope: {
         },
+        controller: function($scope) {
+          $scope.editable = false;
+          $scope.toggleEditable = function() {
+            $scope.editable = !$scope.editable;
+          };
+        },
         link: function(scope, element, attrs) {
         }
       }
