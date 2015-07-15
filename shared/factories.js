@@ -11,13 +11,13 @@ var factories = {
       acceptedAssistance: []
     };
     return {
-      withRequired: function(id, senderId, title, description, latitude, longitude) {
+      withRequired: function(id, senderId, title, description, lat, lng) {
         beacon.id = id;
         beacon.senderId = senderId;
         beacon.title = title;
         beacon.description = description;
-        beacon.lat = latitude;
-        beacon.lng = longitude;
+        beacon.lat = lat;
+        beacon.lng = lng;
         return this;
       },
       withAddress: function(streetAddress, zip) {
@@ -58,12 +58,12 @@ var factories = {
       recipientIds: []
     };
     return {
-      withRequired: function(senderId, title, description, latitude, longitude) {
+      withRequired: function(senderId, title, description, lat, lng) {
         beaconPost.senderId = senderId;
         beaconPost.title = title;
         beaconPost.description = description;
-        beaconPost.lat = latitude;
-        beaconPost.lng = longitude;
+        beaconPost.lat = lat;
+        beaconPost.lng = lng;
         return this;
       },
       withAddress: function(streetAddress) {
