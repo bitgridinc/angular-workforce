@@ -2,45 +2,45 @@
 
 var factories = {
   newBeaconFactory: function() {
+    var beacon = {
+      title: 'title',
+      description: 'description',
+      lat: 0,
+      lng: 0,
+      responses: [],
+      acceptedAssistance: []
+    };
     return {
-      beacon: {
-        title: 'title',
-        description: 'description',
-        lat: 0,
-        lng: 0,
-        responses: [],
-        acceptedAssistance: []
-      },
       withIds: function(id, senderId) {
-        this.beacon.id = id;
-        this.beacon.senderId = senderId;
+        beacon.id = id;
+        beacon.senderId = senderId;
         return this;
       },
       withSummaryText: function(title, description) {
-        this.beacon.title = title;
-        this.beacon.description = description;
+        beacon.title = title;
+        beacon.description = description;
         return this;
       },
       withLocation: function(latitude, longitude) {
-        this.beacon.lat = latitude;
-        this.beacon.lng = longitude;
+        beacon.lat = latitude;
+        beacon.lng = longitude;
         return this;
       },
       withAddress: function(streetAddress, zip) {
-        this.beacon.streetAddress = streetAddress;
-        this.beacon.zip = zip;
+        beacon.streetAddress = streetAddress;
+        beacon.zip = zip;
         return this;
       },
       withNumberOfPeople: function(numberOfPeople) {
-        this.beacon.numberOfPeople = numberOfPeople;
+        beacon.numberOfPeople = numberOfPeople;
         return this;
       },
       withResponse: function(response) {
-        this.beacon.responses.push(response);
+        beacon.responses.push(response);
         return this;
       },
       withAcceptedOffer: function(acceptedOffer) {
-        this.beacon.acceptedAssistance.push(acceptedOffer);
+        beacon.acceptedAssistance.push(acceptedOffer);
         return this;
       },
       createBeacon: function() {
@@ -50,39 +50,39 @@ var factories = {
           throw new Error('senderId is required');
         }
 
-        return this.beacon;
+        return beacon;
       }
     };
   },
   newBeaconPostFactory: function() {
+    var beaconPost = {
+      recipientIds: []
+    };
     return {
-      beaconPost: {
-        recipientIds: []
-      },
       withSenderId: function(senderId) {
-        this.beaconPost.senderId = senderId;
+        beaconPost.senderId = senderId;
         return this;
       },
       withSummaryText: function(title, description) {
-        this.beaconPost.title = title;
-        this.beaconPost.description = description;
+        beaconPost.title = title;
+        beaconPost.description = description;
         return this;
       },
       withLocation: function(latitude, longitude) {
-        this.beaconPost.lat = latitude;
-        this.beaconPost.lng = longitude;
+        beaconPost.lat = latitude;
+        beaconPost.lng = longitude;
         return this;
       },
       withAddress: function(streetAddress) {
-        this.beaconPost.streetAddress = streetAddress;
+        beaconPost.streetAddress = streetAddress;
         return this;
       },
       withNumberOfPeople: function(numberOfPeople) {
-        this.beaconPost.numberOfPeople = numberOfPeople;
+        beaconPost.numberOfPeople = numberOfPeople;
         return this;
       },
       withRecipientId: function(recipientId) {
-        this.beaconPost.recipientIds.push(recipientId);
+        beaconPost.recipientIds.push(recipientId);
         return this;
       },
       withRecipientIds: function(recipientIds) {
@@ -94,26 +94,26 @@ var factories = {
         return this;
       },
       createBeaconPost: function() {
-        return this.beaconPost;
+        return beaconPost;
       }
     };
   },
   newAssistanceResponseFactory: function() {
+    var assistanceResponse = {};
     return {
-      assistanceResponse: { },
       withIds: function(id, senderId, beaconId) {
-        this.assistanceResponse.id = id;
-        this.assistanceResponse.senderId = senderId;
-        this.assistanceResponse.beaconId = beaconId;
+        assistanceResponse.id = id;
+        assistanceResponse.senderId = senderId;
+        assistanceResponse.beaconId = beaconId;
         return this;
       },
       withResponderCrew: function(numResponders, arrivalDate) {
-        this.assistanceResponse.numResponders = numResponders;
-        this.assistanceResponse.arrivalDate = arrivalDate;
+        assistanceResponse.numResponders = numResponders;
+        assistanceResponse.arrivalDate = arrivalDate;
         return this;
       },
       createAssistanceResponse: function() {
-        return this.assistanceResponse;
+        return assistanceResponse;
       }
     };
   }
