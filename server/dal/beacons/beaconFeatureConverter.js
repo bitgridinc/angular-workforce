@@ -5,11 +5,12 @@ var _ = require('lodash')
 
 module.exports = {
   featureToBeacon: function(feature) {
-    var attributes = feature.attributes;
+    var attributes = feature.attributes
+      , beaconId = attributes.ObjectId
+      , lat = feature.geometry.y
+      , lng = feature.geometry.x;
     return factories.newBeaconFactory()
-                    .withIds(attributes.ObjectId, attributes.senderId)
-                    .withSummaryText(attributes.title, attributes.description)
-                    .withLocation(feature.geometry.y, feature.geometry.x)
+                    .withRequired(beaconId, attributes.senderId, attributes.title, attributes.description, lat, lng)
                     .withAddress(attributes.streetAddress)
                     .withNumberOfPeople(attributes.numberOfPeople)
                     .createBeacon();

@@ -11,17 +11,11 @@ var factories = {
       acceptedAssistance: []
     };
     return {
-      withIds: function(id, senderId) {
+      withRequired: function(id, senderId, title, description, latitude, longitude) {
         beacon.id = id;
         beacon.senderId = senderId;
-        return this;
-      },
-      withSummaryText: function(title, description) {
         beacon.title = title;
         beacon.description = description;
-        return this;
-      },
-      withLocation: function(latitude, longitude) {
         beacon.lat = latitude;
         beacon.lng = longitude;
         return this;

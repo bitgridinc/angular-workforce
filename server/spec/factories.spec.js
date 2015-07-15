@@ -14,7 +14,7 @@ describe('the fluent factories', function() {
     });
     it('should create properties implicitly', function() {
       // Act by setting the minimal it/senderId
-      var beacon = beaconFactory.withIds(1, 2).createBeacon();
+      var beacon = beaconFactory.withRequired(1, 2).createBeacon();
 
       // Assert an unspecified property, title in this case, is defined, as well as the response arrays
       expect(beacon.hasOwnProperty('title')).toBeTruthy();
@@ -36,10 +36,8 @@ describe('the fluent factories', function() {
 
       // Act by setting the minimal it/senderId
       var beacon = beaconFactory
-        .withIds(properties.id, properties.senderId)
         // Don't unit test 1-line passthroughs. Integration tests are the answer here.
-        .withSummaryText(properties.title, properties.description)
-        .withLocation(properties.lat, properties.lng)
+        .withRequired(properties.id, properties.senderId, properties.title, properties.description, properties.lat, properties.lng)
         .withAddress(properties.streetAddress)
         .withNumberOfPeople(properties.numberOfPeople)
         .createBeacon();

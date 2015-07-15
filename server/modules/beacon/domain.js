@@ -7,9 +7,9 @@ var uuid = require('node-uuid')
 module.exports = {
   createDomainBeacon: function(payload){
     return factories.newBeaconFactory()
-                    .withIds(-1, payload.senderId) // id will be automatically assigned by db
-                    .withSummaryText(payload.title, payload.description)
-                    .withLocation(payload.lat, payload.lng)
+                    // id will be automatically assigned by db
+                    // TODO: is id a required property then?
+                    .withRequired(-1, payload.senderId, payload.title, payload.description, payload.lat, payload.lng)
                     .withAddress(payload.streetAddress, payload.zip)
                     .withNumberOfPeople(payload.numberOfPeople)
                     .createBeacon();

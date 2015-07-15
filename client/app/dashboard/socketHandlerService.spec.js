@@ -42,7 +42,7 @@ describe('the service that wraps SocketIO', function() {
           currentOrganization: currentOrganization,
           beacons: [
             factories.newBeaconFactory()
-                     .withIds('e688af0b-63df-48bc-941c-9cc5f750367b', currentOrganization.id)
+                     .withRequired('e688af0b-63df-48bc-941c-9cc5f750367b', currentOrganization.id)
                      .createBeacon()
           ]
         });
@@ -56,7 +56,7 @@ describe('the service that wraps SocketIO', function() {
         // Arrange
         var id = '97b12600-51de-472a-8cff-08b67a4f0340';
         var beacon = factories.newBeaconFactory()
-                              .withIds(id, currentOrganization.id)
+                              .withRequired(id, currentOrganization.id)
                               .createBeacon();
 
         // Act
@@ -69,7 +69,7 @@ describe('the service that wraps SocketIO', function() {
       it ('should not add incoming message to the list of beacons if the beacon is already present', function () {
         // Arrange
         var beacon = factories.newBeaconFactory()
-                              .withIds('e688af0b-63df-48bc-941c-9cc5f750367b', currentOrganization.id)
+                              .withRequired('e688af0b-63df-48bc-941c-9cc5f750367b', currentOrganization.id)
                               .createBeacon();
 
         // Act
