@@ -8,8 +8,6 @@ var factories = {
         description: 'description',
         lat: 0,
         lng: 0,
-        streetAddress: 'streetAddress',
-        numberOfPeople: 'numberOfPeople',
         responses: [],
         acceptedAssistance: []
       },
