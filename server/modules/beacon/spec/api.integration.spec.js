@@ -162,10 +162,8 @@ describe('in production,', function() {
         // Arrange a request to the API to create a new beacon
         newBeaconPost =
           factories.newBeaconPostFactory()
-            .withSenderId('yk7EooUDkOKQA9zj')
-            .withSummaryText('Murfreesboro Title', 'Murfreesboro Description')
+            .withRequired('yk7EooUDkOKQA9zj', 'Murfreesboro Title', 'Murfreesboro Description', 1, 2)
             .withNumberOfPeople('4')
-            .withLocation(1, 2)
             .withRecipientIds(['b6038693-725d-4651-9a75-78fc202b1308', '9bf2989a-e6c9-48bd-b0b8-f20194fda10f'])
             .createBeaconPost();
         expectedRecipients = newBeaconPost.recipientIds.slice();

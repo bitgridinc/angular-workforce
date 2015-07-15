@@ -18,10 +18,11 @@ require('./_module')
             });
           },
           postNewBeacon : function (recipientIds) {
+            var senderId = $rootScope.dataFromServer.currentOrganization.id
+              , title = scope.beaconData.title
+              , description = scope.beaconData.description;
             var beaconPost = FluentSharedLibrariesService.newBeaconPostFactory()
-              .withSenderId($rootScope.dataFromServer.currentOrganization.id)
-              .withSummaryText(scope.beaconData.title, scope.beaconData.description)
-              .withLocation(37, -76)
+              .withRequired(senderId, title, description, 37, -76)
               .withAddress(scope.beaconData.streetAddress, scope.beaconData.zip)
               .withNumberOfPeople(scope.beaconData.numberOfPeople)
               .withRecipientIds(recipientIds)

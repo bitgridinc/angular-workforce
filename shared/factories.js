@@ -44,9 +44,9 @@ var factories = {
         return this;
       },
       createBeacon: function() {
-        if (!this.beacon.hasOwnProperty('id')) {
+        if (!beacon.hasOwnProperty('id')) {
           throw new Error('number is required');
-        } else if (!this.beacon.hasOwnProperty('senderId')) {
+        } else if (!beacon.hasOwnProperty('senderId')) {
           throw new Error('senderId is required');
         }
 
@@ -59,16 +59,10 @@ var factories = {
       recipientIds: []
     };
     return {
-      withSenderId: function(senderId) {
+      withRequired: function(senderId, title, description, latitude, longitude) {
         beaconPost.senderId = senderId;
-        return this;
-      },
-      withSummaryText: function(title, description) {
         beaconPost.title = title;
         beaconPost.description = description;
-        return this;
-      },
-      withLocation: function(latitude, longitude) {
         beaconPost.lat = latitude;
         beaconPost.lng = longitude;
         return this;
