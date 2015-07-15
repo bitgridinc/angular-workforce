@@ -56,6 +56,11 @@ var factories = {
   },
   newBeaconPostFactory: function() {
     var beaconPost = {
+      senderId: 'senderId',
+      title: 'title',
+      description: 'description',
+      lat: 0,
+      lng: 0,
       recipientIds: []
     };
     return {
