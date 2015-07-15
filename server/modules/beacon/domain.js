@@ -10,7 +10,7 @@ module.exports = {
                     .withIds(-1, payload.senderId) // id will be automatically assigned by db
                     .withSummaryText(payload.title, payload.description)
                     .withLocation(payload.lat, payload.lng)
-                    .withAddress(payload.streetAddress)
+                    .withAddress(payload.streetAddress, payload.zip)
                     .withNumberOfPeople(payload.numberOfPeople)
                     .createBeacon();
   },

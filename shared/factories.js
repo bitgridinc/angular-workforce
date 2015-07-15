@@ -26,8 +26,9 @@ var factories = {
         this.beacon.lng = longitude;
         return this;
       },
-      withAddress: function(streetAddress) {
+      withAddress: function(streetAddress, zip) {
         this.beacon.streetAddress = streetAddress;
+        this.beacon.zip = zip;
         return this;
       },
       withNumberOfPeople: function(numberOfPeople) {

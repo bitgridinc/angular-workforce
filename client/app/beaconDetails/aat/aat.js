@@ -18,7 +18,6 @@ aatWrappers.browserGetWrapper('the beacon details view', function(testRunner, su
       expect(summaryHeaderText).toContain('Morristown Utility Systems');
       expect(summaryHeaderText).toContain('Title_32');
       expect(summaryHeaderText).toContain('Description_32');
-      expect(element(locators.streetAddress).getText()).toContain('1567 N Thompson Ln');
       expect(element(locators.usng).getText()).toContain('16SED7282495516');
       expect(element(locators.numberOfPeople).getText()).toContain('4-5');
     });

@@ -22,7 +22,7 @@ require('./_module')
               .withSenderId($rootScope.dataFromServer.currentOrganization.id)
               .withSummaryText(scope.beaconData.title, scope.beaconData.description)
               .withLocation(37, -76)
-              .withAddress(scope.beaconData.streetAddress)// TODO: , scope.beaconData.zip
+              .withAddress(scope.beaconData.streetAddress, scope.beaconData.zip)
               .withNumberOfPeople(scope.beaconData.numberOfPeople)
               .withRecipientIds(recipientIds)
               .createBeaconPost();
