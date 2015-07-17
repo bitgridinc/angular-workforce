@@ -57,9 +57,12 @@ gulp.task('icons', getTask('icons'));
 gulp.task('client-watch', function() {
   // gulp-watch is nicer than gulps built-in watch function because it can look for new files, but it can't support the
   // gulp.watch(client.allJsSrc, ['hint']); syntax.
-  watch(paths.client.allJsSrc, function() {
-    runSequence('browserify', 'karmaSingleRun', 'hint');
-  });
+  if (argv.browserify) {
+    // Watchify watches our JS source automatically
+    watch(paths.client.allJsSrc, function() {
+      runSequence('browserify');
+    });
+  }
   watch(paths.client.allSassSrc, function() {
     gulp.start('css');
   });
@@ -67,7 +70,7 @@ gulp.task('client-watch', function() {
 
 // TODO: Pipeline the build. Run all generating tasks first, then start browserify/watchify, then nodemon, to prevent multiple runs and restarts.
 gulp.task('build', ['constants', 'browserify', 'css', 'icons']);
-gulp.task('build-and-watch', ['constants', 'browserify', 'css', 'icons', 'client-watch']);
+gulp.task('build-and-watch', ['constants', argv.browserify ? 'browserify' : 'watchify', 'css', 'icons', 'client-watch']);
 
 gulp.task('runJasmineOnce', getTask('runJasmineOnce')); // Codeship Entry Point
 
@@ -86,11 +89,16 @@ gulp.task('server', ['build-and-watch', 'runJasmineOnce'], function () {
   // in the server folder where it has to watch little. I ran into many problems until I came across this solution.
   // Note: Use ', verbose: true' to debug
   nodemon(nodemonParams)
+    .on('start', function() {
+      runSequence('karmaSingleRun', 'hint');
+    })
     .on('restart', function (changedFiles) {
       // TODO: Make this general
       // TODO: When can multiple be passed?
       if (String(changedFiles[0]).indexOf('/public/') < 0) {
         gulp.start('runJasmineOnce');
+      } else if (String(changedFiles[0]).indexOf('/public/js/bundle.js') >= 0) {
+        runSequence('karmaSingleRun', 'hint');
       }
     });
 });
@@ -106,7 +114,7 @@ gulp.task('karmaSingleRun', function(done) {
 /// End Karma
 ///
 
-gulp.task('default', ['server', 'karmaSingleRun']);
+gulp.task('default', ['server']);
 
 ///
 /// Start Protractor/Webdriver
