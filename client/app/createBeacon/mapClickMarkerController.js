@@ -1,20 +1,20 @@
 "use strict";
 
 // TODO: Test this!
-var MapClickMarkerController = function($scope, $window, leafletData) {
+function MapClickMarkerController($scope, LeafletService) {
   var _this = this
-    , newBeaconIcon = L.icon({ // Create the utility HQ icon once
+    , newBeaconIcon = LeafletService.createIcon({
         iconUrl: '/images/plus.png',
-        iconSize: [32, 32]
+        iconSize: [18, 17]
       });
 
   _this.createMarker = function(latlng) {
-    return $window.L.marker(latlng, {
+    return LeafletService.createMarker(latlng, {
       icon: newBeaconIcon
     });
   };
 
-  leafletData.getMap('leaflet').then(function(map) {
+  LeafletService.onMap(function(map) {
     var handler = _this.onClick.bind(_this, map);
 
     map.on('click', handler);
@@ -24,7 +24,7 @@ var MapClickMarkerController = function($scope, $window, leafletData) {
       map.removeLayer(_this.clickMarker);
     });
   });
-};
+}
 
 MapClickMarkerController.prototype.onClick = function(map, args) {
   if (this.clickMarker) {
@@ -35,6 +35,6 @@ MapClickMarkerController.prototype.onClick = function(map, args) {
   }
 };
 
-MapClickMarkerController.$inject = ['$scope', '$window', 'leafletData'];
+MapClickMarkerController.$inject = ['$scope', 'LeafletService'];
 
 require('./_module').controller('MapClickMarkerController', MapClickMarkerController);

@@ -6,5 +6,6 @@ module.exports =
     ]
   );
 
-require('./mapController');
+require('./mapBehaviorController');
 require('./mapExtentService');
+require('./mapInitializationController');

@@ -2,12 +2,12 @@
 
 require('./_module')
   .service('MapExtentService',
-    [         'leafletData',
-      function(leafletData) {
+    [         'LeafletService',
+      function(LeafletService) {
         return {
           ensureContainsPoints: function(pointsToContain) {
             console.log('ensureContainsPoints called with: ', pointsToContain);
-            leafletData.getMap('leaflet').then(function(map) {
+            LeafletService.onMap(function(map) {
               var bounds = map.getBounds();
               if (!bounds.contains(pointsToContain[0]) || !bounds.contains(pointsToContain[1])) {
                 map.fitBounds(pointsToContain, {

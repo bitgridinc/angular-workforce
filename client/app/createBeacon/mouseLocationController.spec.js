@@ -3,8 +3,6 @@
 describe('the mouseLocationController', function() {
   var $scope
     , usngService
-    , leafletData
-    , mapCallback
     , mapSpyObj;
 
   beforeEach(module('modules.providers'));
@@ -15,21 +13,17 @@ describe('the mouseLocationController', function() {
 
     $scope.beaconData = {};
 
-    leafletData = jasmine.createSpyObj('leafletData', ['getMap']);
-    leafletData.getMap.and.returnValue({
-      then: function(callback) {
-        mapCallback = callback;
-      }
+    mapSpyObj = jasmine.createSpyObj('map', ['on']);
+    var leafletService = jasmine.createSpyObj('LeafletService', ['onMap']);
+    leafletService.onMap.and.callFake(function(callback) {
+      callback(mapSpyObj);
     });
 
     _$controller_('MouseLocationController', {
       $scope: $scope,
-      leafletData: leafletData,
+      LeafletService: leafletService,
       UsngService: usngService
     });
-
-    mapSpyObj = jasmine.createSpyObj('map', ['on']);
-    mapCallback(mapSpyObj);
   }));
 
   it('should set a mousemove handler', function () {

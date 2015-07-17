@@ -2,13 +2,13 @@
 
 require('./_module')
   .controller('MouseLocationController',
-    [         '$scope', 'leafletData', 'UsngService',
-      function($scope,   leafletData,   UsngService) {
+    [         '$scope', 'LeafletService', 'UsngService',
+      function($scope,   LeafletService,   UsngService) {
         function latlngToUSNG(latlng) {
           return UsngService.LLtoUSNG(latlng.lat, latlng.lng)
         }
 
-        leafletData.getMap('leaflet').then(function(map) {
+        LeafletService.onMap(function(map) {
           $scope.mouseLocation = {};
           map.on('mousemove', function(args) {
             $scope.mouseLocation.usng = latlngToUSNG(args.latlng);
