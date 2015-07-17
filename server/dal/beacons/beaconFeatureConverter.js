@@ -11,7 +11,7 @@ module.exports = {
       , lng = feature.geometry.x;
     return factories.newBeaconFactory()
                     .withRequired(beaconId, attributes.senderId, attributes.title, attributes.description, lat, lng)
-                    .withAddress(attributes.streetAddress)
+                    .withAddress(attributes.streetAddress, attributes.zip)
                     .withNumberOfPeople(attributes.numberOfPeople)
                     .createBeacon();
   },
@@ -30,6 +30,7 @@ module.exports = {
         title: beacon.title,
         description: beacon.description,
         streetAddress: beacon.streetAddress,
+        zip: beacon.zip,
         numberOfPeople: beacon.numberOfPeople
       }
     }
