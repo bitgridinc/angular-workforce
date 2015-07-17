@@ -20,4 +20,8 @@ describe('the leaflet service', function() {
       leafletService = $injector.get('LeafletService');
     });
   });
+
+  it('should provide a getter to window.L', function() {
+    expect(leafletService.leaflet).toBe(mockWindow.L);
+  });
 });

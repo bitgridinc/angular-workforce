@@ -2,7 +2,6 @@
 
 function LeafletService($window, leafletData) {
   this._leaflet = $window.L;
-  this._leafletData = leafletData;
 
   if (angular.isUndefined(this._leaflet)) {
     throw new Error('leaflet is not defined as window.L', $window);
@@ -12,27 +11,22 @@ function LeafletService($window, leafletData) {
 
   var _this = this;
   return {
-    createIcon: _this.createIcon.bind(_this),
-    createMarker: _this.createMarker.bind(_this),
-    onMap: _this.onMap.bind(_this),
-    leaflet: _this.leaflet
+    createIcon: function(params) {
+      return _this._leaflet.icon(params);
+    },
+    createMarker: function(latlng, params) {
+      return _this._leaflet.marker(latlng, params);
+    },
+    onMap: function(callback) {
+      leafletData.getMap('leaflet').then(callback);
+    },
+    leaflet: this.leafletGetter
   }
 }
 
-LeafletService.prototype.createIcon = function(params) {
-  return this._leaflet.icon(params);
-};
-
-LeafletService.prototype.createMarker = function(latlng, params) {
-  return this._leaflet.marker(latlng, params);
-};
-
-LeafletService.prototype.onMap = function(callback) {
-  this._leafletData.getMap('leaflet').then(callback);
-};
-
+// TODO: Learn why this is superior
 Object.defineProperty(LeafletService.prototype,
-  'leaflet', {
+  'leafletGetter', {
     get: function() {
       return this._leaflet;
     },
