@@ -35,8 +35,14 @@
     </icon-container>
   </li>
   <li class="bg-list-group-item">
-    <icon-container icon-url="images/wizard_dark_linemen.png">
-      {{selectionState.currentBeacon.numberOfPeople}} requested
+    <icon-container id="bg-bd-num-people" icon-url="images/wizard_dark_linemen.png">
+      <organization-label organization-id="selectionState.currentBeacon.senderId"></organization-label> requests
+      <span ng-if="selectionState.currentBeacon.numberOfPeople">
+        {{selectionState.currentBeacon.numberOfPeople}}
+      </span>
+      <span ng-if="!selectionState.currentBeacon.numberOfPeople">
+        as much help as possible
+      </span>
     </icon-container>
   </li>
   <!-- TODO: Test this when I can consistently mock the backend during my AATs. -->

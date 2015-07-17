@@ -19,7 +19,7 @@ aatWrappers.browserGetWrapper('the beacon details view', function(testRunner, su
       expect(summaryHeaderText).toContain('Title_32');
       expect(summaryHeaderText).toContain('Description_32');
       expect(element(locators.usng).getText()).toContain('16SED7282495516');
-      expect(element(locators.numberOfPeople).getText()).toContain('4-5');
+      expect(element(locators.numberOfPeople).getText()).toMatch('Morristown Utility Systems requests 4-5 people');
     });
     it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
       // Act
@@ -61,6 +61,9 @@ aatWrappers.browserGetWrapper('the beacon details view', function(testRunner, su
       expect(acceptedAssistanceText).toMatch('3 on their way\n');
       expect(acceptedAssistanceText).toMatch('Morristown Utility Systems\n');
       expect(acceptedAssistanceText).toMatch('1:01 AM$');
+    });
+    it('should display the default string for numberOfPeople', function() {
+      expect(element(locators.numberOfPeople).getText()).toContain('Murfreesboro Electric Department requests as much help as possible');
     });
   });
 });
