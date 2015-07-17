@@ -30,7 +30,10 @@
   </li>
   <li class="bg-list-group-item">
     <icon-container icon-url="images/wizard_dark_location.png">
-      {{selectionState.currentBeacon.streetAddress}}<br>
+      <div ng-if="selectionState.currentBeacon.streetAddress && selectionState.currentBeacon.zip">
+        {{selectionState.currentBeacon.streetAddress}}<br>
+        {{selectionState.currentBeacon.zip}}
+      </div>
       USNG: <ll-to-usng id="bg-bd-usng" lat="selectionState.currentBeacon.lat" lng="selectionState.currentBeacon.lng"></ll-to-usng>
     </icon-container>
   </li>

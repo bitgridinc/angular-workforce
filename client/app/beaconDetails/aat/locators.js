@@ -3,6 +3,7 @@
 var beaconDetailsLocators = function() {
   this.summaryHeader = by.id('bg-bd-beacon-summary');
   this.streetAddress = by.binding('selectionState.currentBeacon.streetAddress');
+  this.zip = by.binding('selectionState.currentBeacon.zip');
   this.usng = by.id('bg-bd-usng');
   this.numberOfPeople = by.id('bg-bd-num-people');
   this.offerAssistance = by.buttonText('Offer Assistance');
