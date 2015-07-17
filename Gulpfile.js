@@ -20,6 +20,7 @@ var paths = {
   },
   client: {
     allJsSrc: __dirname + '/client/**/*.js',
+    allSpecSrc: __dirname + '/client/**/*.spec.js',
     moduleSrc: __dirname + '/client/app/**/*.js',
     commonSrc: __dirname + '/client/common/**/**/*.js',
     entrySrc: __dirname + '/client/app/_application/_module.js',
@@ -63,6 +64,11 @@ gulp.task('client-watch', function() {
       runSequence('browserify');
     });
   }
+  watch(paths.client.allSpecSrc, function() {
+    // This is only because I haven't figured out how to use the Karma server to properly TDD.
+    // TODO: Use Karma TDD server so I don't have to do this manually.
+    gulp.start('karmaSingleRun');
+  });
   watch(paths.client.allSassSrc, function() {
     gulp.start('css');
   });
