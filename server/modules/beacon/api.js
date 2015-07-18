@@ -17,7 +17,7 @@ module.exports = function(sioServer) {
       handler: function(request, reply) {
         console.log('createBeacon handler called with payload:', request.payload);
 
-        var requiredProperties = ['recipientIds', 'senderId', 'title', 'description', 'numberOfPeople', 'lat', 'lng'];
+        var requiredProperties = ['recipientIds', 'senderId', 'title', 'description', 'lat', 'lng'];
         var errors = _.filter(requiredProperties, function(requiredProperty) {
           /* jshint -W116 */
           return request.payload[requiredProperty] == null || // Type coercion covers both null and undefined

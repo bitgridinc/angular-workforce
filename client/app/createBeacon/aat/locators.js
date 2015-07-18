@@ -6,7 +6,7 @@ var createBeaconLocators = function() {
   this.descriptionInput = by.id('bg-cb-description-input');
   this.streetAddressInput = by.id('bg-cb-street-address-input');
   this.zipInput = by.id('bg-cb-zip-input');
-  this.meetingDateInput = by.id('bg-cb-meeting-date');
+  this.startDateInput = by.id('bg-cb-start-date');
   this.numberOfPeopleInput = by.id('bg-cb-num-people-input');
   this.recipientIncludeCheckbox = by.model('recipient.include');
 };

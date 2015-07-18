@@ -24,6 +24,7 @@ var beacons = [
   factories.newBeaconFactory()
            .withRequired(32, 'a9ZaRCDMCo0WWZO7', 'Title_32', 'Description_32', 35.2, -86.2)
            .withNumberOfPeople('4-5 people')
+           .withDate(new Date(2015, 10, 1, 3, 4))
            .createBeacon(),
   factories.newBeaconFactory()
            .withRequired(33, 'yk7EooUDkOKQA9zj', 'Title_33', 'Description_33', 35.3, -86.3)

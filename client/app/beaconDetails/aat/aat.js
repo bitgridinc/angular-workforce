@@ -21,6 +21,7 @@ aatWrappers.browserGetWrapper('the beacon details view', function(testRunner, su
       expect(browser.isElementPresent(locators.streetAddress)).toBeFalsy();
       expect(browser.isElementPresent(locators.zip)).toBeFalsy();
       expect(element(locators.usng).getText()).toContain('16SED7282495516');
+      expect(element(locators.startDate).getText()).toMatch('Start billing at 11/1/15 3:04 AM$');
       expect(element(locators.numberOfPeople).getText()).toMatch('Morristown Utility Systems requests 4-5 people');
     });
     it('should go back to the list of beacons when the summary header (with the back symbol) is clicked', function() {
@@ -60,13 +61,12 @@ aatWrappers.browserGetWrapper('the beacon details view', function(testRunner, su
     });
     it('should display the accepted offer information', function() {
       var acceptedAssistanceText = element(locators.acceptedAssistanceRepeater.row(0)).getText();
-      expect(acceptedAssistanceText).toMatch('3 on their way$');
-      expect(acceptedAssistanceText).toMatch('Morristown Utility Systems$');
+      expect(acceptedAssistanceText).toMatch('3 on their way\n');
+      expect(acceptedAssistanceText).toMatch('Morristown Utility Systems\n');
       expect(acceptedAssistanceText).toMatch('1:01 AM$');
-      expect(element(locators.streetAddress).getText()).toMatch('1571 N Thompson Ln$');
-      expect(element(locators.zip).getText()).toMatch('37129$');
-    });
-    it('should display the default string for numberOfPeople', function() {
+      expect(element(locators.streetAddress).getText()).toMatch('1571 N Thompson Ln\n37129$$'); // TODO: Why does the streetAddress locator pick up the zip?
+      expect(element(locators.usng).getText()).toMatch('16SEE5448417568$');
+      expect(element(locators.startDate).getText()).toMatch('Start billing immediately$');
       expect(element(locators.numberOfPeople).getText()).toContain('Murfreesboro Electric Department requests as much help as possible');
     });
   });

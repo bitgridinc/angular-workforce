@@ -5,6 +5,7 @@ var beaconDetailsLocators = function() {
   this.streetAddress = by.binding('selectionState.currentBeacon.streetAddress');
   this.zip = by.binding('selectionState.currentBeacon.zip');
   this.usng = by.id('bg-bd-usng');
+  this.startDate = by.id('bg-bd-start-date');
   this.numberOfPeople = by.id('bg-bd-num-people');
   this.offerAssistance = by.buttonText('Offer Assistance');
   this.reviewOffers = by.buttonText('Review Offers');

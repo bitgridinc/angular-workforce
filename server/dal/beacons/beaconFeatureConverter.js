@@ -1,7 +1,6 @@
 "use strict";
 
-var _ = require('lodash')
-  , factories = require('../../../shared/factories');
+var factories = require('../../../shared/factories');
 
 module.exports = {
   featureToBeacon: function(feature) {
@@ -12,6 +11,7 @@ module.exports = {
     return factories.newBeaconFactory()
                     .withRequired(beaconId, attributes.senderId, attributes.title, attributes.description, lat, lng)
                     .withAddress(attributes.streetAddress, attributes.zip)
+                    .withDate(attributes.startDate)
                     .withNumberOfPeople(attributes.numberOfPeople)
                     .createBeacon();
   },
@@ -31,6 +31,7 @@ module.exports = {
         description: beacon.description,
         streetAddress: beacon.streetAddress,
         zip: beacon.zip,
+        startDate: beacon.startDate,
         numberOfPeople: beacon.numberOfPeople
       }
     }

@@ -25,6 +25,10 @@ var factories = {
         beacon.zip = zip;
         return this;
       },
+      withDate: function(startDate) {
+        beacon.startDate = startDate;
+        return this;
+      },
       withNumberOfPeople: function(numberOfPeople) {
         beacon.numberOfPeople = numberOfPeople;
         return this;

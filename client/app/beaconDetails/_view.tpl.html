@@ -38,6 +38,17 @@
     </icon-container>
   </li>
   <li class="bg-list-group-item">
+    <icon-container id="bg-bd-start-date" icon-url="images/wizard_dark_calendar.png">
+      Start billing
+      <span ng-if="selectionState.currentBeacon.startDate">
+        at {{selectionState.currentBeacon.startDate | date:'short'}}
+      </span>
+      <span ng-if="!selectionState.currentBeacon.startDate">
+        immediately
+      </span>
+    </icon-container>
+  </li>
+  <li class="bg-list-group-item">
     <icon-container id="bg-bd-num-people" icon-url="images/wizard_dark_linemen.png">
       <organization-label organization-id="selectionState.currentBeacon.senderId"></organization-label> requests
       <span ng-if="selectionState.currentBeacon.numberOfPeople">

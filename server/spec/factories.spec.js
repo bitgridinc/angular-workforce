@@ -31,6 +31,8 @@ describe('the fluent factories', function() {
         lat: 34,
         lng: 85,
         streetAddress: '342 fdklsg fds',
+        zip: '12345',
+        startDate: new Date(2015, 1, 1),
         numberOfPeople: '4-6'
       };
 
@@ -38,7 +40,8 @@ describe('the fluent factories', function() {
       var beacon = beaconFactory
         // Don't unit test 1-line passthroughs. Integration tests are the answer here.
         .withRequired(properties.id, properties.senderId, properties.title, properties.description, properties.lat, properties.lng)
-        .withAddress(properties.streetAddress)
+        .withAddress(properties.streetAddress, properties.zip)
+        .withDate(properties.startDate)
         .withNumberOfPeople(properties.numberOfPeople)
         .createBeacon();
 
@@ -47,6 +50,8 @@ describe('the fluent factories', function() {
       expect(beacon.title).toBe(properties.title);
       expect(beacon.lat).toBe(properties.lat);
       expect(beacon.streetAddress).toBe(properties.streetAddress);
+      expect(beacon.zip).toBe(properties.zip);
+      expect(beacon.startDate).toBe(properties.startDate);
       expect(beacon.numberOfPeople).toBe(properties.numberOfPeople);
     });
   });
