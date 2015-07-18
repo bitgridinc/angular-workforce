@@ -45,7 +45,7 @@ describe('the new beacon creation factory', function() {
       beforeEach(function() {
         expectedPost = fluentSharedLibraryService.newBeaconPostFactory()
           .withRequired('1', newTitle, newDescription, 37, -76)
-          .withAddress(newStreetAddress)
+          .withAddress(newStreetAddress, newZip)
           .withNumberOfPeople(newNumberOfPeople)
           .createBeaconPost();
       });

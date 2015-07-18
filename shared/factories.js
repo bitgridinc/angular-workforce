@@ -70,8 +70,13 @@ var factories = {
         beaconPost.lng = lng;
         return this;
       },
-      withAddress: function(streetAddress) {
+      withAddress: function(streetAddress, zip) {
         beaconPost.streetAddress = streetAddress;
+        beaconPost.zip = zip;
+        return this;
+      },
+      withDate: function(startDate) {
+        beaconPost.startDate = startDate;
         return this;
       },
       withNumberOfPeople: function(numberOfPeople) {

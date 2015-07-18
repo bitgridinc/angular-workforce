@@ -1,18 +1,18 @@
 "use strict";
 
 var uuid = require('node-uuid')
-  , _ = require('lodash')
   , factories = require('../../../shared/factories');
 
 module.exports = {
   createDomainBeacon: function(payload){
-    return factories.newBeaconFactory()
+    var newBeacon = factories.newBeaconFactory()
                     // id will be automatically assigned by db
                     // TODO: is id a required property then?
                     .withRequired(-1, payload.senderId, payload.title, payload.description, payload.lat, payload.lng)
                     .withAddress(payload.streetAddress, payload.zip)
-                    .withNumberOfPeople(payload.numberOfPeople)
-                    .createBeacon();
+                    .withDate(new Date(payload.startDate))
+                    .withNumberOfPeople(payload.numberOfPeople);
+    return newBeacon.createBeacon();
   },
   createDomainMessage: function(senderId, beacon, offerContents){
     return factories.newAssistanceResponseFactory()

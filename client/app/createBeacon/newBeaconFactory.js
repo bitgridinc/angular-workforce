@@ -22,12 +22,14 @@ require('./_module')
               , title = scope.beaconData.title
               , description = scope.beaconData.description;
             var beaconPost = FluentSharedLibrariesService.newBeaconPostFactory()
-              .withRequired(senderId, title, description, 37, -76)
+              .withRequired(senderId, title, description, 37, -76) // TODO: Fix lat/lng
               .withAddress(scope.beaconData.streetAddress, scope.beaconData.zip)
               .withNumberOfPeople(scope.beaconData.numberOfPeople)
-              .withRecipientIds(recipientIds)
-              .createBeaconPost();
-            return RestService.createBeacon(beaconPost);
+              .withRecipientIds(recipientIds);
+            if (angular.isDefined(scope.beaconData.startDate)) {
+              beaconPost.withDate(scope.beaconData.startDate);
+            }
+            return RestService.createBeacon(beaconPost.createBeaconPost());
           }
         };
       }

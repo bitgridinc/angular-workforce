@@ -11,7 +11,7 @@ module.exports = {
     return factories.newBeaconFactory()
                     .withRequired(beaconId, attributes.senderId, attributes.title, attributes.description, lat, lng)
                     .withAddress(attributes.streetAddress, attributes.zip)
-                    .withDate(attributes.startDate)
+                    .withDate(new Date(attributes.startDate))
                     .withNumberOfPeople(attributes.numberOfPeople)
                     .createBeacon();
   },
@@ -31,9 +31,9 @@ module.exports = {
         description: beacon.description,
         streetAddress: beacon.streetAddress,
         zip: beacon.zip,
-        startDate: beacon.startDate,
+        startDate: beacon.startDate && beacon.startDate.getTime(),
         numberOfPeople: beacon.numberOfPeople
       }
-    }
+    };
   }
 };
