@@ -1,6 +1,6 @@
 "use strict";
 
-var environment = require('../../../environment')
+var inProduction = require('../../../spec/support/environmentHelpers').inProduction
   , hapifyPost = require('../../../spec/support/hapiHelpers').hapifyPost
   , aatTestUser = require('../../../../shared/testConstants').aatTestUser
   , localTestUser = require('./esriCommon').testUser
@@ -41,18 +41,8 @@ function createExpectedDomainToken() {
   };
 }
 
-describe('in production,', function() {
-  var mode;
-  beforeEach(function() {
-    mode = environment.getCurrentMode();
-    environment.changeToProductionMode();
-  }); // Ensure each test runs in production mode
-  afterEach(function() {
-    environment.changeToMode(mode);
-  }); // Reset back to whatever the mode was before the test was run
-
+inProduction(function() {
   describe('spying on esri-portal-api', function() {
-
     var handlers;
     var jwtSpyObj;
     var esriPortalModuleFunction;

@@ -2,19 +2,10 @@
 
 var sut = require('../api')({})
   , factories = require('../../../../shared/factories')
-  , environment = require('../../../environment')
+  , inProduction = require('../../../spec/support/environmentHelpers').inProduction
   , hapifyPost = require('../../../spec/support/hapiHelpers').hapifyPost;
 
-describe('in production,', function() {
-  var mode;
-  beforeEach(function() {
-    mode = environment.getCurrentMode();
-    environment.changeToProductionMode();
-  }); // Ensure each test runs in production mode
-  afterEach(function() {
-    environment.changeToMode(mode);
-  }); // Reset back to whatever the mode was before the test was run
-
+inProduction(function() {
   describe('the createBeacon API', function() {
     var newBeaconPost;
 

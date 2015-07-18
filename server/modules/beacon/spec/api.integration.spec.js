@@ -8,19 +8,10 @@ var http = require('http')
   , promiseHelpers = require('../../../spec/support/promiseHelpers')
   , hapifyPost = require('../../../spec/support/hapiHelpers').hapifyPost
   , spyHelpers = require('../../../spec/support/spyHelpers')
-  , environment = require('../../../environment')
+  , inProduction = require('../../../spec/support/environmentHelpers').inProduction
   , _ = require('lodash');
 
-describe('in production,', function() {
-  var mode;
-  beforeEach(function() {
-    mode = environment.getCurrentMode();
-    environment.changeToProductionMode();
-  }); // Ensure each test runs in production mode
-  afterEach(function() {
-    environment.changeToMode(mode);
-  }); // Reset back to whatever the mode was before the test was run
-
+inProduction(function() {
   describe('spying on dependencies (geoservices, esri-portal-api, socket.io)', function() {
     var geoservicesSpy;
     beforeEach(function() {

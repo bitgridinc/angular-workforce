@@ -3,18 +3,9 @@
 var db = require('../messageDatabase')
   , factories = require('../../../../shared/factories')
   , proxyquire = require('proxyquire')
-  , environment = require('../../../environment.js');
+  , inProduction = require('../../../spec/support/environmentHelpers').inProduction;
 
-describe('in production,', function() {
-  var mode;
-  beforeEach(function() {
-    mode = environment.getCurrentMode();
-    environment.changeToProductionMode();
-  }); // Ensure each test runs in production mode
-  afterEach(function() {
-    environment.changeToMode(mode);
-  }); // Reset back to whatever the mode was before the test was run
-
+inProduction(function() {
   describe('the messageDatabase', function() {
     var db
       , messageId = '2cf8faaa-5760-41c9-adbf-5a4482ac3469'

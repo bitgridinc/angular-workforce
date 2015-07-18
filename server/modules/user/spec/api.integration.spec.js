@@ -4,18 +4,9 @@ var proxyquire = require('proxyquire')
   , specData = require('./api.integration.specData.js')
   , jwtDecodeFake = require('./jwtDecodeFake.js')
   , promiseHelpers = require('../../../spec/support/promiseHelpers')
-  , environment = require('../../../environment');
+  , inProduction = require('../../../spec/support/environmentHelpers').inProduction;
 
-describe('in production,', function() {
-  var mode;
-  beforeEach(function() {
-    mode = environment.getCurrentMode();
-    environment.changeToProductionMode();
-  }); // Ensure each test runs in production mode
-  afterEach(function() {
-    environment.changeToMode(mode);
-  }); // Reset back to whatever the mode was before the test was run
-
+inProduction(function() {
   describe('spying on esri-portal-api and jsonwebtoken', function() {
     var esriPortalModuleFunction;
     beforeEach(function() {
