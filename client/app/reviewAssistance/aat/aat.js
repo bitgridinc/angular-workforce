@@ -15,7 +15,7 @@ function expectOfferInformationDisplayedToBeTruthy(organizationName) {
   var organizationLabelElement = element(locators.organizationLabel);
   expect(organizationLabelElement.getText()).toContain(organizationName);
   expect(organizationLabelElement.getText()).toMatch(/with .+ people/);
-  expect(organizationLabelElement.getText()).toMatch(/20\d\d/);
+  expect(organizationLabelElement.getText()).toMatch(/2\/1\/15 1:01 AM/);
 }
 function expectAcceptButtonIsPresent() {
   return expect(browser.isElementPresent(locators.acceptButton));

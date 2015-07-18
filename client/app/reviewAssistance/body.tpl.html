@@ -11,7 +11,7 @@
   <li class="list-group-item">
     <p id="bg-ra-offer-summary" class="small">
       <organization-label organization-id="currentResponse.senderId"></organization-label>
-      offered to assist with {{currentResponse.numResponders}} people at {{currentResponse.arrivalDate}}.
+      offered to assist with {{currentResponse.numResponders}} people at {{currentResponse.arrivalDate | date:'short'}}.
     </p>
   </li>
   <div ng-if="currentBeacon.senderId === dataFromServer.currentOrganization.id">
