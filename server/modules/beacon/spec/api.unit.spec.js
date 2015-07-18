@@ -2,8 +2,7 @@
 
 var sut = require('../api')({})
   , factories = require('../../../../shared/factories')
-  , environment = require('../../../environment')
-  , _ = require('lodash');
+  , environment = require('../../../environment');
 
 function hapifyRequest(payload) {
   return {
@@ -23,6 +22,7 @@ describe('in production,', function() {
 
   describe('the createBeacon API', function() {
     var newBeaconPost;
+
     beforeEach(function() {
       // Arrange a request to the API to create a new beacon
       newBeaconPost =
@@ -31,33 +31,26 @@ describe('in production,', function() {
           .withNumberOfPeople('4')
           .withRecipientIds(['b6038693-725d-4651-9a75-78fc202b1308', '9bf2989a-e6c9-48bd-b0b8-f20194fda10f'])
           .createBeaconPost();
-
     }); // Call createBeacon with a new beacon POST
 
-    it('should return an error if title, numberOfPeople, lat, and lng are missing', function() {
-      // Arrange the missing properties
-      delete newBeaconPost.title;
-      newBeaconPost.numberOfPeople = undefined;
-      newBeaconPost.lat = null;
-      delete newBeaconPost.lat;
+    function testToExpectErrorAfter(testTitle, callback) {
+      it(testTitle, function() {
+        // Arrange
+        callback();
 
-      // Act by calling the handler directly
-      sut.createBeacon.handler(hapifyRequest(newBeaconPost), function(result) {
-        // Assert
-        expect(result.status).toBe('error');
+        // Act by calling the handler directly
+        sut.createBeacon.handler(hapifyRequest(newBeaconPost), function(result) {
+          // Assert
+          expect(result.status).toBe('error');
+        });
       });
-    });
-    it('should return an error if senderId, description, and recipientIds are missing', function() {
-      // Arrange the missing properties
-      delete newBeaconPost.senderId;
-      newBeaconPost.description = undefined;
-      newBeaconPost.recipientIds = null;
+    }
 
-      // Act by calling the handler directly
-      sut.createBeacon.handler(hapifyRequest(newBeaconPost), function(result) {
-        // Assert
-        expect(result.status).toBe('error');
-      });
-    });
+    testToExpectErrorAfter('should return an error if title is missing', function() { delete newBeaconPost.title; });
+    testToExpectErrorAfter('should return an error if lat is missing', function() { newBeaconPost.lat = null; });
+    testToExpectErrorAfter('should return an error if lng is missing', function() { delete newBeaconPost.lat; });
+    testToExpectErrorAfter('should return an error if senderId is missing', function() { delete newBeaconPost.senderId; });
+    testToExpectErrorAfter('should return an error if description is missing', function() { newBeaconPost.description = undefined; });
+    testToExpectErrorAfter('should return an error if recipientIds are missing', function() { newBeaconPost.recipientIds = null; });
   });
 });
