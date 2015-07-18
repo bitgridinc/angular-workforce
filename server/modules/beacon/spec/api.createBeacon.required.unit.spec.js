@@ -2,13 +2,8 @@
 
 var sut = require('../api')({})
   , factories = require('../../../../shared/factories')
-  , environment = require('../../../environment');
-
-function hapifyRequest(payload) {
-  return {
-    payload: payload
-  }
-}
+  , environment = require('../../../environment')
+  , hapifyPost = require('../../../spec/support/hapiHelpers').hapifyPost;
 
 describe('in production,', function() {
   var mode;
@@ -39,7 +34,7 @@ describe('in production,', function() {
         callback();
 
         // Act by calling the handler directly
-        sut.createBeacon.handler(hapifyRequest(newBeaconPost), function(result) {
+        sut.createBeacon.handler(hapifyPost(newBeaconPost), function(result) {
           // Assert
           expect(result.status).toBe('error');
         });
