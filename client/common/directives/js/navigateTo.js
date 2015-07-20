@@ -6,7 +6,7 @@ require('./../_module_init.js')
       return {
         link: function(scope, element, attrs) {
           element.bind('click', function() {
-            scope.userNavigationService.navigateTo(attrs.navigateTo);
+            scope.navigationService.navigateTo(attrs.navigateTo);
           });
         }
       }

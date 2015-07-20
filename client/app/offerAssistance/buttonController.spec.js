@@ -6,15 +6,15 @@ describe('the ButtonController', function() {
     , restService;
 
   beforeEach(module('modules.offerAssistance'));
-  beforeEach(inject(function (_$rootScope_, _$controller_, UserNavigationService, MessagePacketizerService, RestService) {
+  beforeEach(inject(function (_$rootScope_, _$controller_, NavigationService, MessagePacketizerService, RestService) {
     $rootScope = _$rootScope_;
     $scope = _$rootScope_.$new();
 
     restService = RestService;
     spyOn(restService, 'offerAssistance');
 
-    $rootScope.userNavigationService = UserNavigationService;
-    spyOn($rootScope.userNavigationService, 'navigateTo');
+    $rootScope.navigationService = NavigationService;
+    spyOn($rootScope.navigationService, 'navigateTo');
 
     $rootScope.selectionState = {
       currentBeacon: {
@@ -54,7 +54,7 @@ describe('the ButtonController', function() {
       });
     });
     it('should change our page state', function () {
-      expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('dashboard.beacons.list');
+      expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('dashboard.beacons.list');
     });
   });
 
@@ -65,7 +65,7 @@ describe('the ButtonController', function() {
       expect(restService.offerAssistance).not.toHaveBeenCalled();
     });
     it('should change our page state', function () {
-      expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('dashboard.beacons.list');
+      expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('dashboard.beacons.list');
     });
   });
 });

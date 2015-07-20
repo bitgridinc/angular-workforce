@@ -15,11 +15,11 @@ describe('the beacon list controller', function() {
       '$rootScope': $rootScope
     });
 
-    // Set up a mock userNavigationService and spy on the navigateTo method
-    $rootScope.userNavigationService = {
+    // Set up a mock navigationService and spy on the navigateTo method
+    $rootScope.navigationService = {
       navigateTo: function() {}
     };
-    spyOn($rootScope.userNavigationService, 'navigateTo');
+    spyOn($rootScope.navigationService, 'navigateTo');
   }));
 
   it('should navigate to the beacon\'s details page when it is clicked', function() {
@@ -30,7 +30,7 @@ describe('the beacon list controller', function() {
     $scope.onSelectBeacon(beacon);
 
     // Assert
-    expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('^.detail', { id: beacon.id });
+    expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('^.detail', { id: beacon.id });
   });
   it('should navigate to the beacon\'s offers of assistance when the mail icon on a beacon is clicked', function() {
     // Arrange
@@ -40,6 +40,6 @@ describe('the beacon list controller', function() {
     $scope.onReviewAssistance(beacon);
 
     // Assert
-    expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('^.detail.review', { id: beacon.id });
+    expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('^.detail.review', { id: beacon.id });
   });
 });

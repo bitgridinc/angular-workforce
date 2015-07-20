@@ -9,5 +9,5 @@ require('./lodashConstant/lodashConstant.js');
 require('./messagePacketizerService/messagePacketizerService.js');
 require('./restService/restService.js');
 require('./socketFactory/socketFactory.js');
-require('./userNavigationService/userNavigationService.js');
+require('./navigationService/navigationService.js');
 require('./usngService/usngService.js');

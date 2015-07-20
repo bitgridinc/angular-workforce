@@ -17,7 +17,7 @@ require('./_module')
         });
 
         $scope.goToReviewAssistance = function() {
-          $rootScope.userNavigationService.navigateTo(
+          $rootScope.navigationService.navigateTo(
             'dashboard.beacons.detail.review.response',
             { responseId: $rootScope.selectionState.currentBeacon.responses[0].id });
         };

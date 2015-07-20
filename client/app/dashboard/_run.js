@@ -10,7 +10,7 @@ require('./_module')
             if (!$rootScope.token) {
               e.preventDefault(); // Don't transition to state 'to'
               // Pass the intended url along to navigate to after login
-              $rootScope.userNavigationService.navigateTo('login', { to: $location.url() });
+              $rootScope.navigationService.navigateTo('login', { to: $location.url() });
             }
           }
         });

@@ -15,7 +15,7 @@ require('./_module')
             RestService.offerAssistance(message);
           }
 
-          $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');
+          $rootScope.navigationService.navigateTo('dashboard.beacons.list');
         };
       }
     ]

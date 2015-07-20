@@ -1,14 +1,14 @@
 "use strict";
 
 require('./../_module_init.js')
-  .service('UserNavigationService',
+  .service('NavigationService',
     [         '$state',
       function($state) {
         return {
           /**
            * @ngdoc function
-           * @name UserNavigationService#navigateTo
-           * @methodOf UserNavigationService
+           * @name NavigationService#navigateTo
+           * @methodOf NavigationService
            *
            * @description
            * Wrapper method around ui.router.state.$state#go to transition to a new state.
@@ -78,8 +78,8 @@ require('./../_module_init.js')
           },
           /**
            * @ngdoc function
-           * @name UserNavigationService#doesUserNavigationStateInclude
-           * @methodOf UserNavigationService
+           * @name NavigationService#doesNavigationStateInclude
+           * @methodOf NavigationService
            *
            * @description
            * A wrapper of ui.router.state.$state#includes used to determine if the current active
@@ -128,7 +128,7 @@ require('./../_module_init.js')
            *
            * @returns {boolean} Returns true if it does include the state
            */
-          doesUserNavigationStateInclude : function(stateOrName, params, options) {
+          doesNavigationStateInclude : function(stateOrName, params, options) {
             return $state.includes(stateOrName, params, options);
           }
         };

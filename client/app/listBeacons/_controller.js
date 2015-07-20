@@ -5,11 +5,11 @@ require('./_module')
     [         '$scope',  '$rootScope',
       function($scope,    $rootScope) {
         $scope.onSelectBeacon = function(beacon) {
-          $rootScope.userNavigationService.navigateTo('^.detail', { id: beacon.id });
+          $rootScope.navigationService.navigateTo('^.detail', { id: beacon.id });
         };
 
         $scope.onReviewAssistance = function(beacon) {
-          $rootScope.userNavigationService.navigateTo('^.detail.review', { id: beacon.id });
+          $rootScope.navigationService.navigateTo('^.detail.review', { id: beacon.id });
         };
       }
     ]

@@ -26,7 +26,7 @@ require('./_module')
           // Clear the watch we set in reviewAssistanceHeaderController
           $scope.responsesWatch();
 
-          $rootScope.userNavigationService.navigateTo('dashboard.beacons.list');
+          $rootScope.navigationService.navigateTo('dashboard.beacons.list');
         };
       }
     ]

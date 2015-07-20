@@ -50,7 +50,7 @@ describe('the create beacon controller', function() {
   });
   it('should navigate to the beacon list after the new beacon is POSTed', function() {
     // Arrange
-    $rootScope.userNavigationService = {
+    $rootScope.navigationService = {
       navigateTo: jasmine.createSpy('navigateTo')
     };
     spyOn(newBeaconFactory, 'postNewBeacon').and.returnValue({
@@ -63,6 +63,6 @@ describe('the create beacon controller', function() {
     $scope.completeNewBeacon(true);
 
     // Assert
-    expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('^.list');
+    expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('^.list');
   });
 });

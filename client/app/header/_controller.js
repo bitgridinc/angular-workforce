@@ -9,7 +9,7 @@ require('./_module')
 
         $scope.logout = function() {
           $rootScope.token = undefined;
-          $rootScope.userNavigationService.navigateTo('login', { to: '/dashboard' });
+          $rootScope.navigationService.navigateTo('login', { to: '/dashboard' });
         }
       }
     ]

@@ -41,7 +41,7 @@ require('./_module')
               title: 'Success!',
               body: 'Your aid beacon is in effect'
             });
-            $rootScope.userNavigationService.navigateTo('^.list');
+            $rootScope.navigationService.navigateTo('^.list');
           });
         };
       }

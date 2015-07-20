@@ -26,13 +26,13 @@ describe("the header controller (unit)", function() {
     beforeEach(function() {
       initializeController();
 
-      $rootScope.userNavigationService = {};
+      $rootScope.navigationService = {};
     });
 
     it('should clear the JWT when the user logs out', function() {
       // Arrange
       $rootScope.token = 'token';
-      $rootScope.userNavigationService.navigateTo = function() {};
+      $rootScope.navigationService.navigateTo = function() {};
 
       // Act
       $scope.logout();
@@ -42,13 +42,13 @@ describe("the header controller (unit)", function() {
     });
     it('should navigate to the login page', function() {
       // Arrange
-      $rootScope.userNavigationService.navigateTo = jasmine.createSpy();
+      $rootScope.navigationService.navigateTo = jasmine.createSpy();
 
       // Act
       $scope.logout();
 
       // Assert
-      expect($rootScope.userNavigationService.navigateTo).toHaveBeenCalledWith('login', { to: '/dashboard' });
+      expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('login', { to: '/dashboard' });
     });
   });
 });

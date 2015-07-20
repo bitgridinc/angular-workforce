@@ -10,13 +10,13 @@ require('./../_module_init.js')
           beacon: '='
         },
         controller: [
-                  '$scope', 'UserNavigationService',
-          function($scope,   UserNavigationService) {
+                  '$scope', 'NavigationService',
+          function($scope,   NavigationService) {
             $scope.onReviewAssistance = function(beacon) {
-              if (UserNavigationService.doesUserNavigationStateInclude('dashboard.beacons.detail.review')) {
-                UserNavigationService.navigateTo('dashboard.beacons.detail');
+              if (NavigationService.doesNavigationStateInclude('dashboard.beacons.detail.review')) {
+                NavigationService.navigateTo('dashboard.beacons.detail');
               } else {
-                UserNavigationService.navigateTo('dashboard.beacons.detail.review.response', { id: beacon.id, responseId: beacon.responses[0].id });
+                NavigationService.navigateTo('dashboard.beacons.detail.review.response', { id: beacon.id, responseId: beacon.responses[0].id });
               }
             };
           }
