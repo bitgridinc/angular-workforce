@@ -2,31 +2,31 @@
 
 require('./_module')
   .controller('BodyController',
-    [         '_', '$scope', '$rootScope', 'MessagePacketizerService', 'RestService',
-      function(_,   $scope,   $rootScope,   MessagePacketizerService,   RestService) {
+    [         '_', '$scope', 'MessagePacketizerService', 'RestService',
+      function(_,   $scope,   MessagePacketizerService,   RestService) {
         console.log('Entering ReviewAssistanceBodyController');
 
-        $rootScope.$watchCollection('dataFromServer.beacons', function(newValue) {
+        $scope.$watchCollection('dataFromServer.beacons', function(newValue) {
           console.log('dataFromServer.beacons changed', newValue);
           if (angular.isDefined(newValue) && newValue.length > 0) {
-            $scope.currentBeacon = $rootScope.findBeaconById($rootScope.$stateParams.id);
+            $scope.currentBeacon = $scope.findBeaconById($scope.$stateParams.id);
             $scope.currentResponse = $scope.currentBeacon && _.find($scope.currentBeacon.responses, function(response) {
-              return response.id === $rootScope.$stateParams.responseId;
+              return response.id === $scope.$stateParams.responseId;
             });
-            $scope.senderOrganization = $scope.currentResponse && $rootScope.findOrganizationById($scope.currentResponse.senderId);
+            $scope.senderOrganization = $scope.currentResponse && $scope.findOrganizationById($scope.currentResponse.senderId);
           }
         });
 
         $scope.acceptAssistance = function() {
           // TODO: This is garbage :P
           console.log("Offering this many people to help: ", $scope.currentResponse.numResponders);
-          var message = MessagePacketizerService.packetize($scope.currentResponse.id, $scope.selectionState.currentBeacon.id);
+          var message = MessagePacketizerService.packetize($scope.currentResponse.id);
           RestService.acceptAssistance(message);
 
           // Clear the watch we set in reviewAssistanceHeaderController
           $scope.responsesWatch();
 
-          $rootScope.navigationService.navigateTo('dashboard.beacons.list');
+          $scope.navigationService.navigateTo('dashboard.beacons.list');
         };
       }
     ]

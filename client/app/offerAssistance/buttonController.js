@@ -2,8 +2,8 @@
 
 require('./_module')
   .controller('ButtonController',
-    [         '$scope', '$rootScope', 'MessagePacketizerService', 'RestService',
-      function($scope,   $rootScope,   MessagePacketizerService,   RestService) {
+    [         '$scope', 'MessagePacketizerService', 'RestService',
+      function($scope,   MessagePacketizerService,   RestService) {
         // For debugging purposes
         $scope.name = 'ButtonController';
 
@@ -11,11 +11,11 @@ require('./_module')
           console.log("You've responded to a beacon with", assist);
           if (assist) {
             // TODO: Prevent responding to a null beacon
-            var message = MessagePacketizerService.packetize($scope.assistanceOffer, $rootScope.selectionState.currentBeacon.id);
+            var message = MessagePacketizerService.packetize($scope.assistanceOffer);
             RestService.offerAssistance(message);
           }
 
-          $rootScope.navigationService.navigateTo('dashboard.beacons.list');
+          $scope.navigationService.navigateTo('dashboard.beacons.list');
         };
       }
     ]

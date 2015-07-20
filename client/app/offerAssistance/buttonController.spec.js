@@ -16,10 +16,8 @@ describe('the ButtonController', function() {
     $rootScope.navigationService = NavigationService;
     spyOn($rootScope.navigationService, 'navigateTo');
 
-    $rootScope.selectionState = {
-      currentBeacon: {
-        id: '1'
-      }
+    $rootScope.$stateParams = {
+      id: '1'
     };
     $rootScope.dataFromServer = {
       currentOrganization: {
@@ -49,7 +47,7 @@ describe('the ButtonController', function() {
           arrivalDate: $scope.assistanceOffer.arrivalDate
         },
         senderId : $rootScope.dataFromServer.currentOrganization.id,
-        beaconId : $rootScope.selectionState.currentBeacon.id,
+        beaconId : $rootScope.$stateParams.id,
         recipientIds: undefined
       });
     });
