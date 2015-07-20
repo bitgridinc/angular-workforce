@@ -15,12 +15,6 @@ var BeaconDetailsController = function ($rootScope, $scope) {
       cleanup();
     });
   });
-
-  $scope.goToReviewAssistance = function() {
-    $scope.navigationService.navigateTo(
-      'dashboard.beacons.detail.review.response',
-      { responseId: $scope.selectionState.currentBeacon.responses[0].id });
-  };
 };
 
 BeaconDetailsController.$inject = ['$rootScope', '$scope'];
