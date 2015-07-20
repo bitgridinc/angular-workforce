@@ -12,15 +12,17 @@ require('./_module')
         };
 
         $rootScope.findOrganizationById = function(id) {
-          console.log('Finding organization by id: ', id, $rootScope.dataFromServer.allOrganizations);
-          return _.find($rootScope.dataFromServer.allOrganizations, function(organization) {
+          var allOrganizations = $rootScope.dataFromServer.allOrganizations;
+          console.log('Finding organization by id: ', id, allOrganizations);
+          return _.find(allOrganizations, function(organization) {
             return organization.id === id;
           });
         };
 
         $rootScope.findBeaconById = function(id) {
-          console.log('Finding beacon by id: ', id, $rootScope.dataFromServer.beacons);
-          return _.find($rootScope.dataFromServer.beacons, function(beacon) {
+          var allBeacons = $rootScope.dataFromServer.beacons;
+          console.log('Finding beacon by id: ', id, allBeacons);
+          return _.find(allBeacons, function(beacon) {
             return beacon.id === id;
           });
         };
