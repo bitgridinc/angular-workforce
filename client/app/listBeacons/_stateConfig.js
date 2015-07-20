@@ -11,8 +11,7 @@ require('./_module')
             url: '',
             views: {
               'left': {
-                templateUrl: 'templates/listBeacons/_view.tpl.html',
-                controller: 'ListBeaconsController'
+                templateUrl: 'templates/listBeacons/_view.tpl.html'
               }
             }
           })

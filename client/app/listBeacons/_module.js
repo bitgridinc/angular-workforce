@@ -7,5 +7,4 @@ module.exports =
   );
 
 require('./_stateConfig');
-require('./_controller');
 require('./requiresInputFilter');

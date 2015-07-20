@@ -6,7 +6,11 @@ require('./../_module_init.js')
       return {
         link: function(scope, element, attrs) {
           element.bind('click', function() {
-            scope.navigationService.navigateTo(attrs.navigateTo);
+            var params = {};
+            if (angular.isDefined(attrs.navigateToBeaconId)) {
+              params.id = attrs.navigateToBeaconId;
+            }
+            scope.navigationService.navigateTo(attrs.navigateTo, params);
           });
         }
       }
