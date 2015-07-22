@@ -39,7 +39,7 @@ var beacons = [
 module.exports = {
   saveBeacon: function(beacon, successCallback) {
     // This mimics ArcGIS by adding 1 to the highest ObjectID
-    if (!beacon.id) {
+    if (!beacon.id || beacon.id < 1) {
       beacon.id = _.max(beacons, function(beacon) {
         return beacon.id;
       }).id + 1;
