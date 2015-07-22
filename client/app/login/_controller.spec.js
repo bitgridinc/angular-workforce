@@ -9,18 +9,17 @@ function createFakePromise(returnValue) {
 }
 
 describe('the login controller', function() {
-  var $scope
-    , $rootScope
+  var $rootScope
     , $controller
     , $location
-    , stubRestService;
+    , stubRestService
+    , sut;
 
   function initializeController(loginResponseData) {
     stubRestService.login.and.returnValue(createFakePromise({
       data: loginResponseData
     }));
-    $controller('LoginController', {
-      '$scope': $scope,
+    sut = $controller('LoginController', {
       '$rootScope': $rootScope,
       '$location': $location,
       'RestService': stubRestService
@@ -29,7 +28,6 @@ describe('the login controller', function() {
 
   beforeEach(module('modules.login'));
   beforeEach(inject(function(_$rootScope_, _$controller_, _$location_) {
-    $scope = _$rootScope_.$new();
     $rootScope = _$rootScope_;
     $controller = _$controller_;
     $location = _$location_;
@@ -42,14 +40,14 @@ describe('the login controller', function() {
     // Arrange
     $rootScope.$stateParams = {}; // The 'to' url doesn't matter for this test
     initializeController({}); // The response doesn't matter for this test
-    $scope.credentials.username = 'user';
-    $scope.credentials.password = 'pass';
+    sut.credentials.username = 'user';
+    sut.credentials.password = 'pass';
 
     // Act
-    $scope.onSubmit();
+    sut.onSubmit();
 
     // Assert
-    expect(stubRestService.login).toHaveBeenCalledWith($scope.credentials);
+    expect(stubRestService.login).toHaveBeenCalledWith(sut.credentials);
   });
 
   describe('when the user is authorized', function() {
@@ -65,7 +63,7 @@ describe('the login controller', function() {
       initializeController(loginResponseData);
 
       // Act
-      $scope.onSubmit();
+      sut.onSubmit();
     });
 
     it('should store the JWT on $rootScope', function() {
@@ -90,12 +88,12 @@ describe('the login controller', function() {
       initializeController(loginResponseData);
 
       // Act
-      $scope.onSubmit();
+      sut.onSubmit();
     });
 
-    it('should store the error on $scope for display in the UI', function() {
+    it('should store the error on this for display in the UI', function() {
       // Assert
-      expect($scope.error).toBe(loginResponseData.error);
+      expect(sut.error).toBe(loginResponseData.error);
     });
     it('should navigate to the dashboard', function() {
       // Assert

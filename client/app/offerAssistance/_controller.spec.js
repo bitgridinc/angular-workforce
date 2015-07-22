@@ -1,18 +1,14 @@
 "use strict";
 
 describe('the offer assistance controller', function() {
-  var $scope;
+  var sut;
 
   beforeEach(module('modules.offerAssistance'));
-  beforeEach(inject(function (_$rootScope_, _$controller_) {
-    $scope = _$rootScope_.$new();
-
-    _$controller_('OfferAssistanceController', {
-      $scope: $scope
-    });
+  beforeEach(inject(function(_$controller_) {
+    sut = _$controller_('OfferAssistanceController');
   }));
 
   it ('should configure scope with the assistance offer object', function () {
-    expect($scope.assistanceOffer).toBeDefined();
+    expect(sut.assistanceOffer).toBeDefined();
   });
 });

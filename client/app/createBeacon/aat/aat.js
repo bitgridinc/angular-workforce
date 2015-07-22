@@ -9,27 +9,6 @@ function clickSubmitBeaconButton() {
   browser.findElement(locators.submitButton).click();
 }
 
-function getAlertDialog(callback) {
-  // TODO: Replace with http://angular.github.io/protractor/#/api?view=ExpectedConditions
-  // TODO: Also look at client/app/map/aat/aat.js
-  browser.wait(function() {
-    return browser.switchTo().alert().then(
-      function(alert) {
-        callback(alert);
-        return true;
-      },
-      function() { return false; }
-    );
-  }, 5000);
-}
-
-function acceptAlertDialog(expectedUrl) {
-  getAlertDialog(function(alert) {
-    alert.accept();
-    expect(browser.getCurrentUrl()).toMatch(expectedUrl);
-  });
-}
-
 function populateAllInputs() {
   browser.findElement(locators.titleInput).sendKeys('t');
   browser.findElement(locators.descriptionInput).sendKeys('d');
@@ -63,20 +42,19 @@ aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, sui
     //assertInputIsRequired('start date', locators.startDateInput);
     //assertInputIsRequired('number of people', locators.numberOfPeopleInput);
 
-    it('should alert when no recipients are selected', function() {
+    it('should disable the submit button when no recipients are selected', function() {
       // Arrange
       populateAllInputs();
+
+      // Act
       element.all(locators.recipientIncludeCheckbox).then(function(elements) {
         for (var i = 0; i < elements.length; i++) {
           elements[i].click();
         }
       });
 
-      // Act
-      clickSubmitBeaconButton();
-
       // Assert
-      acceptAlertDialog('/#/dashboard/beacons/create$'); // Will fail if there is no alert
+      expect(element(locators.submitButton).isEnabled()).toBe(false);
     });
 
     it('should pop a success toastr when a beacon is successfully created', function() {
@@ -91,7 +69,7 @@ aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, sui
       //browser.findElement(locators.startDateInput).sendKeys('2099-09-16');
       //browser.findElement(locators.numberOfPeopleInput).sendKeys('1')
         .then(function() {
-          browser.findElement(locators.submitButton).click();
+          clickSubmitBeaconButton();
         });
 
       // Assert

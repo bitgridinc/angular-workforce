@@ -1,31 +1,39 @@
 "use strict";
 
 // This controller wires up the $rootScope for consumption by the entire application.
-require('./_module')
-  .controller('AppController',
-    [         '$rootScope', '_',
-      function($rootScope,   _) {
-        $rootScope.dataFromServer = {
-          allOrganizations: [],
-          currentOrganization: {},
-          beacons: []
-        };
+var AppController = function($rootScope, _) {
+  var _this = this;
+  _this.find = _.find;
 
-        $rootScope.findOrganizationById = function(id) {
-          var allOrganizations = $rootScope.dataFromServer.allOrganizations;
-          console.log('Finding organization by id: ', id, allOrganizations);
-          return _.find(allOrganizations, function(organization) {
-            return organization.id === id;
-          });
-        };
+  $rootScope.dataFromServer = {
+    allOrganizations: [],
+    currentOrganization: {},
+    beacons: []
+  };
 
-        $rootScope.findBeaconById = function(id) {
-          var allBeacons = $rootScope.dataFromServer.beacons;
-          console.log('Finding beacon by id: ', id, allBeacons);
-          return _.find(allBeacons, function(beacon) {
-            return beacon.id === id;
-          });
-        };
-      }
-    ]
-  );
+  $rootScope.findOrganizationById = function(id) {
+    return _this.findOrganizationById($rootScope.dataFromServer.allOrganizations, id);
+  };
+
+  $rootScope.findBeaconById = function(id) {
+    return _this.findBeaconById($rootScope.dataFromServer.beacons, id);
+  };
+};
+
+AppController.prototype.findOrganizationById = function(allOrganizations, id) {
+  console.log('Finding organization by id: ', id, allOrganizations);
+  return this.find(allOrganizations, function(organization) {
+    return organization.id === id;
+  });
+};
+
+AppController.prototype.findBeaconById = function(allBeacons, id) {
+  console.log('Finding beacon by id: ', id, allBeacons);
+  return this.find(allBeacons, function(beacon) {
+    return beacon.id === id;
+  });
+};
+
+AppController.$inject = ['$rootScope', '_'];
+
+require('./_module').controller('AppController', AppController);

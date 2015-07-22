@@ -14,7 +14,8 @@ require('./_module')
               // TODO: which both happen to be grandchildren of dashboard.beacons and are targetting 'right'.
               'right@dashboard.beacons': {
                 templateUrl: 'templates/offerAssistance/_view.tpl.html',
-                controller: 'OfferAssistanceController'
+                controller: 'OfferAssistanceController',
+                controllerAs: 'offerAssistanceCtrl'
               }
             }
           });

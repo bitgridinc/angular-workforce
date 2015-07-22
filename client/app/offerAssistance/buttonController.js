@@ -1,22 +1,14 @@
 "use strict";
 
-require('./_module')
-  .controller('ButtonController',
-    [         '$scope', 'MessagePacketizerService', 'RestService',
-      function($scope,   MessagePacketizerService,   RestService) {
-        // For debugging purposes
-        $scope.name = 'ButtonController';
+var ButtonController = function(MessagePacketizerService, RestService, NavigationService) {
+  this.respond = function(assistanceOffer) {
+    // TODO: Prevent responding to a null beacon
+    var message = MessagePacketizerService.packetize(assistanceOffer);
+    RestService.offerAssistance(message);
+    NavigationService.navigateTo('dashboard.beacons.list');
+  };
+};
 
-        $scope.respond = function(assist) {
-          console.log("You've responded to a beacon with", assist);
-          if (assist) {
-            // TODO: Prevent responding to a null beacon
-            var message = MessagePacketizerService.packetize($scope.assistanceOffer);
-            RestService.offerAssistance(message);
-          }
+ButtonController.$inject = ['MessagePacketizerService', 'RestService', 'NavigationService'];
 
-          $scope.navigationService.navigateTo('dashboard.beacons.list');
-        };
-      }
-    ]
-  );
+require('./_module').controller('ButtonController', ButtonController);

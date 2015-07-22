@@ -2,14 +2,13 @@
 
 describe("the header controller (unit)", function() {
   var $rootScope
-    , $scope
     , jwtHelper
-    , $controller;
+    , $controller
+    , controller;
 
   function initializeController() {
-    $controller('HeaderController', {
+    controller = $controller('HeaderController', {
       '$rootScope': $rootScope,
-      '$scope': $scope,
       'jwtHelper': jwtHelper
     });
   }
@@ -17,7 +16,6 @@ describe("the header controller (unit)", function() {
   beforeEach(module("modules.header"));
   beforeEach(inject(function(_$rootScope_, _$controller_, _jwtHelper_) {
     $rootScope = _$rootScope_;
-    $scope = $rootScope.$new();
     jwtHelper = _jwtHelper_;
     $controller = _$controller_;
   }));
@@ -35,7 +33,7 @@ describe("the header controller (unit)", function() {
       $rootScope.navigationService.navigateTo = function() {};
 
       // Act
-      $scope.logout();
+      controller.logout();
 
       // Assert
       expect($rootScope.token).toBeUndefined();
@@ -45,7 +43,7 @@ describe("the header controller (unit)", function() {
       $rootScope.navigationService.navigateTo = jasmine.createSpy();
 
       // Act
-      $scope.logout();
+      controller.logout();
 
       // Assert
       expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('login', { to: '/dashboard' });

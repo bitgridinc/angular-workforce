@@ -76,9 +76,8 @@
       <icon-container icon-url="images/wizard_newutility.png">
         <div class="panel panel-default bg-input-margin">
           <div class="panel-heading">Recipients</div>
-
           <table class="table">
-            <tr ng-repeat="recipient in possibleRecipients">
+            <tr ng-repeat="recipient in createBeaconCtrl.recipientService.possibleRecipients">
               <!-- What-eva! I do what I want!! -->
               <td style="width: 13px;"><input type="checkbox" ng-model="recipient.include"></td>
               <td align="left">{{recipient.organization.name}}</td>
@@ -89,7 +88,13 @@
     </li>
     <table class="bg-dw-button-table">
       <td class="bg-no-padding">
-        <button class="bg-full-width btn btn-sm btn-success" type="button" ng-click="completeNewBeacon()" ng-disabled="createBeaconForm.$invalid">Submit Beacon</button>
+        <button class="bg-full-width btn btn-sm btn-success"
+                type="button"
+                ng-click="completeNewBeacon()"
+                ng-disabled="createBeaconForm.$invalid ||
+                             createBeaconCtrl.recipientService.getIncludedRecipientIds().length === 0">
+            Submit Beacon
+        </button>
       </td>
       <td class="bg-no-padding">
         <button class="bg-full-width btn btn-sm btn-default" type="button" navigate-to="^.list">Cancel</button>

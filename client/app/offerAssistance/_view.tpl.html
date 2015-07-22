@@ -23,24 +23,33 @@
   </li>
   <li id="bg-oa-users-container"
       class="bg-list-group-item"
-      ng-controller="AssignedUsersController"
-      ng-show="users.length > 0">
+      ng-controller="AssignedUsersController as assignedUsersCtrl"
+      ng-show="assignedUsersCtrl.users.length > 0">
     <icon-container icon-url="images/wizard_dark_linemen.png">
       <table class="table">
-        <tr ng-repeat="user in users">
-          <td style="width: 13px;"><input type="checkbox" ng-model="user.include" ng-click="onUserSelected()"></td>
+        <tr ng-repeat="user in assignedUsersCtrl.users">
+          <td style="width: 13px;">
+            <input type="checkbox"
+                   ng-model="user.include"
+                   ng-click="assignedUsersCtrl.onUserSelected(offerAssistanceCtrl.assistanceOffer)">
+          </td>
           <td align="left">{{user.fullName}}</td>
         </tr>
       </table>
     </icon-container>
   </li>
   <!-- TODO: Make a directive for the double-wide buttons. -->
-  <table class="bg-dw-button-table" ng-controller="ButtonController">
+  <table class="bg-dw-button-table" ng-controller="ButtonController as buttonCtrl">
     <td class="bg-no-padding">
-      <button class="bg-full-width btn btn-sm btn-success" type="button" ng-click="respond(true)" ng-disabled="offerAssistanceForm.$invalid">Assist</button>
+      <button class="bg-full-width btn btn-sm btn-success"
+              type="button"
+              ng-click="buttonCtrl.respond(offerAssistanceCtrl.assistanceOffer)"
+              ng-disabled="offerAssistanceForm.$invalid">
+          Assist
+      </button>
     </td>
     <td class="bg-no-padding">
-      <button class="bg-full-width btn btn-sm btn-danger" type="button" ng-click="respond(false)">Stuff 'Em</button>
+      <button class="bg-full-width btn btn-sm btn-danger" type="button" navigate-to="dashboard.beacons.list">Stuff 'Em</button>
     </td>
   </table>
 </form>

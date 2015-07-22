@@ -1,21 +1,19 @@
 "use strict";
 
-require('./_module')
-  .controller('AssignedUsersController',
-    [         '$scope', 'RestService', '_',
-      function($scope,   RestService,   _) {
-        // For debugging purposes
-        $scope.name = 'AssignedUsersController';
+var AssignedUsersController = function(RestService, _) {
+  var _this = this;
 
-        RestService.getAllUsers().then(function(users) {
-          $scope.users = users.data.users;
-        });
+  RestService.getAllUsers().then(function(users) {
+    _this.users = users.data.users;
+  });
 
-        $scope.onUserSelected = function() {
-          $scope.assistanceOffer.numResponders = _.sum($scope.users, function(user) {
-            return user.include ? 1 : 0;
-          });
-        };
-      }
-    ]
-  );
+  _this.onUserSelected = function(assistanceOffer) {
+    assistanceOffer.numResponders = _.sum(_this.users, function(user) {
+      return user.include ? 1 : 0;
+    });
+  };
+};
+
+AssignedUsersController.$inject = ['RestService', '_'];
+
+require('./_module').controller('AssignedUsersController', AssignedUsersController);

@@ -10,6 +10,7 @@ var BeaconDetailsController = function ($rootScope, $scope) {
   var cleanup;
   cleanup = $scope.$watch('dataFromServer.beacons.length', function(newVal, oldVal) {
     console.log('The number of beacons changed', newVal, oldVal);
+    // TODO: Can I use a service to manage maintaining the current beacon
     $scope.selectionState.currentBeacon = $scope.findBeaconById($scope.$stateParams.id);
     $scope.$on('$destroy', function() {
       cleanup();

@@ -16,3 +16,4 @@ require('./_controller');
 require('./mapClickMarkerController');
 require('./mouseLocationController');
 require('./newBeaconFactory');
+require('./recipientService');

@@ -3,7 +3,8 @@
 describe('the assignedUsersController', function() {
   var $scope
     , $controller
-    , restService;
+    , restService
+    , sut;
 
   beforeEach(module('modules.offerAssistance'));
   beforeEach(inject(function (_$rootScope_, _$controller_, RestService) {
@@ -26,18 +27,20 @@ describe('the assignedUsersController', function() {
     });
 
     // Act
-    $controller('AssignedUsersController', {
-      $scope: $scope,
+    sut = $controller('AssignedUsersController', {
       RestService: restService
     });
 
     // Assert
-    expect($scope.users).toBe(users);
+    expect(sut.users).toBe(users);
   });
   it('should update numResponders when users are selected', function() {
     // Arrange
-    $scope.assistanceOffer = {};
-    $scope.users = [{
+    var assistanceOffer = {};
+    sut = $controller('AssignedUsersController', {
+      RestService: restService
+    });
+    sut.users = [{
       // This one I'm leaving empty because this happens
     }, {
       include: false
@@ -46,15 +49,11 @@ describe('the assignedUsersController', function() {
     }, {
       include: true
     }];
-    $controller('AssignedUsersController', {
-      $scope: $scope,
-      RestService: restService
-    });
 
     // Act
-    $scope.onUserSelected();
+    sut.onUserSelected(assistanceOffer);
 
     // Assert
-    expect($scope.assistanceOffer.numResponders).toBe(2);
+    expect(assistanceOffer.numResponders).toBe(2);
   });
 });

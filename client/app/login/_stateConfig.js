@@ -9,7 +9,8 @@ require('./_module')
             name: 'login',
             url: '/login/{to:string}',
             templateUrl: 'templates/login/_view.tpl.html',
-            controller: 'LoginController'
+            controller: 'LoginController',
+            controllerAs: 'loginCtrl'
           });
       }
     ]

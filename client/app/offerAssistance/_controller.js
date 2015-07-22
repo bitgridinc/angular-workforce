@@ -1,13 +1,7 @@
 "use strict";
 
-require('./_module')
-  .controller('OfferAssistanceController',
-    [         '$scope',
-      function($scope) {
-        // For debugging purposes
-        $scope.name = 'OfferAssistanceController';
+var OfferAssistanceController = function() {
+  this.assistanceOffer = {};
+};
 
-        $scope.assistanceOffer = {};
-      }
-    ]
-  );
+require('./_module').controller('OfferAssistanceController', OfferAssistanceController);

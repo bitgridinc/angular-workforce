@@ -13,10 +13,10 @@ function MapBehaviorController($scope, MapExtentService) {
       ];
       MapExtentService.ensureContainsPoints(mustContainPoints);
     }
-  });
 
-  $scope.$on('$destroy', function() {
-    cleanup();
+    $scope.$on('$destroy', function() {
+      cleanup();
+    });
   });
 }
 

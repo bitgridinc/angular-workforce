@@ -1,49 +1,31 @@
 "use strict";
 
-require('./_module')
-  .controller('CreateBeaconController',
-    [         '$rootScope', '$scope', 'NewBeaconFactory', '_', 'toaster',
-      function($rootScope,   $scope,   NewBeaconFactory,   _,   toaster) {
-        NewBeaconFactory.initScope($scope);
+var CreateBeaconController = function($scope, NewBeaconFactory, RecipientService, _, toaster) {
+  var _this = this;
+  _this.chain = _.chain;
+  _this.recipientService = RecipientService;
 
-        // Note that a filter *might* be better as we grow as it would be reusable.
-        // TODO: Test adding allOrganizations after the watch is set
-        $scope.possibleRecipients = [];
-        $rootScope.$watchCollection('dataFromServer.allOrganizations', function(newOrganizations) {
-          $scope.possibleRecipients.length = 0;
-          _.forEach(newOrganizations, function(organization) {
-            if (organization.id !== $rootScope.dataFromServer.currentOrganization.id) {
-              $scope.possibleRecipients.push({
-                include: true,
-                organization: organization
-              });
-            }
-          });
-        });
+  NewBeaconFactory.initScope($scope);
 
-        $scope.completeNewBeacon = function() {
-          var recipientIds = _.chain($scope.possibleRecipients)
-            .where({ include: true })
-            .map(function(r) {
-              return r.organization.id
-            })
-            .value();
-          if (recipientIds.length <= 0) {
-            alert('Please select at least one recipient.');
-            throw new Error('No recipients selected when creating a new beacon.');
-          }
+  $scope.completeNewBeacon = function() {
+    var recipientIds = _this.recipientService.getIncludedRecipientIds();
+    NewBeaconFactory.postNewBeacon(recipientIds).then(function(result) {
+      // I'm just putting this here to remember how it's done. I expect to move this around.
+      toaster.pop(_this.bread(result));
+      $scope.navigationService.navigateTo('^.list');
+    });
+  };
+};
 
-          NewBeaconFactory.postNewBeacon(recipientIds).then(function(result) {
-            // TODO: Handle error and test
-            // I'm just putting this here to remember how it's done. I expect to move this around.
-            toaster.pop({ // pass a high timeout to keep the toaster longer
-              type: 'success',
-              title: 'Success!',
-              body: 'Your aid beacon is in effect'
-            });
-            $rootScope.navigationService.navigateTo('^.list');
-          });
-        };
-      }
-    ]
-  );
+CreateBeaconController.prototype.bread = function(result) {
+  // TODO: Handle error in result and test
+  return { // pass a high timeout to keep the toaster longer
+    type: 'success',
+    title: 'Success!',
+    body: 'Your aid beacon is in effect'
+  };
+};
+
+CreateBeaconController.$inject = ['$scope', 'NewBeaconFactory', 'RecipientService', '_', 'toaster'];
+
+require('./_module').controller('CreateBeaconController', CreateBeaconController);

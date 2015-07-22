@@ -12,7 +12,8 @@ require('./_module')
             views: {
               'left': {
                 templateUrl: 'templates/createBeacon/_view.tpl.html',
-                controller: 'CreateBeaconController'
+                controller: 'CreateBeaconController',
+                controllerAs: 'createBeaconCtrl'
               }
             }
           });

@@ -2,13 +2,12 @@
 
 describe('the ButtonController', function() {
   var $rootScope
-    , $scope
-    , restService;
+    , restService
+    , sut;
 
   beforeEach(module('modules.offerAssistance'));
   beforeEach(inject(function (_$rootScope_, _$controller_, NavigationService, MessagePacketizerService, RestService) {
     $rootScope = _$rootScope_;
-    $scope = _$rootScope_.$new();
 
     restService = RestService;
     spyOn(restService, 'offerAssistance');
@@ -24,13 +23,8 @@ describe('the ButtonController', function() {
         id: '2'
       }
     };
-    $scope.assistanceOffer = {
-      numResponders: 2,
-      arrivalDate: new Date()
-    };
 
-    _$controller_('ButtonController', {
-      $scope: $scope,
+    sut = _$controller_('ButtonController', {
       $rootScope: $rootScope,
       MessagePacketizerService: MessagePacketizerService,
       RestService: restService
@@ -38,29 +32,28 @@ describe('the ButtonController', function() {
   }));
 
   describe ('sending the assistance offer', function () {
-    beforeEach(function () { $scope.respond(true); });
+    var assistanceOffer;
+    beforeEach(function () {
+      // Arrange
+      assistanceOffer = {
+        numResponders: 2,
+        arrivalDate: new Date()
+      };
+
+      // Act
+      sut.respond(assistanceOffer);
+    });
 
     it('should pass the packetized message data to the socket', function () {
       expect(restService.offerAssistance).toHaveBeenCalledWith({
         contents: {
-          numResponders: $scope.assistanceOffer.numResponders,
-          arrivalDate: $scope.assistanceOffer.arrivalDate
+          numResponders: assistanceOffer.numResponders,
+          arrivalDate: assistanceOffer.arrivalDate
         },
         senderId : $rootScope.dataFromServer.currentOrganization.id,
         beaconId : $rootScope.$stateParams.id,
         recipientIds: undefined
       });
-    });
-    it('should change our page state', function () {
-      expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('dashboard.beacons.list');
-    });
-  });
-
-  describe ('cancelling the assistance offer', function () {
-    beforeEach(function () { $scope.respond(false); });
-
-    it('should not make a socket call', function () {
-      expect(restService.offerAssistance).not.toHaveBeenCalled();
     });
     it('should change our page state', function () {
       expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('dashboard.beacons.list');
