@@ -14,7 +14,7 @@ require('./_module')
             NavigationService.navigateTo('dashboard');
             $scope.isToggled = false;
           } else {
-            NavigationService.navigateTo('dashboard.beacons.list');
+            NavigationService.navigateTo('dashboard.beacons.create');
             $scope.isToggled = true;
           }
         };

@@ -34,7 +34,7 @@ aatWrappers.browserGetWrapper('beaconControl', function(testRunner) {
     clickMyBeaconsButton();
 
     // Assert the url changed
-    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons$');
+    expect(browser.getCurrentUrl()).toMatch('/#/dashboard/beacons/create$');
 
     // Assert the control is expanded
     expectSelfIconIsDisplayed().toBeTruthy();
@@ -48,7 +48,7 @@ aatWrappers.browserGetWrapper('beaconControl', function(testRunner) {
     // Assert
     assertControlIsCollapsed();
   });
-  testRunner('/#/dashboard/beacons/30', 'starting at a nested state, clicking it should still collapse the control', function() {
+  testRunner('/#/dashboard/beacons/create', 'starting at a nested state, clicking it should still collapse the control', function() {
     // Act
     clickMyBeaconsButton();
 
