@@ -40,7 +40,11 @@ module.exports = function(sioServer) {
               // And send it back to the sender as well
               sioServer.to(request.payload.senderId).emit('newBeacon', beacon);
 
-              replySuccess(reply);
+              // TODO: Test this (should I break up this method?)
+              reply({
+                status: 'ok',
+                newBeaconId: beacon.id
+              });
             });
           });
         }

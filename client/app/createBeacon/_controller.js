@@ -12,7 +12,9 @@ var CreateBeaconController = function($scope, NewBeaconFactory, RecipientService
     NewBeaconFactory.postNewBeacon(recipientIds).then(function(result) {
       // I'm just putting this here to remember how it's done. I expect to move this around.
       toaster.pop(_this.bread(result));
-      $scope.navigationService.navigateTo('^.list');
+      $scope.navigationService.navigateTo(
+        'dashboard.beacons.detail',
+        { id: result.data.newBeaconId });
     });
   };
 };

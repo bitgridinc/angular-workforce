@@ -57,7 +57,7 @@ aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, sui
       expect(element(locators.submitButton).isEnabled()).toBe(false);
     });
 
-    it('should pop a success toastr when a beacon is successfully created', function() {
+    it('should pop a success toastr when a beacon is successfully created and navigate to the beacon', function() {
       // Arrange
       var toastrTitleElement = element(dashboardLocators.toastrTitle);
 
@@ -74,6 +74,7 @@ aatWrappers.browserGetWrapper('the create beacon view', function(testRunner, sui
 
       // Assert
       browser.wait(EC.textToBePresentInElement(toastrTitleElement, 'Success!'), 5000);
+      expect(browser.getCurrentUrl()).toMatch(/\/#\/dashboard\/beacons\/\d+$/);
     });
 
     // TODO: AAT for the Cancel button (should it remove the unit test?)

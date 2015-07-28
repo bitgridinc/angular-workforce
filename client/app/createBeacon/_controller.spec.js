@@ -22,21 +22,28 @@ describe('the create beacon controller', function() {
     });
   }));
 
-  it('should navigate to the beacon list after the new beacon is POSTed', function() {
+  it('should navigate to the new beacon after the new beacon POST result is received', function() {
     // Arrange
+    var result = {
+      data: {
+        newBeaconId: '1337'
+      }
+    };
     $rootScope.navigationService = {
       navigateTo: jasmine.createSpy('navigateTo')
     };
     spyOn(newBeaconFactory, 'postNewBeacon').and.returnValue({
       then: function(callback) {
-        callback();
+        callback(result);
       }
     });
 
     // Act
-    $scope.completeNewBeacon(true);
+    $scope.completeNewBeacon();
 
     // Assert
-    expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith('^.list');
+    expect($rootScope.navigationService.navigateTo).toHaveBeenCalledWith(
+      'dashboard.beacons.detail',
+      { id: result.data.newBeaconId });
   });
 });
