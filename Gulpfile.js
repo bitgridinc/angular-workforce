@@ -6,6 +6,7 @@ var gulp = require('gulp')
   , webdriver_standalone = require('gulp-protractor').webdriver_standalone
   , webdriver_update = require('gulp-protractor').webdriver_update
   , watch = require('gulp-watch')
+  , livereload = require('gulp-livereload')
   , bundlers = require('./gulp-tasks/bundlers')
   , runSequence = require('run-sequence')
   , argv = require('yargs').argv;
@@ -23,6 +24,7 @@ var paths = {
     allSpecSrc: __dirname + '/client/**/*.spec.js',
     moduleSrc: __dirname + '/client/app/**/*.js',
     commonSrc: __dirname + '/client/common/**/**/*.js',
+    allHtml: __dirname + '/client/app/**/*.html',
     entrySrc: __dirname + '/client/app/_application/_module.js',
     aatSrc: [__dirname + '/client/app/**/aat/*aat.js', __dirname + '/client/common/**/aat/*aat.js'],
     bowerDir: __dirname + '/client/bower_components',
@@ -31,6 +33,7 @@ var paths = {
   },
   server: {
     parentDir: __dirname + '/server',
+    publicDir: __dirname + '/server/public',
     cssDir: __dirname + '/server/public/css',
     bundleDir: __dirname + '/server/public/js',
     fontsDir: __dirname + '/server/public/fonts',
@@ -72,6 +75,11 @@ gulp.task('client-watch', function() {
   watch(paths.client.allSassSrc, function() {
     gulp.start('css');
   });
+
+  livereload.listen();
+
+  watch(paths.client.allHtml, livereload.changed);
+  watch(paths.server.publicDir, livereload.changed);
 });
 
 // TODO: Pipeline the build. Run all generating tasks first, then start browserify/watchify, then nodemon, to prevent multiple runs and restarts.

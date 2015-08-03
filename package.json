@@ -47,6 +47,7 @@
     "gulp-jasmine": "^2.0.1",
     "gulp-jshint": "^1.10.0",
     "gulp-karma": "0.0.4",
+    "gulp-livereload": "^3.8.0",
     "gulp-ng-constant": "^0.3.0",
     "gulp-nodemon": "^2.0.3",
     "gulp-notify": "^2.2.0",
