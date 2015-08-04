@@ -5,7 +5,6 @@ var http = require('http')
   , factories = require('../../../../shared/factories')
   , proxyquire = require('proxyquire')
   , specData = require('./api.integration.specData.js')
-  , promiseHelpers = require('../../../spec/support/promiseHelpers')
   , hapifyPost = require('../../../spec/support/hapiHelpers').hapifyPost
   , spyHelpers = require('../../../spec/support/spyHelpers')
   , inProduction = require('../../../spec/support/environmentHelpers').inProduction
@@ -20,18 +19,6 @@ inProduction(function() {
         query: specData.queryGetResponse
       });
     }); // Spy on the geoservices module, which we use in featureServer.js to communicate with Esri
-
-    var esriPortalModuleFunction;
-    beforeEach(function() {
-      var portalSpyObj = jasmine.createSpyObj('portal', ['users']);
-      portalSpyObj.users.and.returnValue(promiseHelpers.createFake(specData.getAllUsersResponse));
-      var esriPortalApiSpy = {
-        portal: portalSpyObj
-      };
-      esriPortalModuleFunction = function() {
-        return esriPortalApiSpy;
-      };
-    }); // Spy on the esri-portal-api module, which we use in userDatabase.js to communicate with Esri's portal API
 
     var sioServerSpy
       , emitSpy;
@@ -51,14 +38,12 @@ inProduction(function() {
       // levels down, and proxyquire only goes one level deep by default (it's normally used for unit testing). See:
       // https://www.npmjs.com/package/proxyquire#caveat
       geoservicesSpy.moduleFunction['@global'] = true;
-      esriPortalModuleFunction['@global'] = true;
       specData.messageDatabase['@global'] = true;
 
       // We must create the spies before we require in the api, as it is in the api's require statements that the
       // code in which we are spying is used
       handlers = proxyquire('../api', {
         'geoservices': geoservicesSpy.moduleFunction,
-        'esri-portal-api': esriPortalModuleFunction,
         './messageDatabase.prod.js': specData.messageDatabase
       })(sioServerSpy);
     }); // Instantiate our api, the SUT, with the spies set up above
