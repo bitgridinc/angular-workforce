@@ -6,7 +6,7 @@ var testMode = require('../../environment.js').runningInTestMode()
 
 module.exports = {
   getAllUsers: function(accessToken) {
-    console.log('Getting Esri users with token: ', accessToken);
+    //console.log('Getting Esri users with token: ', accessToken);
     return ago.portal.users(accessToken, 'self');
   }
 };

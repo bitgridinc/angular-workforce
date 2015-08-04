@@ -7,7 +7,7 @@ module.exports = {
       organization: esriOrgId,
       token: esriAccessToken
     };
-    console.log('Token created: ', token);
+    //console.log('Token created: ', token);
     return token;
   }
 };

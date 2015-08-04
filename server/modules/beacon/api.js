@@ -15,7 +15,7 @@ module.exports = function(sioServer) {
   return {
     createBeacon: {
       handler: function(request, reply) {
-        console.log('createBeacon handler called with payload:', request.payload);
+        //console.log('createBeacon handler called with payload:', request.payload);
 
         var requiredProperties = ['recipientIds', 'senderId', 'title', 'description', 'lat', 'lng'];
         var errors = _.filter(requiredProperties, function(requiredProperty) {
@@ -26,14 +26,14 @@ module.exports = function(sioServer) {
         });
 
         if (errors.length > 0) {
-          console.log('The payload had the following errors:', request.payload, errors);
+          //console.log('The payload had the following errors:', request.payload, errors);
           reply({status: 'error'});
         } else {
           beaconDatabase.saveBeacon(domain.createDomainBeacon(request.payload), function(result) {
             beaconDatabase.getBeaconById(result.objectId, function(beacon) {
               // Send the new beacon to all recipients
               _.forEach(request.payload.recipientIds, function(recipientId) {
-                console.log('Sending new beacon to recipient: ', recipientId);
+                //console.log('Sending new beacon to recipient: ', recipientId);
                 sioServer.to(recipientId).emit('newBeacon', beacon);
               });
 
@@ -55,11 +55,11 @@ module.exports = function(sioServer) {
     },
     offerAssistance: {
       handler: function(request, reply) {
-        console.log('offerAssistance handler called with payload:', request.payload);
+        //console.log('offerAssistance handler called with payload:', request.payload);
 
         beaconDatabase.getBeaconById(request.payload.beaconId, function(beacon) {
           if (beacon === undefined) {
-            console.log('Beacon not found with id: ', request.payload);
+            //console.log('Beacon not found with id: ', request.payload);
             reply({status: 'error'});
           }
 
@@ -80,7 +80,7 @@ module.exports = function(sioServer) {
     },
     acceptAssistance: {
       handler: function(request, reply) {
-        console.log('acceptAssistance handler called with payload:', request.payload);
+        //console.log('acceptAssistance handler called with payload:', request.payload);
         var acceptedMessageId = request.payload.contents;
 
         beaconDatabase.getBeaconById(request.payload.beaconId, function(beacon) {
@@ -92,13 +92,13 @@ module.exports = function(sioServer) {
           }
 
           messageDatabase.acceptMessage(acceptedMessageId);
-          console.log('This response was accepted:', acceptedMessageId);
+          //console.log('This response was accepted:', acceptedMessageId);
 
           var acceptResponseMessage = {
             beaconId: beacon.id,
             responseId: acceptedMessageId
           };
-          console.log('Sending this:', acceptResponseMessage);
+          //console.log('Sending this:', acceptResponseMessage);
 
           // Right now this is being lazy and sending this message to ALL connected clients. It will be ignored by those
           // clients that don't contain the beacon, but this we should improve this in the future.

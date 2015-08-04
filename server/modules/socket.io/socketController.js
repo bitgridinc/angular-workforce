@@ -24,11 +24,11 @@ module.exports = function(sioServer) {
 
   sioServer.sockets.on('connection', function(sioSocket){
     var profile = jwt.decode(sioSocket.handshake.query.token);
-    console.log('Client connected: ', profile);
+    //console.log('Client connected: ', profile);
 
     var clientOrganization = organizationDatabase.getCurrentOrganization(profile.organization);
     sioSocket.join(clientOrganization.id);
-    console.log('Client part of organization: ', clientOrganization);
+    //console.log('Client part of organization: ', clientOrganization);
 
     beaconDatabase.getAllBeacons(function(beacons) {
       sioSocket.emit('init', {

@@ -24,7 +24,7 @@ module.exports = {
           console.log("ERROR querying feature service: ", err);
           throw new Error(err);
         } else {
-          console.log("queryFeatures returning # of features: ", result.features.length);
+          //console.log("queryFeatures returning # of features: ", result.features.length);
           successCallback(result.features);
         }
       });
